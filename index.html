@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dozi - İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan modern sağlık asistanı">
-    <meta name="keywords" content="ilaç takibi, hatırlatma, sağlık uygulaması, dozi">
-    <title>Dozi - Sağlıklı Yaşam Asistanınız</title>
+    <meta name="description" content="Dozi - İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan şirin sağlık asistanı">
+    <title>Dozi - Sağlıklı Yaşam Asistanınız 💧</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,181 +15,335 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-pink: #FF6B9D;
+            --dozi-blue: #4A90E2;
+            --dozi-light-blue: #E8F4F8;
+            --dozi-dark: #0A1628;
+            --dozi-gray: #64748B;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            color: #1e293b;
+            color: var(--dozi-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: #fff;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            padding: 1rem 0;
+        /* Navbar */
+        .navbar {
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(64, 224, 208, 0.1);
         }
 
-        nav {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #40E0D0;
+            gap: 0.75rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--dozi-turquoise);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--dozi-dark);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #40E0D0;
+            color: var(--dozi-turquoise);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dozi-turquoise);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            color: white;
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #E8F4F8 0%, #FFF 50%, #FFE8F0 100%);
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: '';
+            content: '💧';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
         }
 
-        .hero-content {
-            max-width: 800px;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%);
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: #cbd5e1;
+            color: var(--dozi-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%);
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(64, 224, 208, 0.4);
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.3);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(64, 224, 208, 0.6);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(64, 224, 208, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--dozi-turquoise);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--dozi-turquoise);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dozi-turquoise);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mascot-container {
+            font-size: 20rem;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(64, 224, 208, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         /* Features Section */
         .features {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             background: white;
         }
 
-        .features h2 {
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #1e293b;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--dozi-gray);
         }
 
         .features-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #FFF 0%, var(--dozi-light-blue) 100%);
+            padding: 2.5rem;
+            border-radius: 30px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid #f1f5f9;
+            transition: all 0.4s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(64, 224, 208, 0.3);
+            border-color: var(--dozi-turquoise);
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.3);
+            transition: transform 0.4s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: #1e293b;
+            color: var(--dozi-dark);
         }
 
         .feature-card p {
-            color: #64748b;
+            color: var(--dozi-gray);
             line-height: 1.8;
+            font-size: 1rem;
         }
 
         /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #40E0D0 0%, #20B2AA 100%);
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
+            padding: 5rem 2rem;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '💊';
+            position: absolute;
+            font-size: 30rem;
+            opacity: 0.05;
+            top: -100px;
+            left: -100px;
+            animation: rotate 25s linear infinite;
         }
 
         .stats-grid {
@@ -198,93 +351,159 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .stat h3 {
-            font-size: 3rem;
+        .stat-item h3 {
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .stat p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 500;
         }
 
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            background: #f8fafc;
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--dozi-light-blue);
         }
 
-        .about-content {
-            max-width: 900px;
+        .testimonial-grid {
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #1e293b;
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
         }
 
-        .about p {
-            font-size: 1.1rem;
-            color: #64748b;
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--dozi-pink) 0%, var(--dozi-turquoise) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 600;
+            color: var(--dozi-dark);
+        }
+
+        .testimonial-info p {
+            color: var(--dozi-gray);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: var(--dozi-gray);
             line-height: 1.8;
+            font-style: italic;
         }
 
         /* Download Section */
         .download {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #1a2744 100%);
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download::before {
+            content: '📱';
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            top: -80px;
+            right: -80px;
+        }
+
+        .download-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .download h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 800;
             margin-bottom: 1rem;
         }
 
         .download p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #cbd5e1;
-        }
-
-        .store-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
         }
 
         .store-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             background: white;
-            color: #1e293b;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            color: var(--dozi-dark);
+            padding: 1rem 2rem;
+            border-radius: 15px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .store-button:hover {
             transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .store-icon {
+            font-size: 2.5rem;
         }
 
         /* Footer */
         footer {
-            background: #0f172a;
+            background: var(--dozi-dark);
             color: white;
-            padding: 3rem 2rem 1rem;
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-content {
@@ -292,13 +511,30 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: #40E0D0;
+            color: var(--dozi-turquoise);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dozi-turquoise);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            line-height: 1.8;
         }
 
         .footer-section ul {
@@ -306,87 +542,130 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-section a {
-            color: #cbd5e1;
+            color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            opacity: 0.8;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
-            color: #40E0D0;
+            color: var(--dozi-turquoise);
+            opacity: 1;
+            padding-left: 5px;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .features h2, .about h2, .download h2 {
-                font-size: 1.75rem;
+            .mascot-container {
+                font-size: 15rem;
             }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stat-item h3 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Cute Animations */
+        .wiggle {
+            animation: wiggle 1s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">💧 Dozi</div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">💧</span>
+                Dozi
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Özellikler</a></li>
-                <li><a href="#about">Hakkında</a></li>
+                <li><a href="#testimonials">Yorumlar</a></li>
                 <li><a href="#download">İndir</a></li>
                 <li><a href="#contact">İletişim</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Sağlıklı Yaşam Asistanınız</h1>
-            <p>İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan modern bir mobil uygulama. İlaçlarınızı zamanında almayı asla unutmayın!</p>
-            <a href="#download" class="cta-button">Hemen İndir</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Sağlıklı Yaşam Asistanınız</h1>
+                <p>İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı. İlaçlarınızı zamanında almayı asla unutmayın! 💊</p>
+                <div class="cta-buttons">
+                    <a href="#download" class="btn-primary">
+                        Hemen İndir 📱
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        Daha Fazla Bilgi
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="mascot-container">
+                    💧
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2>Neden Dozi?</h2>
+        <div class="section-header">
+            <h2>Neden Dozi? ✨</h2>
+            <p>Sağlığınız için her şey bir arada!</p>
+        </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🔔</div>
                 <h3>Akıllı Hatırlatmalar</h3>
-                <p>İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve sesli uyarılar</p>
+                <p>İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve sevimli sesli uyarılar</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💊</div>
                 <h3>Kolay Takip</h3>
-                <p>İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve yönetin</p>
+                <p>İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca yönetin</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">☁️</div>
                 <h3>Bulut Yedekleme</h3>
-                <p>Verileriniz güvenle Firebase'de saklanır ve cihazlar arası senkronize olur</p>
+                <p>Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👨‍👩‍👧‍👦</div>
@@ -401,7 +680,7 @@
             <div class="feature-card">
                 <div class="feature-icon">🇹🇷</div>
                 <h3>TİTCK Entegrasyonu</h3>
-                <p>Türkiye'nin resmi ilaç veritabanı ile güvenilir bilgiye erişin</p>
+                <p>Türkiye'nin resmi ilaç veritabanı ile güvenilir bilgiye anında erişin</p>
             </div>
         </div>
     </section>
@@ -409,45 +688,78 @@
     <!-- Stats Section -->
     <section class="stats">
         <div class="stats-grid">
-            <div class="stat">
+            <div class="stat-item">
                 <h3>10,000+</h3>
-                <p>Aktif Kullanıcı</p>
+                <p>Mutlu Kullanıcı 😊</p>
             </div>
-            <div class="stat">
+            <div class="stat-item">
                 <h3>50,000+</h3>
-                <p>Gönderilen Hatırlatma</p>
+                <p>Gönderilen Hatırlatma 📬</p>
             </div>
-            <div class="stat">
+            <div class="stat-item">
                 <h3>98%</h3>
-                <p>Kullanıcı Memnuniyeti</p>
+                <p>Memnuniyet Oranı ⭐</p>
             </div>
-            <div class="stat">
+            <div class="stat-item">
                 <h3>4.8⭐</h3>
-                <p>Ortalama Puan</p>
+                <p>Uygulama Puanı</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>Dozi Hakkında</h2>
-            <p>Dozi, ilaç takibini kolaylaştıran ve sağlığınızı kontrol altında tutmanıza yardımcı olan modern bir mobil uygulamadır. Özellikle yaşlı bireyler ve kronik hastalığı olan kişiler için tasarlanmış olan uygulamamız, ilaç unutma sorununu tamamen ortadan kaldırmayı hedefler.</p>
-            <p>Bardino Technology tarafından geliştirilen Dozi, kullanıcı dostu arayüzü ve güçlü özellikleriyle Türkiye'nin en güvenilir sağlık asistanı olmayı amaçlamaktadır.</p>
-            <p><strong>⚠️ Önemli:</strong> Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye sağlamaz. İlaç kullanımı ile ilgili kararlarınızı mutlaka doktorunuzla görüşerek alın.</p>
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2>Kullanıcılarımız Ne Diyor? 💬</h2>
+            <p>Binlerce mutlu kullanıcımızdan bazıları</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">AY</div>
+                    <div class="testimonial-info">
+                        <h4>Ayşe Yılmaz</h4>
+                        <p>İstanbul</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Annemin ilaçlarını takip etmek hiç bu kadar kolay olmamıştı. Dozi sayesinde artık hiçbir dozunu kaçırmıyoruz!"</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">MK</div>
+                    <div class="testimonial-info">
+                        <h4>Mehmet Kaya</h4>
+                        <p>Ankara</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Kronik hastayım ve çok ilaç kullanıyorum. Dozi olmadan nasıl idare ederdim bilmiyorum. Harika bir uygulama!"</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="avatar">ZD</div>
+                    <div class="testimonial-info">
+                        <h4>Zeynep Demir</h4>
+                        <p>İzmir</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Arayüzü çok sevimli ve kullanımı kolay. Yaşlı babam bile kolayca kullanabiliyor. Teşekkürler Dozi!"</p>
+            </div>
         </div>
     </section>
 
     <!-- Download Section -->
     <section class="download" id="download">
-        <h2>Hemen İndirin</h2>
-        <p>Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
-        <div class="store-buttons">
-            <a href="#" class="store-button">
-                <span style="font-size: 2rem;">📱</span>
+        <div class="download-content">
+            <h2>Hemen İndirin! 🎉</h2>
+            <p>Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
+            <a href="https://play.google.com/store" class="store-button">
+                <span class="store-icon">📱</span>
                 <div style="text-align: left;">
                     <div style="font-size: 0.75rem; opacity: 0.7;">Şimdi İndir</div>
-                    <div style="font-size: 1rem;">Google Play</div>
+                    <div style="font-size: 1.1rem; font-weight: 700;">Google Play</div>
                 </div>
             </a>
         </div>
@@ -457,15 +769,17 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Dozi</h3>
-                <p>Sağlıklı yaşam asistanınız</p>
-                <p style="margin-top: 1rem; color: #94a3b8;">© 2025 Bardino Technology<br>Tüm hakları saklıdır</p>
+                <div class="footer-logo">
+                    💧 Dozi
+                </div>
+                <p>Sağlıklı yaşam asistanınız. İlaçlarınızı zamanında almayı unutmayın!</p>
+                <p style="margin-top: 1.5rem;">© 2025 Bardino Technology<br>Tüm hakları saklıdır</p>
             </div>
             <div class="footer-section">
                 <h3>Hızlı Bağlantılar</h3>
                 <ul>
                     <li><a href="#features">Özellikler</a></li>
-                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#testimonials">Yorumlar</a></li>
                     <li><a href="#download">İndir</a></li>
                     <li><a href="mailto:info@dozi.app">Destek</a></li>
                 </ul>
@@ -487,7 +801,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
+            <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
         </div>
     </footer>
 </body>
