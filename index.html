@@ -18,6 +18,7 @@
         :root {
             --dozi-turquoise: #40E0D0;
             --dozi-pink: #FF6B9D;
+            --dozi-coral: #FF8B94;
             --dozi-blue: #4A90E2;
             --dozi-light-blue: #E8F4F8;
             --dozi-dark: #0A1628;
@@ -29,7 +30,7 @@
             color: var(--dozi-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background: #fff;
+            background: linear-gradient(180deg, #FFF 0%, #E8F4F8 100%);
         }
 
         /* Navbar */
@@ -41,7 +42,7 @@
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(64, 224, 208, 0.1);
+            box-shadow: 0 2px 20px rgba(64, 224, 208, 0.15);
         }
 
         .nav-container {
@@ -56,21 +57,18 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--dozi-turquoise);
+            gap: 0.5rem;
             text-decoration: none;
         }
 
-        .logo-icon {
-            font-size: 2rem;
+        .logo img {
+            height: 50px;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         .nav-links {
@@ -99,7 +97,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--dozi-turquoise);
+            background: linear-gradient(90deg, var(--dozi-turquoise), var(--dozi-pink));
             transition: width 0.3s;
         }
 
@@ -111,19 +109,31 @@
         .hero {
             margin-top: 80px;
             padding: 6rem 2rem 4rem;
-            background: linear-gradient(135deg, #E8F4F8 0%, #FFF 50%, #FFE8F0 100%);
+            background: linear-gradient(135deg, #FFE8F0 0%, #E8F4F8 50%, #FFE8F0 100%);
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: '💧';
+            content: '';
             position: absolute;
-            font-size: 20rem;
-            opacity: 0.05;
-            top: -50px;
-            right: -50px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
             animation: rotate 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.15) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: rotate 25s linear infinite reverse;
         }
 
         @keyframes rotate {
@@ -138,6 +148,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
@@ -145,7 +157,7 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -176,12 +188,12 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.3);
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(64, 224, 208, 0.4);
+            box-shadow: 0 12px 35px rgba(64, 224, 208, 0.5);
         }
 
         .btn-secondary {
@@ -213,8 +225,13 @@
         }
 
         .mascot-container {
-            font-size: 20rem;
+            position: relative;
             animation: bounce 2s ease-in-out infinite;
+        }
+
+        .mascot-container img {
+            width: 400px;
+            height: auto;
             filter: drop-shadow(0 20px 40px rgba(64, 224, 208, 0.3));
         }
 
@@ -226,7 +243,7 @@
         /* Features Section */
         .features {
             padding: 6rem 2rem;
-            background: white;
+            background: linear-gradient(180deg, #FFF 0%, #E8F4F8 100%);
         }
 
         .section-header {
@@ -258,7 +275,7 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #FFF 0%, var(--dozi-light-blue) 100%);
+            background: white;
             padding: 2.5rem;
             border-radius: 30px;
             text-align: center;
@@ -275,14 +292,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
             opacity: 0;
             transition: opacity 0.4s;
             z-index: 0;
         }
 
         .feature-card:hover::before {
-            opacity: 0.1;
+            opacity: 0.08;
         }
 
         .feature-card:hover {
@@ -296,21 +313,20 @@
             z-index: 1;
         }
 
-        .feature-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .feature-image {
+            width: 120px;
+            height: 120px;
             margin: 0 auto 1.5rem;
-            font-size: 3rem;
-            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.3);
             transition: transform 0.4s;
         }
 
-        .feature-card:hover .feature-icon {
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .feature-card:hover .feature-image {
             transform: scale(1.1) rotate(5deg);
         }
 
@@ -337,13 +353,14 @@
         }
 
         .stats::before {
-            content: '💊';
+            content: '';
             position: absolute;
-            font-size: 30rem;
-            opacity: 0.05;
-            top: -100px;
-            left: -100px;
-            animation: rotate 25s linear infinite;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation: rotate 30s linear infinite;
         }
 
         .stats-grid {
@@ -373,7 +390,7 @@
         /* Testimonials */
         .testimonials {
             padding: 6rem 2rem;
-            background: var(--dozi-light-blue);
+            background: linear-gradient(180deg, #FFE8F0 0%, #E8F4F8 100%);
         }
 
         .testimonial-grid {
@@ -388,12 +405,13 @@
             background: white;
             padding: 2rem;
             border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.15);
             transition: transform 0.3s;
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(64, 224, 208, 0.25);
         }
 
         .testimonial-header {
@@ -449,12 +467,14 @@
         }
 
         .download::before {
-            content: '📱';
+            content: '';
             position: absolute;
-            font-size: 25rem;
-            opacity: 0.03;
-            top: -80px;
-            right: -80px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            animation: rotate 25s linear infinite;
         }
 
         .download-content {
@@ -487,12 +507,12 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .store-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         .store-icon {
@@ -501,7 +521,7 @@
 
         /* Footer */
         footer {
-            background: var(--dozi-dark);
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #0f1f3d 100%);
             color: white;
             padding: 4rem 2rem 2rem;
         }
@@ -523,13 +543,11 @@
         }
 
         .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dozi-turquoise);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
             margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
         }
 
         .footer-section p {
@@ -580,8 +598,8 @@
                 display: none;
             }
 
-            .mascot-container {
-                font-size: 15rem;
+            .mascot-container img {
+                width: 280px;
             }
 
             .section-header h2 {
@@ -592,17 +610,6 @@
                 font-size: 3rem;
             }
         }
-
-        /* Cute Animations */
-        .wiggle {
-            animation: wiggle 1s ease-in-out infinite;
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
     </style>
 </head>
 <body>
@@ -610,8 +617,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-icon">💧</span>
-                Dozi
+                <img src="dozi_brand.png" alt="Dozi">
             </a>
             <ul class="nav-links">
                 <li><a href="#features">Özellikler</a></li>
@@ -639,7 +645,7 @@
             </div>
             <div class="hero-image">
                 <div class="mascot-container">
-                    💧
+                    <img src="dozi_happy.png" alt="Dozi Maskot">
                 </div>
             </div>
         </div>
@@ -653,34 +659,32 @@
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🔔</div>
+                <div class="feature-image">
+                    <img src="dozi_time.png" alt="Akıllı Hatırlatmalar">
+                </div>
                 <h3>Akıllı Hatırlatmalar</h3>
                 <p>İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve sevimli sesli uyarılar</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💊</div>
+                <div class="feature-image">
+                    <img src="dozi_noted.png" alt="Kolay Takip">
+                </div>
                 <h3>Kolay Takip</h3>
                 <p>İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca yönetin</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">☁️</div>
+                <div class="feature-image">
+                    <img src="dozi_ok.png" alt="Bulut Yedekleme">
+                </div>
                 <h3>Bulut Yedekleme</h3>
                 <p>Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <div class="feature-image">
+                    <img src="dozi_family.png" alt="Aile Takibi">
+                </div>
                 <h3>Aile Takibi</h3>
                 <p>Sevdiklerinizin ilaç uyumunu uzaktan kontrol edin ve destek olun</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📋</div>
-                <h3>Reçete OCR</h3>
-                <p>Reçetelerinizin fotoğrafını çekin, otomatik olarak sisteme eklensin</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🇹🇷</div>
-                <h3>TİTCK Entegrasyonu</h3>
-                <p>Türkiye'nin resmi ilaç veritabanı ile güvenilir bilgiye anında erişin</p>
             </div>
         </div>
     </section>
@@ -716,9 +720,9 @@
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <div class="testimonial-header">
-                    <div class="avatar">AY</div>
+                    <div class="avatar">A***</div>
                     <div class="testimonial-info">
-                        <h4>Ayşe Yılmaz</h4>
+                        <h4>A*** Y***</h4>
                         <p>İstanbul</p>
                     </div>
                 </div>
@@ -727,9 +731,9 @@
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-header">
-                    <div class="avatar">MK</div>
+                    <div class="avatar">M***</div>
                     <div class="testimonial-info">
-                        <h4>Mehmet Kaya</h4>
+                        <h4>M*** K***</h4>
                         <p>Ankara</p>
                     </div>
                 </div>
@@ -738,9 +742,9 @@
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-header">
-                    <div class="avatar">ZD</div>
+                    <div class="avatar">Z***</div>
                     <div class="testimonial-info">
-                        <h4>Zeynep Demir</h4>
+                        <h4>Z*** D***</h4>
                         <p>İzmir</p>
                     </div>
                 </div>
@@ -770,7 +774,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
-                    💧 Dozi
+                    <img src="dozi_brand.png" alt="Dozi">
                 </div>
                 <p>Sağlıklı yaşam asistanınız. İlaçlarınızı zamanında almayı unutmayın!</p>
                 <p style="margin-top: 1.5rem;">© 2025 Bardino Technology<br>Tüm hakları saklıdır</p>
