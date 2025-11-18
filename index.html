@@ -23,6 +23,12 @@
             --dozi-light-blue: #E8F4F8;
             --dozi-dark: #0A1628;
             --dozi-gray: #64748B;
+            --dozi-purple: #8B7FFF;
+            --dozi-yellow: #FFD93D;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -30,7 +36,77 @@
             color: var(--dozi-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background: linear-gradient(180deg, #FFF 0%, #E8F4F8 100%);
+            background: #fff;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float-blob 20s ease-in-out infinite;
+        }
+
+        .blob1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--dozi-turquoise), var(--dozi-blue));
+            top: -200px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .blob2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--dozi-pink), var(--dozi-coral));
+            top: 50%;
+            right: -150px;
+            animation-delay: 2s;
+        }
+
+        .blob3 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, var(--dozi-purple), var(--dozi-blue));
+            bottom: -100px;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        .blob4 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--dozi-yellow), var(--dozi-coral));
+            top: 70%;
+            right: 20%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float-blob {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+            }
+            25% { 
+                transform: translate(50px, -50px) scale(1.1) rotate(90deg); 
+            }
+            50% { 
+                transform: translate(0, -100px) scale(0.9) rotate(180deg); 
+            }
+            75% { 
+                transform: translate(-50px, -50px) scale(1.05) rotate(270deg); 
+            }
         }
 
         /* Navbar */
@@ -39,10 +115,16 @@
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(64, 224, 208, 0.15);
+            box-shadow: 0 4px 30px rgba(64, 224, 208, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 40px rgba(64, 224, 208, 0.2);
         }
 
         .nav-container {
@@ -54,21 +136,13 @@
             align-items: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
         .logo img {
-            height: 100px;
-            animation: float 3s ease-in-out infinite;
+            height: 80px;
+            transition: height 0.3s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+        .navbar.scrolled .logo img {
+            height: 60px;
         }
 
         .nav-links {
@@ -82,23 +156,26 @@
             color: var(--dozi-dark);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--dozi-turquoise);
+            padding: 0.5rem 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, var(--dozi-turquoise), var(--dozi-pink));
-            transition: width 0.3s;
+            transition: all 0.3s;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--dozi-turquoise);
         }
 
         .nav-links a:hover::after {
@@ -107,38 +184,11 @@
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 6rem 2rem 4rem;
-            background: linear-gradient(135deg, #FFE8F0 0%, #E8F4F8 50%, #FFE8F0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(64, 224, 208, 0.15) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: rotate 20s linear infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.15) 0%, transparent 70%);
-            bottom: -150px;
-            left: -150px;
-            animation: rotate 25s linear infinite reverse;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .hero-container {
@@ -148,8 +198,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
         .hero-content h1 {
@@ -189,6 +237,23 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-primary:hover {
@@ -209,12 +274,14 @@
             font-size: 1.1rem;
             border: 2px solid var(--dozi-turquoise);
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(64, 224, 208, 0.2);
         }
 
         .btn-secondary:hover {
             background: var(--dozi-turquoise);
             color: white;
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
         }
 
         .hero-image {
@@ -224,26 +291,30 @@
             align-items: center;
         }
 
-        .mascot-container {
-            position: relative;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
         .mascot-container img {
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
             height: auto;
             filter: drop-shadow(0 20px 40px rgba(64, 224, 208, 0.3));
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        /* Scroll Animation Classes */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Features Section */
         .features {
             padding: 6rem 2rem;
-            background: linear-gradient(180deg, #FFF 0%, #E8F4F8 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(232,244,248,0.6) 100%);
+            position: relative;
         }
 
         .section-header {
@@ -270,16 +341,17 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
         }
 
         .feature-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 2.5rem;
             border-radius: 30px;
             text-align: center;
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
@@ -303,7 +375,7 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.02);
             box-shadow: 0 20px 50px rgba(64, 224, 208, 0.3);
             border-color: var(--dozi-turquoise);
         }
@@ -327,7 +399,7 @@
         }
 
         .feature-card:hover .feature-image {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.1);
         }
 
         .feature-card h3 {
@@ -357,10 +429,15 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             top: -200px;
             left: -200px;
-            animation: rotate 30s linear infinite;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
         }
 
         .stats-grid {
@@ -390,7 +467,7 @@
         /* Testimonials */
         .testimonials {
             padding: 6rem 2rem;
-            background: linear-gradient(180deg, #FFE8F0 0%, #E8F4F8 100%);
+            background: linear-gradient(180deg, rgba(255,232,240,0.4) 0%, rgba(232,244,248,0.4) 100%);
         }
 
         .testimonial-grid {
@@ -402,11 +479,12 @@
         }
 
         .testimonial-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(64, 224, 208, 0.15);
-            transition: transform 0.3s;
+            transition: all 0.4s;
         }
 
         .testimonial-card:hover {
@@ -471,10 +549,10 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.15) 0%, transparent 70%);
             top: -150px;
             right: -150px;
-            animation: rotate 25s linear infinite;
+            animation: pulse 5s ease-in-out infinite;
         }
 
         .download-content {
@@ -568,12 +646,13 @@
             text-decoration: none;
             opacity: 0.8;
             transition: all 0.3s;
+            display: inline-block;
         }
 
         .footer-section a:hover {
             color: var(--dozi-turquoise);
             opacity: 1;
-            padding-left: 5px;
+            transform: translateX(5px);
         }
 
         .footer-bottom {
@@ -595,11 +674,12 @@
             }
 
             .nav-links {
-                display: none;
+                gap: 1rem;
+                font-size: 0.9rem;
             }
 
             .mascot-container img {
-                width: 280px;
+                max-width: 280px;
             }
 
             .section-header h2 {
@@ -609,12 +689,29 @@
             .stat-item h3 {
                 font-size: 3rem;
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blob1, .blob2, .blob3, .blob4 {
+                width: 300px;
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-blob blob1"></div>
+        <div class="bg-blob blob2"></div>
+        <div class="bg-blob blob3"></div>
+        <div class="bg-blob blob4"></div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
                 <img src="dozi_brand.png" alt="Dozi">
@@ -623,13 +720,14 @@
                 <li><a href="#features">Özellikler</a></li>
                 <li><a href="#testimonials">Yorumlar</a></li>
                 <li><a href="#download">İndir</a></li>
-                <li><a href="#contact">İletişim</a></li>
+                <li><a href="privacy-policy.html">Gizlilik</a></li>
+                <li><a href="account-deletion.html">Hesap</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero fade-in-section">
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Sağlıklı Yaşam Asistanınız</h1>
@@ -652,52 +750,66 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="features fade-in-section" id="features">
         <div class="section-header">
             <h2>Neden Dozi? ✨</h2>
             <p>Sağlığınız için her şey bir arada!</p>
         </div>
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card fade-in-section">
                 <div class="feature-image">
-                    <img src="dozi_time.png" alt="Akıllı Hatırlatmalar">
+                    <img src="dozi_noted.png" alt="Akıllı Hatırlatmalar">
                 </div>
                 <h3>Akıllı Hatırlatmalar</h3>
                 <p>İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve sevimli sesli uyarılar</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in-section">
                 <div class="feature-image">
-                    <img src="dozi_noted.png" alt="Kolay Takip">
+                    <img src="dozi_ok.png" alt="Kolay Takip">
                 </div>
                 <h3>Kolay Takip</h3>
                 <p>İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca yönetin</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in-section">
                 <div class="feature-image">
-                    <img src="dozi_ok.png" alt="Bulut Yedekleme">
+                    <img src="dozi_perfect.png" alt="Bulut Yedekleme">
                 </div>
                 <h3>Bulut Yedekleme</h3>
                 <p>Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_family.png" alt="Aile Takibi">
                 </div>
                 <h3>Aile Takibi</h3>
                 <p>Sevdiklerinizin ilaç uyumunu uzaktan kontrol edin ve destek olun</p>
             </div>
+            <div class="feature-card fade-in-section">
+                <div class="feature-image">
+                    <img src="dozi_bravo.png" alt="Oyunlaştırma">
+                </div>
+                <h3>Oyunlaştırma</h3>
+                <p>Streak sistemi ve başarı rozetleri ile motivasyonunuzu yüksek tutun</p>
+            </div>
+            <div class="feature-card fade-in-section">
+                <div class="feature-image">
+                    <img src="dozi_king.png" alt="Çoklu Profil">
+                </div>
+                <h3>Çoklu Profil</h3>
+                <p>Tüm aile üyelerinizin ilaçlarını tek uygulamada yönetin</p>
+            </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
+    <section class="stats fade-in-section">
         <div class="stats-grid">
             <div class="stat-item">
-                <h3>10,000+</h3>
+                <h3>10K+</h3>
                 <p>Mutlu Kullanıcı 😊</p>
             </div>
             <div class="stat-item">
-                <h3>50,000+</h3>
+                <h3>50K+</h3>
                 <p>Gönderilen Hatırlatma 📬</p>
             </div>
             <div class="stat-item">
@@ -712,39 +824,39 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials fade-in-section" id="testimonials">
         <div class="section-header">
             <h2>Kullanıcılarımız Ne Diyor? 💬</h2>
             <p>Binlerce mutlu kullanıcımızdan bazıları</p>
         </div>
         <div class="testimonial-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in-section">
                 <div class="testimonial-header">
-                    <div class="avatar">A***</div>
+                    <div class="avatar">A</div>
                     <div class="testimonial-info">
-                        <h4>A*** Y***</h4>
+                        <h4>Ayşe Y.</h4>
                         <p>İstanbul</p>
                     </div>
                 </div>
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p class="testimonial-text">"Annemin ilaçlarını takip etmek hiç bu kadar kolay olmamıştı. Dozi sayesinde artık hiçbir dozunu kaçırmıyoruz!"</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in-section">
                 <div class="testimonial-header">
-                    <div class="avatar">M***</div>
+                    <div class="avatar">M</div>
                     <div class="testimonial-info">
-                        <h4>M*** K***</h4>
+                        <h4>Mehmet K.</h4>
                         <p>Ankara</p>
                     </div>
                 </div>
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p class="testimonial-text">"Kronik hastayım ve çok ilaç kullanıyorum. Dozi olmadan nasıl idare ederdim bilmiyorum. Harika bir uygulama!"</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in-section">
                 <div class="testimonial-header">
-                    <div class="avatar">Z***</div>
+                    <div class="avatar">Z</div>
                     <div class="testimonial-info">
-                        <h4>Z*** D***</h4>
+                        <h4>Zeynep D.</h4>
                         <p>İzmir</p>
                     </div>
                 </div>
@@ -755,7 +867,7 @@
     </section>
 
     <!-- Download Section -->
-    <section class="download" id="download">
+    <section class="download fade-in-section" id="download">
         <div class="download-content">
             <h2>Hemen İndirin! 🎉</h2>
             <p>Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
@@ -785,13 +897,14 @@
                     <li><a href="#features">Özellikler</a></li>
                     <li><a href="#testimonials">Yorumlar</a></li>
                     <li><a href="#download">İndir</a></li>
-                    <li><a href="mailto:info@dozi.app">Destek</a></li>
+                    <li><a href="feature-graph.html">Özellik Grafiği</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Yasal</h3>
                 <ul>
-                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
+                    <li><a href="account-deletion.html">Hesap Silme</a></li>
                     <li><a href="#">Kullanım Şartları</a></li>
                     <li><a href="#">KVKK</a></li>
                 </ul>
@@ -808,5 +921,50 @@
             <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
         </div>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in sections
+        document.querySelectorAll('.fade-in-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
