@@ -1,200 +1,376 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dozi Hesap Silme - Hesabınızı ve verilerinizi nasıl sileceğinizi öğrenin">
+    <meta name="author" content="Bardino Technology">
+
     <title>Dozi - Hesap Silme Talebi</title>
+
     <style>
+        /* ========================================
+           BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dozi-turquoise: #00BCD4;
+            --dozi-pink: #FF6B9D;
+            --dozi-dark: #333;
+            --dozi-gray: #666;
+            --dozi-light-bg: #f5f5f5;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffc107;
+            --danger-bg: #f8d7da;
+            --danger-border: #dc3545;
+            --info-bg: #e3f2fd;
+            --info-border: #2196F3;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             max-width: 700px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
-            background: #f5f5f5;
+            color: var(--dozi-dark);
+            background: var(--dozi-light-bg);
         }
+
+        /* ========================================
+           CONTAINER
+           ======================================== */
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
         h1 {
-            color: #00BCD4;
-            border-bottom: 3px solid #FF6B9D;
+            color: var(--dozi-turquoise);
+            border-bottom: 3px solid var(--dozi-pink);
             padding-bottom: 10px;
+            margin-bottom: 20px;
         }
+
         h2 {
-            color: #00BCD4;
+            color: var(--dozi-turquoise);
             margin-top: 30px;
+            margin-bottom: 15px;
         }
+
+        h3 {
+            margin-top: 0;
+            color: var(--dozi-turquoise);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* ========================================
+           LISTS
+           ======================================== */
+        ul {
+            line-height: 1.8;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--dozi-dark);
+        }
+
+        /* ========================================
+           ALERT BOXES
+           ======================================== */
         .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background: var(--warning-bg);
+            border-left: 4px solid var(--warning-border);
             padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
         }
+
         .danger-box {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
+            background: var(--danger-bg);
+            border-left: 4px solid var(--danger-border);
             padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
         }
+
+        /* ========================================
+           METHOD SECTIONS
+           ======================================== */
         .method {
             background: #f9f9f9;
             padding: 20px;
             margin: 15px 0;
             border-radius: 8px;
-            border: 2px solid #00BCD4;
+            border: 2px solid var(--dozi-turquoise);
         }
-        .method h3 {
-            margin-top: 0;
-            color: #00BCD4;
-        }
-        .button {
-            display: inline-block;
-            background: #00BCD4;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+
+        /* ========================================
+           STEPS
+           ======================================== */
+        .step {
+            background: var(--info-bg);
+            padding: 10px 15px;
             margin: 10px 0;
-            transition: background 0.3s;
+            border-left: 4px solid var(--info-border);
+            border-radius: 3px;
         }
-        .button:hover {
-            background: #0097A7;
-        }
-        .button.danger {
-            background: #dc3545;
-        }
-        .button.danger:hover {
-            background: #c82333;
-        }
-        ul {
-            line-height: 1.8;
-        }
+
+        /* ========================================
+           EMAIL TEMPLATE
+           ======================================== */
         .email-template {
             background: #f0f0f0;
             padding: 15px;
             border-radius: 5px;
             font-family: monospace;
             margin: 15px 0;
+            font-size: 0.9em;
         }
-        .step {
-            background: #e3f2fd;
-            padding: 10px 15px;
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .button {
+            display: inline-block;
+            background: var(--dozi-turquoise);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
             margin: 10px 0;
-            border-left: 4px solid #2196F3;
-            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background: #0097A7;
+        }
+
+        .button.danger {
+            background: var(--danger-border);
+        }
+
+        .button.danger:hover {
+            background: #c82333;
+        }
+
+        /* ========================================
+           LINKS
+           ======================================== */
+        a {
+            color: var(--dozi-turquoise);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        hr {
+            margin-top: 40px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--dozi-gray);
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        footer a {
+            margin: 0 10px;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .button {
+                display: block;
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>🗑️ Dozi Hesap Silme</h1>
-        
-        <div class="warning-box">
-            <strong>⚠️ Önemli Uyarı:</strong> Hesabınızı sildiğinizde tüm verileriniz kalıcı olarak silinecektir ve bu işlem geri alınamaz!
-        </div>
+        <!-- Header -->
+        <header>
+            <h1>🗑️ Dozi Hesap Silme</h1>
+        </header>
 
-        <p>Dozi hesabınızı ve tüm ilişkili verilerinizi silmek için aşağıdaki yöntemlerden birini kullanabilirsiniz.</p>
+        <!-- Main Content -->
+        <main>
+            <div class="warning-box">
+                <strong>⚠️ Önemli Uyarı:</strong> Hesabınızı sildiğinizde tüm verileriniz kalıcı olarak silinecektir ve
+                bu işlem geri alınamaz!
+            </div>
 
-        <h2>📱 Yöntem 1: Uygulama İçinden (Önerilen)</h2>
-        <div class="method">
-            <h3>En Hızlı Yol</h3>
-            <p>Dozi uygulamasını açın ve şu adımları izleyin:</p>
-            <div class="step">1️⃣ Ana ekrandan <strong>Ayarlar</strong> menüsüne gidin</div>
-            <div class="step">2️⃣ <strong>Hesap Yönetimi</strong> bölümünü bulun</div>
-            <div class="step">3️⃣ <strong>"Hesabımı Sil"</strong> butonuna tıklayın</div>
-            <div class="step">4️⃣ Uyarıyı okuyun ve onaylayın</div>
-            <div class="step">5️⃣ İşlem tamamlandı! ✅</div>
-            
-            <div class="danger-box">
-                <strong>❌ Silinecek Veriler:</strong>
+            <p>Dozi hesabınızı ve tüm ilişkili verilerinizi silmek için aşağıdaki yöntemlerden birini kullanabilirsiniz.
+            </p>
+
+            <!-- Method 1: In-App Deletion -->
+            <section>
+                <h2>📱 Yöntem 1: Uygulama İçinden (Önerilen)</h2>
+                <div class="method">
+                    <h3>En Hızlı Yol</h3>
+                    <p>Dozi uygulamasını açın ve şu adımları izleyin:</p>
+                    <div class="step">1️⃣ Ana ekrandan <strong>Ayarlar</strong> menüsüne gidin</div>
+                    <div class="step">2️⃣ <strong>Hesap Yönetimi</strong> bölümünü bulun</div>
+                    <div class="step">3️⃣ <strong>"Hesabımı Sil"</strong> butonuna tıklayın</div>
+                    <div class="step">4️⃣ Uyarıyı okuyun ve onaylayın</div>
+                    <div class="step">5️⃣ İşlem tamamlandı! ✅</div>
+
+                    <div class="danger-box">
+                        <strong>❌ Silinecek Veriler:</strong>
+                        <ul>
+                            <li>Tüm ilaç kayıtlarınız</li>
+                            <li>Hatırlatma geçmişi</li>
+                            <li>Reçete fotoğrafları</li>
+                            <li>Aile üyesi bağlantıları</li>
+                            <li>Bulut yedeklemesi (premium)</li>
+                            <li>Premium abonelik durumu</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Method 2: Email Request -->
+            <section>
+                <h2>📧 Yöntem 2: E-posta ile Talep</h2>
+                <div class="method">
+                    <h3>Manuel Talep</h3>
+                    <p>Uygulamaya erişiminiz yoksa, aşağıdaki bilgilerle bize e-posta gönderin:</p>
+
+                    <div class="email-template">
+                        <strong>Kime:</strong> info@dozi.app<br>
+                        <strong>Konu:</strong> Hesap Silme Talebi<br><br>
+                        <strong>Mesaj İçeriği:</strong><br>
+                        Adım: [Adınız Soyadınız]<br>
+                        Cihaz ID: [Ayarlar > Hakkında > Cihaz ID]<br>
+                        E-posta (eğer premium iseniz): [E-posta adresiniz]<br>
+                        Talep: Hesabımın ve tüm verilerimin kalıcı olarak silinmesini talep ediyorum.<br>
+                        Tarih: [Bugünün tarihi]
+                    </div>
+
+                    <a href="mailto:info@dozi.app?subject=Hesap%20Silme%20Talebi&body=Adım%3A%20%0ACihaz%20ID%3A%20%0AE-posta%3A%20%0ATalep%3A%20Hesabımın%20ve%20tüm%20verilerimin%20kalıcı%20olarak%20silinmesini%20talep%20ediyorum.%0ATarih%3A%20"
+                        class="button">📧 E-posta Gönder</a>
+
+                    <p><strong>⏱️ İşlem Süresi:</strong> Talebiniz en geç 7 iş günü içinde işleme alınır ve size onay
+                        e-postası gönderilir.</p>
+                </div>
+            </section>
+
+            <!-- Deletion Process -->
+            <section>
+                <h2>🔍 Silme Sonrası Ne Olur?</h2>
+                <div class="method">
+                    <h3>Veri Silme Süreci</h3>
+                    <ul>
+                        <li><strong>Anında:</strong> Uygulamadaki tüm verileriniz silinir</li>
+                        <li><strong>7 Gün:</strong> Yedekleme sistemlerinden silinir</li>
+                        <li><strong>30 Gün:</strong> Bulut sunucularından tamamen kaldırılır</li>
+                    </ul>
+
+                    <p><strong>✅ Tutulan Veriler (Anonim):</strong></p>
+                    <ul>
+                        <li>Genel uygulama kullanım istatistikleri (kimliğinizle ilişkili değil)</li>
+                        <li>Fatura kayıtları (yasal zorunluluk - 10 yıl)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Premium Subscription -->
+            <section>
+                <h2>💰 Premium Abonelik Kullanıyorsanız</h2>
+                <div class="warning-box">
+                    <p><strong>📋 Önemli Bilgiler:</strong></p>
+                    <ul>
+                        <li>Hesap silme işlemi premium aboneliğinizi <strong>otomatik olarak iptal etmez</strong></li>
+                        <li>Google Play Store'dan manuel olarak aboneliği iptal etmelisiniz</li>
+                        <li><strong>Nasıl iptal edilir:</strong> Play Store > Abonelikler > Dozi > İptal Et</li>
+                        <li>İptal etmezseniz ücretlendirme devam eder</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Alternatives -->
+            <section>
+                <h2>🤔 Fikrinizi mi Değiştirdiniz?</h2>
+                <p>Hesap silme yerine şunları da yapabilirsiniz:</p>
                 <ul>
-                    <li>Tüm ilaç kayıtlarınız</li>
-                    <li>Hatırlatma geçmişi</li>
-                    <li>Reçete fotoğrafları</li>
-                    <li>Aile üyesi bağlantıları</li>
-                    <li>Bulut yedeklemesi (premium)</li>
-                    <li>Premium abonelik durumu</li>
+                    <li><strong>Sadece Verileri Sil:</strong> Ayarlar > Tüm Verileri Temizle (hesap aktif kalır)</li>
+                    <li><strong>Bildirimleri Kapat:</strong> Hatırlatmalardan rahatsız oluyorsanız</li>
+                    <li><strong>Premium'u İptal Et:</strong> Ücretsiz sürüme geri dönebilirsiniz</li>
                 </ul>
-            </div>
-        </div>
+            </section>
 
-        <h2>📧 Yöntem 2: E-posta ile Talep</h2>
-        <div class="method">
-            <h3>Manuel Talep</h3>
-            <p>Uygulamaya erişiminiz yoksa, aşağıdaki bilgilerle bize e-posta gönderin:</p>
-            
-            <div class="email-template">
-<strong>Kime:</strong> info@dozi.app<br>
-<strong>Konu:</strong> Hesap Silme Talebi<br><br>
-<strong>Mesaj İçeriği:</strong><br>
-Adım: [Adınız Soyadınız]<br>
-Cihaz ID: [Ayarlar > Hakkında > Cihaz ID]<br>
-E-posta (eğer premium iseniz): [E-posta adresiniz]<br>
-Talep: Hesabımın ve tüm verilerimin kalıcı olarak silinmesini talep ediyorum.<br>
-Tarih: [Bugünün tarihi]
-            </div>
+            <!-- Support -->
+            <section>
+                <h2>📞 Yardıma mı İhtiyacınız Var?</h2>
+                <p>Hesap silme işlemiyle ilgili sorunuz varsa:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> <a href="mailto:destek@dozi.app">destek@dozi.app</a></li>
+                    <li><strong>Yanıt Süresi:</strong> 24-48 saat</li>
+                </ul>
+            </section>
+        </main>
 
-            <a href="mailto:hesap-silme@dozi.app?subject=Hesap%20Silme%20Talebi&body=Adım%3A%20%0ACihaz%20ID%3A%20%0AE-posta%3A%20%0ATalep%3A%20Hesabımın%20ve%20tüm%20verilerimin%20kalıcı%20olarak%20silinmesini%20talep%20ediyorum.%0ATarih%3A%20" class="button">📧 E-posta Gönder</a>
-            
-            <p><strong>⏱️ İşlem Süresi:</strong> Talebiniz en geç 7 iş günü içinde işleme alınır ve size onay e-postası gönderilir.</p>
-        </div>
+        <hr>
 
-        <h2>🔍 Silme Sonrası Ne Olur?</h2>
-        <div class="method">
-            <h3>Veri Silme Süreci</h3>
-            <ul>
-                <li><strong>Anında:</strong> Uygulamadaki tüm verileriniz silinir</li>
-                <li><strong>7 Gün:</strong> Yedekleme sistemlerinden silinir</li>
-                <li><strong>30 Gün:</strong> Bulut sunucularından tamamen kaldırılır</li>
-            </ul>
-            
-            <p><strong>✅ Tutulan Veriler (Anonim):</strong></p>
-            <ul>
-                <li>Genel uygulama kullanım istatistikleri (kimliğinizle ilişkili değil)</li>
-                <li>Fatura kayıtları (yasal zorunluluk - 10 yıl)</li>
-            </ul>
-        </div>
-
-        <h2>💰 Premium Abonelik Kullanıyorsanız</h2>
-        <div class="warning-box">
-            <p><strong>📋 Önemli Bilgiler:</strong></p>
-            <ul>
-                <li>Hesap silme işlemi premium aboneliğinizi <strong>otomatik olarak iptal etmez</strong></li>
-                <li>Google Play Store'dan manuel olarak aboneliği iptal etmelisiniz</li>
-                <li><strong>Nasıl iptal edilir:</strong> Play Store > Abonelikler > Dozi > İptal Et</li>
-                <li>İptal etmezseniz ücretlendirme devam eder</li>
-            </ul>
-        </div>
-
-        <h2>🤔 Fikrinizi mi Değiştirdiniz?</h2>
-        <p>Hesap silme yerine şunları da yapabilirsiniz:</p>
-        <ul>
-            <li><strong>Sadece Verileri Sil:</strong> Ayarlar > Tüm Verileri Temizle (hesap aktif kalır)</li>
-            <li><strong>Bildirimleri Kapat:</strong> Hatırlatmalardan rahatsız oluyorsanız</li>
-            <li><strong>Premium'u İptal Et:</strong> Ücretsiz sürüme geri dönebilirsiniz</li>
-        </ul>
-
-        <h2>📞 Yardıma mı İhtiyacınız Var?</h2>
-        <p>Hesap silme işlemiyle ilgili sorunuz varsa:</p>
-        <ul>
-            <li><strong>E-posta:</strong> destek@dozi.app</li>
-            <li><strong>Yanıt Süresi:</strong> 24-48 saat</li>
-        </ul>
-
-        <hr style="margin-top: 40px; border: none; border-top: 1px solid #ddd;">
-        <p style="text-align: center; color: #666; font-size: 0.9em;">
-            © 2025 Dozi - Verileriniz size aittir<br>
-            <a href="privacy-policy.html" style="color: #00BCD4;">Gizlilik Politikası</a> | 
-            <a href="data-safety.html" style="color: #00BCD4;">Veri Güvenliği</a>
-        </p>
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Dozi - Verileriniz size aittir</p>
+            <p>
+                <a href="privacy-policy.html">Gizlilik Politikası</a> |
+                <a href="index.html">Ana Sayfa</a>
+            </p>
+        </footer>
     </div>
 </body>
+
 </html>

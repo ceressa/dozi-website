@@ -1,129 +1,273 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dozi Gizlilik Politikası - Kişisel verilerinizin nasıl işlendiğini öğrenin">
+    <meta name="author" content="Bardino Technology">
+
     <title>Dozi - Gizlilik Politikası</title>
+
     <style>
+        /* ========================================
+           BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dozi-turquoise: #00BCD4;
+            --dozi-pink: #FF6B9D;
+            --dozi-dark: #333;
+            --dozi-gray: #666;
+            --dozi-light-bg: #f5f5f5;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
+            color: var(--dozi-dark);
+            background: #fff;
         }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
         h1 {
-            color: #00BCD4;
-            border-bottom: 3px solid #FF6B9D;
+            color: var(--dozi-turquoise);
+            border-bottom: 3px solid var(--dozi-pink);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
+
         h2 {
-            color: #00BCD4;
+            color: var(--dozi-turquoise);
             margin-top: 30px;
+            margin-bottom: 15px;
         }
+
+        h3 {
+            color: var(--dozi-dark);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* ========================================
+           LISTS
+           ======================================== */
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--dozi-dark);
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
         .update-date {
-            color: #666;
+            color: var(--dozi-gray);
             font-style: italic;
+            margin-bottom: 20px;
         }
+
         .contact {
-            background: #f5f5f5;
-            padding: 15px;
+            background: var(--dozi-light-bg);
+            padding: 20px;
             border-radius: 8px;
-            margin-top: 30px;
+            margin-top: 40px;
+        }
+
+        .contact h2 {
+            margin-top: 0;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        hr {
+            margin-top: 40px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--dozi-gray);
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Dozi - Gizlilik Politikası</h1>
-    <p class="update-date">Son Güncelleme: 18 Kasım 2025</p>
+    <!-- Main Content -->
+    <header>
+        <h1>Dozi - Gizlilik Politikası</h1>
+        <p class="update-date">Son Güncelleme: 18 Kasım 2025</p>
+    </header>
 
-    <p>Bu Gizlilik Politikası, Bardino Technology tarafından geliştirilen Dozi mobil uygulamasında işlenen kişisel verilerin kapsamını, veri işleme amaçlarını, saklama yöntemlerini, haklarınızı ve KVKK ile Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) uyarınca yükümlülüklerimizi açıklamaktadır.</p>
+    <main>
+        <section>
+            <p>Bu Gizlilik Politikası, Bardino Technology tarafından geliştirilen Dozi mobil uygulamasında işlenen
+                kişisel verilerin kapsamını, veri işleme amaçlarını, saklama yöntemlerini, haklarınızı ve KVKK ile
+                Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) uyarınca yükümlülüklerimizi açıklamaktadır.</p>
+        </section>
 
-    <h2>1. Toplanan Veri Türleri</h2>
+        <section>
+            <h2>1. Toplanan Veri Türleri</h2>
 
-    <h3>1.1 Kullanıcı Tarafından Sağlanan Bilgiler</h3>
-    <ul>
-        <li><strong>İlaç Bilgileri:</strong> Kullanıcı tarafından eklenen ilaç adları, dozlar, kullanım zamanları, süreler ve hatırlatma ayarları.</li>
-        <li><strong>Sağlık Kayıtları:</strong> İlaç alma geçmişi, kaçırılan dozlar, stok durumu.</li>
-        <li><strong>Reçete Bilgileri:</strong> Premium kullanıcılar tarafından OCR ile işlenen reçete görselleri (cihaz içi işlem).</li>
-        <li><strong>Aile Üyesi Bilgileri:</strong> Premium özellik kapsamında takip edilen aile üyelerinin ilaç bilgileri.</li>
-    </ul>
+            <h3>1.1 Kullanıcı Tarafından Sağlanan Bilgiler</h3>
+            <ul>
+                <li><strong>İlaç Bilgileri:</strong> Kullanıcı tarafından eklenen ilaç adları, dozlar, kullanım
+                    zamanları, süreler ve hatırlatma ayarları.</li>
+                <li><strong>Sağlık Kayıtları:</strong> İlaç alma geçmişi, kaçırılan dozlar, stok durumu.</li>
+                <li><strong>Reçete Bilgileri:</strong> Premium kullanıcılar tarafından OCR ile işlenen reçete görselleri
+                    (cihaz içi işlem).</li>
+                <li><strong>Aile Üyesi Bilgileri:</strong> Premium özellik kapsamında takip edilen aile üyelerinin ilaç
+                    bilgileri.</li>
+            </ul>
 
-    <h3>1.2 Otomatik Toplanan Bilgiler</h3>
-    <ul>
-        <li>Cihaz bilgileri (model, işletim sistemi sürümü).</li>
-        <li>Uygulama kullanım istatistikleri.</li>
-        <li>Performans ve hata raporları (çökme esnasında anonimleştirilmiş teknik veriler).</li>
-    </ul>
+            <h3>1.2 Otomatik Toplanan Bilgiler</h3>
+            <ul>
+                <li>Cihaz bilgileri (model, işletim sistemi sürümü).</li>
+                <li>Uygulama kullanım istatistikleri.</li>
+                <li>Performans ve hata raporları (çökme esnasında anonimleştirilmiş teknik veriler).</li>
+            </ul>
+        </section>
 
-    <h2>2. Verilerin İşlenme Amaçları</h2>
-    <p>Kişisel verileriniz KVKK madde 5 ve GDPR madde 6 çerçevesinde aşağıdaki amaçlarla işlenir:</p>
-    <ul>
-        <li>İlaç hatırlatma bildirimlerinin sağlanması.</li>
-        <li>Uygulama deneyiminin kişiselleştirilmesi ve geliştirilmesi.</li>
-        <li>Premium kullanıcılar için bulut yedekleme ve cihazlar arası senkronizasyon.</li>
-        <li>Premium aile yönetimi ve bildirim özelliklerinin sunulması.</li>
-        <li>Teknik sorunların tespit edilmesi ve destek hizmetlerinin sağlanması.</li>
-    </ul>
+        <section>
+            <h2>2. Verilerin İşlenme Amaçları</h2>
+            <p>Kişisel verileriniz KVKK madde 5 ve GDPR madde 6 çerçevesinde aşağıdaki amaçlarla işlenir:</p>
+            <ul>
+                <li>İlaç hatırlatma bildirimlerinin sağlanması.</li>
+                <li>Uygulama deneyiminin kişiselleştirilmesi ve geliştirilmesi.</li>
+                <li>Premium kullanıcılar için bulut yedekleme ve cihazlar arası senkronizasyon.</li>
+                <li>Premium aile yönetimi ve bildirim özelliklerinin sunulması.</li>
+                <li>Teknik sorunların tespit edilmesi ve destek hizmetlerinin sağlanması.</li>
+            </ul>
+        </section>
 
-    <h2>3. Veri Saklama</h2>
+        <section>
+            <h2>3. Veri Saklama</h2>
 
-    <h3>3.1 Ücretsiz Kullanıcılar</h3>
-    <p>Ücretsiz kullanıcı verileri yalnızca cihazda saklanır ve sunucularımıza iletilmez.</p>
+            <h3>3.1 Ücretsiz Kullanıcılar</h3>
+            <p>Ücretsiz kullanıcı verileri yalnızca cihazda saklanır ve sunucularımıza iletilmez.</p>
 
-    <h3>3.2 Premium Kullanıcılar</h3>
-    <p>Bulut yedekleme aktif edildiğinde kişisel verileriniz <strong>Firebase Realtime Database</strong> üzerinde şifrelenmiş biçimde saklanır. Google altyapısı GDPR ve KVKK ile uyumlu güvenlik standartlarına sahiptir.</p>
+            <h3>3.2 Premium Kullanıcılar</h3>
+            <p>Bulut yedekleme aktif edildiğinde kişisel verileriniz <strong>Firebase Realtime Database</strong>
+                üzerinde şifrelenmiş biçimde saklanır. Google altyapısı GDPR ve KVKK ile uyumlu güvenlik standartlarına
+                sahiptir.</p>
+        </section>
 
-    <h2>4. Veri Paylaşımı</h2>
-    <p><strong>Kişisel verileriniz üçüncü taraflarla paylaşılmaz.</strong> Sadece aşağıdaki zorunlu hallerde paylaşım söz konusu olabilir:</p>
-    <ul>
-        <li>Yetkili makamlar tarafından talep edilen yasal yükümlülükler.</li>
-        <li>TİTCK kapsamında yalnızca genel ilaç veritabanına erişim; kişisel veri paylaşımı yapılmaz.</li>
-    </ul>
+        <section>
+            <h2>4. Veri Paylaşımı</h2>
+            <p><strong>Kişisel verileriniz üçüncü taraflarla paylaşılmaz.</strong> Sadece aşağıdaki zorunlu hallerde
+                paylaşım söz konusu olabilir:</p>
+            <ul>
+                <li>Yetkili makamlar tarafından talep edilen yasal yükümlülükler.</li>
+                <li>TİTCK kapsamında yalnızca genel ilaç veritabanına erişim; kişisel veri paylaşımı yapılmaz.</li>
+            </ul>
+        </section>
 
-    <h2>5. Üçüncü Taraf Hizmetler</h2>
-    <p>Uygulama aşağıdaki hizmet sağlayıcılarını kullanır:</p>
-    <ul>
-        <li><strong>Firebase (Google):</strong> Bulut yedekleme, kimlik doğrulama ve analitik.</li>
-        <li><strong>Google Play Hizmetleri:</strong> Uygulama içi satın alma süreçleri.</li>
-        <li><strong>ML Kit OCR:</strong> Reçete tanıma işlemleri cihaz içinde gerçekleştirilir, sunucuya gönderilmez.</li>
-    </ul>
+        <section>
+            <h2>5. Üçüncü Taraf Hizmetler</h2>
+            <p>Uygulama aşağıdaki hizmet sağlayıcılarını kullanır:</p>
+            <ul>
+                <li><strong>Firebase (Google):</strong> Bulut yedekleme, kimlik doğrulama ve analitik.</li>
+                <li><strong>Google Play Hizmetleri:</strong> Uygulama içi satın alma süreçleri.</li>
+                <li><strong>ML Kit OCR:</strong> Reçete tanıma işlemleri cihaz içinde gerçekleştirilir, sunucuya
+                    gönderilmez.</li>
+            </ul>
+        </section>
 
-    <h2>6. Çocukların Gizliliği</h2>
-    <p>Dozi, 13 yaş altı çocuklara yönelik değildir. Bilerek 13 yaş altı kullanıcılardan veri toplamıyoruz. Böyle bir durumun tespiti halinde veriler derhal silinir.</p>
+        <section>
+            <h2>6. Çocukların Gizliliği</h2>
+            <p>Dozi, 13 yaş altı çocuklara yönelik değildir. Bilerek 13 yaş altı kullanıcılardan veri toplamıyoruz.
+                Böyle bir durumun tespiti halinde veriler derhal silinir.</p>
+        </section>
 
-    <h2>7. KVKK ve GDPR Kapsamındaki Haklarınız</h2>
-    <p>Kullanıcılar aşağıdaki haklara sahiptir:</p>
-    <ul>
-        <li>Kişisel verilerin işlenip işlenmediğini öğrenme.</li>
-        <li>Yanlış veya eksik verilerin düzeltilmesini talep etme.</li>
-        <li>Verilerin silinmesini talep etme.</li>
-        <li>Hesabınızı tamamen silme (Ayarlar → Hesabı Sil).</li>
-        <li>GDPR kapsamındaki kullanıcılar için veri taşınabilirliği hakkı.</li>
-    </ul>
+        <section>
+            <h2>7. KVKK ve GDPR Kapsamındaki Haklarınız</h2>
+            <p>Kullanıcılar aşağıdaki haklara sahiptir:</p>
+            <ul>
+                <li>Kişisel verilerin işlenip işlenmediğini öğrenme.</li>
+                <li>Yanlış veya eksik verilerin düzeltilmesini talep etme.</li>
+                <li>Verilerin silinmesini talep etme.</li>
+                <li>Hesabınızı tamamen silme (Ayarlar → Hesabı Sil).</li>
+                <li>GDPR kapsamındaki kullanıcılar için veri taşınabilirliği hakkı.</li>
+            </ul>
+        </section>
 
-    <h2>8. Veri Güvenliği</h2>
-    <ul>
-        <li>Tüm veriler şifrelenmiş bağlantılar üzerinden iletilir.</li>
-        <li>Firebase güvenlik kuralları ve rol tabanlı erişim kontrolleri uygulanır.</li>
-        <li>Lokal veriler cihaz güvenlik sistemleri tarafından korunur.</li>
-        <li>Yetkisiz erişim, kötüye kullanım ve veri kaybına karşı teknik ve idari önlemler alınır.</li>
-    </ul>
+        <section>
+            <h2>8. Veri Güvenliği</h2>
+            <ul>
+                <li>Tüm veriler şifrelenmiş bağlantılar üzerinden iletilir.</li>
+                <li>Firebase güvenlik kuralları ve rol tabanlı erişim kontrolleri uygulanır.</li>
+                <li>Lokal veriler cihaz güvenlik sistemleri tarafından korunur.</li>
+                <li>Yetkisiz erişim, kötüye kullanım ve veri kaybına karşı teknik ve idari önlemler alınır.</li>
+            </ul>
+        </section>
 
-    <h2>9. Politika Değişiklikleri</h2>
-    <p>Bu Gizlilik Politikası, mevzuat veya hizmet değişikliklerine bağlı olarak güncellenebilir. Önemli değişiklikler uygulama içi bildirim ile duyurulur.</p>
+        <section>
+            <h2>9. Politika Değişiklikleri</h2>
+            <p>Bu Gizlilik Politikası, mevzuat veya hizmet değişikliklerine bağlı olarak güncellenebilir. Önemli
+                değişiklikler uygulama içi bildirim ile duyurulur.</p>
+        </section>
 
-    <div class="contact">
-        <h2>10. İletişim</h2>
-        <p>Gizlilik politikası hakkında her türlü talep ve sorularınız için:</p>
-        <p><strong>E-posta:</strong> info@dozi.app</p>
-        <p><strong>Şirket:</strong> Bardino Technology</p>
-        <p><strong>Adres:</strong> Türkiye</p>
-    </div>
+        <section class="contact">
+            <h2>10. İletişim</h2>
+            <p>Gizlilik politikası hakkında her türlü talep ve sorularınız için:</p>
+            <p><strong>E-posta:</strong> <a href="mailto:info@dozi.app">info@dozi.app</a></p>
+            <p><strong>Şirket:</strong> Bardino Technology</p>
+            <p><strong>Adres:</strong> Türkiye</p>
+        </section>
+    </main>
 
-    <hr style="margin-top: 40px; border: none; border-top: 1px solid #ddd;">
-    <p style="text-align: center; color: #666; font-size: 0.9em;">
-        © 2025 Dozi - Sağlıklı yaşam asistanınız
-    </p>
+    <hr>
+
+    <footer>
+        <p>© 2025 Dozi - Sağlıklı yaşam asistanınız</p>
+    </footer>
 </body>
+
 </html>
