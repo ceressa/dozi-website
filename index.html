@@ -231,34 +231,6 @@
             line-height: 1.8;
         }
 
-
-
-        .hero-badges {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(64, 224, 208, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--dozi-dark);
-            font-weight: 500;
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            transition: all 0.3s;
-        }
-
-        .hero-badge:hover {
-            background: rgba(64, 224, 208, 0.15);
-            transform: translateY(-2px);
-        }
-
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -311,7 +283,7 @@
             padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.15rem;
             border: 2px solid var(--dozi-turquoise);
             transition: all 0.3s;
@@ -333,7 +305,6 @@
         }
 
 
-
         .mascot-container {
             position: relative;
             animation: float-mascot 6s ease-in-out infinite;
@@ -349,9 +320,12 @@
             max-width: 450px;
             height: auto;
             filter: drop-shadow(0 25px 50px rgba(64, 224, 208, 0.4));
+            transition: filter 0.3s;
         }
 
-
+        .mascot-container:hover img {
+            filter: drop-shadow(0 30px 60px rgba(64, 224, 208, 0.5));
+        }
 
         .mascot-container::before,
         .mascot-container::after {
@@ -774,7 +748,7 @@
                 text-align: center;
             }
 
-            .hero-content h1 {
+        .hero-content h1 {
             font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
@@ -789,6 +763,8 @@
 
         @keyframes gradient-shift {
             0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
         .hero-content .subtitle {
             font-size: 1.4rem;
@@ -797,15 +773,12 @@
             font-weight: 500;
             line-height: 1.6;
         }
-            50% { background-position: 100% 50%; }
-        }
 
             .nav-links {
                 gap: 1rem;
                 font-size: 0.9rem;
             }
 
-    
 
         .mascot-container {
             position: relative;
@@ -817,7 +790,7 @@
             50% { transform: translateY(-20px); }
         }
 
-        .mascot-container img {
+            .mascot-container img {
                 max-width: 280px;
             }
 
@@ -884,7 +857,6 @@
                 </div>
                 
                 <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile sağlığınız artık kontrol altında. 💊</p>
-                
                 <div class="cta-buttons">
                     <a href="#download" class="btn-primary">
                         📱 Hemen İndir
@@ -1031,7 +1003,7 @@
                 <span class="store-icon">📱</span>
                 <div style="text-align: left;">
                     <div style="font-size: 0.75rem; opacity: 0.7;">Şimdi İndir</div>
-                    <div style="font-size: 1.15rem; font-weight: 700;">Google Play</div>
+                    <div style="font-size: 1.1rem; font-weight: 700;">Google Play</div>
                 </div>
             </a>
         </div>
