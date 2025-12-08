@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dozi - Çerez Politikası ve Kullanım Bilgileri">
+    <meta name="author" content="Bardino Technology">
+    <title>Çerez Politikası - Dozi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Same styling as KVKK page for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-pink: #FF6B9D;
+            --dozi-dark: #0A1628;
+            --dozi-gray: #64748B;
+            --dozi-light-blue: #E8F4F8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            color: var(--dozi-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #1a2744 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .logo {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dozi-dark);
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--dozi-turquoise);
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dozi-dark);
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--dozi-gray);
+        }
+
+        strong {
+            color: var(--dozi-dark);
+            font-weight: 600;
+        }
+
+        ul,
+        ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--dozi-gray);
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-important {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-box h4 {
+            margin-top: 0;
+            color: inherit;
+            font-size: 1.2rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            color: var(--dozi-gray);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: var(--dozi-light-blue);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #0f1f3d 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--dozi-turquoise);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--dozi-pink);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .data-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="dozi_brand.png" alt="Dozi Logo">
+        </a>
+        <h1>Çerez Politikası</h1>
+        <p>Web Sitemizde Kullanılan Çerezler Hakkında Bilgilendirme</p>
+    </header>
+
+    <main>
+        <div class="content-card">
+            <div class="alert-box alert-important">
+                <h4>🍪 Önemli Bilgilendirme</h4>
+                <p>Bu çerez politikası, Dozi web sitesinde (www.dozi.app) kullanılan çerezler hakkında sizi
+                    bilgilendirmek amacıyla hazırlanmıştır. Web sitemizi kullanarak çerez kullanımını kabul etmiş
+                    sayılırsınız.</p>
+            </div>
+
+            <h2>1. Çerez Nedir?</h2>
+            <p>Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcılar aracılığıyla cihazınıza veya ağ
+                sunucusuna depolanan küçük metin dosyalarıdır. Çerezler, web sitesinin düzgün çalışmasını sağlamak,
+                kullanıcı deneyimini iyileştirmek ve site trafiğini analiz etmek için kullanılır.</p>
+
+            <h2>2. Çerez Türleri</h2>
+
+            <h3>2.1. Süre Bazında Çerezler</h3>
+            <ul>
+                <li><strong>Oturum Çerezleri (Session Cookies):</strong> Tarayıcı kapatıldığında otomatik olarak silinir
+                </li>
+                <li><strong>Kalıcı Çerezler (Persistent Cookies):</strong> Belirli bir süre boyunca cihazınızda kalır
+                </li>
+            </ul>
+
+            <h3>2.2. Kaynak Bazında Çerezler</h3>
+            <ul>
+                <li><strong>Birinci Taraf Çerezler:</strong> Doğrudan Dozi tarafından oluşturulur</li>
+                <li><strong>Üçüncü Taraf Çerezler:</strong> Google Analytics gibi harici hizmetler tarafından
+                    oluşturulur</li>
+            </ul>
+
+            <h2>3. Kullandığımız Çerezler</h2>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Çerez Adı</th>
+                        <th>Türü</th>
+                        <th>Amaç</th>
+                        <th>Süre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>cookie_consent</strong></td>
+                        <td>Zorunlu</td>
+                        <td>Çerez tercihlerinizi hatırlar</td>
+                        <td>1 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>session_id</strong></td>
+                        <td>Zorunlu</td>
+                        <td>Oturum yönetimi</td>
+                        <td>Oturum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>_ga</strong></td>
+                        <td>Analitik</td>
+                        <td>Google Analytics - Kullanıcı tanımlama</td>
+                        <td>2 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>_gid</strong></td>
+                        <td>Analitik</td>
+                        <td>Google Analytics - Kullanıcı tanımlama</td>
+                        <td>24 saat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>_gat</strong></td>
+                        <td>Analitik</td>
+                        <td>Google Analytics - İstek hızı sınırlama</td>
+                        <td>1 dakika</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Çerez Kategorileri ve Amaçları</h2>
+
+            <h3>4.1. Zorunlu Çerezler</h3>
+            <p>Web sitesinin temel işlevlerini yerine getirmesi için gereklidir. Bu çerezler olmadan site düzgün
+                çalışmaz.</p>
+            <ul>
+                <li>Oturum yönetimi</li>
+                <li>Güvenlik önlemleri</li>
+                <li>Çerez tercihlerinin hatırlanması</li>
+            </ul>
+
+            <h3>4.2. Analitik Çerezler</h3>
+            <p>Web sitesi trafiğini ve kullanıcı davranışlarını analiz etmek için kullanılır.</p>
+            <ul>
+                <li>Sayfa görüntüleme istatistikleri</li>
+                <li>Kullanıcı akışı analizi</li>
+                <li>Popüler içerik tespiti</li>
+                <li>Hata raporlama</li>
+            </ul>
+
+            <h3>4.3. İşlevsel Çerezler</h3>
+            <p>Kullanıcı tercihlerini hatırlamak ve kişiselleştirilmiş deneyim sunmak için kullanılır.</p>
+            <ul>
+                <li>Dil tercihi</li>
+                <li>Bölge ayarları</li>
+                <li>Görüntüleme tercihleri</li>
+            </ul>
+
+            <h2>5. Üçüncü Taraf Çerezler</h2>
+
+            <h3>5.1. Google Analytics</h3>
+            <p>Web sitesi trafiğini analiz etmek için Google Analytics kullanıyoruz. Google Analytics, anonim
+                istatistikler toplar ve kişisel verilerinizi tanımlamaz.</p>
+            <ul>
+                <li><strong>Amaç:</strong> Site kullanım istatistikleri</li>
+                <li><strong>Veri:</strong> Sayfa görüntülemeleri, oturum süresi, coğrafi konum (ülke/şehir)</li>
+                <li><strong>Gizlilik:</strong> <a href="https://policies.google.com/privacy" target="_blank">Google
+                        Gizlilik Politikası</a></li>
+            </ul>
+
+            <div class="alert-box alert-info">
+                <h4>ℹ️ Google Analytics Opt-Out</h4>
+                <p>Google Analytics'i devre dışı bırakmak isterseniz: <a href="https://tools.google.com/dlpage/gaoptout"
+                        target="_blank">Google Analytics Opt-out Browser Add-on</a></p>
+            </div>
+
+            <h2>6. Çerezleri Nasıl Yönetebilirsiniz?</h2>
+
+            <h3>6.1. Tarayıcı Ayarları</h3>
+            <p>Çoğu tarayıcı, çerezleri otomatik olarak kabul eder. Ancak tarayıcı ayarlarınızdan çerezleri
+                engelleyebilir veya silebilirsiniz:</p>
+            <ul>
+                <li><strong>Google Chrome:</strong> Ayarlar > Gizlilik ve güvenlik > Çerezler</li>
+                <li><strong>Firefox:</strong> Ayarlar > Gizlilik ve Güvenlik > Çerezler ve Site Verileri</li>
+                <li><strong>Safari:</strong> Tercihler > Gizlilik > Çerezler</li>
+                <li><strong>Edge:</strong> Ayarlar > Gizlilik, arama ve hizmetler > Çerezler</li>
+            </ul>
+
+            <h3>6.2. Çerez Onay Banner'ı</h3>
+            <p>Web sitemizi ilk ziyaretinizde çerez onay banner'ı görüntülenir. Burada çerez tercihlerinizi
+                yönetebilirsiniz:</p>
+            <ul>
+                <li><strong>Tümünü Kabul Et:</strong> Tüm çerezleri kabul eder</li>
+                <li><strong>Tümünü Reddet:</strong> Sadece zorunlu çerezleri kabul eder</li>
+                <li><strong>Ayarla:</strong> Çerez kategorilerini tek tek yönetir</li>
+            </ul>
+
+            <h3>6.3. Çerez Tercihlerini Değiştirme</h3>
+            <p>Çerez tercihlerinizi istediğiniz zaman değiştirebilirsiniz. Sayfanın alt kısmındaki "Çerez Ayarları"
+                linkine tıklayarak tercihlerinizi güncelleyebilirsiniz.</p>
+
+            <h2>7. Çerezleri Reddetmenin Sonuçları</h2>
+            <p>Çerezleri reddetmeniz durumunda:</p>
+            <ul>
+                <li>Web sitesinin bazı özellikleri düzgün çalışmayabilir</li>
+                <li>Tercihleriniz hatırlanmayabilir</li>
+                <li>Kişiselleştirilmiş deneyim sunamayabiliriz</li>
+                <li>Analitik veriler toplayamayız</li>
+            </ul>
+
+            <div class="alert-box alert-important">
+                <h4>⚠️ Önemli Not</h4>
+                <p>Zorunlu çerezler, web sitesinin temel işlevleri için gereklidir ve reddedilemez. Ancak analitik ve
+                    işlevsel çerezleri istediğiniz zaman devre dışı bırakabilirsiniz.</p>
+            </div>
+
+            <h2>8. Çocukların Gizliliği</h2>
+            <p>Web sitemiz 18 yaş altı kullanıcılara yönelik değildir. 18 yaş altı ziyaretçilerden bilerek çerez verisi
+                toplamıyoruz. Ebeveynler, çocuklarının internet kullanımını denetlemelidir.</p>
+
+            <h2>9. Değişiklikler</h2>
+            <p>Bu çerez politikası, yasal düzenlemeler veya hizmet değişiklikleri nedeniyle güncellenebilir. Önemli
+                değişiklikler web sitesinde duyurulacaktır.</p>
+            <p><strong>Son Güncelleme:</strong> 08 Aralık 2025</p>
+
+            <h2>10. İletişim</h2>
+            <p>Çerez politikamız hakkında sorularınız için:</p>
+            <ul>
+                <li><strong>E-posta:</strong> <a href="mailto:privacy@dozi.app">privacy@dozi.app</a></li>
+                <li><strong>Web:</strong> <a href="https://www.dozi.app">www.dozi.app</a></li>
+            </ul>
+
+            <h2>11. İlgili Politikalar</h2>
+            <p>Daha fazla bilgi için diğer politikalarımızı inceleyebilirsiniz:</p>
+            <ul>
+                <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
+                <li><a href="kvkk.html">KVKK Aydınlatma Metni</a></li>
+                <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bardino Technology - Tüm hakları saklıdır</p>
+        <p>
+            <a href="index.html">Ana Sayfa</a> |
+            <a href="privacy-policy.html">Gizlilik Politikası</a> |
+            <a href="kvkk.html">KVKK</a> |
+            <a href="terms-of-use.html">Kullanım Şartları</a>
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -1448,6 +1448,76 @@
         </a>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-icon">🍪</div>
+            <div class="cookie-text">
+                <h3>Çerez Kullanımı</h3>
+                <p>Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Detaylı bilgi için <a
+                        href="cookie-policy.html">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Tümünü Kabul Et</button>
+                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Tümünü Reddet</button>
+                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Ayarla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-modal" id="cookieModal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2>Çerez Ayarları</h2>
+                <button class="cookie-modal-close" onclick="closeCookieSettings()">&times;</button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>🔒 Zorunlu Çerezler</h4>
+                            <p>Web sitesinin çalışması için gereklidir</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>📊 Analitik Çerezler</h4>
+                            <p>Site kullanımını analiz etmek için kullanılır</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="analyticsCookies" checked>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>⚙️ İşlevsel Çerezler</h4>
+                            <p>Tercihlerinizi hatırlamak için kullanılır</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="functionalCookies" checked>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-accept" onclick="saveCookieSettings()">Kaydet ve Kapat</button>
+                <a href="cookie-policy.html" class="cookie-policy-link">Çerez Politikası</a>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">

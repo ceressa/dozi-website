@@ -1,0 +1,30 @@
+# Dozi Website - robots.txt
+# https://www.dozi.app/robots.txt
+
+# Allow all bots to crawl everything
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://www.dozi.app/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+# Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional - uncomment if needed)
+# User-agent: BadBot
+# Disallow: /
