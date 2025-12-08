@@ -27,6 +27,82 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Dozi",
+      "description": "İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TRY"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "10000"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Bardino Technology",
+        "url": "https://www.dozi.app"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bardino Technology",
+      "url": "https://www.dozi.app",
+      "logo": "https://www.dozi.app/dozi_brand.png",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@dozi.app",
+        "contactType": "Customer Service"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Dozi ücretsiz mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet! Dozi'nin temel özellikleri tamamen ücretsizdir. İlaç hatırlatmaları, doz takibi ve temel raporlama özelliklerini hiçbir ücret ödemeden kullanabilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Verilerim güvende mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunmaktadır. KVKK ve GDPR standartlarına tam uyumluyuz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi cihazlarda çalışır?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dozi şu anda Android cihazlarda kullanılabilir (Android 6.0 ve üzeri). iOS versiyonu yakında yayınlanacak!"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -191,6 +267,119 @@
             <div class="stat-item">
                 <h3>4.8⭐</h3>
                 <p>Uygulama Puanı</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison fade-in-section" id="pricing">
+        <div class="section-header">
+            <h2>Ücretsiz mi, Premium mi? 💎</h2>
+            <p>Size en uygun planı seçin!</p>
+        </div>
+        <div class="comparison-container">
+            <div class="comparison-card">
+                <div class="plan-header">
+                    <h3>Ücretsiz</h3>
+                    <div class="plan-price">
+                        <span class="price">₺0</span>
+                        <span class="period">/ay</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> İlaç hatırlatmaları</li>
+                    <li><span class="check">✓</span> Doz takibi</li>
+                    <li><span class="check">✓</span> Temel raporlar</li>
+                    <li><span class="check">✓</span> 1 profil</li>
+                    <li><span class="cross">✗</span> Aile takibi</li>
+                    <li><span class="cross">✗</span> Bulut yedekleme</li>
+                    <li><span class="cross">✗</span> Gelişmiş raporlar</li>
+                </ul>
+                <a href="#download" class="plan-btn">Hemen İndir</a>
+            </div>
+
+            <div class="comparison-card featured">
+                <div class="popular-badge">En Popüler</div>
+                <div class="plan-header">
+                    <h3>Premium</h3>
+                    <div class="plan-price">
+                        <span class="price">₺29.99</span>
+                        <span class="period">/ay</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Tüm ücretsiz özellikler</li>
+                    <li><span class="check">✓</span> Aile takibi (5 kişiye kadar)</li>
+                    <li><span class="check">✓</span> Bulut yedekleme</li>
+                    <li><span class="check">✓</span> Gelişmiş raporlar</li>
+                    <li><span class="check">✓</span> Öncelikli destek</li>
+                    <li><span class="check">✓</span> Reklamsız deneyim</li>
+                    <li><span class="check">✓</span> Özel temalar</li>
+                </ul>
+                <a href="#download" class="plan-btn premium">Premium'a Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="roadmap fade-in-section" id="roadmap">
+        <div class="section-header">
+            <h2>Yol Haritamız 🗺️</h2>
+            <p>Yakında gelecek heyecan verici özellikler!</p>
+        </div>
+        <div class="roadmap-container">
+            <div class="roadmap-item completed">
+                <div class="roadmap-icon">✅</div>
+                <div class="roadmap-content">
+                    <h3>İlaç Hatırlatmaları</h3>
+                    <p>Akıllı hatırlatma sistemi ve bildirimler</p>
+                    <span class="roadmap-status completed-status">Tamamlandı</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item completed">
+                <div class="roadmap-icon">✅</div>
+                <div class="roadmap-content">
+                    <h3>Aile Takibi</h3>
+                    <p>Sevdiklerinizin ilaç uyumunu takip edin</p>
+                    <span class="roadmap-status completed-status">Tamamlandı</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item in-progress">
+                <div class="roadmap-icon">🚧</div>
+                <div class="roadmap-content">
+                    <h3>Reçete Okuma (OCR)</h3>
+                    <p>Reçetenizi fotoğraflayın, otomatik eklensin</p>
+                    <span class="roadmap-status progress-status">Geliştiriliyor</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item in-progress">
+                <div class="roadmap-icon">🚧</div>
+                <div class="roadmap-content">
+                    <h3>iOS Uygulaması</h3>
+                    <p>iPhone ve iPad desteği</p>
+                    <span class="roadmap-status progress-status">Geliştiriliyor</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item planned">
+                <div class="roadmap-icon">📅</div>
+                <div class="roadmap-content">
+                    <h3>Doktor Entegrasyonu</h3>
+                    <p>Doktorunuzla ilaç bilgilerinizi paylaşın</p>
+                    <span class="roadmap-status planned-status">Planlandı - Q2 2026</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item planned">
+                <div class="roadmap-icon">📅</div>
+                <div class="roadmap-content">
+                    <h3>Akıllı Saat Desteği</h3>
+                    <p>Apple Watch ve Wear OS entegrasyonu</p>
+                    <span class="roadmap-status planned-status">Planlandı - Q3 2026</span>
+                </div>
             </div>
         </div>
     </section>
@@ -476,6 +665,75 @@
             <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-icon">🍪</div>
+            <div class="cookie-text">
+                <h3>Çerez Kullanımı</h3>
+                <p>Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Detaylı bilgi için <a
+                        href="cookie-policy.html">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Tümünü Kabul Et</button>
+                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Tümünü Reddet</button>
+                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Ayarla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-modal" id="cookieModal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2>Çerez Ayarları</h2>
+                <button class="cookie-modal-close" onclick="closeCookieSettings()">&times;</button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>🔒 Zorunlu Çerezler</h4>
+                            <p>Web sitesinin çalışması için gereklidir</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" checked disabled>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>📊 Analitik Çerezler</h4>
+                            <p>Site kullanımını analiz etmek için kullanılır</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="analyticsCookies" checked>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4>⚙️ İşlevsel Çerezler</h4>
+                            <p>Tercihlerinizi hatırlamak için kullanılır</p>
+                        </div>
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="functionalCookies" checked>
+                            <span class="cookie-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-accept" onclick="saveCookieSettings()">Kaydet ve Kapat</button>
+                <a href="cookie-policy.html" class="cookie-policy-link">Çerez Politikası</a>
+            </div>
+        </div>
+    </div>
 
     <script src="js/scripts.js"></script>
 </body>
