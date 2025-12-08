@@ -807,6 +807,241 @@
         }
 
         /* ========================================
+           SCREENSHOT CAROUSEL
+           ======================================== */
+        .screenshots {
+            padding: 6rem 2rem;
+            background: white;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            text-align: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-caption {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dozi-dark);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(64, 224, 208, 0.5);
+        }
+
+        .carousel-btn.prev {
+            left: -60px;
+        }
+
+        .carousel-btn.next {
+            right: -60px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--dozi-turquoise);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* ========================================
+           FAQ SECTION
+           ======================================== */
+        .faq {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(232, 244, 248, 0.6) 100%);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.15);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--dozi-light-blue);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dozi-dark);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--dozi-turquoise);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--dozi-gray);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .faq-answer a {
+            color: var(--dozi-turquoise);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           STICKY CTA BUTTON
+           ======================================== */
+        .sticky-cta {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            transition: bottom 0.4s ease-out;
+        }
+
+        .sticky-cta.show {
+            bottom: 30px;
+        }
+
+        .sticky-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 10px 40px rgba(64, 224, 208, 0.5);
+            transition: all 0.3s;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .sticky-cta-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(64, 224, 208, 0.7);
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 40px rgba(64, 224, 208, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 10px 40px rgba(255, 107, 157, 0.5);
+            }
+        }
+
+        /* ========================================
            RESPONSIVE DESIGN
            ======================================== */
         @media (max-width: 768px) {
@@ -855,6 +1090,23 @@
                 width: 300px;
                 height: 300px;
             }
+
+            .carousel-btn.prev {
+                left: 10px;
+            }
+
+            .carousel-btn.next {
+                right: 10px;
+            }
+
+            .carousel-track {
+                height: 500px;
+            }
+
+            .sticky-cta-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -877,6 +1129,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Özellikler</a></li>
                 <li><a href="#testimonials">Yorumlar</a></li>
+                <li><a href="#faq">SSS</a></li>
                 <li><a href="#download">İndir</a></li>
                 <li><a href="privacy-policy.html">Gizlilik</a></li>
                 <li><a href="account-deletion.html">Hesap</a></li>
@@ -916,6 +1169,37 @@
                     <img src="dozi_happy.png" alt="Dozi Maskot - Sağlıklı Yaşam Asistanı">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Carousel -->
+    <section class="screenshots fade-in-section">
+        <div class="section-header">
+            <h2>Uygulamayı Keşfedin 📱</h2>
+            <p>Dozi'nin kullanımı ne kadar kolay, kendiniz görün!</p>
+        </div>
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+            <div class="carousel-track">
+                <div class="carousel-slide active">
+                    <img src="images/dozi_1.png" alt="Dozi Ana Ekran - İlaç Listesi">
+                    <p class="screenshot-caption">📋 Tüm ilaçlarınız bir arada</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/dozi_2.png" alt="Dozi Hatırlatma Ekranı">
+                    <p class="screenshot-caption">⏰ Akıllı hatırlatmalar</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/dozi_3.png" alt="Dozi İstatistik Ekranı">
+                    <p class="screenshot-caption">📊 Detaylı takip ve istatistikler</p>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
         </div>
     </section>
 
@@ -1039,6 +1323,109 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq fade-in-section" id="faq">
+        <div class="section-header">
+            <h2>Sık Sorulan Sorular ❓</h2>
+            <p>Merak ettiklerinizin yanıtları burada!</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>💰 Dozi ücretsiz mi?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Dozi'nin temel özellikleri tamamen ücretsizdir. İlaç hatırlatmaları, doz takibi ve temel
+                        raporlama özelliklerini hiçbir ücret ödemeden kullanabilirsiniz. Premium üyelikle aile takibi,
+                        bulut yedekleme ve gelişmiş raporlama gibi ek özelliklere erişebilirsiniz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>🔒 Verilerim güvende mi?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunmaktadır. KVKK ve GDPR standartlarına tam
+                        uyumluyuz. Sağlık verileriniz yalnızca sizin erişiminizde olup, açık rızanız olmadan hiçbir
+                        üçüncü tarafla paylaşılmaz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>📱 Hangi cihazlarda çalışır?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Dozi şu anda Android cihazlarda kullanılabilir (Android 6.0 ve üzeri). iOS versiyonu yakında
+                        yayınlanacak! Tüm cihazlarınızda senkronize çalışır.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>🌐 İnternet bağlantısı gerekli mi?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Hayır! Dozi offline çalışabilir. İlaç hatırlatmaları ve temel özellikler internet bağlantısı
+                        olmadan da çalışır. Bulut senkronizasyonu ve yedekleme için internet bağlantısı gereklidir.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>👨‍👩‍👧‍👦 Aile üyelerimi nasıl takip edebilirim?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Premium üyelikle aile takibi özelliğini kullanabilirsiniz. Sevdiklerinizi uygulamaya davet edin,
+                        onların izniyle ilaç uyumlarını takip edin ve hatırlatmalar gönderin. Özellikle yaşlı ebeveynler
+                        için çok kullanışlıdır!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>🔔 Hatırlatmalar nasıl çalışır?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Her ilaç için özel hatırlatma saatleri belirleyebilirsiniz. Dozi, belirlediğiniz saatlerde
+                        bildirim gönderir ve sevimli sesli uyarılar yapar. Hatırlatmaları erteleyebilir veya aldığınızı
+                        işaretleyebilirsiniz. Streak sistemi ile motivasyonunuzu yüksek tutun!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>📊 İlaç geçmişimi görebilir miyim?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Dozi, tüm ilaç alım geçmişinizi kaydeder. Hangi ilaçları ne zaman aldığınızı, kaçırdığınız
+                        dozları ve uyum oranınızı detaylı grafiklerle görebilirsiniz. Bu raporları doktorunuzla
+                        paylaşabilirsiniz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>❓ Destek nasıl alabilirim?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Uygulama içi destek bölümünden bize ulaşabilirsiniz. Ayrıca <a
+                            href="mailto:info@dozi.app">info@dozi.app</a> adresinden e-posta gönderebilir veya web
+                        sitemizden iletişim formunu doldurabilirsiniz. Genellikle 24 saat içinde yanıt veriyoruz!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Download Section -->
     <section class="download fade-in-section" id="download">
         <div class="download-content">
@@ -1053,6 +1440,13 @@
             </a>
         </div>
     </section>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta" id="stickyCTA">
+        <a href="#download" class="sticky-cta-btn">
+            📱 Hemen İndir
+        </a>
+    </div>
 
     <!-- Footer -->
     <footer id="contact">
@@ -1140,6 +1534,79 @@
                     });
                 }
             });
+        });
+
+        // ========================================
+        // SCREENSHOT CAROUSEL
+        // ========================================
+        let currentSlideIndex = 1;
+        showSlide(currentSlideIndex);
+
+        function moveCarousel(n) {
+            showSlide(currentSlideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(currentSlideIndex = n);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+
+            if (n > slides.length) { currentSlideIndex = 1; }
+            if (n < 1) { currentSlideIndex = slides.length; }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            if (slides[currentSlideIndex - 1]) {
+                slides[currentSlideIndex - 1].classList.add('active');
+            }
+            if (dots[currentSlideIndex - 1]) {
+                dots[currentSlideIndex - 1].classList.add('active');
+            }
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // ========================================
+        // FAQ ACCORDION
+        // ========================================
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // ========================================
+        // STICKY CTA BUTTON
+        // ========================================
+        window.addEventListener('scroll', () => {
+            const stickyCTA = document.getElementById('stickyCTA');
+            const heroSection = document.querySelector('.hero');
+
+            if (heroSection) {
+                const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+
+                if (window.scrollY > heroBottom) {
+                    stickyCTA.classList.add('show');
+                } else {
+                    stickyCTA.classList.remove('show');
+                }
+            }
         });
     </script>
 </body>
