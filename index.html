@@ -227,8 +227,76 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 50%, var(--dozi-purple) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.4rem;
+            color: var(--dozi-gray);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--dozi-gray);
             margin-bottom: 2.5rem;
             line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(64, 224, 208, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dozi-dark);
+            font-weight: 500;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            transition: all 0.3s;
+        }
+
+        .hero-badge:hover {
+            background: rgba(64, 224, 208, 0.15);
+            transform: translateY(-2px);
         }
 
         .cta-buttons {
@@ -240,7 +308,7 @@
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
             color: white;
             padding: 1.2rem 3rem;
@@ -249,7 +317,7 @@
             font-weight: 700;
             font-size: 1.15rem;
             transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -270,20 +338,20 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(64, 224, 208, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(64, 224, 208, 0.6);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             background: white;
             color: var(--dozi-turquoise);
             padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.15rem;
             border: 2px solid var(--dozi-turquoise);
             transition: all 0.3s;
@@ -293,8 +361,8 @@
         .btn-secondary:hover {
             background: var(--dozi-turquoise);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.4);
         }
 
         .hero-image {
@@ -304,15 +372,21 @@
             align-items: center;
         }
 
-
         .mascot-container {
             position: relative;
             animation: float-mascot 6s ease-in-out infinite;
         }
 
         @keyframes float-mascot {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .mascot-container img {
@@ -350,8 +424,17 @@
         }
 
         @keyframes pulse-circle {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
         }
 
         /* ========================================
@@ -472,43 +555,15 @@
         .feature-card p {
             color: var(--dozi-gray);
             line-height: 1.8;
-            font-size: 1rem;
         }
 
         /* ========================================
            STATS SECTION
            ======================================== */
         .stats {
-            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-blue) 100%);
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #1a2744 100%);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.15;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 0.25;
-            }
         }
 
         .stats-grid {
@@ -517,22 +572,35 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
+        }
+
+        .stat-item {
             text-align: center;
-            position: relative;
-            z-index: 1;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
         }
 
         .stat-item h3 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-item p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            font-weight: 500;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         /* ========================================
@@ -540,7 +608,7 @@
            ======================================== */
         .testimonials {
             padding: 6rem 2rem;
-            background: linear-gradient(180deg, rgba(255, 232, 240, 0.4) 0%, rgba(232, 244, 248, 0.4) 100%);
+            background: linear-gradient(180deg, rgba(232, 244, 248, 0.6) 0%, rgba(255, 255, 255, 0.9) 100%);
         }
 
         .testimonial-grid {
@@ -548,35 +616,34 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: white;
+            padding: 2.5rem;
             border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.15);
-            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(64, 224, 208, 0.25);
+            box-shadow: 0 20px 50px rgba(64, 224, 208, 0.2);
         }
 
         .testimonial-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .avatar {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--dozi-pink) 0%, var(--dozi-turquoise) 100%);
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -586,8 +653,9 @@
         }
 
         .testimonial-info h4 {
+            font-size: 1.2rem;
             font-weight: 600;
-            color: var(--dozi-dark);
+            margin-bottom: 0.25rem;
         }
 
         .testimonial-info p {
@@ -596,9 +664,8 @@
         }
 
         .stars {
-            color: #FFD700;
-            margin-bottom: 1rem;
             font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .testimonial-text {
@@ -748,50 +815,25 @@
                 text-align: center;
             }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 50%, var(--dozi-purple) 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 8s ease infinite;
-        }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
 
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
 
-        .hero-content .subtitle {
-            font-size: 1.4rem;
-            color: var(--dozi-gray);
-            margin-bottom: 1rem;
-            font-weight: 500;
-            line-height: 1.6;
-        }
+            .hero-badges {
+                justify-content: center;
+            }
 
             .nav-links {
                 gap: 1rem;
                 font-size: 0.9rem;
             }
 
-
-        .mascot-container {
-            position: relative;
-            animation: float-mascot 6s ease-in-out infinite;
-        }
-
-        @keyframes float-mascot {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
             .mascot-container img {
-                max-width: 280px;
+                max-width: 300px;
             }
 
             .section-header h2 {
@@ -847,16 +889,19 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Sağlıklı Yaşam Asistanınız 💧</h1>
-                <p class="subtitle">İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı</p>
-                
+                <p class="subtitle">İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık
+                    asistanı</p>
+
                 <!-- Feature Badges -->
                 <div class="hero-badges">
                     <span class="hero-badge">✓ 10,000+ Mutlu Kullanıcı</span>
                     <span class="hero-badge">✓ KVKK Uyumlu</span>
                     <span class="hero-badge">✓ Türkiye'de Geliştirildi</span>
                 </div>
-                
-                <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile sağlığınız artık kontrol altında. 💊</p>
+
+                <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile
+                    sağlığınız artık kontrol altında. 💊</p>
+
                 <div class="cta-buttons">
                     <a href="#download" class="btn-primary">
                         📱 Hemen İndir
@@ -1033,7 +1078,7 @@
                 <ul>
                     <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
                     <li><a href="account-deletion.html">Hesap Silme</a></li>
-                    <li><a href="#">Kullanım Şartları</a></li>
+                    <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
                     <li><a href="#">KVKK</a></li>
                 </ul>
             </div>
