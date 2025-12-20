@@ -2,23 +2,110 @@
 <html lang="tr">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
+    </script>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Dozi - İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan şirin sağlık asistanı">
+        content="Dozi - İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan şirin sağlık asistanı. Ücretsiz ilaç hatırlatma uygulaması.">
     <meta name="keywords"
-        content="ilaç hatırlatma, sağlık asistanı, ilaç takibi, aile sağlığı, reçete okuma, doz takibi">
+        content="ilaç hatırlatma, sağlık asistanı, ilaç takibi, aile sağlığı, reçete okuma, doz takibi, medication reminder, health app">
     <meta name="author" content="Bardino Technology">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <link rel="canonical" href="https://www.dozi.app/">
 
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Dozi - Sağlıklı Yaşam Asistanınız">
-    <meta property="og:description"
-        content="İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı">
+    <!-- Alternate Language Versions -->
+    <link rel="alternate" hreflang="tr" href="https://www.dozi.app/">
+    <link rel="alternate" hreflang="en" href="https://www.dozi.app/en/">
+    <link rel="alternate" hreflang="x-default" href="https://www.dozi.app/">
+
+    <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.dozi.app">
+    <meta property="og:url" content="https://www.dozi.app/">
+    <meta property="og:title" content="Dozi - Sağlıklı Yaşam Asistanınız 💧">
+    <meta property="og:description"
+        content="İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı. Ücretsiz ilaç hatırlatma uygulaması.">
+    <meta property="og:image" content="https://www.dozi.app/dozi_brand.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Dozi">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
 
-    <title>Dozi - Sağlıklı Yaşam Asistanınız 💧</title>
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.dozi.app/">
+    <meta name="twitter:title" content="Dozi - Sağlıklı Yaşam Asistanınız 💧">
+    <meta name="twitter:description"
+        content="İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı.">
+    <meta name="twitter:image" content="https://www.dozi.app/dozi_brand.png">
+    <meta name="twitter:creator" content="@dozi_app">
+    <meta name="twitter:site" content="@dozi_app">
+
+    <!-- App Store / Play Store Links -->
+    <meta name="apple-itunes-app" content="app-id=YOUR_IOS_APP_ID">
+    <meta name="google-play-app" content="app-id=com.bardino.dozi">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- iOS Specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dozi">
+    <link rel="apple-touch-icon" href="/dozi_brand.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/dozi_brand.png">
+    <link rel="shortcut icon" href="/dozi_brand.png">
+
+    <title>Dozi - Sağlıklı Yaşam Asistanınız 💧 | İlaç Hatırlatma Uygulaması</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +193,24 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Loading Animation -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-mascot">
+                <img src="dozi_brand.png" alt="Dozi Loading">
+            </div>
+            <div class="loading-text">Dozi yükleniyor...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Animated Background -->
     <div class="bg-animation">
         <div class="bg-blob blob1"></div>
@@ -121,12 +226,19 @@
                 <img src="dozi_brand.png" alt="Dozi">
             </a>
             <ul class="nav-links">
-                <li><a href="#features">Özellikler</a></li>
-                <li><a href="#testimonials">Yorumlar</a></li>
-                <li><a href="#faq">SSS</a></li>
-                <li><a href="#download">İndir</a></li>
-                <li><a href="privacy-policy.html">Gizlilik</a></li>
-                <li><a href="account-deletion.html">Hesap</a></li>
+                <li><a href="#features" data-i18n="features">Özellikler</a></li>
+                <li><a href="#testimonials" data-i18n="testimonials">Yorumlar</a></li>
+                <li><a href="#faq" data-i18n="faq">SSS</a></li>
+                <li><a href="#download" data-i18n="download">İndir</a></li>
+                <li><a href="privacy-policy.html" data-i18n="privacy">Gizlilik</a></li>
+                <li><a href="account-deletion.html" data-i18n="account">Hesap</a></li>
+                <li>
+                    <div class="lang-switch">
+                        <button class="lang-btn active" onclick="switchLanguage('tr')">TR</button>
+                        <span class="lang-divider">|</span>
+                        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -135,34 +247,37 @@
     <section class="hero fade-in-section">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Sağlıklı Yaşam Asistanınız 💧</h1>
-                <p class="subtitle">İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık
+                <h1 data-i18n="heroTitle">Sağlıklı Yaşam Asistanınız 💧</h1>
+                <p class="subtitle" data-i18n="heroSubtitle">İlaç takibini kolaylaştıran, sağlığınızı kontrol altında
+                    tutan sevimli sağlık
                     asistanı</p>
 
                 <!-- Feature Badges -->
                 <div class="hero-badges">
-                    <span class="hero-badge">✓ 10,000+ Mutlu Kullanıcı</span>
-                    <span class="hero-badge">✓ KVKK Uyumlu</span>
-                    <span class="hero-badge">✓ Türkiye'de Geliştirildi</span>
+                    <span class="hero-badge" data-i18n="heroBadge1">✓ 10,000+ Mutlu Kullanıcı</span>
+                    <span class="hero-badge" data-i18n="heroBadge2">✓ KVKK Uyumlu</span>
+                    <span class="hero-badge" data-i18n="heroBadge3">✓ Ücretsiz</span>
                 </div>
-
-                <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile
-                    sağlığınız artık kontrol altında. 💊</p>
-
-                <div class="cta-buttons">
-                    <a href="#download" class="btn-primary">
-                        📱 Hemen İndir
-                    </a>
-                    <a href="#features" class="btn-secondary">
-                        🔍 Daha Fazla Bilgi
-                    </a>
-                </div>
+                <span class="hero-badge">✓ Türkiye'de Geliştirildi</span>
             </div>
-            <div class="hero-image">
-                <div class="mascot-container">
-                    <img src="dozi_happy.png" alt="Dozi Maskot - Sağlıklı Yaşam Asistanı">
-                </div>
+
+            <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile
+                sağlığınız artık kontrol altında. 💊</p>
+
+            <div class="cta-buttons">
+                <a href="#download" class="btn-primary">
+                    📱 Hemen İndir
+                </a>
+                <a href="#features" class="btn-secondary">
+                    🔍 Daha Fazla Bilgi
+                </a>
             </div>
+        </div>
+        <div class="hero-image">
+            <div class="mascot-container">
+                <img src="dozi_happy.png" alt="Dozi Maskot - Sağlıklı Yaşam Asistanı">
+            </div>
+        </div>
         </div>
     </section>
 
@@ -208,43 +323,46 @@
                 <div class="feature-image">
                     <img src="dozi_noted.png" alt="Akıllı Hatırlatmalar">
                 </div>
-                <h3>Akıllı Hatırlatmalar</h3>
-                <p>İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve sevimli sesli uyarılar</p>
+                <h3 data-i18n="feature1Title">Akıllı Hatırlatmalar</h3>
+                <p data-i18n="feature1Desc">İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve
+                    sevimli sesli uyarılar</p>
             </div>
             <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_ok.png" alt="Kolay Takip">
                 </div>
-                <h3>Kolay Takip</h3>
-                <p>İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca yönetin</p>
+                <h3 data-i18n="feature2Title">Kolay Takip</h3>
+                <p data-i18n="feature2Desc">İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca
+                    yönetin</p>
             </div>
             <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_perfect.png" alt="Bulut Yedekleme">
                 </div>
-                <h3>Bulut Yedekleme</h3>
-                <p>Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur</p>
+                <h3 data-i18n="feature3Title">Bulut Yedekleme</h3>
+                <p data-i18n="feature3Desc">Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur
+                </p>
             </div>
             <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_family.png" alt="Aile Takibi">
                 </div>
-                <h3>Aile Takibi</h3>
-                <p>Sevdiklerinizin ilaç uyumunu uzaktan kontrol edin ve destek olun</p>
+                <h3 data-i18n="feature4Title">Aile Takibi</h3>
+                <p data-i18n="feature4Desc">Sevdiklerinizin ilaç uyumunu uzaktan kontrol edin ve destek olun</p>
             </div>
             <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_bravo.png" alt="Oyunlaştırma">
                 </div>
-                <h3>Oyunlaştırma</h3>
-                <p>Streak sistemi ve başarı rozetleri ile motivasyonunuzu yüksek tutun</p>
+                <h3 data-i18n="feature5Title">Oyunlaştırma</h3>
+                <p data-i18n="feature5Desc">Streak sistemi ve başarı rozetleri ile motivasyonunuzu yüksek tutun</p>
             </div>
             <div class="feature-card fade-in-section">
                 <div class="feature-image">
                     <img src="dozi_king.png" alt="Çoklu Profil">
                 </div>
-                <h3>Çoklu Profil</h3>
-                <p>Tüm aile üyelerinizin ilaçlarını tek uygulamada yönetin</p>
+                <h3 data-i18n="feature6Title">Çoklu Profil</h3>
+                <p data-i18n="feature6Desc">Tüm aile üyelerinizin ilaçlarını tek uygulamada yönetin</p>
             </div>
         </div>
     </section>
@@ -254,28 +372,29 @@
         <div class="stats-grid">
             <div class="stat-item">
                 <h3>10K+</h3>
-                <p>Mutlu Kullanıcı 😊</p>
+                <p data-i18n="stat1">Mutlu Kullanıcı 😊</p>
             </div>
             <div class="stat-item">
                 <h3>50K+</h3>
-                <p>Gönderilen Hatırlatma 📬</p>
+                <p data-i18n="stat2">Gönderilen Hatırlatma 📬</p>
             </div>
             <div class="stat-item">
                 <h3>98%</h3>
-                <p>Memnuniyet Oranı ⭐</p>
+                <p data-i18n="stat3">Memnuniyet Oranı ⭐</p>
             </div>
             <div class="stat-item">
                 <h3>4.8⭐</h3>
-                <p>Uygulama Puanı</p>
+                <p data-i18n="stat4">Uygulama Puanı</p>
             </div>
         </div>
     </section>
 
     <!-- Comparison Table -->
+    <!-- Comparison Table -->
     <section class="comparison fade-in-section" id="pricing">
         <div class="section-header">
-            <h2>Ücretsiz mi, Premium mi? 💎</h2>
-            <p>Size en uygun planı seçin!</p>
+            <h2 data-i18n="pricingTitle">Ücretsiz mi, Premium mi? 💎</h2>
+            <p data-i18n="pricingDesc">Size en uygun planı seçin!</p>
         </div>
         <div class="comparison-container">
             <div class="comparison-card">
@@ -324,8 +443,8 @@
     <!-- Roadmap -->
     <section class="roadmap fade-in-section" id="roadmap">
         <div class="section-header">
-            <h2>Yol Haritamız 🗺️</h2>
-            <p>Yakında gelecek heyecan verici özellikler!</p>
+            <h2 data-i18n="roadmapTitle">Yol Haritamız 🗺️</h2>
+            <p data-i18n="roadmapDesc">Yakında gelecek heyecan verici özellikler!</p>
         </div>
         <div class="roadmap-container">
             <div class="roadmap-item completed">
@@ -387,8 +506,8 @@
     <!-- Testimonials -->
     <section class="testimonials fade-in-section" id="testimonials">
         <div class="section-header">
-            <h2>Kullanıcılarımız Ne Diyor? 💬</h2>
-            <p>Binlerce mutlu kullanıcımızdan bazıları</p>
+            <h2 data-i18n="testimonialsTitle">Kullanıcılarımız Ne Diyor? 💬</h2>
+            <p data-i18n="testimonialsDesc">Binlerce mutlu kullanıcımızdan bazıları</p>
         </div>
         <div class="testimonial-grid">
             <div class="testimonial-card fade-in-section">
@@ -536,12 +655,12 @@
     <!-- Download Section -->
     <section class="download fade-in-section" id="download">
         <div class="download-content">
-            <h2>Hemen İndirin! 🎉</h2>
-            <p>Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
+            <h2 data-i18n="downloadTitle">Hemen İndirin! 🎉</h2>
+            <p data-i18n="downloadDesc">Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
             <a href="https://play.google.com/store" class="store-button">
                 <span class="store-icon">📱</span>
                 <div style="text-align: left;">
-                    <div style="font-size: 0.75rem; opacity: 0.7;">Şimdi İndir</div>
+                    <div style="font-size: 0.75rem; opacity: 0.7;" data-i18n="downloadNow">Şimdi İndir</div>
                     <div style="font-size: 1.1rem; font-weight: 700;">Google Play</div>
                 </div>
             </a>
@@ -636,18 +755,18 @@
                 <p style="margin-top: 1.5rem;">© 2025 Bardino Technology<br>Tüm hakları saklıdır</p>
             </div>
             <div class="footer-section">
-                <h3>Hızlı Bağlantılar</h3>
+                <h3 data-i18n="footerLinks">Hızlı Bağlantılar</h3>
                 <ul>
-                    <li><a href="#features">Özellikler</a></li>
-                    <li><a href="#testimonials">Yorumlar</a></li>
-                    <li><a href="#download">İndir</a></li>
+                    <li><a href="#features" data-i18n="features">Özellikler</a></li>
+                    <li><a href="#testimonials" data-i18n="testimonials">Yorumlar</a></li>
+                    <li><a href="#download" data-i18n="download">İndir</a></li>
                     <li><a href="feature-graph.html">Özellik Grafiği</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Yasal</h3>
+                <h3 data-i18n="footerLegal">Yasal</h3>
                 <ul>
-                    <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
+                    <li><a href="privacy-policy.html" data-i18n="privacy">Gizlilik Politikası</a></li>
                     <li><a href="account-deletion.html">Hesap Silme</a></li>
                     <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
                     <li><a href="kvkk.html">KVKK</a></li>
@@ -657,7 +776,7 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>İletişim</h3>
+                <h3 data-i18n="footerContact">İletişim</h3>
                 <ul>
                     <li><a href="mailto:info@dozi.app">📧 info@dozi.app</a></li>
                     <li><a href="https://www.dozi.app">🌐 www.dozi.app</a></li>
@@ -668,75 +787,6 @@
             <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
         </div>
     </footer>
-
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <div class="cookie-icon">🍪</div>
-            <div class="cookie-text">
-                <h3>Çerez Kullanımı</h3>
-                <p>Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Detaylı bilgi için <a
-                        href="cookie-policy.html">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Tümünü Kabul Et</button>
-                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Tümünü Reddet</button>
-                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Ayarla</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cookie Settings Modal -->
-    <div class="cookie-modal" id="cookieModal">
-        <div class="cookie-modal-content">
-            <div class="cookie-modal-header">
-                <h2>Çerez Ayarları</h2>
-                <button class="cookie-modal-close" onclick="closeCookieSettings()">&times;</button>
-            </div>
-            <div class="cookie-modal-body">
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>🔒 Zorunlu Çerezler</h4>
-                            <p>Web sitesinin çalışması için gereklidir</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>📊 Analitik Çerezler</h4>
-                            <p>Site kullanımını analiz etmek için kullanılır</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="analyticsCookies" checked>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>⚙️ İşlevsel Çerezler</h4>
-                            <p>Tercihlerinizi hatırlamak için kullanılır</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="functionalCookies" checked>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="cookie-modal-footer">
-                <button class="cookie-btn cookie-accept" onclick="saveCookieSettings()">Kaydet ve Kapat</button>
-                <a href="cookie-policy.html" class="cookie-policy-link">Çerez Politikası</a>
-            </div>
-        </div>
-    </div>
 
     <script src="js/scripts.js"></script>
 </body>
