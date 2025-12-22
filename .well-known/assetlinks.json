@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bardino.dozi",
+      "sha256_cert_fingerprints": [
+        "28:1B:65:2B:D0:4E:2C:21:A9:4F:33:79:B0:C5:F5:90:E6:98:B6:BA:5B:1D:E1:DA:19:8E:A6:7A:3C:F4:9F:9E"
+      ]
+    }
+  }
+]
