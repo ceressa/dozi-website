@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dozi - AI-powered medication reminder and health companion. You don't have to do this alone.">
+    <meta name="keywords" content="medication reminder, health assistant, pill tracker, family health, medication adherence, health app">
+    <meta name="author" content="Bardino Technology">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dozi.app/en/">
+    <meta property="og:title" content="Dozi - Your Healthy Living Companion">
+    <meta property="og:description" content="You don't have to do this alone. AI-powered medication reminders and family tracking.">
+    <meta property="og:image" content="https://www.dozi.app/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dozi - Your Healthy Living Companion">
+    <meta name="twitter:description" content="You don't have to do this alone.">
+    <title>Dozi - Your Healthy Living Companion | Medication Tracker App</title>
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    <link rel="apple-touch-icon" href="../dozi_brand.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-turquoise-dark: #2BC4B4;
+            --dozi-pink: #FF6B9D;
+            --dozi-purple: #8B5CF6;
+            --dozi-coral: #FF7F6B;
+            --dozi-dark: #0F172A;
+            --dozi-darker: #020617;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --bg-light: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-purple) 100%);
+            --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --shadow-glow: 0 0 40px rgba(64, 224, 208, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: var(--text-primary); background: var(--bg-light); overflow-x: hidden; }
+        
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; transition: all 0.3s ease; }
+        .navbar.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: var(--shadow-md); padding: 0.75rem 2rem; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-logo img { height: 56px; transition: transform 0.3s ease; }
+        .nav-logo:hover img { transform: scale(1.05); }
+        .nav-logo span { font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease; }
+        .navbar.scrolled .nav-links a { color: var(--text-primary); }
+        .nav-links a:hover { color: var(--dozi-turquoise); }
+        .nav-cta { background: var(--gradient-primary); color: white !important; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md); }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+        .lang-switch { display: flex; gap: 0.5rem; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); }
+        .navbar.scrolled .lang-switch { border-color: rgba(0,0,0,0.1); }
+        .lang-btn { background: none; border: none; color: rgba(255,255,255,0.6); font-weight: 500; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 4px; transition: all 0.3s ease; }
+        .navbar.scrolled .lang-btn { color: var(--text-muted); }
+        .lang-btn.active { color: var(--dozi-turquoise); background: rgba(64, 224, 208, 0.1); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: all 0.3s ease; }
+        .navbar.scrolled .mobile-menu-btn span { background: var(--text-primary); }
+        @media (max-width: 968px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 1rem; box-shadow: var(--shadow-lg); }
+            .nav-links.active { display: flex; }
+            .nav-links a { color: var(--text-primary); padding: 0.75rem; }
+            .mobile-menu-btn { display: block; }
+            .lang-switch { border: none; margin: 0; padding: 0; justify-content: center; }
+        }
+        
+        /* HERO */
+        .hero { min-height: 100vh; background: var(--gradient-hero); position: relative; overflow: hidden; padding: 8rem 2rem 4rem; display: flex; align-items: center; }
+        .floating-elements { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .floating-pill { position: absolute; font-size: 2rem; opacity: 0.15; animation: float 20s infinite ease-in-out; }
+        .floating-pill:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-pill:nth-child(2) { top: 25%; right: 15%; animation-delay: -4s; }
+        .floating-pill:nth-child(3) { bottom: 30%; left: 20%; animation-delay: -8s; }
+        .floating-pill:nth-child(4) { top: 40%; right: 25%; animation-delay: -12s; }
+        .floating-pill:nth-child(5) { bottom: 20%; right: 10%; animation-delay: -16s; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(10deg); } }
+        .hero-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-content { color: white; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; margin-bottom: 1.5rem; backdrop-filter: blur(10px); }
+        .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-tagline { font-size: 1.5rem; font-weight: 600; color: var(--dozi-turquoise); margin-bottom: 1rem; }
+        .hero-description { font-size: 1.125rem; color: rgba(255,255,255,0.8); max-width: 500px; margin-bottom: 2rem; }
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 1.5rem; font-weight: 700; color: var(--dozi-turquoise); }
+        .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: var(--shadow-lg); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        .hero-visual { position: relative; display: flex; justify-content: center; }
+        .phone-mockup { width: 280px; height: 580px; background: #1a1a1a; border-radius: 40px; padding: 12px; box-shadow: 0 50px 100px rgba(0,0,0,0.5); position: relative; }
+        .phone-notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 10; }
+        .phone-screen { width: 100%; height: 100%; background: white; border-radius: 32px; overflow: hidden; }
+        .phone-screen img { width: 100%; height: 100%; object-fit: cover; }
+        .floating-card { position: absolute; background: white; padding: 0.75rem 1rem; border-radius: 12px; box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 0.5rem; animation: floatCard 3s infinite ease-in-out; }
+        .floating-card-icon { width: 32px; height: 32px; background: var(--dozi-turquoise); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.875rem; }
+        .floating-card-text { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+        .floating-card-1 { top: 15%; left: -10%; animation-delay: 0s; }
+        .floating-card-2 { top: 45%; right: -15%; animation-delay: -1s; }
+        .floating-card-3 { bottom: 20%; left: -5%; animation-delay: -2s; }
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @media (max-width: 968px) {
+            .hero { padding: 6rem 1rem 3rem; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-tagline { font-size: 1.25rem; }
+            .hero-description { margin: 0 auto 2rem; }
+            .hero-stats { justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { margin-top: 3rem; }
+            .floating-card { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="../dozi_brand.png" alt="Dozi">
+                <span>Dozi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#ekstra">Dozi Ekstra</a></li>
+                <li><a href="#science">Science</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#download" class="nav-cta">Download</a></li>
+                <li>
+                    <div class="lang-switch">
+                        <button class="lang-btn" onclick="window.location.href='../index.html'">TR</button>
+                        <button class="lang-btn active">EN</button>
+                    </div>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="floating-elements">
+            <span class="floating-pill">💊</span>
+            <span class="floating-pill">💧</span>
+            <span class="floating-pill">⏰</span>
+            <span class="floating-pill">❤️</span>
+            <span class="floating-pill">🩺</span>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge"><span>🇹🇷</span><span>Made in Turkey</span></div>
+                <h1>Your Healthy Living<br><span class="gradient-text">Companion</span></h1>
+                <p class="hero-tagline">You don't have to do this alone.</p>
+                <p class="hero-description">Improve your medication adherence with AI-powered smart reminders, family tracking, and personalized health support.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat"><div class="hero-stat-value">50%</div><div class="hero-stat-label">Adherence increase*</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">🔒</div><div class="hero-stat-label">GDPR Compliant</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">📴</div><div class="hero-stat-label">Works Offline</div></div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn-primary"><span>📱</span><span>Download Free</span></a>
+                    <a href="#ekstra" class="btn-secondary"><span>💎</span><span>Dozi Ekstra</span></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen"><img src="../images/PlayStore_1.png" alt="Dozi App Screen"></div>
+                </div>
+                <div class="floating-card floating-card-1"><div class="floating-card-icon">✓</div><div class="floating-card-text">Medication taken!</div></div>
+                <div class="floating-card floating-card-2"><div class="floating-card-icon">🔔</div><div class="floating-card-text">Reminder active</div></div>
+                <div class="floating-card floating-card-3"><div class="floating-card-icon">👨‍👩‍👧</div><div class="floating-card-text">Family tracking</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dozi Ekstra Section -->
+    <section class="ekstra" id="ekstra">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💎 Dozi Ekstra</span>
+                <h2>You Don't Have to<br><span class="gradient-text">Do This Alone</span></h2>
+                <p class="section-desc">Dozi Ekstra doesn't just sell features, it sells peace of mind.</p>
+            </div>
+            <div class="ekstra-grid">
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">👨‍👩‍👧</div>
+                    <h3>Family Assurance</h3>
+                    <p>When medication is taken, everyone relaxes. When it's missed, someone knows. <strong>The peace of knowing without asking.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">💬</div>
+                    <h3>Relationship-Preserving Silence</h3>
+                    <p>"Did you take your medicine?" question ends. Monitoring goes, <strong>trust comes.</strong> A powerful value for relationships.</p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🧠</div>
+                    <h3>Mental Load Relief</h3>
+                    <p>"Did I take it?" thought ends. Tracking leaves your mind. <strong>This directly sells peace.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">📦</div>
+                    <h3>Never-Empty Box Peace</h3>
+                    <p>Running out of medication is never a surprise. No panic. No rushing. <strong>A very real value in daily life.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🤫</div>
+                    <h3>Privacy and Elegance</h3>
+                    <p>Notifications don't expose you. Only you understand. <strong>Silent but powerful.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🤝</div>
+                    <h3>Free But Not Alone</h3>
+                    <p>Control stays with you. But the burden isn't yours alone. <strong>This balance makes Dozi Ekstra different.</strong></p>
+                </div>
+            </div>
+            <div class="ekstra-cta">
+                <a href="#pricing" class="btn-primary"><span>💎</span><span>Discover Dozi Ekstra</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section class="science" id="science">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📊 Scientific Evidence</span>
+                <h2>Why Medication Reminders<br><span class="gradient-text">Matter So Much?</span></h2>
+                <p class="section-desc">WHO and academic research reveal the critical role of medication adherence in treatment success.</p>
+            </div>
+            <div class="science-grid">
+                <div class="science-card">
+                    <div class="science-icon">📉</div>
+                    <div class="science-stat">50%</div>
+                    <h3>Non-Adherence Rate</h3>
+                    <p>About half of patients with chronic conditions don't take their medications regularly.</p>
+                    <cite>Source: WHO, 2003</cite>
+                </div>
+                <div class="science-card highlight">
+                    <div class="science-icon">💀</div>
+                    <div class="science-stat">125,000</div>
+                    <h3>Annual Deaths (US)</h3>
+                    <p>In the US alone, 125,000 people die annually due to medication non-adherence.</p>
+                    <cite>Source: NCPIE, 2007</cite>
+                </div>
+                <div class="science-card">
+                    <div class="science-icon">💰</div>
+                    <div class="science-stat">$300B</div>
+                    <h3>Annual Cost</h3>
+                    <p>Medication non-adherence costs the US healthcare system $300 billion annually.</p>
+                    <cite>Source: NEHI, 2009</cite>
+                </div>
+                <div class="science-card">
+                    <div class="science-icon">📱</div>
+                    <div class="science-stat">+34%</div>
+                    <h3>App Impact</h3>
+                    <p>Mobile reminder apps improve medication adherence by an average of 34%.</p>
+                    <cite>Source: Cochrane Review, 2017</cite>
+                </div>
+            </div>
+            <div class="science-quote">
+                <blockquote>"Without improving adherence, advances in medical technology will fail to realize their potential."</blockquote>
+                <cite>— World Health Organization (WHO)</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✨ Features</span>
+                <h2>Everything You Need<br><span class="gradient-text">For Your Health</span></h2>
+                <p class="section-desc">Dozi is equipped with smart features that simplify medication tracking and improve your adherence.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon">⏰</div><h3>Smart Reminders</h3><p>Never miss a dose with personalized notifications and escalation system.</p></div>
+                <div class="feature-card"><div class="feature-icon">🤖</div><h3>AI Companion</h3><p>Gemini-powered Dozi answers your questions and provides personalized suggestions.</p></div>
+                <div class="feature-card"><div class="feature-icon">👨‍👩‍👧</div><h3>Badi System</h3><p>Add loved ones as "badi". They get notified when medication is missed.</p></div>
+                <div class="feature-card"><div class="feature-icon">📊</div><h3>Detailed Statistics</h3><p>Track your adherence with charts. Stay motivated with the streak system.</p></div>
+                <div class="feature-card"><div class="feature-icon">📍</div><h3>Location Reminders</h3><p>Get automatic reminders when you arrive home or near a pharmacy.</p></div>
+                <div class="feature-card"><div class="feature-icon">📦</div><h3>Stock Tracking</h3><p>Get alerts when your medication is running low. Know what you need before going to the pharmacy.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔒</div><h3>Privacy First</h3><p>Your data is encrypted with AES-256. GDPR and KVKK compliant.</p></div>
+                <div class="feature-card"><div class="feature-icon">📴</div><h3>Works Offline</h3><p>Reminders work without internet. Auto-syncs when connection returns.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">👥 Who Is It For?</span>
+                <h2>Who Does Dozi<br><span class="gradient-text">Help?</span></h2>
+                <p class="section-desc">Designed for people of all ages and situations.</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">👴👵</div>
+                    <h3>Elderly Parents</h3>
+                    <p>Track your parents' medications remotely. No more asking "Did you take your medicine?". Get automatic notifications when medication is missed with the Badi system.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💊</div>
+                    <h3>Chronic Patients</h3>
+                    <p>For conditions like diabetes, hypertension, thyroid that require regular medication, consistent tracking is vital. Dozi ensures you never miss a dose.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏃</div>
+                    <h3>Busy Professionals</h3>
+                    <p>It's easy to forget medication times in the rush of work life. Never miss a dose with smart reminders and location-based notifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💰 Pricing</span>
+                <h2>Simple and<br><span class="gradient-text">Transparent Pricing</span></h2>
+                <p class="section-desc">Choose what fits your needs. No hidden fees.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-icon">🆓</div>
+                    <h3>Free</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$0</span>
+                        <span class="pricing-period">/ forever</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>5 medication tracking</li>
+                        <li>Basic reminders</li>
+                        <li>Statistics</li>
+                        <li>Offline mode</li>
+                        <li>GDPR compliant security</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn">Get Started</a>
+                </div>
+                <div class="pricing-card popular">
+                    <span class="pricing-badge">Most Popular</span>
+                    <div class="pricing-icon">💎</div>
+                    <h3>Dozi Ekstra</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$9.99</span>
+                        <span class="pricing-period">/ year</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited medications</li>
+                        <li>3 Badi (family tracking)</li>
+                        <li>AI assistant</li>
+                        <li>Full-screen alarms</li>
+                        <li>Location reminders</li>
+                        <li>Stock tracking</li>
+                        <li>Ad-free experience</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn">Go Ekstra</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Plan</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$24.99</span>
+                        <span class="pricing-period">/ year</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>4 Ekstra accounts</li>
+                        <li>All Ekstra features</li>
+                        <li>Family tracking</li>
+                        <li>Shared medication management</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn">Get Family Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">❓ FAQ</span>
+                <h2>Frequently Asked<br><span class="gradient-text">Questions</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question"><span>Is Dozi free?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Yes! Dozi's core features are completely free. Track up to 5 medications, reminders, and statistics are available in the free plan. For more features, you can upgrade to Dozi Ekstra.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Is my data safe?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Absolutely. All your health data is protected with AES-256 encryption. With our GDPR and KVKK compliant infrastructure, your data is only under your control. We never share your data with third parties.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Does it work without internet?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Yes! Dozi is designed with offline-first architecture. Reminders work without internet. Your data automatically syncs when connection returns.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>How does the Badi system work?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Badi lets you add trusted people (family, friends) to the app. If you don't take your medication within the set time, your badis automatically get notified. This way, your loved ones can keep track of you.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Can I cancel my subscription?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Yes, you can cancel your subscription anytime through Google Play. After cancellation, you'll continue to use Ekstra features until the end of your billing period.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <h2>Download Your Healthy Living <span class="gradient-text">Companion</span></h2>
+            <p>You don't have to do this alone.</p>
+            <div class="download-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="store-btn" target="_blank">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                    <div class="store-btn-text"><span class="store-btn-small">GET IT ON</span><span class="store-btn-large">Google Play</span></div>
+                </a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.6;">* iOS version coming soon</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../dozi_brand.png" alt="Dozi">
+                    <p>Dozi is your AI-powered healthy living companion that simplifies medication tracking and improves your adherence. Made in Turkey.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#ekstra">Dozi Ekstra</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal/gdpr.html">GDPR Policy</a></li>
+                        <li><a href="../legal/gdpr-request.html">GDPR Request</a></li>
+                        <li><a href="../legal/kvkk.html">KVKK (Turkish)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@dozi.app">info@dozi.app</a></li>
+                        <li><a href="mailto:support@dozi.app">support@dozi.app</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 Bardino Technology. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://twitter.com/doziapp" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com/doziapp" target="_blank" title="Instagram">📷</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+        
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenuBtn.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
+            });
+        });
+    </script>
+</body>
+</html>
+
+<style>
+    /* SECTIONS COMMON */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-badge { display: inline-block; background: rgba(64, 224, 208, 0.1); color: var(--dozi-turquoise-dark); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; }
+    .section-desc { font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    
+    /* EKSTRA */
+    .ekstra { background: var(--gradient-hero); color: white; }
+    .ekstra .section-badge { background: rgba(255,255,255,0.1); color: var(--dozi-turquoise); }
+    .ekstra .section-header h2 { color: white; }
+    .ekstra .section-desc { color: rgba(255,255,255,0.7); }
+    .ekstra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .ekstra-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+    .ekstra-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); border-color: var(--dozi-turquoise); }
+    .ekstra-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .ekstra-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: white; }
+    .ekstra-card p { color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .ekstra-card strong { color: var(--dozi-turquoise); }
+    .ekstra-cta { text-align: center; margin-top: 3rem; }
+    @media (max-width: 968px) { .ekstra-grid { grid-template-columns: 1fr; } }
+    
+    /* SCIENCE */
+    .science { background: var(--bg-light); }
+    .science-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .science-card { background: white; border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
+    .science-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .science-card.highlight { background: var(--gradient-hero); color: white; }
+    .science-card.highlight h3, .science-card.highlight p { color: rgba(255,255,255,0.9); }
+    .science-card.highlight .science-stat { color: var(--dozi-coral); }
+    .science-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .science-stat { font-size: 2.5rem; font-weight: 800; color: var(--dozi-turquoise-dark); margin-bottom: 0.5rem; }
+    .science-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .science-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .science-card cite { font-size: 0.75rem; color: var(--text-muted); font-style: normal; }
+    .science-quote { margin-top: 3rem; text-align: center; padding: 2rem; background: white; border-radius: 20px; border-left: 4px solid var(--dozi-turquoise); }
+    .science-quote blockquote { font-size: 1.25rem; font-style: italic; color: var(--text-primary); margin-bottom: 1rem; }
+    .science-quote cite { color: var(--text-secondary); font-style: normal; }
+    @media (max-width: 968px) { .science-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .science-grid { grid-template-columns: 1fr; } }
+    
+    /* FEATURES */
+    .features { background: white; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .feature-card { background: var(--bg-light); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s ease; border: 1px solid transparent; }
+    .feature-card:hover { transform: translateY(-5px); border-color: var(--dozi-turquoise); box-shadow: var(--shadow-lg); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.875rem; color: var(--text-secondary); }
+    @media (max-width: 968px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    
+    /* USE CASES */
+    .use-cases { background: var(--bg-light); }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .use-case-card { background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
+    .use-case-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .use-case-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+    .use-case-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .use-case-card p { color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .use-cases-grid { grid-template-columns: 1fr; } }
+    
+    /* PRICING */
+    .pricing { background: white; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+    .pricing-card { background: var(--bg-light); border-radius: 24px; padding: 2.5rem; text-align: center; transition: all 0.3s ease; border: 2px solid transparent; position: relative; }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .pricing-card.popular { background: var(--gradient-hero); color: white; border-color: var(--dozi-turquoise); transform: scale(1.05); }
+    .pricing-card.popular:hover { transform: scale(1.05) translateY(-5px); }
+    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--dozi-turquoise); color: var(--dozi-dark); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .pricing-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .pricing-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pricing-card.popular h3 { color: white; }
+    .pricing-price { margin: 1.5rem 0; }
+    .pricing-amount { font-size: 3rem; font-weight: 800; }
+    .pricing-card.popular .pricing-amount { color: var(--dozi-turquoise); }
+    .pricing-period { font-size: 0.875rem; color: var(--text-muted); }
+    .pricing-card.popular .pricing-period { color: rgba(255,255,255,0.6); }
+    .pricing-features { list-style: none; margin: 1.5rem 0; text-align: left; }
+    .pricing-features li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+    .pricing-features li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .pricing-card.popular .pricing-features li { color: rgba(255,255,255,0.9); }
+    .pricing-btn { display: block; width: 100%; padding: 1rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; margin-top: 1.5rem; }
+    .pricing-card .pricing-btn { background: var(--gradient-primary); color: white; }
+    .pricing-card.popular .pricing-btn { background: white; color: var(--dozi-dark); }
+    .pricing-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    @media (max-width: 968px) { .pricing-grid { grid-template-columns: 1fr; max-width: 400px; } .pricing-card.popular { transform: none; } .pricing-card.popular:hover { transform: translateY(-5px); } }
+    
+    /* FAQ */
+    .faq { background: var(--bg-light); }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: white; border-radius: 16px; margin-bottom: 1rem; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .faq-question { width: 100%; padding: 1.5rem; background: none; border: none; text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+    .faq-question:hover { background: var(--bg-light); }
+    .faq-icon { font-size: 1.5rem; color: var(--dozi-turquoise); transition: transform 0.3s ease; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.active .faq-answer { max-height: 500px; }
+    .faq-answer p { padding: 0 1.5rem 1.5rem; color: var(--text-secondary); line-height: 1.7; }
+    
+    /* DOWNLOAD */
+    .download { background: var(--gradient-hero); color: white; text-align: center; }
+    .download h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white; }
+    .download p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+    .download-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: white; color: var(--text-primary); padding: 1rem 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease; }
+    .store-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+    .store-btn-text { text-align: left; }
+    .store-btn-small { font-size: 0.75rem; color: var(--text-muted); }
+    .store-btn-large { font-size: 1.125rem; font-weight: 600; }
+    
+    /* FOOTER */
+    .footer { background: var(--dozi-darker); color: white; padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand img { height: 50px; margin-bottom: 1rem; }
+    .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--dozi-turquoise); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copyright { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; }
+    .footer-social a:hover { background: var(--dozi-turquoise); transform: translateY(-3px); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
