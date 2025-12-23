@@ -1,794 +1,1915 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- Facebook Pixel -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'YOUR_PIXEL_ID');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
-    </script>
-
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Dozi - İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan şirin sağlık asistanı. Ücretsiz ilaç hatırlatma uygulaması.">
-    <meta name="keywords"
-        content="ilaç hatırlatma, sağlık asistanı, ilaç takibi, aile sağlığı, reçete okuma, doz takibi, medication reminder, health app">
+    <meta name="description" content="Dozi - İlaç takibini kolaylaştıran, yapay zeka destekli akıllı sağlık asistanı. Araştırmalar gösteriyor: İlaç hatırlatma uygulamaları tedavi uyumunu %50'ye kadar artırıyor.">
+    <meta name="keywords" content="ilaç hatırlatma, sağlık asistanı, ilaç takibi, aile sağlığı, medication reminder, health app, tedavi uyumu">
     <meta name="author" content="Bardino Technology">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Turkish">
-    <link rel="canonical" href="https://www.dozi.app/">
-
-    <!-- Alternate Language Versions -->
-    <link rel="alternate" hreflang="tr" href="https://www.dozi.app/">
-    <link rel="alternate" hreflang="en" href="https://www.dozi.app/en/">
-    <link rel="alternate" hreflang="x-default" href="https://www.dozi.app/">
-
-    <!-- Open Graph / Facebook Meta Tags -->
+    
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.dozi.app/">
-    <meta property="og:title" content="Dozi - Sağlıklı Yaşam Asistanınız 💧">
-    <meta property="og:description"
-        content="İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı. Ücretsiz ilaç hatırlatma uygulaması.">
-    <meta property="og:image" content="https://www.dozi.app/dozi_brand.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Dozi">
-    <meta property="og:locale" content="tr_TR">
-    <meta property="og:locale:alternate" content="en_US">
-
-    <!-- Twitter Card Meta Tags -->
+    <meta property="og:title" content="Dozi - Akıllı İlaç Takip Asistanı">
+    <meta property="og:description" content="Yapay zeka destekli ilaç hatırlatma. Tedavi uyumunuzu artırın, sağlığınızı kontrol altına alın.">
+    <meta property="og:image" content="https://www.dozi.app/images/og-image.png">
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.dozi.app/">
-    <meta name="twitter:title" content="Dozi - Sağlıklı Yaşam Asistanınız 💧">
-    <meta name="twitter:description"
-        content="İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı.">
-    <meta name="twitter:image" content="https://www.dozi.app/dozi_brand.png">
-    <meta name="twitter:creator" content="@dozi_app">
-    <meta name="twitter:site" content="@dozi_app">
-
-    <!-- App Store / Play Store Links -->
-    <meta name="apple-itunes-app" content="app-id=YOUR_IOS_APP_ID">
-    <meta name="google-play-app" content="app-id=com.bardino.dozi">
-    <link rel="manifest" href="/manifest.json">
-
-    <!-- iOS Specific -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Dozi">
-    <link rel="apple-touch-icon" href="/dozi_brand.png">
-
+    <meta name="twitter:title" content="Dozi - Akıllı İlaç Takip Asistanı">
+    <meta name="twitter:description" content="Yapay zeka destekli ilaç hatırlatma. Tedavi uyumunuzu artırın.">
+    
+    <title>Dozi - Akıllı İlaç Takip Asistanı | Yapay Zeka Destekli Sağlık</title>
+    
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/dozi_brand.png">
-    <link rel="shortcut icon" href="/dozi_brand.png">
-
-    <title>Dozi - Sağlıklı Yaşam Asistanınız 💧 | İlaç Hatırlatma Uygulaması</title>
-
+    <link rel="icon" type="image/png" href="dozi_brand.png">
+    <link rel="apple-touch-icon" href="dozi_brand.png">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MobileApplication",
-      "name": "Dozi",
-      "description": "İlaç takibini kolaylaştıran, sağlığınızı kontrol altında tutan sevimli sağlık asistanı",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Android",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "TRY"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "10000"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Bardino Technology",
-        "url": "https://www.dozi.app"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Bardino Technology",
-      "url": "https://www.dozi.app",
-      "logo": "https://www.dozi.app/dozi_brand.png",
-      "sameAs": [],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "info@dozi.app",
-        "contactType": "Customer Service"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Dozi ücretsiz mi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet! Dozi'nin temel özellikleri tamamen ücretsizdir. İlaç hatırlatmaları, doz takibi ve temel raporlama özelliklerini hiçbir ücret ödemeden kullanabilirsiniz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Verilerim güvende mi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunmaktadır. KVKK ve GDPR standartlarına tam uyumluyuz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Hangi cihazlarda çalışır?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dozi şu anda Android cihazlarda kullanılabilir (Android 6.0 ve üzeri). iOS versiyonu yakında yayınlanacak!"
-          }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-turquoise-dark: #2BC4B4;
+            --dozi-pink: #FF6B9D;
+            --dozi-purple: #8B5CF6;
+            --dozi-coral: #FF7F6B;
+            --dozi-dark: #0F172A;
+            --dozi-darker: #020617;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --bg-light: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-purple) 100%);
+            --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --shadow-glow: 0 0 40px rgba(64, 224, 208, 0.3);
         }
-      ]
-    }
-    </script>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-light);
+            overflow-x: hidden;
+        }
+        
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+            padding: 0.75rem 2rem;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .nav-logo img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        .nav-logo span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .navbar.scrolled .nav-links a {
+            color: var(--text-primary);
+        }
+        
+        .nav-links a:hover {
+            color: var(--dozi-turquoise);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dozi-turquoise);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .nav-cta::after {
+            display: none;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled .mobile-menu-btn span {
+            background: var(--text-primary);
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(64, 224, 208, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-pill {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .floating-pill:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-pill:nth-child(2) { top: 20%; right: 15%; animation-delay: -5s; }
+        .floating-pill:nth-child(3) { bottom: 30%; left: 5%; animation-delay: -10s; }
+        .floating-pill:nth-child(4) { bottom: 20%; right: 10%; animation-delay: -15s; }
+        .floating-pill:nth-child(5) { top: 50%; left: 20%; animation-delay: -7s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+        
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            color: white;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(64, 224, 208, 0.15);
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--dozi-turquoise);
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(64, 224, 208, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(64, 224, 208, 0); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero h1 .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 540px;
+            line-height: 1.7;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: left;
+        }
+        
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dozi-turquoise);
+        }
+        
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Hero Image/Phone Mockup */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .phone-mockup {
+            position: relative;
+            width: 320px;
+            height: 650px;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 45px;
+            padding: 12px;
+            box-shadow: 
+                0 50px 100px -20px rgba(0, 0, 0, 0.5),
+                0 30px 60px -30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes phoneFloat {
+            0%, 100% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(0); }
+            50% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-20px); }
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-light);
+            border-radius: 35px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a2e;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+        
+        /* Floating Cards around phone */
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+        
+        .floating-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .floating-card-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .floating-card-1 {
+            top: 10%;
+            left: -20%;
+            animation-delay: 0s;
+        }
+        
+        .floating-card-1 .floating-card-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .floating-card-2 {
+            bottom: 30%;
+            right: -15%;
+            animation-delay: -2s;
+        }
+        
+        .floating-card-2 .floating-card-icon {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--dozi-purple);
+        }
+        
+        .floating-card-3 {
+            bottom: 10%;
+            left: -10%;
+            animation-delay: -1s;
+        }
+        
+        .floating-card-3 .floating-card-icon {
+            background: rgba(64, 224, 208, 0.1);
+            color: var(--dozi-turquoise);
+        }
+        
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+</style>
 </head>
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Loading Animation -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-mascot">
-                <img src="dozi_brand.png" alt="Dozi Loading">
-            </div>
-            <div class="loading-text">Dozi yükleniyor...</div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="bg-blob blob1"></div>
-        <div class="bg-blob blob2"></div>
-        <div class="bg-blob blob3"></div>
-        <div class="bg-blob blob4"></div>
-    </div>
-
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="nav-logo">
                 <img src="dozi_brand.png" alt="Dozi">
+                <span>Dozi</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#features" data-i18n="features">Özellikler</a></li>
-                <li><a href="#testimonials" data-i18n="testimonials">Yorumlar</a></li>
-                <li><a href="#faq" data-i18n="faq">SSS</a></li>
-                <li><a href="#download" data-i18n="download">İndir</a></li>
-                <li><a href="privacy-policy.html" data-i18n="privacy">Gizlilik</a></li>
-                <li><a href="account-deletion.html" data-i18n="account">Hesap</a></li>
-                <li>
-                    <div class="lang-switch">
-                        <button class="lang-btn active" onclick="switchLanguage('tr')">TR</button>
-                        <span class="lang-divider">|</span>
-                        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
-                    </div>
-                </li>
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#science">Bilimsel Kanıt</a></li>
+                <li><a href="#pricing">Fiyatlar</a></li>
+                <li><a href="#faq">SSS</a></li>
+                <li><a href="#download" class="nav-cta">İndir</a></li>
             </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero fade-in-section">
+    <section class="hero" id="hero">
+        <div class="floating-elements">
+            <span class="floating-pill">💊</span>
+            <span class="floating-pill">💧</span>
+            <span class="floating-pill">⏰</span>
+            <span class="floating-pill">❤️</span>
+            <span class="floating-pill">🩺</span>
+        </div>
+        
         <div class="hero-container">
             <div class="hero-content">
-                <h1 data-i18n="heroTitle">Sağlıklı Yaşam Asistanınız 💧</h1>
-                <p class="subtitle" data-i18n="heroSubtitle">İlaç takibini kolaylaştıran, sağlığınızı kontrol altında
-                    tutan sevimli sağlık
-                    asistanı</p>
-
-                <!-- Feature Badges -->
-                <div class="hero-badges">
-                    <span class="hero-badge" data-i18n="heroBadge1">✓ 10,000+ Mutlu Kullanıcı</span>
-                    <span class="hero-badge" data-i18n="heroBadge2">✓ KVKK Uyumlu</span>
-                    <span class="hero-badge" data-i18n="heroBadge3">✓ Ücretsiz</span>
+                <div class="hero-badge">
+                    <span>🇹🇷</span>
+                    <span>Türkiye'de Geliştirildi</span>
                 </div>
-                <span class="hero-badge">✓ Türkiye'de Geliştirildi</span>
+                
+                <h1>
+                    İlaçlarınızı<br>
+                    <span class="gradient-text">Asla Unutmayın</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Yapay zeka destekli akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık asistanı ile tedavi uyumunuzu artırın.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">%50</div>
+                        <div class="hero-stat-label">Tedavi uyumu artışı*</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">10K+</div>
+                        <div class="hero-stat-label">Aktif kullanıcı</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">4.8⭐</div>
+                        <div class="hero-stat-label">Play Store puanı</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#download" class="btn-primary">
+                        <span>📱</span>
+                        <span>Ücretsiz İndir</span>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <span>▶️</span>
+                        <span>Nasıl Çalışır?</span>
+                    </a>
+                </div>
             </div>
-
-            <p>İlaçlarınızı zamanında almayı asla unutmayın! Akıllı hatırlatmalar, aile takibi ve daha fazlası ile
-                sağlığınız artık kontrol altında. 💊</p>
-
-            <div class="cta-buttons">
-                <a href="#download" class="btn-primary">
-                    📱 Hemen İndir
-                </a>
-                <a href="#features" class="btn-secondary">
-                    🔍 Daha Fazla Bilgi
-                </a>
+            
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="images/dozi_1.png" alt="Dozi Uygulama Ekranı">
+                    </div>
+                </div>
+                
+                <div class="floating-card floating-card-1">
+                    <div class="floating-card-icon">✓</div>
+                    <div class="floating-card-text">İlaç alındı!</div>
+                </div>
+                
+                <div class="floating-card floating-card-2">
+                    <div class="floating-card-icon">🔔</div>
+                    <div class="floating-card-text">Hatırlatma aktif</div>
+                </div>
+                
+                <div class="floating-card floating-card-3">
+                    <div class="floating-card-icon">👨‍👩‍👧</div>
+                    <div class="floating-card-text">Aile takibi</div>
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <div class="mascot-container">
-                <img src="dozi_happy.png" alt="Dozi Maskot - Sağlıklı Yaşam Asistanı">
-            </div>
-        </div>
         </div>
     </section>
+</body>
+</html>
 
-    <!-- Screenshot Carousel -->
-    <section class="screenshots fade-in-section">
-        <div class="section-header">
-            <h2>Uygulamayı Keşfedin 📱</h2>
-            <p>Dozi'nin kullanımı ne kadar kolay, kendiniz görün!</p>
-        </div>
-        <div class="carousel-container">
-            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
-            <div class="carousel-track">
-                <div class="carousel-slide active">
-                    <img src="images/dozi_1.png" alt="Dozi Ana Ekran - İlaç Listesi">
-                    <p class="screenshot-caption">📋 Tüm ilaçlarınız bir arada</p>
+    <!-- Science Section -->
+    <section class="science" id="science">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📊 Bilimsel Kanıt</span>
+                <h2>Neden İlaç Hatırlatma<br><span class="gradient-text">Bu Kadar Önemli?</span></h2>
+                <p class="section-desc">Dünya Sağlık Örgütü ve akademik araştırmalar, ilaç uyumunun tedavi başarısındaki kritik rolünü ortaya koyuyor.</p>
+            </div>
+            
+            <div class="science-grid">
+                <div class="science-card">
+                    <div class="science-icon">📉</div>
+                    <div class="science-stat">%50</div>
+                    <h3>Tedaviye Uyumsuzluk</h3>
+                    <p>Kronik hastalığı olan hastaların yaklaşık yarısı ilaçlarını düzenli almıyor.</p>
+                    <cite>Kaynak: WHO, 2003</cite>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/dozi_2.png" alt="Dozi Hatırlatma Ekranı">
-                    <p class="screenshot-caption">⏰ Akıllı hatırlatmalar</p>
+                
+                <div class="science-card highlight">
+                    <div class="science-icon">💀</div>
+                    <div class="science-stat">125.000</div>
+                    <h3>Yıllık Ölüm (ABD)</h3>
+                    <p>Sadece ABD'de ilaç uyumsuzluğu nedeniyle yılda 125.000 kişi hayatını kaybediyor.</p>
+                    <cite>Kaynak: NCPIE, 2007</cite>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/dozi_3.png" alt="Dozi İstatistik Ekranı">
-                    <p class="screenshot-caption">📊 Detaylı takip ve istatistikler</p>
+                
+                <div class="science-card">
+                    <div class="science-icon">💰</div>
+                    <div class="science-stat">$300B</div>
+                    <h3>Yıllık Maliyet</h3>
+                    <p>İlaç uyumsuzluğu ABD sağlık sistemine yılda 300 milyar dolar ek yük getiriyor.</p>
+                    <cite>Kaynak: NEHI, 2009</cite>
+                </div>
+                
+                <div class="science-card">
+                    <div class="science-icon">📱</div>
+                    <div class="science-stat">+34%</div>
+                    <h3>Uygulama Etkisi</h3>
+                    <p>Mobil hatırlatma uygulamaları ilaç uyumunu ortalama %34 artırıyor.</p>
+                    <cite>Kaynak: Cochrane Review, 2017</cite>
                 </div>
             </div>
-            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
-        </div>
-        <div class="carousel-dots">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
+            
+            <div class="science-quote">
+                <blockquote>
+                    "Tedaviye uyum artırılmadan, tıbbi teknolojideki ilerlemeler potansiyellerini gerçekleştiremeyecektir."
+                </blockquote>
+                <cite>— Dünya Sağlık Örgütü (WHO)</cite>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features fade-in-section" id="features">
-        <div class="section-header">
-            <h2>Neden Dozi? ✨</h2>
-            <p>Sağlığınız için her şey bir arada!</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_noted.png" alt="Akıllı Hatırlatmalar">
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✨ Özellikler</span>
+                <h2>Sağlığınız İçin<br><span class="gradient-text">Her Şey Bir Arada</span></h2>
+                <p class="section-desc">Dozi, ilaç takibini kolaylaştıran ve tedavi uyumunuzu artıran akıllı özelliklerle donatılmış.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Akıllı Hatırlatmalar</h3>
+                    <p>Kişiselleştirilmiş bildirimler ve eskalasyon sistemi ile hiçbir dozu kaçırmayın. Yanıt vermezseniz sevdiklerinize haber gider.</p>
                 </div>
-                <h3 data-i18n="feature1Title">Akıllı Hatırlatmalar</h3>
-                <p data-i18n="feature1Desc">İlaçlarınızı zamanında almanız için özelleştirilebilir bildirimler ve
-                    sevimli sesli uyarılar</p>
-            </div>
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_ok.png" alt="Kolay Takip">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Yapay Zeka Asistanı</h3>
+                    <p>Gemini destekli Dozi asistanı sorularınızı yanıtlar, ilaç etkileşimlerini kontrol eder ve kişisel öneriler sunar.</p>
                 </div>
-                <h3 data-i18n="feature2Title">Kolay Takip</h3>
-                <p data-i18n="feature2Desc">İlaçlarınızı, dozlarınızı ve stok durumunuzu tek ekranda görün ve kolayca
-                    yönetin</p>
-            </div>
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_perfect.png" alt="Bulut Yedekleme">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧</div>
+                    <h3>Badi Sistemi</h3>
+                    <p>Sevdiklerinizi "badi" olarak ekleyin. İlaç alınmadığında onlara bildirim gider, uzaktan destek olabilirler.</p>
                 </div>
-                <h3 data-i18n="feature3Title">Bulut Yedekleme</h3>
-                <p data-i18n="feature3Desc">Verileriniz güvenle bulutta saklanır ve tüm cihazlarınızda senkronize olur
-                </p>
-            </div>
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_family.png" alt="Aile Takibi">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Detaylı İstatistikler</h3>
+                    <p>Tedavi uyumunuzu grafiklerle takip edin. Streak sistemi ile motivasyonunuzu yüksek tutun.</p>
                 </div>
-                <h3 data-i18n="feature4Title">Aile Takibi</h3>
-                <p data-i18n="feature4Desc">Sevdiklerinizin ilaç uyumunu uzaktan kontrol edin ve destek olun</p>
-            </div>
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_bravo.png" alt="Oyunlaştırma">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Konum Hatırlatma</h3>
+                    <p>Eve geldiğinizde veya eczaneye yaklaştığınızda otomatik hatırlatma alın.</p>
                 </div>
-                <h3 data-i18n="feature5Title">Oyunlaştırma</h3>
-                <p data-i18n="feature5Desc">Streak sistemi ve başarı rozetleri ile motivasyonunuzu yüksek tutun</p>
-            </div>
-            <div class="feature-card fade-in-section">
-                <div class="feature-image">
-                    <img src="dozi_king.png" alt="Çoklu Profil">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Stok Takibi</h3>
+                    <p>İlaç stoğunuz azaldığında uyarı alın. Eczaneye gitmeden önce neye ihtiyacınız olduğunu bilin.</p>
                 </div>
-                <h3 data-i18n="feature6Title">Çoklu Profil</h3>
-                <p data-i18n="feature6Desc">Tüm aile üyelerinizin ilaçlarını tek uygulamada yönetin</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats fade-in-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3>10K+</h3>
-                <p data-i18n="stat1">Mutlu Kullanıcı 😊</p>
-            </div>
-            <div class="stat-item">
-                <h3>50K+</h3>
-                <p data-i18n="stat2">Gönderilen Hatırlatma 📬</p>
-            </div>
-            <div class="stat-item">
-                <h3>98%</h3>
-                <p data-i18n="stat3">Memnuniyet Oranı ⭐</p>
-            </div>
-            <div class="stat-item">
-                <h3>4.8⭐</h3>
-                <p data-i18n="stat4">Uygulama Puanı</p>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Gizlilik Öncelikli</h3>
+                    <p>Verileriniz AES-256 ile şifrelenir. KVKK ve GDPR uyumlu. Sağlık verileriniz sadece sizin.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📴</div>
+                    <h3>Çevrimdışı Çalışır</h3>
+                    <p>İnternet olmadan da hatırlatmalar çalışır. Bağlantı geldiğinde otomatik senkronize olur.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <!-- Comparison Table -->
-    <section class="comparison fade-in-section" id="pricing">
-        <div class="section-header">
-            <h2 data-i18n="pricingTitle">Ücretsiz mi, Premium mi? 💎</h2>
-            <p data-i18n="pricingDesc">Size en uygun planı seçin!</p>
-        </div>
-        <div class="comparison-container">
-            <div class="comparison-card">
-                <div class="plan-header">
-                    <h3>Ücretsiz</h3>
-                    <div class="plan-price">
-                        <span class="price">₺0</span>
-                        <span class="period">/ay</span>
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🎯 Nasıl Çalışır?</span>
+                <h2>3 Adımda<br><span class="gradient-text">Sağlıklı Yaşam</span></h2>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>İlaçlarınızı Ekleyin</h3>
+                        <p>Barkod okutarak veya manuel olarak ilaçlarınızı ekleyin. Doz, saat ve tekrar bilgilerini girin.</p>
+                    </div>
+                    <div class="step-image">
+                        <img src="dozi_noted.png" alt="İlaç Ekleme">
                     </div>
                 </div>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> İlaç hatırlatmaları</li>
-                    <li><span class="check">✓</span> Doz takibi</li>
-                    <li><span class="check">✓</span> Temel raporlar</li>
-                    <li><span class="check">✓</span> 1 profil</li>
-                    <li><span class="cross">✗</span> Aile takibi</li>
-                    <li><span class="cross">✗</span> Bulut yedekleme</li>
-                    <li><span class="cross">✗</span> Gelişmiş raporlar</li>
-                </ul>
-                <a href="#download" class="plan-btn">Hemen İndir</a>
-            </div>
-
-            <div class="comparison-card featured">
-                <div class="popular-badge">En Popüler</div>
-                <div class="plan-header">
-                    <h3>Premium</h3>
-                    <div class="plan-price">
-                        <span class="price">₺29.99</span>
-                        <span class="period">/ay</span>
+                
+                <div class="step reverse">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Hatırlatma Alın</h3>
+                        <p>Belirlediğiniz saatlerde bildirim alın. Tam ekran alarm, sesli uyarı veya sessiz bildirim - size uygun olanı seçin.</p>
+                    </div>
+                    <div class="step-image">
+                        <img src="dozi_happy.png" alt="Hatırlatma">
                     </div>
                 </div>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Tüm ücretsiz özellikler</li>
-                    <li><span class="check">✓</span> Aile takibi (5 kişiye kadar)</li>
-                    <li><span class="check">✓</span> Bulut yedekleme</li>
-                    <li><span class="check">✓</span> Gelişmiş raporlar</li>
-                    <li><span class="check">✓</span> Öncelikli destek</li>
-                    <li><span class="check">✓</span> Reklamsız deneyim</li>
-                    <li><span class="check">✓</span> Özel temalar</li>
-                </ul>
-                <a href="#download" class="plan-btn premium">Premium'a Geç</a>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Takip Edin</h3>
+                        <p>İlaç alımlarınızı işaretleyin, istatistiklerinizi görün ve streak'inizi koruyun. Aileniz de takip edebilir.</p>
+                    </div>
+                    <div class="step-image">
+                        <img src="dozi_perfect.png" alt="Takip">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Roadmap -->
-    <section class="roadmap fade-in-section" id="roadmap">
-        <div class="section-header">
-            <h2 data-i18n="roadmapTitle">Yol Haritamız 🗺️</h2>
-            <p data-i18n="roadmapDesc">Yakında gelecek heyecan verici özellikler!</p>
-        </div>
-        <div class="roadmap-container">
-            <div class="roadmap-item completed">
-                <div class="roadmap-icon">✅</div>
-                <div class="roadmap-content">
-                    <h3>İlaç Hatırlatmaları</h3>
-                    <p>Akıllı hatırlatma sistemi ve bildirimler</p>
-                    <span class="roadmap-status completed-status">Tamamlandı</span>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💎 Fiyatlandırma</span>
+                <h2>Size Uygun<br><span class="gradient-text">Planı Seçin</span></h2>
+                <p class="section-desc">Temel özellikler ücretsiz. Premium ile tüm potansiyeli açığa çıkarın.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Ücretsiz</h3>
+                        <div class="pricing-price">
+                            <span class="price">₺0</span>
+                            <span class="period">/sonsuza kadar</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included"><span>✓</span> 5 ilaç ekleme</li>
+                        <li class="included"><span>✓</span> Temel hatırlatmalar</li>
+                        <li class="included"><span>✓</span> Doz takibi</li>
+                        <li class="included"><span>✓</span> Temel istatistikler</li>
+                        <li class="excluded"><span>✗</span> Badi sistemi</li>
+                        <li class="excluded"><span>✗</span> Yapay zeka asistanı</li>
+                        <li class="excluded"><span>✗</span> Konum hatırlatma</li>
+                        <li class="excluded"><span>✗</span> Tam ekran alarm</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn">Ücretsiz Başla</a>
+                </div>
+                
+                <!-- Ekstra Plan -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">EN AVANTAJLI</div>
+                    <div class="pricing-header">
+                        <h3>Ekstra</h3>
+                        <div class="pricing-price">
+                            <span class="price-old">₺1.800</span>
+                            <span class="price">₺1.490</span>
+                            <span class="period">/yıl</span>
+                        </div>
+                        <div class="pricing-savings">%17 tasarruf • 2 ay bedava!</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included"><span>✓</span> Sınırsız ilaç</li>
+                        <li class="included"><span>✓</span> Akıllı hatırlatmalar</li>
+                        <li class="included"><span>✓</span> 3 kişiye kadar badi</li>
+                        <li class="included"><span>✓</span> Yapay zeka asistanı</li>
+                        <li class="included"><span>✓</span> Konum hatırlatma</li>
+                        <li class="included"><span>✓</span> Tam ekran alarm</li>
+                        <li class="included"><span>✓</span> Detaylı istatistikler</li>
+                        <li class="included"><span>✓</span> Reklamsız deneyim</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn primary">Ekstra'ya Geç</a>
+                </div>
+                
+                <!-- Aile Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-badge purple">AİLE PAKETİ</div>
+                    <div class="pricing-header">
+                        <h3>Aile</h3>
+                        <div class="pricing-price">
+                            <span class="price-old">₺5.388</span>
+                            <span class="price">₺3.999</span>
+                            <span class="period">/yıl</span>
+                        </div>
+                        <div class="pricing-savings">%26 tasarruf • 3 ay bedava!</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included"><span>✓</span> Tüm Ekstra özellikleri</li>
+                        <li class="included"><span>✓</span> 4 kişiye kadar hesap</li>
+                        <li class="included"><span>✓</span> Aile yönetim paneli</li>
+                        <li class="included"><span>✓</span> Ortak takip</li>
+                        <li class="included"><span>✓</span> Öncelikli destek</li>
+                        <li class="included"><span>✓</span> Aile istatistikleri</li>
+                        <li class="included"><span>✓</span> Paylaşımlı hatırlatmalar</li>
+                        <li class="included"><span>✓</span> Kişi başı ₺1.000!</li>
+                    </ul>
+                    <a href="#download" class="pricing-btn">Aile Paketi Al</a>
                 </div>
             </div>
-
-            <div class="roadmap-item completed">
-                <div class="roadmap-icon">✅</div>
-                <div class="roadmap-content">
-                    <h3>Aile Takibi</h3>
-                    <p>Sevdiklerinizin ilaç uyumunu takip edin</p>
-                    <span class="roadmap-status completed-status">Tamamlandı</span>
-                </div>
-            </div>
-
-            <div class="roadmap-item in-progress">
-                <div class="roadmap-icon">🚧</div>
-                <div class="roadmap-content">
-                    <h3>Reçete Okuma (OCR)</h3>
-                    <p>Reçetenizi fotoğraflayın, otomatik eklensin</p>
-                    <span class="roadmap-status progress-status">Geliştiriliyor</span>
-                </div>
-            </div>
-
-            <div class="roadmap-item in-progress">
-                <div class="roadmap-icon">🚧</div>
-                <div class="roadmap-content">
-                    <h3>iOS Uygulaması</h3>
-                    <p>iPhone ve iPad desteği</p>
-                    <span class="roadmap-status progress-status">Geliştiriliyor</span>
-                </div>
-            </div>
-
-            <div class="roadmap-item planned">
-                <div class="roadmap-icon">📅</div>
-                <div class="roadmap-content">
-                    <h3>Doktor Entegrasyonu</h3>
-                    <p>Doktorunuzla ilaç bilgilerinizi paylaşın</p>
-                    <span class="roadmap-status planned-status">Planlandı - Q2 2026</span>
-                </div>
-            </div>
-
-            <div class="roadmap-item planned">
-                <div class="roadmap-icon">📅</div>
-                <div class="roadmap-content">
-                    <h3>Akıllı Saat Desteği</h3>
-                    <p>Apple Watch ve Wear OS entegrasyonu</p>
-                    <span class="roadmap-status planned-status">Planlandı - Q3 2026</span>
-                </div>
-            </div>
+            
+            <p class="pricing-note">* Tüm fiyatlar KDV dahildir. İstediğiniz zaman iptal edebilirsiniz.</p>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials fade-in-section" id="testimonials">
-        <div class="section-header">
-            <h2 data-i18n="testimonialsTitle">Kullanıcılarımız Ne Diyor? 💬</h2>
-            <p data-i18n="testimonialsDesc">Binlerce mutlu kullanıcımızdan bazıları</p>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card fade-in-section">
-                <div class="testimonial-header">
-                    <div class="avatar">A</div>
-                    <div class="testimonial-info">
-                        <h4>Ayşe Y.</h4>
-                        <p>İstanbul</p>
-                    </div>
-                </div>
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"Annemin ilaçlarını takip etmek hiç bu kadar kolay olmamıştı. Dozi sayesinde
-                    artık hiçbir dozunu kaçırmıyoruz!"</p>
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💬 Kullanıcı Yorumları</span>
+                <h2>Binlerce Kişi<br><span class="gradient-text">Dozi'yi Seviyor</span></h2>
             </div>
-            <div class="testimonial-card fade-in-section">
-                <div class="testimonial-header">
-                    <div class="avatar">M</div>
-                    <div class="testimonial-info">
-                        <h4>Mehmet K.</h4>
-                        <p>Ankara</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Annemin ilaçlarını takip etmek hiç bu kadar kolay olmamıştı. Badi sistemi sayesinde ilaç almadığında bana bildirim geliyor. Hayat kurtarıcı!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <strong>Ayşe Y.</strong>
+                            <span>İstanbul</span>
+                        </div>
                     </div>
                 </div>
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"Kronik hastayım ve çok ilaç kullanıyorum. Dozi olmadan nasıl idare ederdim
-                    bilmiyorum. Harika bir uygulama!"</p>
-            </div>
-            <div class="testimonial-card fade-in-section">
-                <div class="testimonial-header">
-                    <div class="avatar">Z</div>
-                    <div class="testimonial-info">
-                        <h4>Zeynep D.</h4>
-                        <p>İzmir</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Kronik hastayım ve günde 8 farklı ilaç kullanıyorum. Dozi olmadan nasıl idare ederdim bilmiyorum. Yapay zeka asistanı da çok yardımcı oluyor."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <strong>Mehmet K.</strong>
+                            <span>Ankara</span>
+                        </div>
                     </div>
                 </div>
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"Arayüzü çok sevimli ve kullanımı kolay. Yaşlı babam bile kolayca
-                    kullanabiliyor. Teşekkürler Dozi!"</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Arayüzü çok sevimli ve kullanımı kolay. 75 yaşındaki babam bile kolayca kullanabiliyor. Türkçe olması da büyük avantaj."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Z</div>
+                        <div class="author-info">
+                            <strong>Zeynep D.</strong>
+                            <span>İzmir</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq fade-in-section" id="faq">
-        <div class="section-header">
-            <h2>Sık Sorulan Sorular ❓</h2>
-            <p>Merak ettiklerinizin yanıtları burada!</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>💰 Dozi ücretsiz mi?</h3>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Evet! Dozi'nin temel özellikleri tamamen ücretsizdir. İlaç hatırlatmaları, doz takibi ve temel
-                        raporlama özelliklerini hiçbir ücret ödemeden kullanabilirsiniz. Premium üyelikle aile takibi,
-                        bulut yedekleme ve gelişmiş raporlama gibi ek özelliklere erişebilirsiniz.</p>
-                </div>
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">❓ Sık Sorulan Sorular</span>
+                <h2>Merak Ettikleriniz</h2>
             </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>🔒 Verilerim güvende mi?</h3>
-                    <span class="faq-icon">+</span>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Dozi gerçekten ücretsiz mi?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Evet! Temel özellikler (5 ilaç, hatırlatmalar, doz takibi) tamamen ücretsiz ve sonsuza kadar öyle kalacak. Premium özellikler için Ekstra veya Aile planına geçebilirsiniz.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunmaktadır. KVKK ve GDPR standartlarına tam
-                        uyumluyuz. Sağlık verileriniz yalnızca sizin erişiminizde olup, açık rızanız olmadan hiçbir
-                        üçüncü tarafla paylaşılmaz.</p>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Verilerim güvende mi?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunur. KVKK ve GDPR uyumluyuz. Sağlık verileriniz sadece sizin erişiminizde olup, açık rızanız olmadan hiçbir üçüncü tarafla paylaşılmaz.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>📱 Hangi cihazlarda çalışır?</h3>
-                    <span class="faq-icon">+</span>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>İnternet olmadan çalışır mı?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Evet! Dozi offline-first mimarisiyle tasarlandı. Hatırlatmalar ve temel özellikler internet olmadan da çalışır. Bağlantı geldiğinde otomatik senkronize olur.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Dozi şu anda Android cihazlarda kullanılabilir (Android 6.0 ve üzeri). iOS versiyonu yakında
-                        yayınlanacak! Tüm cihazlarınızda senkronize çalışır.</p>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Badi sistemi nasıl çalışır?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sevdiklerinizi "badi" olarak ekleyebilirsiniz. İlaç saatinizde yanıt vermezseniz, eskalasyon sistemi devreye girer ve badilerinize bildirim gönderilir. Böylece uzaktan destek alabilirsiniz.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>🌐 İnternet bağlantısı gerekli mi?</h3>
-                    <span class="faq-icon">+</span>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>iOS versiyonu var mı?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Şu anda sadece Android'de kullanılabilir (Android 7.0+). iOS versiyonu 2026'da yayınlanacak. Haberdar olmak için bültenimize kayıt olabilirsiniz.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Hayır! Dozi offline çalışabilir. İlaç hatırlatmaları ve temel özellikler internet bağlantısı
-                        olmadan da çalışır. Bulut senkronizasyonu ve yedekleme için internet bağlantısı gereklidir.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>👨‍👩‍👧‍👦 Aile üyelerimi nasıl takip edebilirim?</h3>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Premium üyelikle aile takibi özelliğini kullanabilirsiniz. Sevdiklerinizi uygulamaya davet edin,
-                        onların izniyle ilaç uyumlarını takip edin ve hatırlatmalar gönderin. Özellikle yaşlı ebeveynler
-                        için çok kullanışlıdır!</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>🔔 Hatırlatmalar nasıl çalışır?</h3>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Her ilaç için özel hatırlatma saatleri belirleyebilirsiniz. Dozi, belirlediğiniz saatlerde
-                        bildirim gönderir ve sevimli sesli uyarılar yapar. Hatırlatmaları erteleyebilir veya aldığınızı
-                        işaretleyebilirsiniz. Streak sistemi ile motivasyonunuzu yüksek tutun!</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>📊 İlaç geçmişimi görebilir miyim?</h3>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Evet! Dozi, tüm ilaç alım geçmişinizi kaydeder. Hangi ilaçları ne zaman aldığınızı, kaçırdığınız
-                        dozları ve uyum oranınızı detaylı grafiklerle görebilirsiniz. Bu raporları doktorunuzla
-                        paylaşabilirsiniz.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h3>❓ Destek nasıl alabilirim?</h3>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Uygulama içi destek bölümünden bize ulaşabilirsiniz. Ayrıca <a
-                            href="mailto:info@dozi.app">info@dozi.app</a> adresinden e-posta gönderebilir veya web
-                        sitemizden iletişim formunu doldurabilirsiniz. Genellikle 24 saat içinde yanıt veriyoruz!</p>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Aboneliği nasıl iptal ederim?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Google Play Store > Abonelikler bölümünden istediğiniz zaman iptal edebilirsiniz. İptal etseniz bile dönem sonuna kadar premium özellikler aktif kalır.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Download Section -->
-    <section class="download fade-in-section" id="download">
-        <div class="download-content">
-            <h2 data-i18n="downloadTitle">Hemen İndirin! 🎉</h2>
-            <p data-i18n="downloadDesc">Dozi'yi bugün indirin ve sağlıklı yaşam yolculuğunuza başlayın!</p>
-            <a href="https://play.google.com/store" class="store-button">
-                <span class="store-icon">📱</span>
-                <div style="text-align: left;">
-                    <div style="font-size: 0.75rem; opacity: 0.7;" data-i18n="downloadNow">Şimdi İndir</div>
-                    <div style="font-size: 1.1rem; font-weight: 700;">Google Play</div>
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-text">
+                    <h2>Sağlıklı Yaşama<br><span class="gradient-text">Bugün Başlayın</span></h2>
+                    <p>10.000+ kişi Dozi ile ilaçlarını düzenli alıyor. Siz de katılın!</p>
+                    
+                    <div class="download-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="store-btn" target="_blank">
+                            <img src="images/google-play-badge.png" alt="Google Play'den İndir">
+                        </a>
+                    </div>
+                    
+                    <div class="download-stats">
+                        <div class="download-stat">
+                            <span class="stat-icon">⭐</span>
+                            <span>4.8 Puan</span>
+                        </div>
+                        <div class="download-stat">
+                            <span class="stat-icon">📥</span>
+                            <span>10K+ İndirme</span>
+                        </div>
+                        <div class="download-stat">
+                            <span class="stat-icon">🔒</span>
+                            <span>KVKK Uyumlu</span>
+                        </div>
+                    </div>
                 </div>
-            </a>
+                
+                <div class="download-visual">
+                    <img src="dozi_happy.png" alt="Dozi Maskot" class="download-mascot">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Sticky CTA Button -->
-    <div class="sticky-cta" id="stickyCTA">
-        <a href="#download" class="sticky-cta-btn">
-            📱 Hemen İndir
-        </a>
-    </div>
-
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <div class="cookie-icon">🍪</div>
-            <div class="cookie-text">
-                <h3>Çerez Kullanımı</h3>
-                <p>Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Detaylı bilgi için <a
-                        href="cookie-policy.html">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Tümünü Kabul Et</button>
-                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Tümünü Reddet</button>
-                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Ayarla</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cookie Settings Modal -->
-    <div class="cookie-modal" id="cookieModal">
-        <div class="cookie-modal-content">
-            <div class="cookie-modal-header">
-                <h2>Çerez Ayarları</h2>
-                <button class="cookie-modal-close" onclick="closeCookieSettings()">&times;</button>
-            </div>
-            <div class="cookie-modal-body">
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>🔒 Zorunlu Çerezler</h4>
-                            <p>Web sitesinin çalışması için gereklidir</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>📊 Analitik Çerezler</h4>
-                            <p>Site kullanımını analiz etmek için kullanılır</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="analyticsCookies" checked>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <div>
-                            <h4>⚙️ İşlevsel Çerezler</h4>
-                            <p>Tercihlerinizi hatırlamak için kullanılır</p>
-                        </div>
-                        <label class="cookie-switch">
-                            <input type="checkbox" id="functionalCookies" checked>
-                            <span class="cookie-slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="cookie-modal-footer">
-                <button class="cookie-btn cookie-accept" onclick="saveCookieSettings()">Kaydet ve Kapat</button>
-                <a href="cookie-policy.html" class="cookie-policy-link">Çerez Politikası</a>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="dozi_brand.png" alt="Dozi">
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <img src="dozi_brand.png" alt="Dozi">
+                        <span>Dozi</span>
+                    </a>
+                    <p>Akıllı ilaç takip asistanınız. Sağlığınız kontrol altında.</p>
+                    <p class="footer-copyright">© 2025 Bardino Technology<br>Tüm hakları saklıdır.</p>
                 </div>
-                <p>Sağlıklı yaşam asistanınız. İlaçlarınızı zamanında almayı unutmayın!</p>
-                <p style="margin-top: 1.5rem;">© 2025 Bardino Technology<br>Tüm hakları saklıdır</p>
+                
+                <div class="footer-links">
+                    <h4>Hızlı Bağlantılar</h4>
+                    <ul>
+                        <li><a href="#features">Özellikler</a></li>
+                        <li><a href="#pricing">Fiyatlar</a></li>
+                        <li><a href="#faq">SSS</a></li>
+                        <li><a href="#download">İndir</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Yasal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
+                        <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
+                        <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+                        <li><a href="kvkk-basvuru.html">KVKK Başvuru</a></li>
+                        <li><a href="account-deletion.html">Hesap Silme</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>İletişim</h4>
+                    <ul>
+                        <li><a href="mailto:info@dozi.app">📧 info@dozi.app</a></li>
+                        <li><a href="https://www.dozi.app">🌐 www.dozi.app</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3 data-i18n="footerLinks">Hızlı Bağlantılar</h3>
-                <ul>
-                    <li><a href="#features" data-i18n="features">Özellikler</a></li>
-                    <li><a href="#testimonials" data-i18n="testimonials">Yorumlar</a></li>
-                    <li><a href="#download" data-i18n="download">İndir</a></li>
-                    <li><a href="feature-graph.html">Özellik Grafiği</a></li>
-                </ul>
+            
+            <div class="footer-bottom">
+                <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez. Sağlık kararlarınız için her zaman doktorunuza danışın.</p>
             </div>
-            <div class="footer-section">
-                <h3 data-i18n="footerLegal">Yasal</h3>
-                <ul>
-                    <li><a href="privacy-policy.html" data-i18n="privacy">Gizlilik Politikası</a></li>
-                    <li><a href="account-deletion.html">Hesap Silme</a></li>
-                    <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
-                    <li><a href="kvkk.html">KVKK</a></li>
-                    <li><a href="cookie-policy.html">Çerez Politikası</a></li>
-                    <li><a href="#" onclick="localStorage.clear(); location.reload(); return false;">🍪 Çerez
-                            Ayarları</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3 data-i18n="footerContact">İletişim</h3>
-                <ul>
-                    <li><a href="mailto:info@dozi.app">📧 info@dozi.app</a></li>
-                    <li><a href="https://www.dozi.app">🌐 www.dozi.app</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez.</p>
         </div>
     </footer>
 
-    <script src="js/scripts.js"></script>
-</body>
+    <!-- Additional Styles -->
+    <style>
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(64, 224, 208, 0.1);
+            color: var(--dozi-turquoise);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .section-desc {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Science Section */
+        .science {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .science-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .science-card {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .science-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .science-card.highlight {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+        }
+        
+        .science-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .science-stat {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .science-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .science-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .science-card cite {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: normal;
+        }
+        
+        .science-quote {
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .science-quote blockquote {
+            font-size: 1.25rem;
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .science-quote cite {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
 
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--bg-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--dozi-turquoise);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .step.reverse {
+            direction: rtl;
+        }
+        
+        .step.reverse > * {
+            direction: ltr;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .step-content p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .step-image {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+        }
+        
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--bg-light) 0%, white 100%);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--dozi-turquoise);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dozi-turquoise);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        .pricing-badge.purple {
+            background: var(--dozi-purple);
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+        
+        .price-old {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        
+        .period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-savings {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features li.included {
+            color: var(--text-primary);
+        }
+        
+        .pricing-features li.included span {
+            color: var(--success);
+            font-weight: 700;
+        }
+        
+        .pricing-features li.excluded {
+            color: var(--text-muted);
+        }
+        
+        .pricing-features li.excluded span {
+            color: var(--text-muted);
+        }
+        
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            border: 2px solid transparent;
+        }
+        
+        .pricing-btn:hover {
+            border-color: var(--dozi-turquoise);
+            color: var(--dozi-turquoise);
+        }
+        
+        .pricing-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .pricing-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .pricing-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+            background: var(--dozi-dark);
+        }
+        
+        .testimonials .section-header h2 {
+            color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-stars {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .author-info strong {
+            display: block;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .author-info span {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--dozi-turquoise);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--dozi-turquoise);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            padding-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 6rem 0;
+            background: var(--gradient-primary);
+        }
+        
+        .download-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .download-text h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .download-text p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .download-buttons {
+            margin-bottom: 2rem;
+        }
+        
+        .store-btn img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        
+        .store-btn:hover img {
+            transform: scale(1.05);
+        }
+        
+        .download-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .download-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            font-size: 1.25rem;
+        }
+        
+        .download-mascot {
+            width: 250px;
+            height: auto;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dozi-darker);
+            padding: 4rem 0 2rem;
+            color: white;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .footer-links h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--dozi-turquoise);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content {
+                order: 1;
+            }
+            
+            .hero-visual {
+                order: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .phone-mockup {
+                width: 260px;
+                height: 530px;
+            }
+            
+            .floating-card {
+                display: none;
+            }
+            
+            .step {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .step.reverse {
+                direction: ltr;
+            }
+            
+            .step-number {
+                margin: 0 auto;
+            }
+            
+            .step-image {
+                margin: 0 auto;
+            }
+            
+            .download-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .download-stats {
+                justify-content: center;
+            }
+            
+            .download-visual {
+                display: none;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+    
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.feature-card, .science-card, .testimonial-card, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Add visible class styles
+        const style = document.createElement('style');
+        style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
+        document.head.appendChild(style);
+    </script>
+</body>
 </html>
