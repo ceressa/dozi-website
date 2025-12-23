@@ -341,12 +341,12 @@
                 <p class="section-desc">İhtiyacınıza göre seçin. Gizli ücret yok.</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card" id="pricing-free">
                     <div class="pricing-icon">🆓</div>
                     <h3>Ücretsiz</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">₺0</span>
-                        <span class="pricing-period">/ sonsuza dek</span>
+                        <span class="pricing-amount" id="price-free">...</span>
+                        <span class="pricing-period" id="period-free"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>5 ilaç takibi</li>
@@ -357,13 +357,13 @@
                     </ul>
                     <a href="#download" class="pricing-btn">Hemen Başla</a>
                 </div>
-                <div class="pricing-card popular">
-                    <span class="pricing-badge">En Popüler</span>
+                <div class="pricing-card popular" id="pricing-ekstra">
+                    <span class="pricing-badge" id="badge-ekstra">En Popüler</span>
                     <div class="pricing-icon">💎</div>
                     <h3>Dozi Ekstra</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">₺1.490</span>
-                        <span class="pricing-period">/ yıl</span>
+                        <span class="pricing-amount" id="price-ekstra">...</span>
+                        <span class="pricing-period" id="period-ekstra"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>Sınırsız ilaç takibi</li>
@@ -376,12 +376,12 @@
                     </ul>
                     <a href="#download" class="pricing-btn">Ekstra'ya Geç</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card" id="pricing-family">
                     <div class="pricing-icon">👨‍👩‍👧‍👦</div>
                     <h3>Aile Planı</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">₺3.999</span>
-                        <span class="pricing-period">/ yıl</span>
+                        <span class="pricing-amount" id="price-family">...</span>
+                        <span class="pricing-period" id="period-family"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>4 kişilik Ekstra hesabı</li>
@@ -511,140 +511,42 @@
                 if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
             });
         });
+
+        // Fiyatları Remote Config'den çek
+        async function loadPricing() {
+            try {
+                const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/getWebsitePricing');
+                const data = await response.json();
+                
+                if (data.success && data.pricing) {
+                    const p = data.pricing;
+                    
+                    // Ücretsiz plan
+                    document.getElementById('price-free').textContent = p.free.price_tr;
+                    document.getElementById('period-free').textContent = '/ ' + p.free.period_tr;
+                    
+                    // Ekstra plan
+                    document.getElementById('price-ekstra').textContent = p.ekstra.price_tr;
+                    document.getElementById('period-ekstra').textContent = '/ ' + p.ekstra.period_tr;
+                    
+                    // İndirim varsa badge güncelle
+                    if (p.ekstra.discount_percent > 0) {
+                        document.getElementById('badge-ekstra').textContent = '%' + p.ekstra.discount_percent + ' İndirim';
+                    }
+                    
+                    // Aile planı
+                    document.getElementById('price-family').textContent = p.family.price_tr;
+                    document.getElementById('period-family').textContent = '/ ' + p.family.period_tr;
+                    
+                    console.log('✅ Fiyatlar yüklendi', data.fallback ? '(fallback)' : '');
+                }
+            } catch (error) {
+                console.log('⚠️ Fiyat API hatası, varsayılan fiyatlar kullanılıyor');
+            }
+        }
+        
+        // Sayfa yüklendiğinde fiyatları çek
+        loadPricing();
     </script>
 </body>
 </html>
-
-<style>
-    /* SECTIONS COMMON */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 6rem 0; }
-    .section-header { text-align: center; margin-bottom: 4rem; }
-    .section-badge { display: inline-block; background: rgba(64, 224, 208, 0.1); color: var(--dozi-turquoise-dark); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
-    .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; }
-    .section-desc { font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-    
-    /* EKSTRA */
-    .ekstra { background: var(--gradient-hero); color: white; }
-    .ekstra .section-badge { background: rgba(255,255,255,0.1); color: var(--dozi-turquoise); }
-    .ekstra .section-header h2 { color: white; }
-    .ekstra .section-desc { color: rgba(255,255,255,0.7); }
-    .ekstra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .ekstra-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-    .ekstra-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); border-color: var(--dozi-turquoise); }
-    .ekstra-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .ekstra-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: white; }
-    .ekstra-card p { color: rgba(255,255,255,0.7); line-height: 1.7; }
-    .ekstra-card strong { color: var(--dozi-turquoise); }
-    .ekstra-cta { text-align: center; margin-top: 3rem; }
-    @media (max-width: 968px) { .ekstra-grid { grid-template-columns: 1fr; } }
-    
-    /* SCIENCE */
-    .science { background: var(--bg-light); }
-    .science-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .science-card { background: white; border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
-    .science-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-    .science-card.highlight { background: var(--gradient-hero); color: white; }
-    .science-card.highlight h3, .science-card.highlight p { color: rgba(255,255,255,0.9); }
-    .science-card.highlight .science-stat { color: var(--dozi-coral); }
-    .science-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .science-stat { font-size: 2.5rem; font-weight: 800; color: var(--dozi-turquoise-dark); margin-bottom: 0.5rem; }
-    .science-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-    .science-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
-    .science-card cite { font-size: 0.75rem; color: var(--text-muted); font-style: normal; }
-    .science-quote { margin-top: 3rem; text-align: center; padding: 2rem; background: white; border-radius: 20px; border-left: 4px solid var(--dozi-turquoise); }
-    .science-quote blockquote { font-size: 1.25rem; font-style: italic; color: var(--text-primary); margin-bottom: 1rem; }
-    .science-quote cite { color: var(--text-secondary); font-style: normal; }
-    @media (max-width: 968px) { .science-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .science-grid { grid-template-columns: 1fr; } }
-    
-    /* FEATURES */
-    .features { background: white; }
-    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .feature-card { background: var(--bg-light); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s ease; border: 1px solid transparent; }
-    .feature-card:hover { transform: translateY(-5px); border-color: var(--dozi-turquoise); box-shadow: var(--shadow-lg); }
-    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .feature-card h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-    .feature-card p { font-size: 0.875rem; color: var(--text-secondary); }
-    @media (max-width: 968px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
-    
-    /* USE CASES */
-    .use-cases { background: var(--bg-light); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .use-case-card { background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
-    .use-case-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-    .use-case-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-    .use-case-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
-    .use-case-card p { color: var(--text-secondary); line-height: 1.7; }
-    @media (max-width: 768px) { .use-cases-grid { grid-template-columns: 1fr; } }
-</style>
-
-<style>
-    /* PRICING */
-    .pricing { background: white; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-    .pricing-card { background: var(--bg-light); border-radius: 24px; padding: 2.5rem; text-align: center; transition: all 0.3s ease; border: 2px solid transparent; position: relative; }
-    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-    .pricing-card.popular { background: var(--gradient-hero); color: white; border-color: var(--dozi-turquoise); transform: scale(1.05); }
-    .pricing-card.popular:hover { transform: scale(1.05) translateY(-5px); }
-    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--dozi-turquoise); color: var(--dozi-dark); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-    .pricing-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .pricing-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .pricing-card.popular h3 { color: white; }
-    .pricing-price { margin: 1.5rem 0; }
-    .pricing-amount { font-size: 3rem; font-weight: 800; }
-    .pricing-card.popular .pricing-amount { color: var(--dozi-turquoise); }
-    .pricing-period { font-size: 0.875rem; color: var(--text-muted); }
-    .pricing-card.popular .pricing-period { color: rgba(255,255,255,0.6); }
-    .pricing-features { list-style: none; margin: 1.5rem 0; text-align: left; }
-    .pricing-features li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
-    .pricing-features li::before { content: "✓"; color: var(--success); font-weight: 700; }
-    .pricing-card.popular .pricing-features li { color: rgba(255,255,255,0.9); }
-    .pricing-btn { display: block; width: 100%; padding: 1rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; margin-top: 1.5rem; }
-    .pricing-card .pricing-btn { background: var(--gradient-primary); color: white; }
-    .pricing-card.popular .pricing-btn { background: white; color: var(--dozi-dark); }
-    .pricing-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    @media (max-width: 968px) { .pricing-grid { grid-template-columns: 1fr; max-width: 400px; } .pricing-card.popular { transform: none; } .pricing-card.popular:hover { transform: translateY(-5px); } }
-    
-    /* FAQ */
-    .faq { background: var(--bg-light); }
-    .faq-list { max-width: 800px; margin: 0 auto; }
-    .faq-item { background: white; border-radius: 16px; margin-bottom: 1rem; overflow: hidden; box-shadow: var(--shadow-sm); }
-    .faq-question { width: 100%; padding: 1.5rem; background: none; border: none; text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
-    .faq-question:hover { background: var(--bg-light); }
-    .faq-icon { font-size: 1.5rem; color: var(--dozi-turquoise); transition: transform 0.3s ease; }
-    .faq-item.active .faq-icon { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-item.active .faq-answer { max-height: 500px; }
-    .faq-answer p { padding: 0 1.5rem 1.5rem; color: var(--text-secondary); line-height: 1.7; }
-    
-    /* DOWNLOAD */
-    .download { background: var(--gradient-hero); color: white; text-align: center; }
-    .download h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white; }
-    .download p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
-    .download-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .store-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: white; color: var(--text-primary); padding: 1rem 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease; }
-    .store-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
-    .store-btn-text { text-align: left; }
-    .store-btn-small { font-size: 0.75rem; color: var(--text-muted); }
-    .store-btn-large { font-size: 1.125rem; font-weight: 600; }
-    
-    /* FOOTER */
-    .footer { background: var(--dozi-darker); color: white; padding: 4rem 0 2rem; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand img { height: 50px; margin-bottom: 1rem; }
-    .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
-    .footer-links h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
-    .footer-links a:hover { color: var(--dozi-turquoise); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-copyright { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
-    .footer-social { display: flex; gap: 1rem; }
-    .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; }
-    .footer-social a:hover { background: var(--dozi-turquoise); transform: translateY(-3px); }
-    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
-    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
-</style>
