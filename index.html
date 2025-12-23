@@ -3,34 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dozi - İlaç takibini kolaylaştıran, yapay zeka destekli akıllı sağlık asistanı. Araştırmalar gösteriyor: İlaç hatırlatma uygulamaları tedavi uyumunu %50'ye kadar artırıyor.">
+    <meta name="description" content="Dozi - İlaç takibini kolaylaştıran, yapay zeka destekli sağlıklı yaşam dostunuz. Bu işi tek başına yapmak zorunda değilsiniz.">
     <meta name="keywords" content="ilaç hatırlatma, sağlık asistanı, ilaç takibi, aile sağlığı, medication reminder, health app, tedavi uyumu">
     <meta name="author" content="Bardino Technology">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.dozi.app/">
-    <meta property="og:title" content="Dozi - Akıllı İlaç Takip Asistanı">
-    <meta property="og:description" content="Yapay zeka destekli ilaç hatırlatma. Tedavi uyumunuzu artırın, sağlığınızı kontrol altına alın.">
+    <meta property="og:title" content="Dozi - Sağlıklı Yaşam Dostunuz">
+    <meta property="og:description" content="Bu işi tek başına yapmak zorunda değilsiniz. Yapay zeka destekli ilaç hatırlatma ve aile takibi.">
     <meta property="og:image" content="https://www.dozi.app/images/og-image.png">
-    
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dozi - Akıllı İlaç Takip Asistanı">
-    <meta name="twitter:description" content="Yapay zeka destekli ilaç hatırlatma. Tedavi uyumunuzu artırın.">
-    
-    <title>Dozi - Akıllı İlaç Takip Asistanı | Yapay Zeka Destekli Sağlık</title>
-    
-    <!-- Favicon -->
+    <meta name="twitter:title" content="Dozi - Sağlıklı Yaşam Dostunuz">
+    <meta name="twitter:description" content="Bu işi tek başına yapmak zorunda değilsiniz.">
+    <title>Dozi - Sağlıklı Yaşam Dostunuz | İlaç Takip Uygulaması</title>
     <link rel="icon" type="image/png" href="dozi_brand.png">
     <link rel="apple-touch-icon" href="dozi_brand.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --dozi-turquoise: #40E0D0;
@@ -55,463 +45,93 @@
             --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
             --shadow-glow: 0 0 40px rgba(64, 224, 208, 0.3);
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: var(--text-primary); background: var(--bg-light); overflow-x: hidden; }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; transition: all 0.3s ease; }
+        .navbar.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: var(--shadow-md); padding: 0.75rem 2rem; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-logo img { height: 56px; transition: transform 0.3s ease; }
+        .nav-logo:hover img { transform: scale(1.05); }
+        .nav-logo span { font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease; }
+        .navbar.scrolled .nav-links a { color: var(--text-primary); }
+        .nav-links a:hover { color: var(--dozi-turquoise); }
+        .nav-cta { background: var(--gradient-primary); color: white !important; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md); }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+        .lang-switch { display: flex; gap: 0.5rem; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); }
+        .navbar.scrolled .lang-switch { border-color: rgba(0,0,0,0.1); }
+        .lang-btn { background: none; border: none; color: rgba(255,255,255,0.6); font-weight: 500; cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 4px; transition: all 0.3s ease; }
+        .navbar.scrolled .lang-btn { color: var(--text-muted); }
+        .lang-btn.active { color: var(--dozi-turquoise); background: rgba(64, 224, 208, 0.1); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: all 0.3s ease; }
+        .navbar.scrolled .mobile-menu-btn span { background: var(--text-primary); }
+        @media (max-width: 968px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 1rem; box-shadow: var(--shadow-lg); }
+            .nav-links.active { display: flex; }
+            .nav-links a { color: var(--text-primary); padding: 0.75rem; }
+            .mobile-menu-btn { display: block; }
+            .lang-switch { border: none; margin: 0; padding: 0; justify-content: center; }
         }
         
-        html {
-            scroll-behavior: smooth;
+        /* HERO */
+        .hero { min-height: 100vh; background: var(--gradient-hero); position: relative; overflow: hidden; padding: 8rem 2rem 4rem; display: flex; align-items: center; }
+        .floating-elements { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .floating-pill { position: absolute; font-size: 2rem; opacity: 0.15; animation: float 20s infinite ease-in-out; }
+        .floating-pill:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-pill:nth-child(2) { top: 25%; right: 15%; animation-delay: -4s; }
+        .floating-pill:nth-child(3) { bottom: 30%; left: 20%; animation-delay: -8s; }
+        .floating-pill:nth-child(4) { top: 40%; right: 25%; animation-delay: -12s; }
+        .floating-pill:nth-child(5) { bottom: 20%; right: 10%; animation-delay: -16s; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(10deg); } }
+        .hero-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-content { color: white; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; margin-bottom: 1.5rem; backdrop-filter: blur(10px); }
+        .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-tagline { font-size: 1.5rem; font-weight: 600; color: var(--dozi-turquoise); margin-bottom: 1rem; }
+        .hero-description { font-size: 1.125rem; color: rgba(255,255,255,0.8); max-width: 500px; margin-bottom: 2rem; }
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 1.5rem; font-weight: 700; color: var(--dozi-turquoise); }
+        .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: var(--shadow-lg); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        .hero-visual { position: relative; display: flex; justify-content: center; }
+        .phone-mockup { width: 280px; height: 580px; background: #1a1a1a; border-radius: 40px; padding: 12px; box-shadow: 0 50px 100px rgba(0,0,0,0.5); position: relative; }
+        .phone-notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 10; }
+        .phone-screen { width: 100%; height: 100%; background: white; border-radius: 32px; overflow: hidden; }
+        .phone-screen img { width: 100%; height: 100%; object-fit: cover; }
+        .floating-card { position: absolute; background: white; padding: 0.75rem 1rem; border-radius: 12px; box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 0.5rem; animation: floatCard 3s infinite ease-in-out; }
+        .floating-card-icon { width: 32px; height: 32px; background: var(--dozi-turquoise); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.875rem; }
+        .floating-card-text { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+        .floating-card-1 { top: 15%; left: -10%; animation-delay: 0s; }
+        .floating-card-2 { top: 45%; right: -15%; animation-delay: -1s; }
+        .floating-card-3 { bottom: 20%; left: -5%; animation-delay: -2s; }
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @media (max-width: 968px) {
+            .hero { padding: 6rem 1rem 3rem; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-tagline { font-size: 1.25rem; }
+            .hero-description { margin: 0 auto 2rem; }
+            .hero-stats { justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { margin-top: 3rem; }
+            .floating-card { display: none; }
         }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-light);
-            overflow-x: hidden;
-        }
-        
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-md);
-            padding: 0.75rem 2rem;
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-        
-        .nav-logo img {
-            height: 40px;
-            transition: transform 0.3s ease;
-        }
-        
-        .nav-logo:hover img {
-            transform: scale(1.05);
-        }
-        
-        .nav-logo span {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .navbar.scrolled .nav-links a {
-            color: var(--text-primary);
-        }
-        
-        .nav-links a:hover {
-            color: var(--dozi-turquoise);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--dozi-turquoise);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-cta {
-            background: var(--gradient-primary);
-            color: white !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .nav-cta::after {
-            display: none;
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: white;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled .mobile-menu-btn span {
-            background: var(--text-primary);
-        }
-        
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-hero);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 8rem 2rem 4rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(64, 224, 208, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        /* Floating Elements */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .floating-pill {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        .floating-pill:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-pill:nth-child(2) { top: 20%; right: 15%; animation-delay: -5s; }
-        .floating-pill:nth-child(3) { bottom: 30%; left: 5%; animation-delay: -10s; }
-        .floating-pill:nth-child(4) { bottom: 20%; right: 10%; animation-delay: -15s; }
-        .floating-pill:nth-child(5) { top: 50%; left: 20%; animation-delay: -7s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-20px) rotate(5deg); }
-            50% { transform: translateY(0) rotate(0deg); }
-            75% { transform: translateY(20px) rotate(-5deg); }
-        }
-        
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            color: white;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(64, 224, 208, 0.15);
-            border: 1px solid rgba(64, 224, 208, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--dozi-turquoise);
-            margin-bottom: 1.5rem;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(64, 224, 208, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(64, 224, 208, 0); }
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero h1 .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-description {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            max-width: 540px;
-            line-height: 1.7;
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .hero-stat {
-            text-align: left;
-        }
-        
-        .hero-stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dozi-turquoise);
-        }
-        
-        .hero-stat-label {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-        
-        /* Hero Image/Phone Mockup */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .phone-mockup {
-            position: relative;
-            width: 320px;
-            height: 650px;
-            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 45px;
-            padding: 12px;
-            box-shadow: 
-                0 50px 100px -20px rgba(0, 0, 0, 0.5),
-                0 30px 60px -30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            animation: phoneFloat 6s ease-in-out infinite;
-        }
-        
-        @keyframes phoneFloat {
-            0%, 100% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(0); }
-            50% { transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-20px); }
-        }
-        
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: var(--bg-light);
-            border-radius: 35px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .phone-screen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
-            background: #1a1a2e;
-            border-radius: 0 0 20px 20px;
-            z-index: 10;
-        }
-        
-        /* Floating Cards around phone */
-        .floating-card {
-            position: absolute;
-            background: white;
-            border-radius: 16px;
-            padding: 1rem 1.25rem;
-            box-shadow: var(--shadow-xl);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            animation: cardFloat 4s ease-in-out infinite;
-        }
-        
-        .floating-card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-        
-        .floating-card-text {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .floating-card-1 {
-            top: 10%;
-            left: -20%;
-            animation-delay: 0s;
-        }
-        
-        .floating-card-1 .floating-card-icon {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-        
-        .floating-card-2 {
-            bottom: 30%;
-            right: -15%;
-            animation-delay: -2s;
-        }
-        
-        .floating-card-2 .floating-card-icon {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--dozi-purple);
-        }
-        
-        .floating-card-3 {
-            bottom: 10%;
-            left: -10%;
-            animation-delay: -1s;
-        }
-        
-        .floating-card-3 .floating-card-icon {
-            background: rgba(64, 224, 208, 0.1);
-            color: var(--dozi-turquoise);
-        }
-        
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-</style>
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
@@ -520,20 +140,22 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#features">Özellikler</a></li>
+                <li><a href="#ekstra">Dozi Ekstra</a></li>
                 <li><a href="#science">Bilimsel Kanıt</a></li>
                 <li><a href="#pricing">Fiyatlar</a></li>
                 <li><a href="#faq">SSS</a></li>
                 <li><a href="#download" class="nav-cta">İndir</a></li>
+                <li>
+                    <div class="lang-switch">
+                        <button class="lang-btn active">TR</button>
+                        <button class="lang-btn" onclick="window.location.href='en/index.html'">EN</button>
+                    </div>
+                </li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="floating-elements">
             <span class="floating-pill">💊</span>
@@ -542,77 +164,79 @@
             <span class="floating-pill">❤️</span>
             <span class="floating-pill">🩺</span>
         </div>
-        
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span>🇹🇷</span>
-                    <span>Türkiye'de Geliştirildi</span>
-                </div>
-                
-                <h1>
-                    İlaçlarınızı<br>
-                    <span class="gradient-text">Asla Unutmayın</span>
-                </h1>
-                
-                <p class="hero-description">
-                    Yapay zeka destekli akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık asistanı ile tedavi uyumunuzu artırın.
-                </p>
-                
+                <div class="hero-badge"><span>🇹🇷</span><span>Türkiye'de Geliştirildi</span></div>
+                <h1>Sağlıklı Yaşam<br><span class="gradient-text">Dostunuz</span></h1>
+                <p class="hero-tagline">Bu işi tek başına yapmak zorunda değilsiniz.</p>
+                <p class="hero-description">Yapay zeka destekli akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık desteği ile tedavi uyumunuzu artırın.</p>
                 <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">%50</div>
-                        <div class="hero-stat-label">Tedavi uyumu artışı*</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">10K+</div>
-                        <div class="hero-stat-label">Aktif kullanıcı</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">4.8⭐</div>
-                        <div class="hero-stat-label">Play Store puanı</div>
-                    </div>
+                    <div class="hero-stat"><div class="hero-stat-value">%50</div><div class="hero-stat-label">Tedavi uyumu artışı*</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">🔒</div><div class="hero-stat-label">KVKK Uyumlu</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">📴</div><div class="hero-stat-label">Çevrimdışı Çalışır</div></div>
                 </div>
-                
                 <div class="hero-buttons">
-                    <a href="#download" class="btn-primary">
-                        <span>📱</span>
-                        <span>Ücretsiz İndir</span>
-                    </a>
-                    <a href="#features" class="btn-secondary">
-                        <span>▶️</span>
-                        <span>Nasıl Çalışır?</span>
-                    </a>
+                    <a href="#download" class="btn-primary"><span>📱</span><span>Ücretsiz İndir</span></a>
+                    <a href="#ekstra" class="btn-secondary"><span>💎</span><span>Dozi Ekstra</span></a>
                 </div>
             </div>
-            
             <div class="hero-visual">
                 <div class="phone-mockup">
                     <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <img src="images/PlayStore_1.png" alt="Dozi Uygulama Ekranı">
-                    </div>
+                    <div class="phone-screen"><img src="images/PlayStore_1.png" alt="Dozi Uygulama Ekranı"></div>
                 </div>
-                
-                <div class="floating-card floating-card-1">
-                    <div class="floating-card-icon">✓</div>
-                    <div class="floating-card-text">İlaç alındı!</div>
-                </div>
-                
-                <div class="floating-card floating-card-2">
-                    <div class="floating-card-icon">🔔</div>
-                    <div class="floating-card-text">Hatırlatma aktif</div>
-                </div>
-                
-                <div class="floating-card floating-card-3">
-                    <div class="floating-card-icon">👨‍👩‍👧</div>
-                    <div class="floating-card-text">Aile takibi</div>
-                </div>
+                <div class="floating-card floating-card-1"><div class="floating-card-icon">✓</div><div class="floating-card-text">İlaç alındı!</div></div>
+                <div class="floating-card floating-card-2"><div class="floating-card-icon">🔔</div><div class="floating-card-text">Hatırlatma aktif</div></div>
+                <div class="floating-card floating-card-3"><div class="floating-card-icon">👨‍👩‍👧</div><div class="floating-card-text">Aile takibi</div></div>
             </div>
         </div>
     </section>
-</body>
-</html>
+
+    <!-- Dozi Ekstra Section -->
+    <section class="ekstra" id="ekstra">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💎 Dozi Ekstra</span>
+                <h2>Bu İşi Tek Başına<br><span class="gradient-text">Yapmak Zorunda Değilsin</span></h2>
+                <p class="section-desc">Dozi Ekstra, sadece özellik değil, huzur satar.</p>
+            </div>
+            <div class="ekstra-grid">
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">👨‍👩‍👧</div>
+                    <h3>Aile Güvencesi</h3>
+                    <p>İlaç alındığında herkes rahatlar. Alınmadığında biri haberdar olur. <strong>Sormadan bilmenin huzuru.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">💬</div>
+                    <h3>İlişkiyi Koruyan Sessizlik</h3>
+                    <p>"İlacını içtin mi?" sorusu biter. Denetleme gider, <strong>güven gelir.</strong> İlişkiler için çok güçlü bir değer.</p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🧠</div>
+                    <h3>Zihinsel Yükten Kurtulma</h3>
+                    <p>"Aldım mı?" düşüncesi biter. Takip kafadan çıkar. <strong>Bu, doğrudan huzur satar.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">📦</div>
+                    <h3>Bitmeyen Kutu Huzuru</h3>
+                    <p>İlaç bitmesi sürpriz olmaz. Panik yok. Koşturma yok. <strong>Günlük hayatta çok gerçek bir değer.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🤫</div>
+                    <h3>Mahremiyet ve Zarafet</h3>
+                    <p>Bildirimler seni ifşa etmez. Sadece sen anlarsın. <strong>Sessiz ama güçlü.</strong></p>
+                </div>
+                <div class="ekstra-card">
+                    <div class="ekstra-icon">🤝</div>
+                    <h3>Özgür Ama Yalnız Değil</h3>
+                    <p>Kontrol sende kalır. Ama yük tek başına değildir. <strong>Bu denge Dozi Ekstra'yı farklı yapar.</strong></p>
+                </div>
+            </div>
+            <div class="ekstra-cta">
+                <a href="#pricing" class="btn-primary"><span>💎</span><span>Dozi Ekstra'yı Keşfet</span></a>
+            </div>
+        </div>
+    </section>
 
     <!-- Science Section -->
     <section class="science" id="science">
@@ -622,7 +246,6 @@
                 <h2>Neden İlaç Hatırlatma<br><span class="gradient-text">Bu Kadar Önemli?</span></h2>
                 <p class="section-desc">Dünya Sağlık Örgütü ve akademik araştırmalar, ilaç uyumunun tedavi başarısındaki kritik rolünü ortaya koyuyor.</p>
             </div>
-            
             <div class="science-grid">
                 <div class="science-card">
                     <div class="science-icon">📉</div>
@@ -631,7 +254,6 @@
                     <p>Kronik hastalığı olan hastaların yaklaşık yarısı ilaçlarını düzenli almıyor.</p>
                     <cite>Kaynak: WHO, 2003</cite>
                 </div>
-                
                 <div class="science-card highlight">
                     <div class="science-icon">💀</div>
                     <div class="science-stat">125.000</div>
@@ -639,7 +261,6 @@
                     <p>Sadece ABD'de ilaç uyumsuzluğu nedeniyle yılda 125.000 kişi hayatını kaybediyor.</p>
                     <cite>Kaynak: NCPIE, 2007</cite>
                 </div>
-                
                 <div class="science-card">
                     <div class="science-icon">💰</div>
                     <div class="science-stat">$300B</div>
@@ -647,7 +268,6 @@
                     <p>İlaç uyumsuzluğu ABD sağlık sistemine yılda 300 milyar dolar ek yük getiriyor.</p>
                     <cite>Kaynak: NEHI, 2009</cite>
                 </div>
-                
                 <div class="science-card">
                     <div class="science-icon">📱</div>
                     <div class="science-stat">+34%</div>
@@ -656,11 +276,8 @@
                     <cite>Kaynak: Cochrane Review, 2017</cite>
                 </div>
             </div>
-            
             <div class="science-quote">
-                <blockquote>
-                    "Tedaviye uyum artırılmadan, tıbbi teknolojideki ilerlemeler potansiyellerini gerçekleştiremeyecektir."
-                </blockquote>
+                <blockquote>"Tedaviye uyum artırılmadan, tıbbi teknolojideki ilerlemeler potansiyellerini gerçekleştiremeyecektir."</blockquote>
                 <cite>— Dünya Sağlık Örgütü (WHO)</cite>
             </div>
         </div>
@@ -674,99 +291,42 @@
                 <h2>Sağlığınız İçin<br><span class="gradient-text">Her Şey Bir Arada</span></h2>
                 <p class="section-desc">Dozi, ilaç takibini kolaylaştıran ve tedavi uyumunuzu artıran akıllı özelliklerle donatılmış.</p>
             </div>
-            
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Akıllı Hatırlatmalar</h3>
-                    <p>Kişiselleştirilmiş bildirimler ve eskalasyon sistemi ile hiçbir dozu kaçırmayın. Yanıt vermezseniz sevdiklerinize haber gider.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>Yapay Zeka Asistanı</h3>
-                    <p>Gemini destekli Dozi asistanı sorularınızı yanıtlar, ilaç etkileşimlerini kontrol eder ve kişisel öneriler sunar.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">👨‍👩‍👧</div>
-                    <h3>Badi Sistemi</h3>
-                    <p>Sevdiklerinizi "badi" olarak ekleyin. İlaç alınmadığında onlara bildirim gider, uzaktan destek olabilirler.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Detaylı İstatistikler</h3>
-                    <p>Tedavi uyumunuzu grafiklerle takip edin. Streak sistemi ile motivasyonunuzu yüksek tutun.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Konum Hatırlatma</h3>
-                    <p>Eve geldiğinizde veya eczaneye yaklaştığınızda otomatik hatırlatma alın.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Stok Takibi</h3>
-                    <p>İlaç stoğunuz azaldığında uyarı alın. Eczaneye gitmeden önce neye ihtiyacınız olduğunu bilin.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Gizlilik Öncelikli</h3>
-                    <p>Verileriniz AES-256 ile şifrelenir. KVKK ve GDPR uyumlu. Sağlık verileriniz sadece sizin.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📴</div>
-                    <h3>Çevrimdışı Çalışır</h3>
-                    <p>İnternet olmadan da hatırlatmalar çalışır. Bağlantı geldiğinde otomatik senkronize olur.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon">⏰</div><h3>Akıllı Hatırlatmalar</h3><p>Kişiselleştirilmiş bildirimler ve eskalasyon sistemi ile hiçbir dozu kaçırmayın.</p></div>
+                <div class="feature-card"><div class="feature-icon">🤖</div><h3>Yapay Zeka Dostu</h3><p>Gemini destekli Dozi sorularınızı yanıtlar ve kişisel öneriler sunar.</p></div>
+                <div class="feature-card"><div class="feature-icon">👨‍👩‍👧</div><h3>Badi Sistemi</h3><p>Sevdiklerinizi "badi" olarak ekleyin. İlaç alınmadığında onlara bildirim gider.</p></div>
+                <div class="feature-card"><div class="feature-icon">📊</div><h3>Detaylı İstatistikler</h3><p>Tedavi uyumunuzu grafiklerle takip edin. Streak sistemi ile motivasyonunuzu yüksek tutun.</p></div>
+                <div class="feature-card"><div class="feature-icon">📍</div><h3>Konum Hatırlatma</h3><p>Eve geldiğinizde veya eczaneye yaklaştığınızda otomatik hatırlatma alın.</p></div>
+                <div class="feature-card"><div class="feature-icon">📦</div><h3>Stok Takibi</h3><p>İlaç stoğunuz azaldığında uyarı alın. Eczaneye gitmeden önce neye ihtiyacınız olduğunu bilin.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔒</div><h3>Gizlilik Öncelikli</h3><p>Verileriniz AES-256 ile şifrelenir. KVKK ve GDPR uyumlu.</p></div>
+                <div class="feature-card"><div class="feature-icon">📴</div><h3>Çevrimdışı Çalışır</h3><p>İnternet olmadan da hatırlatmalar çalışır. Bağlantı geldiğinde otomatik senkronize olur.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">🎯 Nasıl Çalışır?</span>
-                <h2>3 Adımda<br><span class="gradient-text">Sağlıklı Yaşam</span></h2>
+                <span class="section-badge">👥 Kimler İçin?</span>
+                <h2>Dozi Kimlere<br><span class="gradient-text">Yardımcı Olur?</span></h2>
+                <p class="section-desc">Her yaştan, her durumdan insanlar için tasarlandı.</p>
             </div>
-            
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>İlaçlarınızı Ekleyin</h3>
-                        <p>Barkod okutarak veya manuel olarak ilaçlarınızı ekleyin. Doz, saat ve tekrar bilgilerini girin.</p>
-                    </div>
-                    <div class="step-image">
-                        <img src="dozi_noted.png" alt="İlaç Ekleme">
-                    </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">👴👵</div>
+                    <h3>Yaşlı Ebeveynler</h3>
+                    <p>Anne veya babanızın ilaçlarını uzaktan takip edin. "İlacını içtin mi?" diye sormak zorunda kalmayın. Badi sistemi ile ilaç alınmadığında otomatik bildirim alın.</p>
                 </div>
-                
-                <div class="step reverse">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Hatırlatma Alın</h3>
-                        <p>Belirlediğiniz saatlerde bildirim alın. Tam ekran alarm, sesli uyarı veya sessiz bildirim - size uygun olanı seçin.</p>
-                    </div>
-                    <div class="step-image">
-                        <img src="dozi_happy.png" alt="Hatırlatma">
-                    </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💊</div>
+                    <h3>Kronik Hastalar</h3>
+                    <p>Diyabet, tansiyon, tiroid gibi sürekli ilaç kullanımı gerektiren hastalıklarda düzenli takip hayati önem taşır. Dozi hiçbir dozu kaçırmamanızı sağlar.</p>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Takip Edin</h3>
-                        <p>İlaç alımlarınızı işaretleyin, istatistiklerinizi görün ve streak'inizi koruyun. Aileniz de takip edebilir.</p>
-                    </div>
-                    <div class="step-image">
-                        <img src="dozi_perfect.png" alt="Takip">
-                    </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏃</div>
+                    <h3>Yoğun Çalışanlar</h3>
+                    <p>İş hayatının koşuşturmasında ilaç saatlerini unutmak çok kolay. Akıllı hatırlatmalar ve konum bazlı bildirimlerle hiçbir dozu kaçırmayın.</p>
                 </div>
             </div>
         </div>
@@ -776,156 +336,61 @@
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">💎 Fiyatlandırma</span>
-                <h2>Size Uygun<br><span class="gradient-text">Planı Seçin</span></h2>
-                <p class="section-desc">Temel özellikler ücretsiz. Premium ile tüm potansiyeli açığa çıkarın.</p>
+                <span class="section-badge">💰 Fiyatlandırma</span>
+                <h2>Basit ve<br><span class="gradient-text">Şeffaf Fiyatlar</span></h2>
+                <p class="section-desc">İhtiyacınıza göre seçin. Gizli ücret yok.</p>
             </div>
-            
             <div class="pricing-grid">
-                <!-- Free Plan -->
                 <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Ücretsiz</h3>
-                        <div class="pricing-price">
-                            <span class="price">₺0</span>
-                            <span class="period">/sonsuza kadar</span>
-                        </div>
+                    <div class="pricing-icon">🆓</div>
+                    <h3>Ücretsiz</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">₺0</span>
+                        <span class="pricing-period">/ sonsuza dek</span>
                     </div>
                     <ul class="pricing-features">
-                        <li class="included"><span>✓</span> 5 ilaç ekleme</li>
-                        <li class="included"><span>✓</span> Temel hatırlatmalar</li>
-                        <li class="included"><span>✓</span> Doz takibi</li>
-                        <li class="included"><span>✓</span> Temel istatistikler</li>
-                        <li class="excluded"><span>✗</span> Badi sistemi</li>
-                        <li class="excluded"><span>✗</span> Yapay zeka asistanı</li>
-                        <li class="excluded"><span>✗</span> Konum hatırlatma</li>
-                        <li class="excluded"><span>✗</span> Tam ekran alarm</li>
+                        <li>5 ilaç takibi</li>
+                        <li>Temel hatırlatmalar</li>
+                        <li>İstatistikler</li>
+                        <li>Çevrimdışı çalışma</li>
+                        <li>KVKK uyumlu güvenlik</li>
                     </ul>
-                    <a href="#download" class="pricing-btn">Ücretsiz Başla</a>
+                    <a href="#download" class="pricing-btn">Hemen Başla</a>
                 </div>
-                
-                <!-- Ekstra Plan -->
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">EN AVANTAJLI</div>
-                    <div class="pricing-header">
-                        <h3>Ekstra</h3>
-                        <div class="pricing-price">
-                            <span class="price-old">₺1.800</span>
-                            <span class="price">₺1.490</span>
-                            <span class="period">/yıl</span>
-                        </div>
-                        <div class="pricing-savings">%17 tasarruf • 2 ay bedava!</div>
+                <div class="pricing-card popular">
+                    <span class="pricing-badge">En Popüler</span>
+                    <div class="pricing-icon">💎</div>
+                    <h3>Dozi Ekstra</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">₺1.490</span>
+                        <span class="pricing-period">/ yıl</span>
                     </div>
                     <ul class="pricing-features">
-                        <li class="included"><span>✓</span> Sınırsız ilaç</li>
-                        <li class="included"><span>✓</span> Akıllı hatırlatmalar</li>
-                        <li class="included"><span>✓</span> 3 kişiye kadar badi</li>
-                        <li class="included"><span>✓</span> Yapay zeka asistanı</li>
-                        <li class="included"><span>✓</span> Konum hatırlatma</li>
-                        <li class="included"><span>✓</span> Tam ekran alarm</li>
-                        <li class="included"><span>✓</span> Detaylı istatistikler</li>
-                        <li class="included"><span>✓</span> Reklamsız deneyim</li>
+                        <li>Sınırsız ilaç takibi</li>
+                        <li>3 Badi (aile takibi)</li>
+                        <li>Yapay zeka asistanı</li>
+                        <li>Tam ekran alarmlar</li>
+                        <li>Konum hatırlatmaları</li>
+                        <li>Stok takibi</li>
+                        <li>Reklamsız deneyim</li>
                     </ul>
-                    <a href="#download" class="pricing-btn primary">Ekstra'ya Geç</a>
+                    <a href="#download" class="pricing-btn">Ekstra'ya Geç</a>
                 </div>
-                
-                <!-- Aile Plan -->
                 <div class="pricing-card">
-                    <div class="pricing-badge purple">AİLE PAKETİ</div>
-                    <div class="pricing-header">
-                        <h3>Aile</h3>
-                        <div class="pricing-price">
-                            <span class="price-old">₺5.388</span>
-                            <span class="price">₺3.999</span>
-                            <span class="period">/yıl</span>
-                        </div>
-                        <div class="pricing-savings">%26 tasarruf • 3 ay bedava!</div>
+                    <div class="pricing-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Aile Planı</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">₺3.999</span>
+                        <span class="pricing-period">/ yıl</span>
                     </div>
                     <ul class="pricing-features">
-                        <li class="included"><span>✓</span> Tüm Ekstra özellikleri</li>
-                        <li class="included"><span>✓</span> 4 kişiye kadar hesap</li>
-                        <li class="included"><span>✓</span> Aile yönetim paneli</li>
-                        <li class="included"><span>✓</span> Ortak takip</li>
-                        <li class="included"><span>✓</span> Öncelikli destek</li>
-                        <li class="included"><span>✓</span> Aile istatistikleri</li>
-                        <li class="included"><span>✓</span> Paylaşımlı hatırlatmalar</li>
-                        <li class="included"><span>✓</span> Kişi başı ₺1.000!</li>
+                        <li>4 kişilik Ekstra hesabı</li>
+                        <li>Tüm Ekstra özellikleri</li>
+                        <li>Aile içi takip</li>
+                        <li>Ortak ilaç yönetimi</li>
+                        <li>Öncelikli destek</li>
                     </ul>
-                    <a href="#download" class="pricing-btn">Aile Paketi Al</a>
-                </div>
-            </div>
-            
-            <p class="pricing-note">* Tüm fiyatlar KDV dahildir. İstediğiniz zaman iptal edebilirsiniz.</p>
-        </div>
-    </section>
-
-    <!-- Use Cases / Who Is It For -->
-    <section class="use-cases" id="use-cases">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">� Kilmler İçin?</span>
-                <h2>Dozi Size<br><span class="gradient-text">Nasıl Yardımcı Olur?</span></h2>
-            </div>
-            
-            <div class="use-cases-grid">
-                <div class="use-case-card">
-                    <div class="use-case-icon">👴👵</div>
-                    <h3>Yaşlı Ebeveynleriniz İçin</h3>
-                    <p>Uzakta yaşayan anne-babanızın ilaçlarını takip edin. <strong>Badi sistemi</strong> sayesinde ilaç alınmadığında size bildirim gelir. Onlar için endişelenmeyin.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> Uzaktan takip
-                        <span>✓</span> Eskalasyon bildirimleri
-                    </div>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">💊</div>
-                    <h3>Kronik Hastalar İçin</h3>
-                    <p>Diyabet, tansiyon, tiroid... Günde birden fazla ilaç kullanıyorsanız, hangisini ne zaman alacağınızı karıştırmak kolay. Dozi her şeyi organize eder.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> Sınırsız ilaç
-                        <span>✓</span> Detaylı istatistikler
-                    </div>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">🤱</div>
-                    <h3>Yeni Ebeveynler İçin</h3>
-                    <p>Bebeğinizin vitamin ve ilaç saatlerini takip etmek zor olabilir. Uykusuz gecelerde Dozi sizin yerinize hatırlar.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> Çoklu profil
-                        <span>✓</span> Sesli hatırlatma
-                    </div>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">🏃</div>
-                    <h3>Yoğun Çalışanlar İçin</h3>
-                    <p>Toplantıdan toplantıya koşarken ilaç saatini kaçırmak çok kolay. <strong>Konum hatırlatma</strong> ile eve geldiğinizde otomatik uyarı alın.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> Konum bazlı hatırlatma
-                        <span>✓</span> Tam ekran alarm
-                    </div>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">🧠</div>
-                    <h3>Unutkanlık Yaşayanlar İçin</h3>
-                    <p>"Bugün ilacımı aldım mı?" sorusuna son verin. Dozi her alımı kaydeder, streak sistemi ile motivasyonunuzu yüksek tutar.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> Alım geçmişi
-                        <span>✓</span> Streak & rozetler
-                    </div>
-                </div>
-                
-                <div class="use-case-card">
-                    <div class="use-case-icon">👨‍👩‍👧‍👦</div>
-                    <h3>Tüm Aile İçin</h3>
-                    <p>Eşinizin, çocuklarınızın, anne-babanızın ilaçlarını tek uygulamadan yönetin. <strong>Aile paketi</strong> ile 4 kişiye kadar kullanım.</p>
-                    <div class="use-case-feature">
-                        <span>✓</span> 4 kişilik aile paketi
-                        <span>✓</span> Ortak yönetim
-                    </div>
+                    <a href="#download" class="pricing-btn">Aile Planı Al</a>
                 </div>
             </div>
         </div>
@@ -935,69 +400,29 @@
     <section class="faq" id="faq">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">❓ Sık Sorulan Sorular</span>
-                <h2>Merak Ettikleriniz</h2>
+                <span class="section-badge">❓ SSS</span>
+                <h2>Sıkça Sorulan<br><span class="gradient-text">Sorular</span></h2>
             </div>
-            
-            <div class="faq-grid">
+            <div class="faq-list">
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>Dozi gerçekten ücretsiz mi?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Evet! Temel özellikler (5 ilaç, hatırlatmalar, doz takibi) tamamen ücretsiz ve sonsuza kadar öyle kalacak. Premium özellikler için Ekstra veya Aile planına geçebilirsiniz.</p>
-                    </div>
+                    <button class="faq-question"><span>Dozi ücretsiz mi?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Evet! Dozi'nin temel özellikleri tamamen ücretsiz. 5 ilaca kadar takip, hatırlatmalar ve istatistikler ücretsiz planda mevcut. Daha fazla özellik için Dozi Ekstra'ya geçebilirsiniz.</p></div>
                 </div>
-                
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>Verilerim güvende mi?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Kesinlikle! Tüm verileriniz AES-256 şifreleme ile korunur. KVKK ve GDPR uyumluyuz. Sağlık verileriniz sadece sizin erişiminizde olup, açık rızanız olmadan hiçbir üçüncü tarafla paylaşılmaz.</p>
-                    </div>
+                    <button class="faq-question"><span>Verilerim güvende mi?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Kesinlikle. Tüm sağlık verileriniz AES-256 şifreleme ile korunur. KVKK ve GDPR uyumlu altyapımız ile verileriniz sadece sizin kontrolünüzde. Verilerinizi asla üçüncü taraflarla paylaşmıyoruz.</p></div>
                 </div>
-                
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>İnternet olmadan çalışır mı?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Evet! Dozi offline-first mimarisiyle tasarlandı. Hatırlatmalar ve temel özellikler internet olmadan da çalışır. Bağlantı geldiğinde otomatik senkronize olur.</p>
-                    </div>
+                    <button class="faq-question"><span>İnternet olmadan çalışır mı?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Evet! Dozi offline-first mimarisi ile tasarlandı. Hatırlatmalar internet olmadan da çalışır. Bağlantı geldiğinde verileriniz otomatik olarak senkronize olur.</p></div>
                 </div>
-                
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>Badi sistemi nasıl çalışır?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sevdiklerinizi "badi" olarak ekleyebilirsiniz. İlaç saatinizde yanıt vermezseniz, eskalasyon sistemi devreye girer ve badilerinize bildirim gönderilir. Böylece uzaktan destek alabilirsiniz.</p>
-                    </div>
+                    <button class="faq-question"><span>Badi sistemi nasıl çalışır?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Badi, güvendiğiniz kişileri (aile, arkadaş) uygulamaya eklemenizi sağlar. İlacınızı belirlenen sürede almazsanız, badi'lerinize otomatik bildirim gider. Böylece sevdikleriniz sizi takip edebilir.</p></div>
                 </div>
-                
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>iOS versiyonu var mı?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Şu anda sadece Android'de kullanılabilir (Android 7.0+). iOS versiyonu 2026'da yayınlanacak. Haberdar olmak için bültenimize kayıt olabilirsiniz.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span>Aboneliği nasıl iptal ederim?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Google Play Store > Abonelikler bölümünden istediğiniz zaman iptal edebilirsiniz. İptal etseniz bile dönem sonuna kadar premium özellikler aktif kalır.</p>
-                    </div>
+                    <button class="faq-question"><span>Aboneliği iptal edebilir miyim?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Evet, istediğiniz zaman Google Play üzerinden aboneliğinizi iptal edebilirsiniz. İptal sonrası dönem sonuna kadar Ekstra özelliklerini kullanmaya devam edersiniz.</p></div>
                 </div>
             </div>
         </div>
@@ -1006,37 +431,15 @@
     <!-- Download Section -->
     <section class="download" id="download">
         <div class="container">
-            <div class="download-content">
-                <div class="download-text">
-                    <h2>Sağlıklı Yaşama<br><span class="gradient-text">Bugün Başlayın</span></h2>
-                    <p>10.000+ kişi Dozi ile ilaçlarını düzenli alıyor. Siz de katılın!</p>
-                    
-                    <div class="download-buttons">
-                        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="store-btn" target="_blank">
-                            <img src="images/google-play-badge.png" alt="Google Play'den İndir">
-                        </a>
-                    </div>
-                    
-                    <div class="download-stats">
-                        <div class="download-stat">
-                            <span class="stat-icon">⭐</span>
-                            <span>4.8 Puan</span>
-                        </div>
-                        <div class="download-stat">
-                            <span class="stat-icon">📥</span>
-                            <span>10K+ İndirme</span>
-                        </div>
-                        <div class="download-stat">
-                            <span class="stat-icon">🔒</span>
-                            <span>KVKK Uyumlu</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="download-visual">
-                    <img src="dozi_happy.png" alt="Dozi Maskot" class="download-mascot">
-                </div>
+            <h2>Sağlıklı Yaşam <span class="gradient-text">Dostunuzu</span> İndirin</h2>
+            <p>Bu işi tek başına yapmak zorunda değilsiniz.</p>
+            <div class="download-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="store-btn" target="_blank">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                    <div class="store-btn-text"><span class="store-btn-small">İNDİR</span><span class="store-btn-large">Google Play</span></div>
+                </a>
             </div>
+            <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.6;">* iOS versiyonu yakında</p>
         </div>
     </section>
 
@@ -1045,896 +448,203 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <img src="dozi_brand.png" alt="Dozi">
-                        <span>Dozi</span>
-                    </a>
-                    <p>Akıllı ilaç takip asistanınız. Sağlığınız kontrol altında.</p>
-                    <p class="footer-copyright">© 2025 Bardino Technology<br>Tüm hakları saklıdır.</p>
+                    <img src="dozi_brand.png" alt="Dozi">
+                    <p>Dozi, ilaç takibini kolaylaştıran ve tedavi uyumunuzu artıran yapay zeka destekli sağlıklı yaşam dostunuzdur. Türkiye'de geliştirildi.</p>
                 </div>
-                
                 <div class="footer-links">
-                    <h4>Hızlı Bağlantılar</h4>
+                    <h4>Ürün</h4>
                     <ul>
                         <li><a href="#features">Özellikler</a></li>
+                        <li><a href="#ekstra">Dozi Ekstra</a></li>
                         <li><a href="#pricing">Fiyatlar</a></li>
                         <li><a href="#faq">SSS</a></li>
-                        <li><a href="#download">İndir</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-links">
                     <h4>Yasal</h4>
                     <ul>
-                        <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
-                        <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
                         <li><a href="legal/kvkk.html">KVKK Aydınlatma</a></li>
                         <li><a href="legal/kvkk-basvuru.html">KVKK Başvuru</a></li>
-                        <li><a href="account-deletion.html">Hesap Silme</a></li>
+                        <li><a href="legal/gdpr.html">GDPR Policy</a></li>
+                        <li><a href="legal/gdpr-request.html">GDPR Request</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-links">
                     <h4>İletişim</h4>
                     <ul>
-                        <li><a href="mailto:info@dozi.app">📧 info@dozi.app</a></li>
-                        <li><a href="https://www.dozi.app">🌐 www.dozi.app</a></li>
+                        <li><a href="mailto:info@dozi.app">info@dozi.app</a></li>
+                        <li><a href="mailto:destek@dozi.app">destek@dozi.app</a></li>
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>⚠️ Dozi bir hatırlatma uygulamasıdır ve tıbbi tavsiye yerine geçmez. Sağlık kararlarınız için her zaman doktorunuza danışın.</p>
+                <p class="footer-copyright">© 2024 Bardino Technology. Tüm hakları saklıdır.</p>
+                <div class="footer-social">
+                    <a href="https://twitter.com/doziapp" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com/doziapp" target="_blank" title="Instagram">📷</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Additional Styles -->
-    <style>
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-badge {
-            display: inline-block;
-            background: rgba(64, 224, 208, 0.1);
-            color: var(--dozi-turquoise);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: var(--text-primary);
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-        
-        .section-desc {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Science Section */
-        .science {
-            padding: 6rem 0;
-            background: white;
-        }
-        
-        .science-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .science-card {
-            background: var(--bg-light);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .science-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .science-card.highlight {
-            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
-        }
-        
-        .science-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .science-stat {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .science-card h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-        
-        .science-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .science-card cite {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-style: normal;
-        }
-        
-        .science-quote {
-            background: var(--gradient-primary);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            color: white;
-        }
-        
-        .science-quote blockquote {
-            font-size: 1.25rem;
-            font-weight: 500;
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .science-quote cite {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--bg-light);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--dozi-turquoise);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-        
-        .feature-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        /* How It Works */
-        .how-it-works {
-            padding: 6rem 0;
-            background: white;
-        }
-        
-        .steps-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-        }
-        
-        .step {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .step.reverse {
-            direction: rtl;
-        }
-        
-        .step.reverse > * {
-            direction: ltr;
-        }
-        
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-            flex-shrink: 0;
-        }
-        
-        .step-content h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-        
-        .step-content p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        .step-image {
-            width: 150px;
-            height: 150px;
-            flex-shrink: 0;
-        }
-        
-        .step-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 0;
-            background: linear-gradient(180deg, var(--bg-light) 0%, white 100%);
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 24px;
-            padding: 2.5rem;
-            position: relative;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-        
-        .pricing-card.featured {
-            border-color: var(--dozi-turquoise);
-            transform: scale(1.05);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-        
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dozi-turquoise);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        
-        .pricing-badge.purple {
-            background: var(--dozi-purple);
-        }
-        
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-header h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-price {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 0.25rem;
-            flex-wrap: wrap;
-        }
-        
-        .price-old {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-        
-        .period {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-        
-        .pricing-savings {
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--success);
-            font-weight: 600;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            font-size: 0.95rem;
-        }
-        
-        .pricing-features li.included {
-            color: var(--text-primary);
-        }
-        
-        .pricing-features li.included span {
-            color: var(--success);
-            font-weight: 700;
-        }
-        
-        .pricing-features li.excluded {
-            color: var(--text-muted);
-        }
-        
-        .pricing-features li.excluded span {
-            color: var(--text-muted);
-        }
-        
-        .pricing-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
-            color: var(--text-primary);
-            border: 2px solid transparent;
-        }
-        
-        .pricing-btn:hover {
-            border-color: var(--dozi-turquoise);
-            color: var(--dozi-turquoise);
-        }
-        
-        .pricing-btn.primary {
-            background: var(--gradient-primary);
-            color: white;
-        }
-        
-        .pricing-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .pricing-note {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Use Cases Section */
-        .use-cases {
-            padding: 6rem 0;
-            background: var(--dozi-dark);
-        }
-        
-        .use-cases .section-header h2 {
-            color: white;
-        }
-        
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .use-case-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .use-case-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--dozi-turquoise);
-            transform: translateY(-5px);
-        }
-        
-        .use-case-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .use-case-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.75rem;
-        }
-        
-        .use-case-card p {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-        
-        .use-case-card strong {
-            color: var(--dozi-turquoise);
-        }
-        
-        .use-case-feature {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-        }
-        
-        .use-case-feature span {
-            color: var(--success);
-            margin-right: 0.25rem;
-        }
-        
-        /* FAQ */
-        .faq {
-            padding: 6rem 0;
-            background: white;
-        }
-        
-        .faq-grid {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .faq-question {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            transition: color 0.3s ease;
-        }
-        
-        .faq-question:hover {
-            color: var(--dozi-turquoise);
-        }
-        
-        .faq-icon {
-            font-size: 1.5rem;
-            color: var(--dozi-turquoise);
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-        
-        .faq-answer p {
-            padding-bottom: 1.5rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Download Section */
-        .download {
-            padding: 6rem 0;
-            background: var(--gradient-primary);
-        }
-        
-        .download-content {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .download-text h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .download-text p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 2rem;
-        }
-        
-        .download-buttons {
-            margin-bottom: 2rem;
-        }
-        
-        .store-btn img {
-            height: 60px;
-            transition: transform 0.3s ease;
-        }
-        
-        .store-btn:hover img {
-            transform: scale(1.05);
-        }
-        
-        .download-stats {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .download-stat {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            font-weight: 500;
-        }
-        
-        .stat-icon {
-            font-size: 1.25rem;
-        }
-        
-        .download-mascot {
-            width: 250px;
-            height: auto;
-            animation: bounce 2s ease-in-out infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--dozi-darker);
-            padding: 4rem 0 2rem;
-            color: white;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo img {
-            height: 40px;
-        }
-        
-        .footer-logo span {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-        }
-        
-        .footer-brand p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-copyright {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.5);
-        }
-        
-        .footer-links h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--dozi-turquoise);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            text-align: center;
-        }
-        
-        .footer-bottom p {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-content {
-                order: 1;
-            }
-            
-            .hero-visual {
-                order: 0;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .phone-mockup {
-                width: 260px;
-                height: 530px;
-            }
-            
-            .floating-card {
-                display: none;
-            }
-            
-            .step {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            
-            .step.reverse {
-                direction: ltr;
-            }
-            
-            .step-number {
-                margin: 0 auto;
-            }
-            
-            .step-image {
-                margin: 0 auto;
-            }
-            
-            .download-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .download-stats {
-                justify-content: center;
-            }
-            
-            .download-visual {
-                display: none;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 6rem 1rem 3rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-description {
-                font-size: 1rem;
-            }
-            
-            .pricing-card.featured {
-                transform: none;
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-    </style>
-    
-    <!-- JavaScript -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+        
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenuBtn.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
         });
         
-        // FAQ Toggle
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            faqItem.classList.toggle('active');
-        }
-        
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
             });
         });
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.feature-card, .science-card, .testimonial-card, .pricing-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-        
-        // Add visible class styles
-        const style = document.createElement('style');
-        style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
+
+<style>
+    /* SECTIONS COMMON */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-badge { display: inline-block; background: rgba(64, 224, 208, 0.1); color: var(--dozi-turquoise-dark); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; }
+    .section-desc { font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    
+    /* EKSTRA */
+    .ekstra { background: var(--gradient-hero); color: white; }
+    .ekstra .section-badge { background: rgba(255,255,255,0.1); color: var(--dozi-turquoise); }
+    .ekstra .section-header h2 { color: white; }
+    .ekstra .section-desc { color: rgba(255,255,255,0.7); }
+    .ekstra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .ekstra-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+    .ekstra-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); border-color: var(--dozi-turquoise); }
+    .ekstra-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .ekstra-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: white; }
+    .ekstra-card p { color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .ekstra-card strong { color: var(--dozi-turquoise); }
+    .ekstra-cta { text-align: center; margin-top: 3rem; }
+    @media (max-width: 968px) { .ekstra-grid { grid-template-columns: 1fr; } }
+    
+    /* SCIENCE */
+    .science { background: var(--bg-light); }
+    .science-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .science-card { background: white; border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
+    .science-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .science-card.highlight { background: var(--gradient-hero); color: white; }
+    .science-card.highlight h3, .science-card.highlight p { color: rgba(255,255,255,0.9); }
+    .science-card.highlight .science-stat { color: var(--dozi-coral); }
+    .science-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .science-stat { font-size: 2.5rem; font-weight: 800; color: var(--dozi-turquoise-dark); margin-bottom: 0.5rem; }
+    .science-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .science-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .science-card cite { font-size: 0.75rem; color: var(--text-muted); font-style: normal; }
+    .science-quote { margin-top: 3rem; text-align: center; padding: 2rem; background: white; border-radius: 20px; border-left: 4px solid var(--dozi-turquoise); }
+    .science-quote blockquote { font-size: 1.25rem; font-style: italic; color: var(--text-primary); margin-bottom: 1rem; }
+    .science-quote cite { color: var(--text-secondary); font-style: normal; }
+    @media (max-width: 968px) { .science-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .science-grid { grid-template-columns: 1fr; } }
+    
+    /* FEATURES */
+    .features { background: white; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .feature-card { background: var(--bg-light); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s ease; border: 1px solid transparent; }
+    .feature-card:hover { transform: translateY(-5px); border-color: var(--dozi-turquoise); box-shadow: var(--shadow-lg); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.875rem; color: var(--text-secondary); }
+    @media (max-width: 968px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    
+    /* USE CASES */
+    .use-cases { background: var(--bg-light); }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .use-case-card { background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
+    .use-case-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .use-case-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+    .use-case-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .use-case-card p { color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .use-cases-grid { grid-template-columns: 1fr; } }
+</style>
+
+<style>
+    /* PRICING */
+    .pricing { background: white; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+    .pricing-card { background: var(--bg-light); border-radius: 24px; padding: 2.5rem; text-align: center; transition: all 0.3s ease; border: 2px solid transparent; position: relative; }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .pricing-card.popular { background: var(--gradient-hero); color: white; border-color: var(--dozi-turquoise); transform: scale(1.05); }
+    .pricing-card.popular:hover { transform: scale(1.05) translateY(-5px); }
+    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--dozi-turquoise); color: var(--dozi-dark); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .pricing-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .pricing-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pricing-card.popular h3 { color: white; }
+    .pricing-price { margin: 1.5rem 0; }
+    .pricing-amount { font-size: 3rem; font-weight: 800; }
+    .pricing-card.popular .pricing-amount { color: var(--dozi-turquoise); }
+    .pricing-period { font-size: 0.875rem; color: var(--text-muted); }
+    .pricing-card.popular .pricing-period { color: rgba(255,255,255,0.6); }
+    .pricing-features { list-style: none; margin: 1.5rem 0; text-align: left; }
+    .pricing-features li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+    .pricing-features li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .pricing-card.popular .pricing-features li { color: rgba(255,255,255,0.9); }
+    .pricing-btn { display: block; width: 100%; padding: 1rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; margin-top: 1.5rem; }
+    .pricing-card .pricing-btn { background: var(--gradient-primary); color: white; }
+    .pricing-card.popular .pricing-btn { background: white; color: var(--dozi-dark); }
+    .pricing-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    @media (max-width: 968px) { .pricing-grid { grid-template-columns: 1fr; max-width: 400px; } .pricing-card.popular { transform: none; } .pricing-card.popular:hover { transform: translateY(-5px); } }
+    
+    /* FAQ */
+    .faq { background: var(--bg-light); }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: white; border-radius: 16px; margin-bottom: 1rem; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .faq-question { width: 100%; padding: 1.5rem; background: none; border: none; text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+    .faq-question:hover { background: var(--bg-light); }
+    .faq-icon { font-size: 1.5rem; color: var(--dozi-turquoise); transition: transform 0.3s ease; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.active .faq-answer { max-height: 500px; }
+    .faq-answer p { padding: 0 1.5rem 1.5rem; color: var(--text-secondary); line-height: 1.7; }
+    
+    /* DOWNLOAD */
+    .download { background: var(--gradient-hero); color: white; text-align: center; }
+    .download h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: white; }
+    .download p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+    .download-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: white; color: var(--text-primary); padding: 1rem 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease; }
+    .store-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+    .store-btn-text { text-align: left; }
+    .store-btn-small { font-size: 0.75rem; color: var(--text-muted); }
+    .store-btn-large { font-size: 1.125rem; font-weight: 600; }
+    
+    /* FOOTER */
+    .footer { background: var(--dozi-darker); color: white; padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand img { height: 50px; margin-bottom: 1rem; }
+    .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--dozi-turquoise); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copyright { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; }
+    .footer-social a:hover { background: var(--dozi-turquoise); transform: translateY(-3px); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
