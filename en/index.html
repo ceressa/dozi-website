@@ -341,12 +341,12 @@
                 <p class="section-desc">Choose what fits your needs. No hidden fees.</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card" id="pricing-free">
                     <div class="pricing-icon">🆓</div>
                     <h3>Free</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">$0</span>
-                        <span class="pricing-period">/ forever</span>
+                        <span class="pricing-amount" id="price-free">...</span>
+                        <span class="pricing-period" id="period-free"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>5 medication tracking</li>
@@ -357,13 +357,13 @@
                     </ul>
                     <a href="#download" class="pricing-btn">Get Started</a>
                 </div>
-                <div class="pricing-card popular">
-                    <span class="pricing-badge">Most Popular</span>
+                <div class="pricing-card popular" id="pricing-ekstra">
+                    <span class="pricing-badge" id="badge-ekstra">Most Popular</span>
                     <div class="pricing-icon">💎</div>
                     <h3>Dozi Ekstra</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">$9.99</span>
-                        <span class="pricing-period">/ year</span>
+                        <span class="pricing-amount" id="price-ekstra">...</span>
+                        <span class="pricing-period" id="period-ekstra"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>Unlimited medications</li>
@@ -376,12 +376,12 @@
                     </ul>
                     <a href="#download" class="pricing-btn">Go Ekstra</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card" id="pricing-family">
                     <div class="pricing-icon">👨‍👩‍👧‍👦</div>
                     <h3>Family Plan</h3>
                     <div class="pricing-price">
-                        <span class="pricing-amount">$24.99</span>
-                        <span class="pricing-period">/ year</span>
+                        <span class="pricing-amount" id="price-family">...</span>
+                        <span class="pricing-period" id="period-family"></span>
                     </div>
                     <ul class="pricing-features">
                         <li>4 Ekstra accounts</li>
@@ -510,14 +510,45 @@
                 if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
             });
         });
+
+        // Load pricing from Remote Config
+        async function loadPricing() {
+            try {
+                const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/getWebsitePricing');
+                const data = await response.json();
+                
+                if (data.success && data.pricing) {
+                    const p = data.pricing;
+                    
+                    // Free plan
+                    document.getElementById('price-free').textContent = p.free.price_en;
+                    document.getElementById('period-free').textContent = '/ ' + p.free.period_en;
+                    
+                    // Ekstra plan
+                    document.getElementById('price-ekstra').textContent = p.ekstra.price_en;
+                    document.getElementById('period-ekstra').textContent = '/ ' + p.ekstra.period_en;
+                    
+                    // Update badge if discount
+                    if (p.ekstra.discount_percent > 0) {
+                        document.getElementById('badge-ekstra').textContent = p.ekstra.discount_percent + '% Off';
+                    }
+                    
+                    // Family plan
+                    document.getElementById('price-family').textContent = p.family.price_en;
+                    document.getElementById('period-family').textContent = '/ ' + p.family.period_en;
+                    
+                    console.log('✅ Pricing loaded', data.fallback ? '(fallback)' : '');
+                }
+            } catch (error) {
+                console.log('⚠️ Pricing API error, using default prices');
+            }
+        }
+        
+        // Load pricing on page load
+        loadPricing();
     </script>
 </body>
 </html>
-
-<style>
-    /* SECTIONS COMMON */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 6rem 0; }
     .section-header { text-align: center; margin-bottom: 4rem; }
     .section-badge { display: inline-block; background: rgba(64, 224, 208, 0.1); color: var(--dozi-turquoise-dark); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
     .section-header h2 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; }
