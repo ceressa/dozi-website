@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dozi - GDPR Data Subject Request Form">
+    <meta name="author" content="Bardino Technology">
+    <title>GDPR Request Form - Dozi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-pink: #FF6B9D;
+            --dozi-dark: #0A1628;
+            --dozi-gray: #64748B;
+            --dozi-light-blue: #E8F4F8;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            color: var(--dozi-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
+        }
+        header {
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #1a2744 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .logo { display: inline-block; margin-bottom: 1rem; }
+        .logo img { height: 60px; }
+        main { max-width: 800px; margin: 3rem auto; padding: 0 2rem 3rem; }
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dozi-dark);
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--dozi-turquoise);
+        }
+        h2:first-child { margin-top: 0; }
+        p { margin-bottom: 1.2rem; color: var(--dozi-gray); }
+        ul { margin: 1rem 0 1.5rem 1.5rem; color: var(--dozi-gray); }
+        li { margin-bottom: 0.5rem; }
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid;
+        }
+        .alert-info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+        .alert-success { background: #d4edda; border-color: #28a745; color: #155724; }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--dozi-dark);
+            margin-bottom: 0.5rem;
+        }
+        label .required {
+            color: #dc3545;
+            margin-left: 0.25rem;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--dozi-turquoise);
+            box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.1);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.25rem;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(64, 224, 208, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 1rem;
+        }
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        footer {
+            background: linear-gradient(135deg, var(--dozi-dark) 0%, #0f1f3d 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        footer p { color: rgba(255, 255, 255, 0.8); margin-bottom: 0.5rem; }
+        footer a { color: var(--dozi-turquoise); text-decoration: none; transition: all 0.3s; }
+        footer a:hover { color: var(--dozi-pink); }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .content-card { padding: 2rem 1.5rem; }
+            .form-actions { flex-direction: column; }
+            .btn-secondary { margin-left: 0; }
+        }
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .success-message h3 {
+            color: #155724;
+            margin-bottom: 1rem;
+        }
+        .success-message p {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        <img src="dozi_brand.png" alt="Dozi Logo">
+    </a>
+    <h1>GDPR Request Form</h1>
+    <p>Data Subject Access Request</p>
+</header>
+
+<main>
+<div class="content-card">
+    <div class="alert-box alert-info">
+        <h4>ℹ️ About This Form</h4>
+        <p>Under the General Data Protection Regulation (GDPR), you have the right to access, rectify, erase, restrict, port, and object to the processing of your personal data. Use this form to exercise your rights. We will respond to your request within one month.</p>
+    </div>
+
+    <form id="gdprForm">
+        <h2>Personal Information</h2>
+        
+        <div class="form-group">
+            <label for="fullName">Full Name <span class="required">*</span></label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country of Residence</label>
+            <input type="text" id="country" name="country">
+        </div>
+
+        <h2>Request Type</h2>
+        
+        <div class="form-group">
+            <label>Your Rights <span class="required">*</span></label>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right1" name="rights" value="access">
+                <label for="right1"><strong>Right of Access (Art. 15):</strong> I want to know what personal data you hold about me</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right2" name="rights" value="rectification">
+                <label for="right2"><strong>Right to Rectification (Art. 16):</strong> I want to correct inaccurate or incomplete data</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right3" name="rights" value="erasure">
+                <label for="right3"><strong>Right to Erasure (Art. 17):</strong> I want my personal data to be deleted</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right4" name="rights" value="restriction">
+                <label for="right4"><strong>Right to Restriction (Art. 18):</strong> I want to restrict the processing of my data</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right5" name="rights" value="portability">
+                <label for="right5"><strong>Right to Data Portability (Art. 20):</strong> I want to receive my data in a machine-readable format</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right6" name="rights" value="object">
+                <label for="right6"><strong>Right to Object (Art. 21):</strong> I object to the processing of my personal data</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right7" name="rights" value="withdraw_consent">
+                <label for="right7"><strong>Withdraw Consent:</strong> I want to withdraw my consent for data processing</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="right8" name="rights" value="complaint">
+                <label for="right8"><strong>Lodge a Complaint:</strong> I want information about filing a complaint with a supervisory authority</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="details">Request Details <span class="required">*</span></label>
+            <textarea id="details" name="details" required placeholder="Please provide detailed information about your request..."></textarea>
+        </div>
+
+        <h2>Identity Verification</h2>
+        
+        <div class="alert-box alert-info">
+            <p><strong>Important:</strong> To verify your identity and protect your data, please send a copy of your ID document (passport or national ID) to <strong>privacy@dozi.app</strong> along with this request. You may redact sensitive information except your name and photo.</p>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">
+                <strong>I confirm that the information provided is accurate, I consent to the processing of my personal data for the purpose of handling this request, and I have read the <a href="gdpr.html" target="_blank">Privacy Policy</a>. <span class="required">*</span></strong>
+            </label>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Submit Request</button>
+            <button type="reset" class="btn btn-secondary">Clear Form</button>
+        </div>
+    </form>
+
+    <div class="success-message" id="successMessage">
+        <h3>✅ Request Received</h3>
+        <p>Your request has been successfully submitted. We will review your request and respond within one month to your email address.</p>
+        <p><strong>Reference Number:</strong> <span id="referenceNo"></span></p>
+    </div>
+
+    <h2>Alternative Contact Methods</h2>
+    <p>Instead of using this form, you can also submit your request through:</p>
+    <ul>
+        <li><strong>Email:</strong> <a href="mailto:privacy@dozi.app">privacy@dozi.app</a></li>
+        <li><strong>In-App:</strong> Settings > Privacy > GDPR Request</li>
+        <li><strong>Data Protection Officer:</strong> <a href="mailto:dpo@dozi.app">dpo@dozi.app</a></li>
+    </ul>
+
+    <div class="alert-box alert-success">
+        <h4>📞 Need Help?</h4>
+        <p>If you have questions about the request process, please contact us at <a href="mailto:privacy@dozi.app">privacy@dozi.app</a></p>
+    </div>
+</div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Bardino Technology - All rights reserved</p>
+    <p>
+        <a href="index.html">Home</a> |
+        <a href="gdpr.html">Privacy Policy</a> |
+        <a href="kvkk.html">KVKK (Turkish)</a> |
+        <a href="terms-of-use.html">Terms of Use</a>
+    </p>
+</footer>
+
+<script>
+document.getElementById('gdprForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = {
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        country: formData.get('country'),
+        rights: Array.from(document.querySelectorAll('input[name="rights"]:checked')).map(cb => cb.value),
+        details: formData.get('details'),
+        timestamp: new Date().toISOString()
+    };
+    
+    if (data.rights.length === 0) {
+        alert('Please select at least one right you wish to exercise.');
+        return;
+    }
+    
+    const referenceNo = 'GDPR-' + Date.now().toString(36).toUpperCase();
+    
+    const subject = encodeURIComponent('GDPR Data Subject Request - ' + referenceNo);
+    const body = encodeURIComponent(
+        'GDPR DATA SUBJECT ACCESS REQUEST\n' +
+        '================================\n\n' +
+        'Reference No: ' + referenceNo + '\n' +
+        'Date: ' + new Date().toUTCString() + '\n\n' +
+        'PERSONAL INFORMATION\n' +
+        '--------------------\n' +
+        'Full Name: ' + data.fullName + '\n' +
+        'Email: ' + data.email + '\n' +
+        'Country: ' + (data.country || '-') + '\n\n' +
+        'RIGHTS TO EXERCISE\n' +
+        '------------------\n' +
+        data.rights.map(r => '- ' + r.replace(/_/g, ' ')).join('\n') + '\n\n' +
+        'REQUEST DETAILS\n' +
+        '---------------\n' +
+        data.details + '\n\n' +
+        '---\n' +
+        'NOTE: Please attach a copy of your ID document for identity verification.'
+    );
+    
+    window.location.href = 'mailto:info@dozi.app?subject=' + subject + '&body=' + body;
+    
+    document.getElementById('referenceNo').textContent = referenceNo;
+    document.getElementById('gdprForm').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'block';
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>
