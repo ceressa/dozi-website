@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dozi - KVKK Aydınlatma Metni ve Kişisel Verilerin Korunması Politikası">
     <meta name="author" content="Bardino Technology">
+    <meta name="robots" content="index, follow">
     <title>KVKK Aydınlatma Metni - Dozi</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ========================================
-           GLOBAL STYLES
-           ======================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --dozi-turquoise: #40E0D0;
             --dozi-pink: #FF6B9D;
@@ -30,17 +19,12 @@
             --dozi-gray: #64748B;
             --dozi-light-blue: #E8F4F8;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.8;
             color: var(--dozi-dark);
             background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
         }
-
-        /* ========================================
-           HEADER
-           ======================================== */
         header {
             background: linear-gradient(135deg, var(--dozi-dark) 0%, #1a2744 100%);
             color: white;
@@ -48,7 +32,6 @@
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
-
         header h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -58,30 +41,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .logo {
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        /* ========================================
-           MAIN CONTENT
-           ======================================== */
-        main {
-            max-width: 900px;
-            margin: 3rem auto;
-            padding: 0 2rem 3rem;
-        }
-
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .logo { display: inline-block; margin-bottom: 1rem; }
+        .logo img { height: 60px; }
+        main { max-width: 900px; margin: 3rem auto; padding: 0 2rem 3rem; }
         .content-card {
             background: white;
             border-radius: 20px;
@@ -89,106 +52,34 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
         }
-
-        /* ========================================
-           TYPOGRAPHY
-           ======================================== */
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--dozi-dark);
             margin: 2.5rem 0 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 3px solid var(--dozi-turquoise);
         }
-
-        h2:first-child {
-            margin-top: 0;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--dozi-dark);
-            margin: 2rem 0 1rem;
-        }
-
-        h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--dozi-dark);
-            margin: 1.5rem 0 0.75rem;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            color: var(--dozi-gray);
-        }
-
-        strong {
-            color: var(--dozi-dark);
-            font-weight: 600;
-        }
-
-        /* ========================================
-           LISTS
-           ======================================== */
-        ul,
-        ol {
-            margin: 1rem 0 1.5rem 1.5rem;
-            color: var(--dozi-gray);
-        }
-
-        li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        li strong {
-            color: var(--dozi-dark);
-        }
-
-        /* ========================================
-           ALERT BOXES
-           ======================================== */
+        h2:first-child { margin-top: 0; }
+        h3 { font-size: 1.3rem; font-weight: 600; color: var(--dozi-dark); margin: 2rem 0 1rem; }
+        h4 { font-size: 1.1rem; font-weight: 600; color: var(--dozi-dark); margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1.2rem; color: var(--dozi-gray); }
+        strong { color: var(--dozi-dark); font-weight: 600; }
+        ul, ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--dozi-gray); }
+        li { margin-bottom: 0.75rem; line-height: 1.8; }
+        li strong { color: var(--dozi-dark); }
         .alert-box {
             padding: 1.5rem;
             border-radius: 12px;
             margin: 2rem 0;
             border-left: 4px solid;
         }
-
-        .alert-important {
-            background: #fff3cd;
-            border-color: #ffc107;
-            color: #856404;
-        }
-
-        .alert-info {
-            background: #d1ecf1;
-            border-color: #17a2b8;
-            color: #0c5460;
-        }
-
-        .alert-legal {
-            background: #f8d7da;
-            border-color: #dc3545;
-            color: #721c24;
-        }
-
-        .alert-box h4 {
-            margin-top: 0;
-            color: inherit;
-            font-size: 1.2rem;
-        }
-
-        .alert-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ========================================
-           TABLE
-           ======================================== */
+        .alert-important { background: #fff3cd; border-color: #ffc107; color: #856404; }
+        .alert-info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+        .alert-legal { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .alert-success { background: #d4edda; border-color: #28a745; color: #155724; }
+        .alert-box h4 { margin-top: 0; color: inherit; font-size: 1.1rem; }
+        .alert-box p:last-child { margin-bottom: 0; }
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -198,7 +89,6 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-
         .data-table th {
             background: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-pink) 100%);
             color: white;
@@ -206,24 +96,13 @@
             text-align: left;
             font-weight: 600;
         }
-
         .data-table td {
             padding: 1rem;
             border-bottom: 1px solid #e9ecef;
             color: var(--dozi-gray);
         }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .data-table tr:hover {
-            background: var(--dozi-light-blue);
-        }
-
-        /* ========================================
-           CONTACT SECTION
-           ======================================== */
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover { background: var(--dozi-light-blue); }
         .contact-section {
             background: linear-gradient(135deg, var(--dozi-light-blue) 0%, white 100%);
             padding: 2rem;
@@ -231,18 +110,8 @@
             margin: 2rem 0;
             border: 2px solid var(--dozi-turquoise);
         }
-
-        .contact-section h3 {
-            margin-top: 0;
-            color: var(--dozi-dark);
-        }
-
-        .contact-info {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
+        .contact-section h3 { margin-top: 0; color: var(--dozi-dark); }
+        .contact-info { display: grid; gap: 1rem; margin-top: 1.5rem; }
         .contact-item {
             display: flex;
             align-items: center;
@@ -252,413 +121,885 @@
             border-radius: 10px;
             transition: all 0.3s;
         }
-
         .contact-item:hover {
             transform: translateX(5px);
             box-shadow: 0 4px 15px rgba(64, 224, 208, 0.2);
         }
-
-        .contact-icon {
-            font-size: 1.5rem;
-        }
-
+        .contact-icon { font-size: 1.5rem; }
         .contact-item a {
             color: var(--dozi-turquoise);
             text-decoration: none;
             font-weight: 500;
         }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* ========================================
-           FOOTER
-           ======================================== */
+        .contact-item a:hover { text-decoration: underline; }
         footer {
             background: linear-gradient(135deg, var(--dozi-dark) 0%, #0f1f3d 100%);
             color: white;
             padding: 2rem;
             text-align: center;
         }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: var(--dozi-turquoise);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        footer a:hover {
-            color: var(--dozi-pink);
-        }
-
-        /* ========================================
-           RESPONSIVE
-           ======================================== */
+        footer p { color: rgba(255, 255, 255, 0.8); margin-bottom: 0.5rem; }
+        footer a { color: var(--dozi-turquoise); text-decoration: none; transition: all 0.3s; }
+        footer a:hover { color: var(--dozi-pink); }
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            .content-card {
-                padding: 2rem 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .data-table {
-                font-size: 0.9rem;
-            }
-
-            .data-table th,
-            .data-table td {
-                padding: 0.75rem;
-            }
+            header h1 { font-size: 1.8rem; }
+            .content-card { padding: 2rem 1.5rem; }
+            h2 { font-size: 1.5rem; }
+            .data-table { font-size: 0.9rem; }
+            .data-table th, .data-table td { padding: 0.75rem; }
         }
+        .version-info {
+            background: var(--dozi-light-blue);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--dozi-gray);
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .toc h3 { margin-bottom: 1rem; }
+        .toc ul { margin: 0; list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 0.5rem; }
+        .toc a { color: var(--dozi-turquoise); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
     </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">
-            <img src="dozi_brand.png" alt="Dozi Logo">
-        </a>
-        <h1>KVKK Aydınlatma Metni</h1>
-        <p>Kişisel Verilerin Korunması ve İşlenmesi Politikası</p>
-    </header>
+<header>
+    <a href="index.html" class="logo">
+        <img src="dozi_brand.png" alt="Dozi Logo">
+    </a>
+    <h1>KVKK Aydınlatma Metni</h1>
+    <p>6698 Sayılı Kişisel Verilerin Korunması Kanunu Kapsamında Aydınlatma Metni</p>
+</header>
+<main>
+<div class="content-card">
+    <div class="version-info">
+        <strong>Belge Versiyonu:</strong> 2.0 | <strong>Son Güncelleme:</strong> 23 Aralık 2025 | <strong>Yürürlük Tarihi:</strong> 23 Aralık 2025
+    </div>
 
-    <!-- Main Content -->
-    <main>
-        <div class="content-card">
-            <div class="alert-box alert-important">
-                <h4>⚖️ Önemli Bilgilendirme</h4>
-                <p>Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca hazırlanmıştır. Dozi
-                    uygulamasını kullanarak kişisel verilerinizin işlenmesine ilişkin aşağıdaki bilgileri dikkatlice
-                    okumanız önemlidir.</p>
+    <div class="alert-box alert-important">
+        <h4>⚖️ Önemli Yasal Bilgilendirme</h4>
+        <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili mevzuat uyarınca hazırlanmıştır. Dozi uygulamasını kullanmadan önce bu metni dikkatlice okumanız ve anlamanız gerekmektedir. Uygulamayı kullanarak bu metinde belirtilen veri işleme faaliyetlerini kabul etmiş sayılırsınız.</p>
+    </div>
+
+    <div class="toc">
+        <h3>📋 İçindekiler</h3>
+        <ul>
+            <li><a href="#veri-sorumlusu">1. Veri Sorumlusu</a></li>
+            <li><a href="#tanimlar">2. Tanımlar</a></li>
+            <li><a href="#islenen-veriler">3. İşlenen Kişisel Veriler</a></li>
+            <li><a href="#isleme-amaci">4. Kişisel Verilerin İşlenme Amaçları</a></li>
+            <li><a href="#hukuki-sebepler">5. Hukuki Sebepler</a></li>
+            <li><a href="#veri-aktarimi">6. Kişisel Verilerin Aktarılması</a></li>
+            <li><a href="#saklama-suresi">7. Saklama Süresi</a></li>
+            <li><a href="#guvenlik">8. Veri Güvenliği Tedbirleri</a></li>
+            <li><a href="#haklariniz">9. KVKK Kapsamındaki Haklarınız</a></li>
+            <li><a href="#basvuru">10. Başvuru Yöntemi</a></li>
+            <li><a href="#cocuklar">11. Çocukların Gizliliği</a></li>
+            <li><a href="#degisiklikler">12. Değişiklikler</a></li>
+            <li><a href="#sikayet">13. Şikayet Hakkı</a></li>
+        </ul>
+    </div>
+
+    <h2 id="veri-sorumlusu">1. Veri Sorumlusu</h2>
+    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, kişisel verileriniz; veri sorumlusu sıfatıyla <strong>Bardino Technology</strong> tarafından aşağıda açıklanan kapsamda işlenecektir.</p>
+    
+    <div class="contact-section">
+        <h3>Veri Sorumlusu İletişim Bilgileri</h3>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">🏢</span>
+                <div><strong>Unvan:</strong> Bardino Technology</div>
             </div>
-
-            <h2>1. Veri Sorumlusu</h2>
-            <p><strong>Bardino Technology</strong>, KVKK kapsamında "Veri Sorumlusu" sıfatıyla hareket etmektedir.</p>
-
-            <div class="contact-section">
-                <h3>İletişim Bilgileri</h3>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon">🏢</span>
-                        <div>
-                            <strong>Şirket:</strong> Bardino Technology
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <div>
-                            <strong>E-posta:</strong> <a href="mailto:info@dozi.app">info@dozi.app</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🌐</span>
-                        <div>
-                            <strong>Web:</strong> <a href="https://www.dozi.app">www.dozi.app</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div><strong>E-posta:</strong> <a href="mailto:kvkk@dozi.app">kvkk@dozi.app</a></div>
             </div>
-
-            <h2>2. İşlenen Kişisel Veriler</h2>
-            <p>Dozi uygulaması kapsamında aşağıdaki kişisel verileriniz işlenmektedir:</p>
-
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Veri Kategorisi</th>
-                        <th>Veri Türü</th>
-                        <th>İşleme Amacı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Kimlik Bilgileri</strong></td>
-                        <td>Ad, soyad, doğum tarihi</td>
-                        <td>Kullanıcı hesabı oluşturma ve yönetimi</td>
-                    </tr>
-                    <tr>
-                        <td><strong>İletişim Bilgileri</strong></td>
-                        <td>E-posta adresi, telefon numarası</td>
-                        <td>İletişim, bildirim gönderme</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sağlık Verileri</strong></td>
-                        <td>İlaç bilgileri, doz takibi, hatırlatmalar</td>
-                        <td>Uygulama hizmetlerinin sunulması</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Teknik Veriler</strong></td>
-                        <td>IP adresi, cihaz bilgisi, konum</td>
-                        <td>Güvenlik, analiz, hizmet iyileştirme</td>
-                    </tr>
-                    <tr>
-                        <td><strong>İşlem Güvenliği</strong></td>
-                        <td>Kullanıcı aktiviteleri, log kayıtları</td>
-                        <td>Güvenlik, hata ayıklama</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="alert-box alert-legal">
-                <h4>🔒 Özel Nitelikli Kişisel Veri</h4>
-                <p><strong>Sağlık verileri</strong>, KVKK'nın 6. maddesi uyarınca <strong>"özel nitelikli kişisel
-                        veri"</strong> kapsamındadır. Bu veriler, yalnızca <strong>açık rızanız</strong> ile ve kanunda
-                    öngörülen güvenlik tedbirleri alınarak işlenmektedir.</p>
-            </div>
-
-            <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
-            <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
-            <ul>
-                <li><strong>Hizmet Sunumu:</strong> İlaç hatırlatma, doz takibi ve sağlık yönetimi hizmetlerinin
-                    sağlanması</li>
-                <li><strong>Kullanıcı Hesabı Yönetimi:</strong> Hesap oluşturma, kimlik doğrulama ve profil yönetimi
-                </li>
-                <li><strong>İletişim:</strong> Bildirimler, güncellemeler ve destek hizmetleri</li>
-                <li><strong>Güvenlik:</strong> Yetkisiz erişimin önlenmesi ve veri güvenliğinin sağlanması</li>
-                <li><strong>Analiz ve İyileştirme:</strong> Uygulama performansının ölçülmesi ve kullanıcı deneyiminin
-                    geliştirilmesi</li>
-                <li><strong>Yasal Yükümlülükler:</strong> Kanuni düzenlemelere uyum ve yetkili makamların taleplerine
-                    yanıt</li>
-                <li><strong>Aile Takibi:</strong> Kullanıcının izniyle aile üyelerinin ilaç takibinin yapılması</li>
-            </ul>
-
-            <h2>4. Kişisel Verilerin İşlenme Hukuki Sebepleri</h2>
-            <p>Kişisel verileriniz, KVKK'nın 5. ve 6. maddeleri uyarınca aşağıdaki hukuki sebeplere dayanılarak
-                işlenmektedir:</p>
-
-            <h3>4.1. Genel Kişisel Veriler İçin</h3>
-            <ul>
-                <li><strong>Açık Rızanız:</strong> Uygulama kayıt sırasında verdiğiniz onay</li>
-                <li><strong>Sözleşmenin İfası:</strong> Hizmet sözleşmesinin kurulması ve yerine getirilmesi</li>
-                <li><strong>Hukuki Yükümlülük:</strong> Kanunlarda açıkça öngörülmüş olması</li>
-                <li><strong>Meşru Menfaat:</strong> Veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu
-                    olması</li>
-            </ul>
-
-            <h3>4.2. Özel Nitelikli Kişisel Veriler (Sağlık Verileri) İçin</h3>
-            <ul>
-                <li><strong>Açık Rızanız:</strong> Sağlık verilerinizin işlenmesi için özel olarak alınan açık rızanız
-                </li>
-                <li><strong>Sağlık Hizmetleri:</strong> Koruyucu sağlık hizmetlerinin yürütülmesi amacıyla</li>
-            </ul>
-
-            <div class="alert-box alert-info">
-                <h4>ℹ️ Rıza Yönetimi</h4>
-                <p>Verdiğiniz rızayı istediğiniz zaman geri çekebilirsiniz. Rıza geri çekme talebinizi <a
-                        href="mailto:info@dozi.app">info@dozi.app</a> adresine iletebilirsiniz.</p>
-            </div>
-
-            <h2>5. Kişisel Verilerin Aktarılması</h2>
-
-            <h3>5.1. Yurt İçi Aktarım</h3>
-            <p>Kişisel verileriniz, aşağıdaki durumlarda üçüncü kişilerle paylaşılabilir:</p>
-            <ul>
-                <li><strong>Bulut Hizmet Sağlayıcıları:</strong> Veri depolama ve yedekleme hizmetleri için</li>
-                <li><strong>Teknik Destek Sağlayıcıları:</strong> Uygulama altyapısının yönetimi için</li>
-                <li><strong>Analiz Platformları:</strong> Anonim kullanım istatistikleri için</li>
-                <li><strong>Yasal Merciler:</strong> Kanuni yükümlülükler çerçevesinde</li>
-            </ul>
-
-            <h3>5.2. Yurt Dışı Aktarım</h3>
-            <p>Kişisel verileriniz, yalnızca aşağıdaki koşullarda yurt dışına aktarılabilir:</p>
-            <ul>
-                <li>Açık rızanızın bulunması</li>
-                <li>Kişisel Verileri Koruma Kurulu tarafından yeterli korumanın bulunduğu ülkelere aktarım</li>
-                <li>Yeterli korumanın bulunmaması durumunda, Türkiye'deki ve ilgili yabancı ülkedeki veri sorumlularının
-                    yeterli bir korumayı yazılı olarak taahhüt etmeleri</li>
-            </ul>
-
-            <div class="alert-box alert-important">
-                <h4>🌍 Bulut Hizmetleri</h4>
-                <p>Dozi, Google Firebase ve benzeri uluslararası bulut hizmetlerini kullanmaktadır. Bu hizmetler, KVKK
-                    ve GDPR standartlarına uygun güvenlik önlemleri sağlamaktadır.</p>
-            </div>
-
-            <h2>6. Kişisel Verilerin Saklanma Süresi</h2>
-            <p>Kişisel verileriniz, işlenme amaçlarının gerektirdiği süre boyunca ve ilgili mevzuatta öngörülen süreler
-                dahilinde saklanmaktadır:</p>
-            <ul>
-                <li><strong>Aktif Kullanıcı Verileri:</strong> Hesabınız aktif olduğu sürece</li>
-                <li><strong>Hesap Silme Sonrası:</strong> Yasal yükümlülükler için gerekli olan veriler 10 yıl süreyle
-                </li>
-                <li><strong>Log Kayıtları:</strong> Güvenlik amaçlı 2 yıl süreyle</li>
-                <li><strong>İletişim Kayıtları:</strong> Destek talepleri için 3 yıl süreyle</li>
-            </ul>
-
-            <p>Saklama sürelerinin sona ermesi durumunda, kişisel verileriniz silinir, yok edilir veya anonim hale
-                getirilir.</p>
-
-            <h2>7. Kişisel Veri Güvenliği</h2>
-            <p>Kişisel verilerinizin güvenliğini sağlamak için aşağıdaki teknik ve idari tedbirler alınmaktadır:</p>
-
-            <h3>7.1. Teknik Tedbirler</h3>
-            <ul>
-                <li><strong>Şifreleme:</strong> Tüm hassas veriler AES-256 standardında şifrelenmektedir</li>
-                <li><strong>SSL/TLS:</strong> Veri iletimi şifreli kanallar üzerinden yapılmaktadır</li>
-                <li><strong>Güvenlik Duvarı:</strong> Yetkisiz erişimlere karşı koruma</li>
-                <li><strong>Düzenli Yedekleme:</strong> Veri kaybına karşı otomatik yedekleme</li>
-                <li><strong>Güvenlik Testleri:</strong> Düzenli penetrasyon testleri ve güvenlik denetimleri</li>
-                <li><strong>İki Faktörlü Kimlik Doğrulama:</strong> Hesap güvenliği için ek koruma katmanı</li>
-            </ul>
-
-            <h3>7.2. İdari Tedbirler</h3>
-            <ul>
-                <li><strong>Erişim Kontrolü:</strong> Yalnızca yetkili personelin verilere erişimi</li>
-                <li><strong>Gizlilik Sözleşmeleri:</strong> Tüm çalışanlarla gizlilik taahhütnamesi imzalanması</li>
-                <li><strong>Eğitim:</strong> Personele düzenli veri güvenliği eğitimleri</li>
-                <li><strong>Veri İşleme Envanteri:</strong> İşlenen verilerin detaylı kaydının tutulması</li>
-                <li><strong>Olay Müdahale Planı:</strong> Veri ihlali durumunda acil müdahale prosedürleri</li>
-            </ul>
-
-            <h2>8. KVKK Kapsamındaki Haklarınız</h2>
-            <p>KVKK'nın 11. maddesi uyarınca, veri sahibi olarak aşağıdaki haklara sahipsiniz:</p>
-
-            <ol>
-                <li><strong>Kişisel verilerinizin işlenip işlenmediğini öğrenme</strong></li>
-                <li><strong>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</strong></li>
-                <li><strong>Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını
-                        öğrenme</strong></li>
-                <li><strong>Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı üçüncü kişileri bilme</strong>
-                </li>
-                <li><strong>Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini
-                        isteme</strong></li>
-                <li><strong>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerin silinmesini veya yok
-                        edilmesini isteme</strong></li>
-                <li><strong>Düzeltme, silme veya yok edilme işlemlerinin kişisel verilerin aktarıldığı üçüncü kişilere
-                        bildirilmesini isteme</strong></li>
-                <li><strong>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle
-                        aleyhinize bir sonucun ortaya çıkmasına itiraz etme</strong></li>
-                <li><strong>Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın
-                        giderilmesini talep etme</strong></li>
-            </ol>
-
-            <h2>9. Başvuru Yöntemi</h2>
-            <p>KVKK kapsamındaki haklarınızı kullanmak için aşağıdaki yöntemlerle başvurabilirsiniz:</p>
-
-            <h3>9.1. Başvuru Kanalları</h3>
-            <div class="contact-section">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <div>
-                            <strong>E-posta:</strong> <a href="mailto:info@dozi.app">info@dozi.app</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📱</span>
-                        <div>
-                            <strong>Uygulama İçi:</strong> Ayarlar > Gizlilik > KVKK Başvurusu
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🌐</span>
-                        <div>
-                            <strong>Web Formu:</strong> <a
-                                href="https://www.dozi.app/kvkk-basvuru">www.dozi.app/kvkk-basvuru</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>9.2. Başvuru Şartları</h3>
-            <p>Başvurunuzda aşağıdaki bilgilerin yer alması gerekmektedir:</p>
-            <ul>
-                <li>Ad, soyad ve başvuru yazılı ise imza</li>
-                <li>Türkiye Cumhuriyeti vatandaşları için T.C. kimlik numarası, yabancılar için uyruğu, pasaport
-                    numarası veya varsa kimlik numarası</li>
-                <li>Tebligata esas yerleşim yeri veya iş yeri adresi</li>
-                <li>Varsa bildirime esas elektronik posta adresi, telefon ve faks numarası</li>
-                <li>Talep konusu</li>
-            </ul>
-
-            <h3>9.3. Yanıt Süresi</h3>
-            <p>Başvurularınız, talebin niteliğine göre <strong>en geç 30 gün</strong> içinde ücretsiz olarak
-                sonuçlandırılacaktır. Ancak, işlemin ayrıca bir maliyeti gerektirmesi hâlinde, Kişisel Verileri Koruma
-                Kurulu tarafından belirlenen tarifedeki ücret alınabilir.</p>
-
-            <h2>10. Veri İhlali Bildirimi</h2>
-            <p>Kişisel verilere ilişkin bir güvenlik ihlali tespit edilmesi durumunda:</p>
-            <ul>
-                <li>İlgili kişiler <strong>72 saat içinde</strong> bilgilendirilir</li>
-                <li>Kişisel Verileri Koruma Kurumu'na gerekli bildirim yapılır</li>
-                <li>İhlali önlemek ve etkilerini azaltmak için gerekli tedbirler alınır</li>
-                <li>İhlal raporu hazırlanır ve kayıt altına alınır</li>
-            </ul>
-
-            <h2>11. Çocukların Gizliliği</h2>
-            <p>Dozi uygulaması, 18 yaşından küçük kullanıcılar için ebeveyn veya vasi onayı gerektirir:</p>
-            <ul>
-                <li>18 yaş altı kullanıcılar için ebeveyn/vasi rızası zorunludur</li>
-                <li>Çocuklara ait özel nitelikli kişisel veriler, ek güvenlik önlemleriyle korunur</li>
-                <li>Ebeveynler, çocuklarının verilerine erişim ve kontrol hakkına sahiptir</li>
-            </ul>
-
-            <h2>12. Değişiklikler</h2>
-            <p>Bu KVKK Aydınlatma Metni, yasal düzenlemelerdeki değişiklikler veya uygulama güncellemeleri nedeniyle
-                revize edilebilir. Önemli değişiklikler:</p>
-            <ul>
-                <li>Uygulama içi bildirimle duyurulur</li>
-                <li>E-posta ile bilgilendirilirsiniz</li>
-                <li>Web sitesinde yayınlanır</li>
-            </ul>
-
-            <p><strong>Son Güncelleme Tarihi:</strong> 08 Aralık 2025</p>
-
-            <h2>13. Kişisel Verileri Koruma Kurumu'na Şikayet</h2>
-            <p>Başvurunuzun reddedilmesi, verilen cevabın yetersiz bulunması veya süresinde başvuruya cevap verilmemesi
-                hallerinde; veri sahibi, Kişisel Verileri Koruma Kurumu'na şikâyette bulunabilir.</p>
-
-            <div class="contact-section">
-                <h3>Kişisel Verileri Koruma Kurumu İletişim</h3>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon">🏛️</span>
-                        <div>
-                            <strong>Adres:</strong> Nasuh Akar Mah. Ziyabey Cad. 1407. Sok. No: 4 06520
-                            Balgat-Çankaya/Ankara
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🌐</span>
-                        <div>
-                            <strong>Web:</strong> <a href="https://www.kvkk.gov.tr" target="_blank">www.kvkk.gov.tr</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="alert-box alert-legal">
-                <h4>⚖️ Yasal Uyarı</h4>
-                <p>Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ve ilgili mevzuat hükümleri çerçevesinde
-                    hazırlanmıştır. Dozi uygulamasını kullanarak bu metinde belirtilen şartları kabul etmiş
-                    sayılırsınız.</p>
+            <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <div><strong>Web Sitesi:</strong> <a href="https://www.dozi.app">www.dozi.app</a></div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Bardino Technology - Tüm hakları saklıdır</p>
-        <p>
-            <a href="index.html">Ana Sayfa</a> |
-            <a href="privacy-policy.html">Gizlilik Politikası</a> |
-            <a href="terms-of-use.html">Kullanım Şartları</a> |
-            <a href="account-deletion.html">Hesap Silme</a>
-        </p>
-    </footer>
+    <h2 id="tanimlar">2. Tanımlar</h2>
+    <p>Bu aydınlatma metninde kullanılan terimler aşağıdaki anlamlara gelmektedir:</p>
+    <ul>
+        <li><strong>Kişisel Veri:</strong> Kimliği belirli veya belirlenebilir gerçek kişiye ilişkin her türlü bilgi.</li>
+        <li><strong>Özel Nitelikli Kişisel Veri:</strong> Kişilerin ırkı, etnik kökeni, siyasi düşüncesi, felsefi inancı, dini, mezhebi veya diğer inançları, kılık ve kıyafeti, dernek, vakıf ya da sendika üyeliği, sağlığı, cinsel hayatı, ceza mahkûmiyeti ve güvenlik tedbirleriyle ilgili verileri ile biyometrik ve genetik verileri.</li>
+        <li><strong>Veri Sorumlusu:</strong> Kişisel verilerin işleme amaçlarını ve vasıtalarını belirleyen, veri kayıt sisteminin kurulmasından ve yönetilmesinden sorumlu olan gerçek veya tüzel kişi.</li>
+        <li><strong>Veri İşleyen:</strong> Veri sorumlusunun verdiği yetkiye dayanarak onun adına kişisel verileri işleyen gerçek veya tüzel kişi.</li>
+        <li><strong>Açık Rıza:</strong> Belirli bir konuya ilişkin, bilgilendirilmeye dayanan ve özgür iradeyle açıklanan rıza.</li>
+        <li><strong>Anonim Hale Getirme:</strong> Kişisel verilerin, başka verilerle eşleştirilerek dahi hiçbir surette kimliği belirli veya belirlenebilir bir gerçek kişiyle ilişkilendirilemeyecek hale getirilmesi.</li>
+    </ul>
+
+    <h2 id="islenen-veriler">3. İşlenen Kişisel Veriler</h2>
+    <p>Dozi uygulaması kapsamında aşağıdaki kişisel verileriniz, belirtilen amaçlar doğrultusunda işlenmektedir:</p>
+
+    <h3>3.1. Kimlik ve İletişim Verileri</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ad ve Soyad</td>
+                <td>Google hesabınızdan alınan isim bilgisi</td>
+                <td>Kullanıcı tanımlama, kişiselleştirme</td>
+            </tr>
+            <tr>
+                <td>E-posta Adresi</td>
+                <td>Google hesap e-postası</td>
+                <td>Hesap doğrulama, iletişim, bildirimler</td>
+            </tr>
+            <tr>
+                <td>Profil Fotoğrafı</td>
+                <td>Google hesabından alınan profil görseli</td>
+                <td>Kullanıcı arayüzü kişiselleştirme</td>
+            </tr>
+            <tr>
+                <td>Doğum Tarihi</td>
+                <td>Kullanıcı tarafından girilen (opsiyonel)</td>
+                <td>Yaş doğrulama, kişiselleştirilmiş öneriler</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.2. Sağlık Verileri (Özel Nitelikli Kişisel Veri)</h3>
+    <div class="alert-box alert-legal">
+        <h4>🔒 Özel Nitelikli Kişisel Veri Uyarısı</h4>
+        <p>Aşağıdaki veriler, KVKK'nın 6. maddesi kapsamında <strong>"özel nitelikli kişisel veri"</strong> olarak kabul edilmektedir. Bu veriler, yalnızca <strong>açık rızanız</strong> alınarak ve Kişisel Verileri Koruma Kurulu tarafından belirlenen yeterli önlemler alınarak işlenmektedir.</p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>İlaç Bilgileri</td>
+                <td>İlaç adı, dozu, kullanım şekli, barkod bilgisi</td>
+                <td>İlaç hatırlatma hizmetinin sunulması</td>
+            </tr>
+            <tr>
+                <td>İlaç Kullanım Geçmişi</td>
+                <td>Alınan/atlanan dozlar, tarih ve saat bilgileri</td>
+                <td>Uyum takibi, istatistik ve raporlama</td>
+            </tr>
+            <tr>
+                <td>Hatırlatma Zamanları</td>
+                <td>İlaç alma saatleri ve sıklığı</td>
+                <td>Zamanında hatırlatma bildirimi gönderme</td>
+            </tr>
+            <tr>
+                <td>Stok Bilgileri</td>
+                <td>Kalan ilaç miktarı</td>
+                <td>Stok azaldığında uyarı gönderme</td>
+            </tr>
+            <tr>
+                <td>Sağlık Notları</td>
+                <td>Kullanıcının girdiği sağlık notları ve randevular</td>
+                <td>Aktivite takvimi ve sağlık takibi</td>
+            </tr>
+            <tr>
+                <td>Ölçüm Verileri</td>
+                <td>Tansiyon, şeker, ateş gibi sağlık ölçümleri (Premium)</td>
+                <td>Sağlık takibi ve trend analizi</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.3. Teknik ve Cihaz Verileri</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cihaz Kimliği</td>
+                <td>Benzersiz cihaz tanımlayıcısı</td>
+                <td>Güvenlik, çoklu cihaz yönetimi</td>
+            </tr>
+            <tr>
+                <td>FCM Token</td>
+                <td>Firebase Cloud Messaging bildiri tokeni</td>
+                <td>Push bildirim gönderimi</td>
+            </tr>
+            <tr>
+                <td>IP Adresi</td>
+                <td>İnternet protokol adresi</td>
+                <td>Güvenlik, coğrafi analiz</td>
+            </tr>
+            <tr>
+                <td>Cihaz Modeli ve İşletim Sistemi</td>
+                <td>Android versiyonu, cihaz markası/modeli</td>
+                <td>Uyumluluk, hata ayıklama</td>
+            </tr>
+            <tr>
+                <td>Uygulama Versiyonu</td>
+                <td>Kullanılan Dozi uygulama sürümü</td>
+                <td>Destek, güncelleme bildirimleri</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.4. Konum Verileri (Premium Özellik)</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Konum Bilgisi</td>
+                <td>GPS koordinatları (yalnızca izin verildiğinde)</td>
+                <td>Konum bazlı hatırlatmalar</td>
+            </tr>
+            <tr>
+                <td>Kayıtlı Konumlar</td>
+                <td>Ev, iş yeri gibi kullanıcı tanımlı konumlar</td>
+                <td>Geofence hatırlatmaları</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert-box alert-info">
+        <h4>ℹ️ Konum İzni Hakkında</h4>
+        <p>Konum verileri yalnızca Premium kullanıcılar için ve açık izniniz alındıktan sonra işlenmektedir. Konum izninizi istediğiniz zaman cihaz ayarlarından geri çekebilirsiniz.</p>
+    </div>
+
+    <h3>3.5. AI Asistan Verileri</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sohbet Geçmişi</td>
+                <td>AI asistan ile yapılan konuşmalar</td>
+                <td>Bağlamsal yanıtlar, kişiselleştirme</td>
+            </tr>
+            <tr>
+                <td>Kullanıcı Tercihleri</td>
+                <td>AI'dan öğrenilen tercihler ve alışkanlıklar</td>
+                <td>Proaktif öneriler, kişiselleştirme</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.6. Aile Takip Verileri (Badi Sistemi)</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Badi Bağlantıları</td>
+                <td>Aile üyesi/bakıcı ilişkileri</td>
+                <td>Aile takip sisteminin işletilmesi</td>
+            </tr>
+            <tr>
+                <td>Paylaşılan İlaç Bilgileri</td>
+                <td>Badi'lerle paylaşılan ilaç ve uyum verileri</td>
+                <td>Eskalasyon bildirimleri, takip</td>
+            </tr>
+            <tr>
+                <td>Takma Ad (Nickname)</td>
+                <td>Badi'lerin kullandığı takma isimler</td>
+                <td>Gizlilik korumalı tanımlama</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.7. Ödeme ve Abonelik Verileri</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Türü</th>
+                <th>Açıklama</th>
+                <th>İşleme Amacı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Abonelik Durumu</td>
+                <td>Premium/Aile plan durumu</td>
+                <td>Özellik erişim kontrolü</td>
+            </tr>
+            <tr>
+                <td>Satın Alma Tokeni</td>
+                <td>Google Play satın alma doğrulama tokeni</td>
+                <td>Abonelik doğrulama</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert-box alert-success">
+        <h4>✅ Ödeme Güvenliği</h4>
+        <p>Kredi kartı veya banka bilgileriniz <strong>tarafımızca işlenmemekte veya saklanmamaktadır</strong>. Tüm ödeme işlemleri Google Play Store altyapısı üzerinden güvenli şekilde gerçekleştirilmektedir.</p>
+    </div>
+
+    <h2 id="isleme-amaci">4. Kişisel Verilerin İşlenme Amaçları</h2>
+    <p>Kişisel verileriniz aşağıdaki amaçlar doğrultusunda işlenmektedir:</p>
+
+    <h3>4.1. Temel Hizmet Sunumu</h3>
+    <ul>
+        <li>İlaç hatırlatma bildirimlerinin zamanında gönderilmesi</li>
+        <li>İlaç kullanım takibi ve uyum istatistiklerinin hesaplanması</li>
+        <li>Stok takibi ve azalan ilaç uyarılarının gönderilmesi</li>
+        <li>Aktivite takvimi ve sağlık notlarının yönetimi</li>
+        <li>Offline-first mimarisi ile internet bağlantısı olmadan hizmet sunumu</li>
+    </ul>
+
+    <h3>4.2. Kullanıcı Hesabı Yönetimi</h3>
+    <ul>
+        <li>Kullanıcı hesabının oluşturulması ve kimlik doğrulaması</li>
+        <li>Profil yönetimi ve kişiselleştirme</li>
+        <li>Çoklu cihaz senkronizasyonu</li>
+        <li>Hesap güvenliğinin sağlanması</li>
+    </ul>
+
+    <h3>4.3. Premium Hizmetler</h3>
+    <ul>
+        <li>Konum bazlı hatırlatmaların sunulması</li>
+        <li>Tam ekran alarm özelliğinin sağlanması</li>
+        <li>AI asistan hizmetinin sunulması</li>
+        <li>Mahremiyet Kalkanı (Privacy Shield) özelliğinin işletilmesi</li>
+        <li>Sağlık ölçümü takibi</li>
+        <li>Aile planı kapsamında çoklu kullanıcı yönetimi</li>
+    </ul>
+
+    <h3>4.4. Aile Takip Sistemi (Badi)</h3>
+    <ul>
+        <li>Aile üyeleri/bakıcılar ile ilaç takibi paylaşımı</li>
+        <li>Eskalasyon bildirimlerinin gönderilmesi</li>
+        <li>Buddy (Badi) bağlantılarının yönetimi</li>
+        <li>QR kod ile hızlı bağlantı kurulması</li>
+    </ul>
+
+    <h3>4.5. AI Asistan Hizmetleri</h3>
+    <ul>
+        <li>Kişiselleştirilmiş sağlık önerileri sunulması</li>
+        <li>İlaç kullanımı hakkında sorulara yanıt verilmesi</li>
+        <li>Proaktif hatırlatma ve önerilerin oluşturulması</li>
+        <li>Bağlamsal ve empatik iletişim sağlanması</li>
+    </ul>
+
+    <h3>4.6. İletişim ve Bildirimler</h3>
+    <ul>
+        <li>İlaç hatırlatma bildirimlerinin gönderilmesi</li>
+        <li>Eskalasyon ve acil durum bildirimlerinin iletilmesi</li>
+        <li>Uygulama güncellemeleri hakkında bilgilendirme</li>
+        <li>Destek taleplerinin yanıtlanması</li>
+    </ul>
+
+    <h3>4.7. Güvenlik ve Hata Ayıklama</h3>
+    <ul>
+        <li>Yetkisiz erişimlerin tespit edilmesi ve önlenmesi</li>
+        <li>Uygulama hatalarının tespit edilmesi ve giderilmesi</li>
+        <li>Performans izleme ve iyileştirme</li>
+        <li>Firebase App Check ile güvenlik doğrulaması</li>
+    </ul>
+
+    <h3>4.8. Analiz ve İyileştirme</h3>
+    <ul>
+        <li>Anonim kullanım istatistiklerinin toplanması</li>
+        <li>Kullanıcı deneyiminin iyileştirilmesi</li>
+        <li>Yeni özelliklerin geliştirilmesi</li>
+        <li>Hizmet kalitesinin artırılması</li>
+    </ul>
+
+    <h3>4.9. Yasal Yükümlülükler</h3>
+    <ul>
+        <li>Kanuni düzenlemelere uyum sağlanması</li>
+        <li>Yetkili makamların taleplerinin karşılanması</li>
+        <li>Hukuki süreçlerin yürütülmesi</li>
+    </ul>
+
+    <h2 id="hukuki-sebepler">5. Kişisel Verilerin İşlenmesinin Hukuki Sebepleri</h2>
+    <p>Kişisel verileriniz, KVKK'nın 5. ve 6. maddeleri uyarınca aşağıdaki hukuki sebeplere dayanılarak işlenmektedir:</p>
+
+    <h3>5.1. Genel Nitelikli Kişisel Veriler İçin (KVKK m.5)</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Hukuki Sebep</th>
+                <th>Açıklama</th>
+                <th>Örnek Veri İşleme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Açık Rıza (m.5/1)</strong></td>
+                <td>İlgili kişinin açık rızasının bulunması</td>
+                <td>Pazarlama bildirimleri, analitik veriler</td>
+            </tr>
+            <tr>
+                <td><strong>Sözleşmenin İfası (m.5/2-c)</strong></td>
+                <td>Bir sözleşmenin kurulması veya ifasıyla doğrudan ilgili olması</td>
+                <td>Hesap oluşturma, temel hizmet sunumu</td>
+            </tr>
+            <tr>
+                <td><strong>Hukuki Yükümlülük (m.5/2-ç)</strong></td>
+                <td>Veri sorumlusunun hukuki yükümlülüğünü yerine getirmesi</td>
+                <td>Yasal saklama süreleri, resmi taleplere yanıt</td>
+            </tr>
+            <tr>
+                <td><strong>Meşru Menfaat (m.5/2-f)</strong></td>
+                <td>İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla meşru menfaatler için zorunlu olması</td>
+                <td>Güvenlik önlemleri, hata ayıklama</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>5.2. Özel Nitelikli Kişisel Veriler İçin (KVKK m.6)</h3>
+    <div class="alert-box alert-legal">
+        <h4>⚠️ Önemli</h4>
+        <p>Sağlık verileriniz dahil tüm özel nitelikli kişisel verileriniz, <strong>yalnızca açık rızanız</strong> alınarak işlenmektedir. Açık rızanız olmaksızın bu veriler işlenmeyecektir.</p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Hukuki Sebep</th>
+                <th>Açıklama</th>
+                <th>Örnek Veri İşleme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Açık Rıza (m.6/2)</strong></td>
+                <td>İlgili kişinin açık rızasının bulunması</td>
+                <td>İlaç bilgileri, kullanım geçmişi, sağlık notları</td>
+            </tr>
+            <tr>
+                <td><strong>Kamu Sağlığı (m.6/3)</strong></td>
+                <td>Kamu sağlığının korunması, koruyucu hekimlik, tıbbi teşhis, tedavi ve bakım hizmetlerinin yürütülmesi</td>
+                <td>Acil durum bilgileri (yalnızca gerekli hallerde)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert-box alert-info">
+        <h4>🔄 Rıza Yönetimi</h4>
+        <p>Verdiğiniz açık rızayı istediğiniz zaman, herhangi bir gerekçe göstermeksizin geri çekebilirsiniz. Rıza geri çekme talebinizi <a href="mailto:kvkk@dozi.app">kvkk@dozi.app</a> adresine iletebilir veya uygulama içi ayarlardan gerçekleştirebilirsiniz. Rızanızı geri çekmeniz, geri çekme tarihine kadar yapılan veri işleme faaliyetlerinin hukuka uygunluğunu etkilemez.</p>
+    </div>
+
+    <h2 id="veri-aktarimi">6. Kişisel Verilerin Aktarılması</h2>
+    <p>Kişisel verileriniz, KVKK'nın 8. ve 9. maddeleri uyarınca, aşağıda belirtilen amaçlar ve hukuki sebepler doğrultusunda üçüncü kişilere aktarılabilmektedir:</p>
+
+    <h3>6.1. Yurt İçi Aktarım</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Aktarılan Taraf</th>
+                <th>Aktarım Amacı</th>
+                <th>Hukuki Sebep</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Yetkili Kamu Kurum ve Kuruluşları</td>
+                <td>Yasal yükümlülüklerin yerine getirilmesi</td>
+                <td>Hukuki yükümlülük (m.5/2-ç)</td>
+            </tr>
+            <tr>
+                <td>Hukuk Danışmanları</td>
+                <td>Hukuki süreçlerin yürütülmesi</td>
+                <td>Meşru menfaat (m.5/2-f)</td>
+            </tr>
+            <tr>
+                <td>Badi (Aile Üyeleri/Bakıcılar)</td>
+                <td>Aile takip sisteminin işletilmesi</td>
+                <td>Açık rıza (m.5/1, m.6/2)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>6.2. Yurt Dışı Aktarım</h3>
+    <div class="alert-box alert-important">
+        <h4>🌍 Uluslararası Veri Aktarımı Hakkında</h4>
+        <p>Dozi uygulaması, hizmet sunumu için uluslararası bulut altyapısı kullanmaktadır. Verileriniz, KVKK'nın 9. maddesi ve Kişisel Verileri Koruma Kurulu kararları çerçevesinde, yeterli koruma sağlayan veya taahhütname imzalanan ülkelere aktarılabilmektedir.</p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Hizmet Sağlayıcı</th>
+                <th>Aktarım Amacı</th>
+                <th>Güvenlik Önlemleri</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Google Firebase</strong> (ABD/AB)</td>
+                <td>Kimlik doğrulama, veritabanı, bildirimler, analitik</td>
+                <td>SOC 2, ISO 27001, GDPR uyumlu, şifreleme</td>
+            </tr>
+            <tr>
+                <td><strong>Google Cloud Platform</strong> (ABD/AB)</td>
+                <td>Sunucu altyapısı, veri depolama</td>
+                <td>SOC 2, ISO 27001, GDPR uyumlu, şifreleme</td>
+            </tr>
+            <tr>
+                <td><strong>Firebase Vertex AI</strong> (ABD)</td>
+                <td>AI asistan hizmeti (Gemini)</td>
+                <td>Veri işleme sözleşmesi, şifreleme</td>
+            </tr>
+            <tr>
+                <td><strong>Google Play Services</strong> (ABD)</td>
+                <td>Uygulama dağıtımı, ödeme işlemleri</td>
+                <td>PCI DSS, GDPR uyumlu</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Yurt Dışı Aktarım Güvenceleri</h4>
+    <ul>
+        <li><strong>Standart Sözleşme Maddeleri:</strong> AB Komisyonu tarafından onaylanan standart veri koruma maddeleri</li>
+        <li><strong>Veri İşleme Sözleşmeleri:</strong> Tüm hizmet sağlayıcılarla KVKK ve GDPR uyumlu sözleşmeler</li>
+        <li><strong>Teknik Güvenlik:</strong> Aktarım sırasında ve sonrasında şifreleme</li>
+        <li><strong>Erişim Kontrolü:</strong> Minimum yetki prensibi ile sınırlı erişim</li>
+    </ul>
+
+    <h3>6.3. Aktarılmayan Veriler</h3>
+    <p>Aşağıdaki veriler hiçbir koşulda üçüncü taraflarla paylaşılmamaktadır:</p>
+    <ul>
+        <li>Sağlık verileriniz (Badi paylaşımı hariç ve yalnızca açık rızanızla)</li>
+        <li>AI asistan sohbet geçmişiniz (model eğitimi için kullanılmaz)</li>
+        <li>Konum verileriniz (yalnızca cihazınızda işlenir)</li>
+        <li>Mahremiyet Kalkanı mesajlarınız</li>
+    </ul>
+
+    <h2 id="saklama-suresi">7. Kişisel Verilerin Saklanma Süresi</h2>
+    <p>Kişisel verileriniz, işlenme amaçlarının gerektirdiği süre boyunca ve ilgili mevzuatta öngörülen zamanaşımı süreleri dahilinde saklanmaktadır:</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Veri Kategorisi</th>
+                <th>Saklama Süresi</th>
+                <th>Süre Sonrası İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hesap ve Kimlik Verileri</td>
+                <td>Hesap aktif olduğu sürece + hesap silme sonrası 30 gün</td>
+                <td>Silme veya anonimleştirme</td>
+            </tr>
+            <tr>
+                <td>Sağlık Verileri (İlaç, Kullanım)</td>
+                <td>Hesap aktif olduğu sürece + hesap silme sonrası 30 gün</td>
+                <td>Kalıcı silme</td>
+            </tr>
+            <tr>
+                <td>AI Sohbet Geçmişi</td>
+                <td>Son 30 günlük konuşmalar (cihazda)</td>
+                <td>Otomatik silme</td>
+            </tr>
+            <tr>
+                <td>Konum Verileri</td>
+                <td>Yalnızca anlık işleme, kalıcı saklama yok</td>
+                <td>İşlem sonrası silme</td>
+            </tr>
+            <tr>
+                <td>Log ve Güvenlik Kayıtları</td>
+                <td>2 yıl</td>
+                <td>Silme</td>
+            </tr>
+            <tr>
+                <td>Destek Talepleri ve İletişim</td>
+                <td>3 yıl</td>
+                <td>Silme veya anonimleştirme</td>
+            </tr>
+            <tr>
+                <td>Abonelik ve Ödeme Kayıtları</td>
+                <td>10 yıl (yasal zorunluluk)</td>
+                <td>Yasal süre sonrası silme</td>
+            </tr>
+            <tr>
+                <td>Analitik Veriler</td>
+                <td>2 yıl (anonimleştirilmiş)</td>
+                <td>Zaten anonim</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert-box alert-info">
+        <h4>🗑️ Hesap Silme</h4>
+        <p>Hesabınızı sildiğinizde, tüm kişisel verileriniz 30 gün içinde kalıcı olarak silinir. Bu süre içinde hesabınızı geri yükleyebilirsiniz. Yasal saklama yükümlülüğü bulunan veriler (ödeme kayıtları gibi) ilgili süre sonuna kadar saklanır.</p>
+    </div>
+
+    <h3>7.1. Saklama Süresi Sonrası İşlemler</h3>
+    <p>Saklama sürelerinin sona ermesi durumunda, kişisel verileriniz KVKK'nın 7. maddesi uyarınca:</p>
+    <ul>
+        <li><strong>Silinir:</strong> Veriler geri dönüşü olmayacak şekilde yok edilir</li>
+        <li><strong>Yok edilir:</strong> Fiziksel ortamlar için güvenli imha yöntemleri uygulanır</li>
+        <li><strong>Anonim hale getirilir:</strong> Veriler kimliği belirlenemeyecek şekilde dönüştürülür</li>
+    </ul>
+
+    <h2 id="guvenlik">8. Kişisel Veri Güvenliği Tedbirleri</h2>
+    <p>Kişisel verilerinizin güvenliğini sağlamak için KVKK'nın 12. maddesi ve Kişisel Verileri Koruma Kurulu kararları doğrultusunda aşağıdaki teknik ve idari tedbirler alınmaktadır:</p>
+
+    <h3>8.1. Teknik Tedbirler</h3>
+    <ul>
+        <li><strong>Şifreleme (Encryption):</strong> Tüm hassas veriler AES-256 standardında şifrelenmektedir. Aktarım sırasında TLS 1.3 protokolü kullanılmaktadır.</li>
+        <li><strong>Güvenli Kimlik Doğrulama:</strong> Firebase Authentication ile güvenli oturum yönetimi, Google Sign-In entegrasyonu.</li>
+        <li><strong>Firebase App Check:</strong> Play Integrity API ile uygulama doğrulaması, sahte isteklerin engellenmesi.</li>
+        <li><strong>Güvenlik Duvarı ve DDoS Koruması:</strong> Google Cloud altyapısının sunduğu kurumsal düzey koruma.</li>
+        <li><strong>Otomatik Yedekleme:</strong> Firestore'un otomatik yedekleme özelliği ile veri kaybına karşı koruma.</li>
+        <li><strong>Erişim Logları:</strong> Tüm veri erişimlerinin kayıt altına alınması.</li>
+        <li><strong>Güvenlik Testleri:</strong> Düzenli güvenlik taramaları ve penetrasyon testleri.</li>
+        <li><strong>Offline-First Güvenlik:</strong> Yerel veritabanı şifreleme, güvenli senkronizasyon.</li>
+    </ul>
+
+    <h3>8.2. İdari Tedbirler</h3>
+    <ul>
+        <li><strong>Erişim Kontrolü:</strong> Minimum yetki prensibi ile yalnızca yetkili personelin verilere erişimi.</li>
+        <li><strong>Gizlilik Taahhütnameleri:</strong> Tüm çalışanlar ve iş ortakları ile gizlilik sözleşmeleri.</li>
+        <li><strong>Veri İşleme Envanteri:</strong> İşlenen tüm kişisel verilerin detaylı kaydının tutulması.</li>
+        <li><strong>Eğitim:</strong> Personele düzenli veri güvenliği ve KVKK eğitimleri.</li>
+        <li><strong>Veri İşleyen Denetimi:</strong> Üçüncü taraf hizmet sağlayıcıların düzenli denetimi.</li>
+        <li><strong>Olay Müdahale Planı:</strong> Veri ihlali durumunda acil müdahale prosedürleri.</li>
+        <li><strong>Politika ve Prosedürler:</strong> Yazılı veri koruma politikaları ve uygulama prosedürleri.</li>
+    </ul>
+
+    <h3>8.3. Veri İhlali Bildirimi</h3>
+    <p>Kişisel verilere ilişkin bir güvenlik ihlali tespit edilmesi durumunda:</p>
+    <ul>
+        <li>Kişisel Verileri Koruma Kurulu'na <strong>72 saat içinde</strong> bildirim yapılır</li>
+        <li>İlgili kişiler <strong>en kısa sürede</strong> uygun yöntemlerle bilgilendirilir</li>
+        <li>İhlalin etkilerini azaltmak için gerekli teknik ve idari tedbirler derhal alınır</li>
+        <li>İhlal raporu hazırlanır ve kayıt altına alınır</li>
+        <li>Gerekli düzeltici önlemler uygulanır</li>
+    </ul>
+
+    <h2 id="haklariniz">9. KVKK Kapsamındaki Haklarınız</h2>
+    <p>KVKK'nın 11. maddesi uyarınca, kişisel veri sahibi olarak aşağıdaki haklara sahipsiniz:</p>
+
+    <ol>
+        <li><strong>Bilgi Edinme Hakkı:</strong> Kişisel verilerinizin işlenip işlenmediğini öğrenme.</li>
+        <li><strong>Bilgi Talep Hakkı:</strong> Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme.</li>
+        <li><strong>Amaç Öğrenme Hakkı:</strong> Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme.</li>
+        <li><strong>Aktarım Bilgisi Hakkı:</strong> Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme.</li>
+        <li><strong>Düzeltme Hakkı:</strong> Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme.</li>
+        <li><strong>Silme/Yok Etme Hakkı:</strong> KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme.</li>
+        <li><strong>Bildirim Hakkı:</strong> Düzeltme, silme veya yok etme işlemlerinin kişisel verilerinizin aktarıldığı üçüncü kişilere bildirilmesini isteme.</li>
+        <li><strong>İtiraz Hakkı:</strong> İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme.</li>
+        <li><strong>Tazminat Hakkı:</strong> Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme.</li>
+    </ol>
+
+    <div class="alert-box alert-success">
+        <h4>✅ Uygulama İçi Haklar</h4>
+        <p>Aşağıdaki haklarınızı doğrudan uygulama içinden kullanabilirsiniz:</p>
+        <ul>
+            <li><strong>Ayarlar > Hesap > Hesabı Sil:</strong> Tüm verilerinizin silinmesini talep edin</li>
+            <li><strong>Ayarlar > Gizlilik:</strong> Veri paylaşım tercihlerinizi yönetin</li>
+            <li><strong>Ayarlar > Verilerimi İndir:</strong> Verilerinizin bir kopyasını alın</li>
+            <li><strong>Profil > Düzenle:</strong> Kişisel bilgilerinizi güncelleyin</li>
+        </ul>
+    </div>
+
+    <h2 id="basvuru">10. Başvuru Yöntemi</h2>
+    <p>KVKK kapsamındaki haklarınızı kullanmak için aşağıdaki yöntemlerle başvurabilirsiniz:</p>
+
+    <h3>10.1. Başvuru Kanalları</h3>
+    <div class="contact-section">
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div><strong>E-posta:</strong> <a href="mailto:kvkk@dozi.app">kvkk@dozi.app</a></div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <div><strong>Uygulama İçi:</strong> Ayarlar > Gizlilik > KVKK Başvurusu</div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <div><strong>Web Formu:</strong> <a href="https://www.dozi.app/kvkk-basvuru">www.dozi.app/kvkk-basvuru</a></div>
+            </div>
+        </div>
+    </div>
+
+    <h3>10.2. Başvuru Şartları</h3>
+    <p>Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ uyarınca, başvurunuzda aşağıdaki bilgilerin yer alması zorunludur:</p>
+    <ul>
+        <li><strong>Ad, soyad</strong> ve başvuru yazılı ise <strong>imza</strong></li>
+        <li>Türkiye Cumhuriyeti vatandaşları için <strong>T.C. kimlik numarası</strong>, yabancılar için uyruğu, pasaport numarası veya varsa kimlik numarası</li>
+        <li>Tebligata esas <strong>yerleşim yeri veya iş yeri adresi</strong></li>
+        <li>Varsa bildirime esas <strong>elektronik posta adresi, telefon ve faks numarası</strong></li>
+        <li><strong>Talep konusu</strong> (hangi hakkınızı kullanmak istediğiniz)</li>
+    </ul>
+
+    <h3>10.3. Kimlik Doğrulama</h3>
+    <p>Başvurunuzun size ait olduğunun doğrulanması için:</p>
+    <ul>
+        <li>Kayıtlı e-posta adresinizden başvuru yapmanız veya</li>
+        <li>Kimlik belgesi fotokopisi eklemeniz gerekmektedir</li>
+    </ul>
+
+    <h3>10.4. Yanıt Süresi ve Ücret</h3>
+    <ul>
+        <li>Başvurularınız, talebin niteliğine göre <strong>en geç 30 gün</strong> içinde sonuçlandırılacaktır.</li>
+        <li>Başvurular <strong>ücretsiz</strong> olarak değerlendirilecektir.</li>
+        <li>Ancak, işlemin ayrıca bir maliyet gerektirmesi hâlinde, Kişisel Verileri Koruma Kurulu tarafından belirlenen tarifedeki ücret alınabilir (2024 yılı için 50 TL'yi aşan her sayfa için 5 TL).</li>
+    </ul>
+
+    <h3>10.5. Başvurunun Reddedilmesi</h3>
+    <p>Başvurunuz aşağıdaki hallerde reddedilebilir:</p>
+    <ul>
+        <li>Başvuru şartlarının yerine getirilmemesi</li>
+        <li>Kimlik doğrulamasının yapılamaması</li>
+        <li>Talebin kanuna aykırı olması</li>
+        <li>Üçüncü kişilerin haklarının ihlal edilecek olması</li>
+    </ul>
+
+    <h2 id="cocuklar">11. Çocukların Gizliliği</h2>
+    <p>Dozi uygulaması, çocukların kişisel verilerinin korunmasına özel önem vermektedir:</p>
+
+    <h3>11.1. Yaş Sınırı</h3>
+    <ul>
+        <li>Dozi uygulaması <strong>18 yaşından küçük</strong> kullanıcılar için ebeveyn veya yasal vasi onayı gerektirir.</li>
+        <li>18 yaş altı kullanıcıların hesap oluşturabilmesi için ebeveyn/vasi tarafından açık rıza verilmesi zorunludur.</li>
+        <li>Ebeveyn/vasi onayı olmaksızın 18 yaş altı kullanıcılardan bilerek kişisel veri toplanmamaktadır.</li>
+    </ul>
+
+    <h3>11.2. Ebeveyn/Vasi Hakları</h3>
+    <ul>
+        <li>Çocuklarının kişisel verilerine erişim ve inceleme hakkı</li>
+        <li>Çocuklarının verilerinin düzeltilmesini veya silinmesini talep etme hakkı</li>
+        <li>Verilen rızayı geri çekme hakkı</li>
+        <li>Çocuklarının veri işleme faaliyetlerini denetleme hakkı</li>
+    </ul>
+
+    <h3>11.3. Ek Koruma Önlemleri</h3>
+    <ul>
+        <li>Çocuklara ait sağlık verileri için ek güvenlik katmanları</li>
+        <li>Aile takip sistemi (Badi) ile ebeveyn denetimi imkanı</li>
+        <li>Çocuk hesaplarında pazarlama iletişimi gönderilmemesi</li>
+    </ul>
+
+    <div class="alert-box alert-info">
+        <h4>👨‍👩‍👧 Aile Planı</h4>
+        <p>Aile planı kapsamında, ebeveynler çocuklarının ilaç takibini güvenli bir şekilde yönetebilir ve izleyebilir. Bu özellik, çocukların gizliliğini korurken ebeveyn denetimini sağlamak üzere tasarlanmıştır.</p>
+    </div>
+
+    <h2 id="degisiklikler">12. Değişiklikler</h2>
+    <p>Bu KVKK Aydınlatma Metni, aşağıdaki durumlarda güncellenebilir:</p>
+    <ul>
+        <li>Yasal düzenlemelerdeki değişiklikler</li>
+        <li>Kişisel Verileri Koruma Kurulu kararları</li>
+        <li>Uygulama özelliklerindeki değişiklikler</li>
+        <li>Veri işleme faaliyetlerindeki değişiklikler</li>
+        <li>Hizmet sağlayıcı değişiklikleri</li>
+    </ul>
+
+    <h3>12.1. Bildirim Yöntemi</h3>
+    <p>Önemli değişiklikler aşağıdaki yöntemlerle bildirilecektir:</p>
+    <ul>
+        <li><strong>Uygulama İçi Bildirim:</strong> Uygulama açıldığında pop-up bildirim</li>
+        <li><strong>E-posta:</strong> Kayıtlı e-posta adresinize bilgilendirme</li>
+        <li><strong>Web Sitesi:</strong> www.dozi.app adresinde yayınlama</li>
+    </ul>
+
+    <h3>12.2. Yürürlük</h3>
+    <p>Değişiklikler, bildirim tarihinden itibaren <strong>30 gün</strong> sonra yürürlüğe girer. Bu süre içinde uygulamayı kullanmaya devam etmeniz, değişiklikleri kabul ettiğiniz anlamına gelir. Değişiklikleri kabul etmemeniz halinde hesabınızı silebilirsiniz.</p>
+
+    <div class="version-info">
+        <strong>Bu Belgenin Versiyonu:</strong> 2.0<br>
+        <strong>Son Güncelleme:</strong> 23 Aralık 2025<br>
+        <strong>Yürürlük Tarihi:</strong> 23 Aralık 2025<br>
+        <strong>Önceki Versiyon:</strong> 1.0 (08 Aralık 2025)
+    </div>
+
+    <h2 id="sikayet">13. Kişisel Verileri Koruma Kurumu'na Şikayet Hakkı</h2>
+    <p>KVKK'nın 14. maddesi uyarınca, veri sorumlusuna yaptığınız başvurunun:</p>
+    <ul>
+        <li>Reddedilmesi,</li>
+        <li>Verilen cevabın yetersiz bulunması, veya</li>
+        <li>Süresinde (30 gün) başvuruya cevap verilmemesi</li>
+    </ul>
+    <p>hallerinde, cevabı öğrendiğiniz tarihten itibaren <strong>30 gün</strong> ve her halde başvuru tarihinden itibaren <strong>60 gün</strong> içinde Kişisel Verileri Koruma Kurulu'na şikâyette bulunabilirsiniz.</p>
+
+    <div class="contact-section">
+        <h3>Kişisel Verileri Koruma Kurumu İletişim Bilgileri</h3>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">🏛️</span>
+                <div><strong>Adres:</strong> Nasuh Akar Mah. Ziyabey Cad. 1407. Sok. No: 4, 06520 Balgat-Çankaya/Ankara</div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <div><strong>Telefon:</strong> +90 312 216 50 50</div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📠</span>
+                <div><strong>Faks:</strong> +90 312 216 50 52</div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <div><strong>Web:</strong> <a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">www.kvkk.gov.tr</a></div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div><strong>E-posta:</strong> <a href="mailto:kvkk@kvkk.gov.tr">kvkk@kvkk.gov.tr</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box alert-legal">
+        <h4>⚖️ Yasal Uyarı ve Sorumluluk Reddi</h4>
+        <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu, ilgili yönetmelikler ve Kişisel Verileri Koruma Kurulu kararları çerçevesinde hazırlanmıştır.</p>
+        <p><strong>Dozi uygulamasını indirerek, yükleyerek veya kullanarak:</strong></p>
+        <ul>
+            <li>Bu aydınlatma metnini okuduğunuzu ve anladığınızı,</li>
+            <li>Kişisel verilerinizin bu metinde belirtilen şekilde işlenmesini kabul ettiğinizi,</li>
+            <li>Özel nitelikli kişisel verilerinizin (sağlık verileri) işlenmesi için açık rıza verdiğinizi</li>
+        </ul>
+        <p>beyan ve kabul etmiş sayılırsınız.</p>
+        <p>Veri sorumlusu, bu metinde belirtilen yükümlülüklerini yerine getirmek için gerekli tüm teknik ve idari tedbirleri almaktadır. Ancak, kullanıcının kendi ihmal veya kusurundan kaynaklanan veri ihlallerinden veri sorumlusu sorumlu tutulamaz.</p>
+    </div>
+
+</div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Bardino Technology - Tüm hakları saklıdır</p>
+    <p>
+        <a href="index.html">Ana Sayfa</a> |
+        <a href="gdpr.html">GDPR Privacy Policy</a> |
+        <a href="terms-of-use.html">Kullanım Şartları</a> |
+        <a href="account-deletion.html">Hesap Silme</a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">
+        Bu belge son olarak 23 Aralık 2025 tarihinde güncellenmiştir.
+    </p>
+</footer>
+
 </body>
-
 </html>
