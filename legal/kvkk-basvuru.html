@@ -336,24 +336,21 @@
 </footer>
 
 <script>
-document.getElementById('kvkkForm').addEventListener('submit', function(e) {
+// Firebase Functions endpoint
+const API_URL = 'https://europe-west3-dozi-cd7cc.cloudfunctions.net/sendKvkkRequest';
+
+document.getElementById('kvkkForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
     
     // Form verilerini topla
     const formData = new FormData(this);
-    const data = {
-        fullName: formData.get('fullName'),
-        tcNo: formData.get('tcNo'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        address: formData.get('address'),
-        rights: Array.from(document.querySelectorAll('input[name="rights"]:checked')).map(cb => cb.value),
-        details: formData.get('details'),
-        timestamp: new Date().toISOString()
-    };
+    const rights = Array.from(document.querySelectorAll('input[name="rights"]:checked')).map(cb => cb.value);
     
     // En az bir hak seçilmiş mi kontrol et
-    if (data.rights.length === 0) {
+    if (rights.length === 0) {
         alert('Lütfen en az bir talep türü seçiniz.');
         return;
     }
@@ -361,40 +358,57 @@ document.getElementById('kvkkForm').addEventListener('submit', function(e) {
     // Referans numarası oluştur
     const referenceNo = 'KVKK-' + Date.now().toString(36).toUpperCase();
     
-    // E-posta gönderimi için mailto linki oluştur
-    const subject = encodeURIComponent('KVKK Başvurusu - ' + referenceNo);
-    const body = encodeURIComponent(
-        'KVKK BAŞVURU FORMU\n' +
-        '==================\n\n' +
-        'Referans No: ' + referenceNo + '\n' +
-        'Tarih: ' + new Date().toLocaleString('tr-TR') + '\n\n' +
-        'KİŞİSEL BİLGİLER\n' +
-        '----------------\n' +
-        'Ad Soyad: ' + data.fullName + '\n' +
-        'T.C. Kimlik No / Pasaport No: ' + data.tcNo + '\n' +
-        'E-posta: ' + data.email + '\n' +
-        'Telefon: ' + (data.phone || '-') + '\n' +
-        'Adres: ' + (data.address || '-') + '\n\n' +
-        'TALEP TÜRÜ\n' +
-        '----------\n' +
-        data.rights.map(r => '- ' + r.replace(/_/g, ' ')).join('\n') + '\n\n' +
-        'BAŞVURU DETAYLARI\n' +
-        '-----------------\n' +
-        data.details + '\n\n' +
-        '---\n' +
-        'NOT: Bu başvuruyla birlikte kimlik belgesi fotokopisini eklemeyi unutmayınız.'
-    );
+    const data = {
+        fullName: formData.get('fullName'),
+        tcNo: formData.get('tcNo'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        address: formData.get('address') || '',
+        rights: rights,
+        details: formData.get('details'),
+        referenceNo: referenceNo
+    };
     
-    // E-posta istemcisini aç
-    window.location.href = 'mailto:kvkk@dozi.app?subject=' + subject + '&body=' + body;
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Gönderiliyor...';
     
-    // Başarı mesajını göster
-    document.getElementById('referenceNo').textContent = referenceNo;
-    document.getElementById('kvkkForm').style.display = 'none';
-    document.getElementById('successMessage').style.display = 'block';
-    
-    // Sayfayı yukarı kaydır
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+            // Başarılı
+            document.getElementById('referenceNo').textContent = result.referenceNo;
+            document.getElementById('kvkkForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').innerHTML = `
+                <h3>✅ Başvurunuz Alındı</h3>
+                <p><strong>Referans No:</strong> ${result.referenceNo}</p>
+                <p>Başvurunuz başarıyla gönderildi ve e-posta adresinize onay mesajı iletildi.</p>
+                <p style="margin-top: 1rem;">Talebiniz en geç <strong>30 gün</strong> içinde değerlendirilecek ve sonuç tarafınıza bildirilecektir.</p>
+                <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: left;">
+                    <strong>⚠️ Önemli:</strong><br>
+                    Kimlik doğrulaması için T.C. Kimlik Kartı veya Pasaport fotokopinizi <a href="mailto:kvkk@dozi.app">kvkk@dozi.app</a> adresine göndermeniz gerekmektedir.
+                </div>
+            `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            throw new Error(result.error || 'Bir hata oluştu');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Başvuru gönderilemedi: ' + error.message + '\n\nLütfen daha sonra tekrar deneyin veya kvkk@dozi.app adresine manuel olarak e-posta gönderin.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
 });
 </script>
 
