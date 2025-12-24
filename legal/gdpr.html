@@ -182,7 +182,7 @@
 <main>
 <div class="content-card">
     <div class="version-info">
-        <strong>Document Version:</strong> 2.0 | <strong>Last Updated:</strong> December 23, 2025 | <strong>Effective Date:</strong> December 23, 2025
+        <strong>Document Version:</strong> 2.1 | <strong>Last Updated:</strong> December 24, 2025 | <strong>Effective Date:</strong> December 24, 2025
     </div>
 
     <div class="alert-box alert-important">
@@ -361,30 +361,62 @@
     </table>
 
     <h3>2.4. Location Data (Premium Feature)</h3>
+    <div class="alert-box alert-important">
+        <h4>📍 Location Data Collection Disclosure</h4>
+        <p>Dozi collects and uses location data to provide location-based medication reminders. This section explains exactly how we access, collect, use, and share your location information.</p>
+    </div>
     <table class="data-table">
         <thead>
             <tr>
                 <th>Data Type</th>
                 <th>Description</th>
                 <th>Purpose</th>
+                <th>Collection Method</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>GPS Coordinates</td>
-                <td>Real-time location (only when permitted)</td>
-                <td>Location-based reminders</td>
+                <td>Precise GPS Coordinates</td>
+                <td>Real-time latitude and longitude from device GPS</td>
+                <td>Location-based medication reminders (geofencing)</td>
+                <td>Android Location Services API when app is in foreground or background</td>
             </tr>
             <tr>
                 <td>Saved Locations</td>
-                <td>User-defined places (home, work, etc.)</td>
-                <td>Geofence reminders</td>
+                <td>User-defined places (home, work, pharmacy, etc.) with coordinates</td>
+                <td>Geofence trigger points for reminders</td>
+                <td>User input via Google Maps integration</td>
+            </tr>
+            <tr>
+                <td>Geofence Events</td>
+                <td>Entry/exit events when you arrive at or leave saved locations</td>
+                <td>Triggering location-based medication reminders</td>
+                <td>Android Geofencing API</td>
             </tr>
         </tbody>
     </table>
+    
+    <h4>How We Use Location Data</h4>
+    <ul>
+        <li><strong>Location-Based Reminders:</strong> We use your location to send medication reminders when you arrive at or leave specific places (e.g., "Take your medication when you get home")</li>
+        <li><strong>Geofencing:</strong> We create virtual boundaries around your saved locations to detect when you enter or exit these areas</li>
+        <li><strong>Pharmacy Finder:</strong> We may use your location to help you find nearby pharmacies (optional feature)</li>
+    </ul>
+    
+    <h4>Location Data Storage and Sharing</h4>
+    <ul>
+        <li><strong>Local Processing:</strong> Location data is primarily processed on your device</li>
+        <li><strong>Saved Locations:</strong> Your saved location names and coordinates are stored in Firebase Firestore for sync across devices</li>
+        <li><strong>No Third-Party Sharing:</strong> We do NOT share your location data with third parties for advertising or marketing purposes</li>
+        <li><strong>No Sale of Data:</strong> We do NOT sell your location data</li>
+    </ul>
+    
     <div class="alert-box alert-info">
-        <h4>ℹ️ Location Permission</h4>
-        <p>Location data is processed only for Premium users and only after you grant explicit permission. You can revoke location permission at any time through your device settings. Location data is processed locally on your device and is not stored on our servers.</p>
+        <h4>ℹ️ Location Permission Control</h4>
+        <p><strong>When is location accessed?</strong> Location is accessed only when you have enabled location-based reminders for a medication AND granted location permission to the app.</p>
+        <p><strong>Background Location:</strong> To provide reliable location-based reminders, we may access your location in the background. You will be asked for explicit "Allow all the time" permission.</p>
+        <p><strong>How to disable:</strong> You can revoke location permission at any time through your device Settings > Apps > Dozi > Permissions > Location. You can also disable location-based reminders in the app settings.</p>
+        <p><strong>Premium Only:</strong> Location features are available only to Premium subscribers.</p>
     </div>
 
     <h3>2.5. AI Assistant Data</h3>
