@@ -180,7 +180,7 @@
 <main>
 <div class="content-card">
     <div class="version-info">
-        <strong>Belge Versiyonu:</strong> 2.0 | <strong>Son Güncelleme:</strong> 23 Aralık 2025 | <strong>Yürürlük Tarihi:</strong> 23 Aralık 2025
+        <strong>Belge Versiyonu:</strong> 2.1 | <strong>Son Güncelleme:</strong> 24 Aralık 2025 | <strong>Yürürlük Tarihi:</strong> 24 Aralık 2025
     </div>
 
     <div class="alert-box alert-important">
@@ -361,30 +361,62 @@
     </table>
 
     <h3>3.4. Konum Verileri (Premium Özellik)</h3>
+    <div class="alert-box alert-important">
+        <h4>📍 Konum Verisi Toplama Bildirimi</h4>
+        <p>Dozi, konum bazlı ilaç hatırlatmaları sunmak için konum verilerinizi toplar ve kullanır. Bu bölüm, konum bilgilerinize nasıl eriştiğimizi, topladığımızı, kullandığımızı ve paylaştığımızı açıklamaktadır.</p>
+    </div>
     <table class="data-table">
         <thead>
             <tr>
                 <th>Veri Türü</th>
                 <th>Açıklama</th>
                 <th>İşleme Amacı</th>
+                <th>Toplama Yöntemi</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Konum Bilgisi</td>
-                <td>GPS koordinatları (yalnızca izin verildiğinde)</td>
-                <td>Konum bazlı hatırlatmalar</td>
+                <td>Hassas GPS Koordinatları</td>
+                <td>Cihaz GPS'inden alınan anlık enlem ve boylam</td>
+                <td>Konum bazlı ilaç hatırlatmaları (geofencing)</td>
+                <td>Uygulama ön planda veya arka planda iken Android Konum Servisleri API'si</td>
             </tr>
             <tr>
                 <td>Kayıtlı Konumlar</td>
-                <td>Ev, iş yeri gibi kullanıcı tanımlı konumlar</td>
-                <td>Geofence hatırlatmaları</td>
+                <td>Kullanıcı tanımlı yerler (ev, iş, eczane vb.) ve koordinatları</td>
+                <td>Hatırlatmalar için geofence tetikleme noktaları</td>
+                <td>Google Haritalar entegrasyonu ile kullanıcı girişi</td>
+            </tr>
+            <tr>
+                <td>Geofence Olayları</td>
+                <td>Kayıtlı konumlara varış/ayrılış olayları</td>
+                <td>Konum bazlı ilaç hatırlatmalarını tetikleme</td>
+                <td>Android Geofencing API</td>
             </tr>
         </tbody>
     </table>
+    
+    <h4>Konum Verilerini Nasıl Kullanıyoruz</h4>
+    <ul>
+        <li><strong>Konum Bazlı Hatırlatmalar:</strong> Belirli yerlere vardığınızda veya ayrıldığınızda ilaç hatırlatmaları göndermek için konumunuzu kullanıyoruz (örn: "Eve vardığında ilacını al")</li>
+        <li><strong>Geofencing:</strong> Bu alanlara girdiğinizi veya çıktığınızı tespit etmek için kayıtlı konumlarınız etrafında sanal sınırlar oluşturuyoruz</li>
+        <li><strong>Eczane Bulucu:</strong> Yakındaki eczaneleri bulmanıza yardımcı olmak için konumunuzu kullanabiliriz (opsiyonel özellik)</li>
+    </ul>
+    
+    <h4>Konum Verisi Saklama ve Paylaşım</h4>
+    <ul>
+        <li><strong>Yerel İşleme:</strong> Konum verileri öncelikle cihazınızda işlenir</li>
+        <li><strong>Kayıtlı Konumlar:</strong> Kayıtlı konum adlarınız ve koordinatlarınız, cihazlar arası senkronizasyon için Firebase Firestore'da saklanır</li>
+        <li><strong>Üçüncü Taraf Paylaşımı Yok:</strong> Konum verilerinizi reklam veya pazarlama amaçlı üçüncü taraflarla PAYLAŞMIYORUZ</li>
+        <li><strong>Veri Satışı Yok:</strong> Konum verilerinizi SATMIYORUZ</li>
+    </ul>
+    
     <div class="alert-box alert-info">
-        <h4>ℹ️ Konum İzni Hakkında</h4>
-        <p>Konum verileri yalnızca Premium kullanıcılar için ve açık izniniz alındıktan sonra işlenmektedir. Konum izninizi istediğiniz zaman cihaz ayarlarından geri çekebilirsiniz.</p>
+        <h4>ℹ️ Konum İzni Kontrolü</h4>
+        <p><strong>Konum ne zaman erişilir?</strong> Konum, yalnızca bir ilaç için konum bazlı hatırlatmaları etkinleştirdiğinizde VE uygulamaya konum izni verdiğinizde erişilir.</p>
+        <p><strong>Arka Plan Konumu:</strong> Güvenilir konum bazlı hatırlatmalar sağlamak için arka planda konumunuza erişebiliriz. Bunun için açıkça "Her zaman izin ver" izni istenecektir.</p>
+        <p><strong>Nasıl devre dışı bırakılır:</strong> Konum iznini istediğiniz zaman cihaz Ayarları > Uygulamalar > Dozi > İzinler > Konum yolundan iptal edebilirsiniz. Ayrıca uygulama ayarlarından konum bazlı hatırlatmaları devre dışı bırakabilirsiniz.</p>
+        <p><strong>Yalnızca Premium:</strong> Konum özellikleri yalnızca Premium aboneler için kullanılabilir.</p>
     </div>
 
     <h3>3.5. AI Asistan Verileri</h3>
