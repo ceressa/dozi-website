@@ -266,6 +266,37 @@
         .footer-playstore:hover { background: linear-gradient(135deg, #00C853 0%, #00E676 50%, #69F0AE 100%); color: white; border-color: transparent; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,200,83,0.3); }
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
         @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+        
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+        .fade-in-right { opacity: 0; transform: translateX(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+        .scale-in { opacity: 0; transform: scale(0.9); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+        
+        /* Card hover effects */
+        .feature-card, .ekstra-card, .science-card, .use-case-card, .pricing-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .feature-card:hover, .ekstra-card:hover, .science-card:hover, .use-case-card:hover { transform: translateY(-8px) scale(1.02); }
+        .pricing-card:hover { transform: translateY(-8px) scale(1.02); }
+        .pricing-card.popular:hover { transform: scale(1.07) translateY(-8px); }
+        
+        /* Counter animation */
+        .counter { display: inline-block; }
+        
+        /* FLOATING DOWNLOAD BUTTON */
+        .floating-download { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.9); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .floating-download.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .floating-download a { display: flex; align-items: center; gap: 0.75rem; background: var(--gradient-primary); color: white; padding: 1rem 1.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 10px 40px rgba(64, 224, 208, 0.4), 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+        .floating-download a:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 15px 50px rgba(64, 224, 208, 0.5), 0 8px 25px rgba(0,0,0,0.25); }
+        .floating-download svg { width: 22px; height: 22px; }
+        @media (max-width: 768px) { .floating-download { bottom: 1rem; right: 1rem; } .floating-download a { padding: 0.875rem 1.25rem; font-size: 0.875rem; } .floating-download span { display: none; } }
+        
+        /* Pulse animation for floating button */
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.4); opacity: 0; } }
+        .floating-download::before { content: ''; position: absolute; inset: -4px; border-radius: 50px; background: var(--gradient-primary); opacity: 0; animation: pulse-ring 2s infinite; z-index: -1; }
     </style>
 </head>
 <body>
@@ -386,28 +417,28 @@
             <div class="science-grid">
                 <div class="science-card">
                     <div class="science-icon">📉</div>
-                    <div class="science-stat">50%</div>
+                    <div class="science-stat"><span class="counter" data-target="50" data-suffix="%">0</span></div>
                     <h3>Non-Adherence Rate</h3>
                     <p>About half of patients with chronic conditions don't take their medications regularly.</p>
                     <cite>Source: WHO, 2003</cite>
                 </div>
                 <div class="science-card highlight">
                     <div class="science-icon">💀</div>
-                    <div class="science-stat">125,000</div>
+                    <div class="science-stat"><span class="counter" data-target="125000" data-suffix="">0</span></div>
                     <h3>Annual Deaths (US)</h3>
                     <p>In the US alone, 125,000 people die annually due to medication non-adherence.</p>
                     <cite>Source: NCPIE, 2007</cite>
                 </div>
                 <div class="science-card">
                     <div class="science-icon">💰</div>
-                    <div class="science-stat">$300B</div>
+                    <div class="science-stat"><span class="counter" data-target="300" data-prefix="$" data-suffix="B">0</span></div>
                     <h3>Annual Cost</h3>
                     <p>Medication non-adherence costs the US healthcare system $300 billion annually.</p>
                     <cite>Source: NEHI, 2009</cite>
                 </div>
                 <div class="science-card">
                     <div class="science-icon">📱</div>
-                    <div class="science-stat">+34%</div>
+                    <div class="science-stat"><span class="counter" data-target="34" data-prefix="+" data-suffix="%">0</span></div>
                     <h3>App Impact</h3>
                     <p>Mobile reminder apps improve medication adherence by an average of 34%.</p>
                     <cite>Source: Cochrane Review, 2017</cite>
@@ -580,6 +611,14 @@
         </div>
     </section>
 
+    <!-- Floating Download Button -->
+    <div class="floating-download" id="floatingDownload">
+        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+            <span>Download Free</span>
+        </a>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -662,6 +701,80 @@
                 if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
             });
         });
+
+        // Floating download button visibility
+        const floatingDownload = document.getElementById('floatingDownload');
+        const heroSection = document.getElementById('hero');
+        const downloadSection = document.getElementById('download');
+        
+        function updateFloatingButton() {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            const downloadTop = downloadSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            // Show when hero is scrolled past, hide when download section is visible
+            if (heroBottom < 0 && downloadTop > windowHeight) {
+                floatingDownload.classList.add('visible');
+            } else {
+                floatingDownload.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', updateFloatingButton);
+        updateFloatingButton();
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Start counter animation if it's a counter element
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in class to sections and cards
+        document.querySelectorAll('.section-header, .feature-card, .ekstra-card, .science-card, .use-case-card, .pricing-card, .faq-item').forEach((el, index) => {
+            el.classList.add('fade-in');
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+            fadeObserver.observe(el);
+        });
+
+        // Counter animation function
+        function animateCounters(container) {
+            container.querySelectorAll('.counter').forEach(counter => {
+                const target = counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const prefix = counter.getAttribute('data-prefix') || '';
+                const duration = 2000;
+                const start = 0;
+                const end = parseFloat(target);
+                const startTime = performance.now();
+                
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const current = start + (end - start) * easeOut;
+                    
+                    if (target.includes('.')) {
+                        counter.textContent = prefix + current.toFixed(1) + suffix;
+                    } else {
+                        counter.textContent = prefix + Math.floor(current).toLocaleString('en-US') + suffix;
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                }
+                
+                requestAnimationFrame(updateCounter);
+            });
+        }
 
         // Load pricing from Remote Config
         async function loadPricing() {
