@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dozi Asistan: Yapay Zeka Destekli Sağlık Arkadaşınız | Dozi Blog</title>
+    <meta name="description" content="Dozi'nin yapay zeka destekli asistanı ile ilaç takibiniz hakkında sorular sorun, öneriler alın ve sağlık rutininizi geliştirin.">
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --dozi-turquoise: #40E0D0; --dozi-dark: #1a1a2e; --text-primary: #1a1a2e; --text-secondary: #64748b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.8; color: var(--text-primary); }
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo img { height: 32px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-turquoise); }
+        .article-header { background: linear-gradient(135deg, var(--dozi-dark) 0%, #16213e 100%); color: white; padding: 6rem 2rem 4rem; text-align: center; }
+        .article-header h1 { font-size: 2.5rem; max-width: 800px; margin: 0 auto 1rem; }
+        .article-meta { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+        .article-content { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+        .article-content h2 { color: var(--dozi-dark); margin: 2rem 0 1rem; font-size: 1.5rem; }
+        .article-content p { margin-bottom: 1.5rem; color: var(--text-secondary); }
+        .article-content ul { margin: 1rem 0 1.5rem 2rem; color: var(--text-secondary); }
+        .article-content li { margin-bottom: 0.5rem; }
+        .feature-highlight { background: linear-gradient(135deg, rgba(64,224,208,0.1) 0%, rgba(64,224,208,0.05) 100%); border-left: 4px solid var(--dozi-turquoise); padding: 1.5rem; margin: 2rem 0; border-radius: 0 12px 12px 0; }
+        .feature-highlight h3 { color: var(--dozi-dark); margin-bottom: 0.5rem; }
+        .cta-box { background: var(--dozi-dark); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 3rem 0; }
+        .cta-box h3 { margin-bottom: 1rem; }
+        .cta-btn { display: inline-block; background: var(--dozi-turquoise); color: var(--dozi-dark); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+        .dozi-character { text-align: center; margin: 2rem 0; }
+        .dozi-character img { max-width: 200px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-turquoise); text-decoration: none; margin-bottom: 2rem; }
+        .back-link:hover { text-decoration: underline; }
+        .chat-example { background: #f8fafc; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+        .chat-bubble { background: white; border-radius: 12px; padding: 1rem; margin-bottom: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .chat-bubble.user { background: var(--dozi-turquoise); color: var(--dozi-dark); margin-left: 2rem; }
+        .chat-bubble.dozi { margin-right: 2rem; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.75rem; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi">Dozi</a>
+            <ul class="nav-links">
+                <li><a href="../#features">Özellikler</a></li>
+                <li><a href="../#pricing">Fiyatlar</a></li>
+                <li><a href="./">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Dozi Asistan: Yapay Zeka Destekli Sağlık Arkadaşınız</h1>
+        <p class="article-meta">8 Ocak 2026  4 dk okuma</p>
+    </header>
+
+    <article class="article-content">
+        <a href="./" class="back-link"> Tüm Yazılar</a>
+        
+        <div class="dozi-character"><img src="../dozi_teach1.png" alt="Dozi Asistan"></div>
+
+        <p>Dozi sadece bir hatırlatma uygulaması değil. İçinde yapay zeka destekli bir asistan var ve sizinle sohbet edebiliyor!</p>
+
+        <h2>Dozi Asistan Ne Yapabilir?</h2>
+        <p>Dozi Asistan, Google'ın Gemini yapay zeka modeli ile çalışır ve size şu konularda yardımcı olabilir:</p>
+        <ul>
+            <li>İlaç takibiniz hakkında sorularınızı yanıtlar</li>
+            <li>Haftalık/aylık istatistiklerinizi özetler</li>
+            <li>Motivasyon ve destek sağlar</li>
+            <li>Uygulama özelliklerini açıklar</li>
+        </ul>
+
+        <div class="chat-example">
+            <div class="chat-bubble user">Bu hafta kaç ilaç kaçırdım?</div>
+            <div class="chat-bubble dozi">Bu hafta toplam 2 doz kaçırdın, ama genel uyumun %92 ile harika! Geçen haftaya göre daha iyi gidiyorsun </div>
+        </div>
+
+        <div class="feature-highlight">
+            <h3> Kişiselleştirilmiş Deneyim</h3>
+            <p>Dozi Asistan sizi tanır. İlaç geçmişinize, alışkanlıklarınıza göre kişiselleştirilmiş öneriler sunar.</p>
+        </div>
+
+        <h2>Örnek Sorular</h2>
+        <ul>
+            <li>"Bugün hangi ilaçlarımı aldım?"</li>
+            <li>"En çok hangi ilacı kaçırıyorum?"</li>
+            <li>"Streak'im kaç gün?"</li>
+            <li>"Badi nasıl eklenir?"</li>
+        </ul>
+
+        <h2>Dozi Ekstra ile Sınırsız Sohbet</h2>
+        <p>Ücretsiz planda günlük sınırlı mesaj hakkınız var. Dozi Ekstra ile sınırsız sohbet edebilir, daha detaylı analizler alabilirsiniz.</p>
+
+        <div class="cta-box">
+            <h3>Dozi ile Sohbet Edin</h3>
+            <p>Yapay zeka destekli asistanınızla tanışın.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="cta-btn">Hemen Deneyin</a>
+        </div>
+    </article>
+</body>
+</html>

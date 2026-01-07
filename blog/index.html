@@ -3,203 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dozi Blog - İlaç takibi, tedavi uyumu, kronik hastalık yönetimi ve sağlıklı yaşam hakkında faydalı bilgiler.">
-    <meta name="keywords" content="ilaç hatırlatma, tedavi uyumu, sağlık blogu, kronik hastalık, ilaç takibi">
-    <meta name="author" content="Dozi">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.dozi.app/blog/">
-    <meta property="og:title" content="Dozi Blog - Sağlıklı Yaşam Rehberi">
-    <meta property="og:description" content="İlaç takibi, tedavi uyumu ve sağlıklı yaşam hakkında faydalı bilgiler.">
-    <title>Dozi Blog - Sağlıklı Yaşam Rehberi | İlaç Takibi ve Tedavi Uyumu</title>
+    <title>Blog | Dozi - İlaç Takip Uygulaması</title>
+    <meta name="description" content="Dozi blog: İlaç takibi, sağlık ipuçları ve uygulama özellikleri hakkında yazılar.">
     <link rel="icon" type="image/png" href="../dozi_brand.png">
-    <link rel="canonical" href="https://www.dozi.app/blog/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dozi-turquoise: #40E0D0;
-            --dozi-turquoise-dark: #2BC4B4;
-            --dozi-purple: #8B5CF6;
-            --dozi-pink: #FF6B9D;
-            --dozi-dark: #0F172A;
-            --text-primary: #1E293B;
-            --text-secondary: #64748B;
-            --bg-light: #F8FAFC;
-            --gradient-primary: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-purple) 100%);
-        }
+        :root { --dozi-turquoise: #40E0D0; --dozi-dark: #1a1a2e; --text-primary: #1a1a2e; --text-secondary: #64748b; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-primary); background: var(--bg-light); }
-        
-        .navbar { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-primary); background: #f8fafc; }
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-        .nav-logo img { height: 40px; }
-        .nav-logo span { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo img { height: 32px; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: color 0.3s; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; }
         .nav-links a:hover { color: var(--dozi-turquoise); }
-        .nav-cta { background: var(--gradient-primary); color: white !important; padding: 0.6rem 1.2rem; border-radius: 50px; }
-        
-        .blog-hero { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1E293B 100%); color: white; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
-        .blog-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
-        .blog-hero p { font-size: 1.125rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; }
-        .hero-dozi { position: absolute; right: 10%; top: 50%; transform: translateY(-50%); width: 150px; opacity: 0.8; }
-        .hero-dozi-left { position: absolute; left: 10%; top: 50%; transform: translateY(-50%); width: 120px; opacity: 0.6; }
-        
-        .blog-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
-        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        
-        .blog-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s ease; }
-        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .blog-card-image { height: 200px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
-        .blog-card-image img { height: 120px; }
-        .blog-card-content { padding: 1.5rem; }
-        .blog-card-category { display: inline-block; background: rgba(64,224,208,0.1); color: var(--dozi-turquoise-dark); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .blog-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); }
-        .blog-card h2 a { text-decoration: none; color: inherit; }
-        .blog-card h2 a:hover { color: var(--dozi-turquoise-dark); }
-        .blog-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
-        .blog-card-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); }
-        
-        .featured-post { grid-column: span 2; }
-        .featured-post .blog-card-image { height: 300px; }
-        .featured-post .blog-card-image img { height: 180px; }
-        .featured-post h2 { font-size: 1.75rem; }
-        
-        .footer { background: var(--dozi-dark); color: white; padding: 3rem 2rem; text-align: center; margin-top: 3rem; }
-        .footer p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
-        .footer a { color: var(--dozi-turquoise); text-decoration: none; }
-        
-        @media (max-width: 968px) {
-            .blog-grid { grid-template-columns: 1fr; }
-            .featured-post { grid-column: span 1; }
-            .nav-links { display: none; }
-            .hero-dozi, .hero-dozi-left { display: none; }
-        }
+        .hero { background: linear-gradient(135deg, var(--dozi-dark) 0%, #16213e 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; }
+        .hero-character { margin-top: 2rem; }
+        .hero-character img { max-width: 150px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .blog-grid { display: grid; gap: 1.5rem; }
+        .blog-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; }
+        .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .blog-card-image { width: 200px; min-height: 180px; background: linear-gradient(135deg, var(--dozi-turquoise) 0%, #2dd4bf 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .blog-card-image img { max-width: 120px; }
+        .blog-card-content { padding: 1.5rem; flex: 1; }
+        .blog-card-content h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .blog-card-content h2 a { color: var(--text-primary); text-decoration: none; }
+        .blog-card-content h2 a:hover { color: var(--dozi-turquoise); }
+        .blog-card-content p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+        .blog-card-meta { font-size: 0.8rem; color: var(--text-secondary); }
+        @media (max-width: 768px) { .blog-card { flex-direction: column; } .blog-card-image { width: 100%; min-height: 150px; } .nav-links { display: none; } .hero h1 { font-size: 1.75rem; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <img src="../dozi_brand.png" alt="Dozi">
-                <span>Dozi</span>
-            </a>
+            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi">Dozi</a>
             <ul class="nav-links">
-                <li><a href="../index.html">Ana Sayfa</a></li>
-                <li><a href="index.html" style="color: var(--dozi-turquoise);">Blog</a></li>
-                <li><a href="../index.html#features">Özellikler</a></li>
-                <li><a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="nav-cta">İndir</a></li>
+                <li><a href="../#features">Özellikler</a></li>
+                <li><a href="../#pricing">Fiyatlar</a></li>
+                <li><a href="./">Blog</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="blog-hero">
-        <img src="../dozi_noted.png" alt="Dozi" class="hero-dozi-left">
-        <img src="../dozi_teach2.png" alt="Dozi" class="hero-dozi">
+    <section class="hero">
         <h1>Dozi Blog</h1>
-        <p>İlaç takibi, tedavi uyumu ve sağlıklı yaşam hakkında faydalı bilgiler. Sağlığınız için yanınızdayız.</p>
-    </header>
+        <p>İlaç takibi, uygulama özellikleri ve sağlıklı yaşam ipuçları hakkında yazılar.</p>
+        <div class="hero-character"><img src="../dozi_teach2.png" alt="Dozi"></div>
+    </section>
 
-    <main class="blog-container">
+    <div class="container">
         <div class="blog-grid">
-            <article class="blog-card featured-post">
-                <div class="blog-card-image">
-                    <img src="../dozi_idea.png" alt="Dozi">
-                </div>
+            <article class="blog-card">
+                <div class="blog-card-image"><img src="../dozi_idea.png" alt="Dozi"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-category">Tedavi Uyumu</span>
-                    <h2><a href="ilac-unutmak-neden-tehlikeli.html">İlaç Unutmak Neden Tehlikeli? Tedavi Uyumunun Önemi</a></h2>
-                    <p>İlaç unutmak sağlığınız için ciddi riskler taşır. Tedavi uyumunun önemi, ilaç atlama riskleri ve çözüm önerileri hakkında kapsamlı rehberimizi okuyun.</p>
-                    <div class="blog-card-meta">
-                        <span>8 Ocak 2026</span>
-                        <span>6 dk okuma</span>
-                    </div>
+                    <h2><a href="dozi-nedir.html">Dozi Nedir? İlaç Takip Uygulamanızla Tanışın</a></h2>
+                    <p>Dozi, ilaçlarınızı takip etmenizi kolaylaştıran akıllı bir mobil uygulamadır. Yapay zeka destekli hatırlatmalar ve aile takibi özellikleriyle tanışın.</p>
+                    <span class="blog-card-meta">8 Ocak 2026 • 4 dk okuma</span>
                 </div>
             </article>
-
             <article class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #FF6B9D 0%, #8B5CF6 100%);">
-                    <img src="../dozi_family.png" alt="Dozi" style="height: 100px;">
-                </div>
+                <div class="blog-card-image"><img src="../dozi_family.png" alt="Dozi Aile"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-category">Yakında</span>
-                    <h2>Yaşlılar İçin En İyi İlaç Hatırlatma Yöntemleri</h2>
-                    <p>Yaşlı bireylerin ilaç takibini kolaylaştıran pratik yöntemler ve teknoloji çözümleri.</p>
-                    <div class="blog-card-meta">
-                        <span>Yakında</span>
-                        <span>5 dk okuma</span>
-                    </div>
+                    <h2><a href="badi-sistemi-aile-takibi.html">Badi Sistemi: Ailenizin İlaç Takibini Kolaylaştırın</a></h2>
+                    <p>Dozi'nin Badi sistemi ile sevdiklerinizin ilaç alıp almadığını takip edin. Artık "İlacını içtin mi?" diye sormak zorunda değilsiniz.</p>
+                    <span class="blog-card-meta">8 Ocak 2026  3 dk okuma</span>
                 </div>
             </article>
-
             <article class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #10B981 0%, #40E0D0 100%);">
-                    <img src="../dozi_teach3.png" alt="Dozi" style="height: 100px;">
-                </div>
+                <div class="blog-card-image"><img src="../dozi_teach1.png" alt="Dozi Asistan"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-category">Yakında</span>
-                    <h2>Diyabet Hastalarında İlaç Takibi: Pratik İpuçları</h2>
-                    <p>Şeker hastalarının günlük ilaç ve insülin takibini kolaylaştıran öneriler.</p>
-                    <div class="blog-card-meta">
-                        <span>Yakında</span>
-                        <span>7 dk okuma</span>
-                    </div>
+                    <h2><a href="yapay-zeka-asistan.html">Dozi Asistan: Yapay Zeka Destekli Sağlık Arkadaşınız</a></h2>
+                    <p>Dozi'nin yapay zeka destekli asistanı ile ilaç takibiniz hakkında sorular sorun, öneriler alın ve sağlık rutininizi geliştirin.</p>
+                    <span class="blog-card-meta">8 Ocak 2026  4 dk okuma</span>
                 </div>
             </article>
-
             <article class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #F59E0B 0%, #FF6B9D 100%);">
-                    <img src="../dozi_kalp.png" alt="Dozi" style="height: 100px;">
-                </div>
+                <div class="blog-card-image"><img src="../dozi_noted.png" alt="Dozi Stok"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-category">Yakında</span>
-                    <h2>Tansiyon İlacı Ne Zaman İçilmeli?</h2>
-                    <p>Tansiyon ilaçlarının doğru kullanımı ve zamanlama hakkında bilmeniz gerekenler.</p>
-                    <div class="blog-card-meta">
-                        <span>Yakında</span>
-                        <span>4 dk okuma</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);">
-                    <img src="../dozi_happy2.png" alt="Dozi" style="height: 100px;">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Yakında</span>
-                    <h2>Aile Olarak İlaç Takibi Nasıl Yapılır?</h2>
-                    <p>Sevdiklerinizin sağlığını uzaktan takip etmenin yolları ve Badi sistemi.</p>
-                    <div class="blog-card-meta">
-                        <span>Yakında</span>
-                        <span>5 dk okuma</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);">
-                    <img src="../dozi_king.png" alt="Dozi" style="height: 100px;">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Yakında</span>
-                    <h2>Yapay Zeka Sağlık Asistanları: Geleceğin Tedavi Desteği</h2>
-                    <p>AI destekli sağlık uygulamaları tedavi uyumunu nasıl artırıyor?</p>
-                    <div class="blog-card-meta">
-                        <span>Yakında</span>
-                        <span>6 dk okuma</span>
-                    </div>
+                    <h2><a href="ilac-stok-takibi.html">İlaç Stok Takibi: Kutunuz Bitmeden Haberdar Olun</a></h2>
+                    <p>Dozi'nin stok takibi özelliği ile ilaçlarınız bitmeden uyarı alın. Eczaneye son dakika koşturmalarına son!</p>
+                    <span class="blog-card-meta">8 Ocak 2026  3 dk okuma</span>
                 </div>
             </article>
         </div>
-    </main>
-
-    <footer class="footer">
-        <p> 2026 Dozi - Bardino Technology. Tüm hakları saklıdır.</p>
-        <p style="margin-top: 0.5rem;"><a href="../index.html">Ana Sayfa</a> | <a href="index.html">Blog</a> | <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi">İndir</a></p>
-    </footer>
+    </div>
 </body>
 </html>
