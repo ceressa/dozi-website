@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="İlaç unutmak sağlığınız için ciddi riskler taşır. Tedavi uyumunun önemi, ilaç atlama riskleri ve çözüm önerileri hakkında bilgi edinin.">
+    <meta name="keywords" content="ilaç unutmak, tedavi uyumu, ilaç hatırlatma, ilaç atlama riskleri, kronik hastalık, ilaç takibi">
+    <meta name="author" content="Dozi Sağlık Ekibi">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.dozi.app/blog/ilac-unutmak-neden-tehlikeli.html">
+    <meta property="og:title" content="İlaç Unutmak Neden Tehlikeli? Tedavi Uyumunun Önemi | Dozi Blog">
+    <meta property="og:description" content="İlaç unutmak sağlığınız için ciddi riskler taşır. Tedavi uyumunun önemi ve çözüm önerileri.">
+    <meta property="og:image" content="https://www.dozi.app/dozi_idea.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.dozi.app/blog/ilac-unutmak-neden-tehlikeli.html">
+    <title>İlaç Unutmak Neden Tehlikeli? Tedavi Uyumunun Önemi | Dozi Blog</title>
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dozi-turquoise: #40E0D0;
+            --dozi-turquoise-dark: #2BC4B4;
+            --dozi-purple: #8B5CF6;
+            --dozi-pink: #FF6B9D;
+            --dozi-dark: #0F172A;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --bg-light: #F8FAFC;
+            --gradient-primary: linear-gradient(135deg, var(--dozi-turquoise) 0%, var(--dozi-purple) 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.8; color: var(--text-primary); background: var(--bg-light); }
+        
+        .navbar { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .nav-logo img { height: 40px; }
+        .nav-logo span { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-turquoise); }
+        .nav-cta { background: var(--gradient-primary); color: white !important; padding: 0.6rem 1.2rem; border-radius: 50px; }
+        
+        .article-header { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1E293B 100%); color: white; padding: 4rem 2rem; position: relative; overflow: hidden; }
+        .article-header-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
+        .dozi-float { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 200px; opacity: 0.9; z-index: 1; }
+        .breadcrumb { font-size: 0.875rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--dozi-turquoise); text-decoration: none; }
+        .article-meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+        .article-header h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.3; }
+        
+        .article-content { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; background: white; margin-top: -2rem; border-radius: 20px 20px 0 0; position: relative; }
+        .article-content p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem; }
+        .article-content h2 { font-size: 1.75rem; font-weight: 700; color: var(--text-primary); margin: 2.5rem 0 1rem; }
+        .article-content h3 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 2rem 0 0.75rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-secondary); }
+        .article-content li { margin-bottom: 0.5rem; }
+        .article-content strong { color: var(--text-primary); }
+        
+        .highlight-box { background: linear-gradient(135deg, rgba(64,224,208,0.1) 0%, rgba(139,92,246,0.1) 100%); border-left: 4px solid var(--dozi-turquoise); padding: 1.5rem; border-radius: 0 12px 12px 0; margin: 2rem 0; display: flex; align-items: flex-start; gap: 1rem; }
+        .highlight-box img { width: 60px; flex-shrink: 0; }
+        .highlight-box p { margin: 0; color: var(--text-primary); }
+        
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .stat-card { background: var(--bg-light); padding: 1.5rem; border-radius: 12px; text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--dozi-turquoise-dark); }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        
+        .cta-box { background: var(--gradient-primary); color: white; padding: 2.5rem; border-radius: 20px; text-align: center; margin: 3rem 0; position: relative; overflow: hidden; }
+        .cta-box img { position: absolute; right: 2rem; bottom: 0; width: 120px; opacity: 0.9; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .cta-box p { opacity: 0.9; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-btn { display: inline-block; background: white; color: var(--dozi-dark); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.3s; }
+        .cta-btn:hover { transform: translateY(-3px); }
+        
+        .footer { background: var(--dozi-dark); color: white; padding: 3rem 2rem; text-align: center; }
+        .footer p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
+        .footer a { color: var(--dozi-turquoise); text-decoration: none; }
+        
+        @media (max-width: 968px) {
+            .article-header h1 { font-size: 1.75rem; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .dozi-float { display: none; }
+            .cta-box img { display: none; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "İlaç Unutmak Neden Tehlikeli? Tedavi Uyumunun Önemi",
+        "description": "İlaç unutmak sağlığınız için ciddi riskler taşır. Tedavi uyumunun önemi, ilaç atlama riskleri ve çözüm önerileri.",
+        "author": {"@type": "Organization", "name": "Dozi Sağlık Ekibi"},
+        "publisher": {"@type": "Organization", "name": "Dozi", "logo": {"@type": "ImageObject", "url": "https://www.dozi.app/dozi_brand.png"}},
+        "datePublished": "2026-01-08",
+        "dateModified": "2026-01-08"
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../dozi_brand.png" alt="Dozi">
+                <span>Dozi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Ana Sayfa</a></li>
+                <li><a href="index.html">Blog</a></li>
+                <li><a href="../index.html#features">Özellikler</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="nav-cta">İndir</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <img src="../dozi_idea.png" alt="Dozi" class="dozi-float">
+        <div class="article-header-content">
+            <div class="breadcrumb">
+                <a href="../index.html">Ana Sayfa</a> / <a href="index.html">Blog</a> / İlaç Unutmak Neden Tehlikeli?
+            </div>
+            <h1>İlaç Unutmak Neden Tehlikeli? Tedavi Uyumunun Önemi</h1>
+            <div class="article-meta">
+                <span> 8 Ocak 2026</span>
+                <span> 6 dakika okuma</span>
+                <span> Dozi Sağlık Ekibi</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <p>Günde bir kez ilaç almayı unutmak zararsız görünebilir. Ancak araştırmalar, düzenli ilaç kullanımındaki küçük aksaklıkların bile ciddi sağlık sorunlarına yol açabileceğini gösteriyor. Türkiye'de kronik hastalığı olan milyonlarca kişi için <strong>tedavi uyumu</strong> hayati önem taşıyor.</p>
+
+        <div class="highlight-box">
+            <img src="../dozi_teach1.png" alt="Dozi">
+            <p><strong>Biliyor muydunuz?</strong> Dünya Sağlık Örgütü'ne göre, kronik hastalığı olan hastaların yaklaşık %50'si ilaçlarını düzgün kullanmıyor. Bu oran gelişmekte olan ülkelerde daha da yüksek.</p>
+        </div>
+
+        <h2>Rakamlarla Tedavi Uyumsuzluğu</h2>
+        
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-number">%50</div>
+                <div class="stat-label">Kronik hastaların ilaç uyumsuzluk oranı</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">125.000</div>
+                <div class="stat-label">ABD'de yıllık ilaç uyumsuzluğuna bağlı ölüm</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">%80</div>
+                <div class="stat-label">Hastaların ilacını erteleme oranı</div>
+            </div>
+        </div>
+
+        <h2>İlaç Atlamanın Riskleri</h2>
+        
+        <h3>1. Tansiyon Hastaları İçin</h3>
+        <p>Tansiyon ilacını atlamak kan basıncının aniden yükselmesine neden olabilir. Bu durum:</p>
+        <ul>
+            <li>Kalp krizi riskini artırır</li>
+            <li>İnme (felç) olasılığını yükseltir</li>
+            <li>Böbrek hasarına yol açabilir</li>
+            <li>Göz damarlarında hasar oluşturabilir</li>
+        </ul>
+
+        <h3>2. Diyabet Hastaları İçin</h3>
+        <p>Şeker ilacını düzensiz kullanmak kan şekeri kontrolünü zorlaştırır:</p>
+        <ul>
+            <li>Hiperglisemi (yüksek şeker) atakları</li>
+            <li>Uzun vadede organ hasarı</li>
+            <li>Diyabetik komplikasyonların hızlanması</li>
+            <li>Yaşam kalitesinde düşüş</li>
+        </ul>
+
+        <h3>3. Antibiyotik Kullananlar İçin</h3>
+        <p>Antibiyotik tedavisini yarıda bırakmak veya düzensiz kullanmak:</p>
+        <ul>
+            <li>Bakterilerin dirençli hale gelmesine neden olur</li>
+            <li>Enfeksiyonun tekrarlamasına yol açar</li>
+            <li>Tedavi süresinin uzamasına sebep olur</li>
+        </ul>
+
+        <h2>Neden İlaçlarımızı Unutuyoruz?</h2>
+        
+        <p>Araştırmalar, ilaç unutmanın en yaygın nedenlerini şöyle sıralıyor:</p>
+        <ol>
+            <li><strong>Yoğun yaşam temposu:</strong> İş, aile ve sosyal hayat arasında ilaç saatini kaçırmak</li>
+            <li><strong>Karmaşık ilaç rejimleri:</strong> Günde birden fazla ilaç, farklı saatlerde</li>
+            <li><strong>Yan etki korkusu:</strong> İlacın yan etkilerinden kaçınma isteği</li>
+            <li><strong>Kendini iyi hissetme:</strong> "Nasılsa iyiyim" düşüncesiyle ilacı bırakma</li>
+            <li><strong>Unutkanlık:</strong> Özellikle yaşlı bireylerde sık görülen bir durum</li>
+        </ol>
+
+        <div class="highlight-box">
+            <img src="../dozi_family.png" alt="Dozi Aile">
+            <p><strong>Dozi'nin Badi Özelliği:</strong> Sevdiklerinizin ilaç takibini uzaktan yapabilirsiniz. İlaç alınmadığında size bildirim gelir, böylece ailenizin sağlığından emin olursunuz.</p>
+        </div>
+
+        <h2>Tedavi Uyumunu Artırmanın Yolları</h2>
+
+        <h3>Geleneksel Yöntemler</h3>
+        <ul>
+            <li>Hapları günlük kutulara ayırmak</li>
+            <li>Telefona alarm kurmak</li>
+            <li>İlacı görünür bir yere koymak</li>
+            <li>Günlük rutinlerle eşleştirmek (kahvaltı, yatmadan önce)</li>
+        </ul>
+
+        <h3>Teknoloji Destekli Çözümler</h3>
+        <p>Akıllı telefon uygulamaları, ilaç takibinde devrim yarattı. Modern ilaç hatırlatma uygulamaları:</p>
+        <ul>
+            <li>Kişiselleştirilmiş hatırlatmalar gönderir</li>
+            <li>İlaç geçmişinizi takip eder</li>
+            <li>Aile üyelerini bilgilendirir</li>
+            <li>Stok takibi yapar</li>
+            <li>Yapay zeka ile akıllı öneriler sunar</li>
+        </ul>
+
+        <div class="cta-box">
+            <img src="../dozi_happy.png" alt="Dozi">
+            <h3>İlaçlarınızı Bir Daha Asla Unutmayın</h3>
+            <p>Dozi, yapay zeka destekli hatırlatmalar ve aile takibi ile tedavi uyumunuzu artırır. Üstelik tamamen ücretsiz başlayabilirsiniz.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="cta-btn"> Dozi'yi İndir</a>
+        </div>
+
+        <h2>Sonuç</h2>
+        <p>İlaç unutmak, düşündüğümüzden çok daha ciddi sonuçlar doğurabilir. Ancak doğru araçlar ve aile desteğiyle tedavi uyumunu artırmak mümkün. Teknolojinin sunduğu imkanları kullanarak, sağlığınızı korumak artık çok daha kolay.</p>
+        
+        <p><strong>Unutmayın:</strong> Bu işi tek başına yapmak zorunda değilsiniz. Dozi yanınızda.</p>
+    </article>
+
+    <footer class="footer">
+        <p> 2026 Dozi - Bardino Technology. Tüm hakları saklıdır.</p>
+        <p style="margin-top: 0.5rem;"><a href="../index.html">Ana Sayfa</a> | <a href="index.html">Blog</a> | <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi">İndir</a></p>
+    </footer>
+</body>
+</html>
