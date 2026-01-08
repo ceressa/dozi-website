@@ -4,65 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hafızamız Bize Neden Oyun Oynar? | Dozi Blog</title>
-    <meta name="description" content="İlaç unutmak sadece bir dalgınlık mı yoksa beynimizin bir işleyiş biçimi mi? Bilimsel veriler ve Dozi'nin akıllı çözümleriyle sağlığınızı koruma rehberi.">
-    <link rel="icon" type="image/png" href="../dozi_brand.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #fdfdfd; --text-main: #334155; --text-bold: #0f172a; }
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
         
-        /* Navbar */
-        .navbar { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; }
         .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
-        .nav-logo img { height: 32px; }
-
-        /* Header Area */
-        .hero-section { background: var(--dozi-dark); color: white; padding: 8rem 2rem 6rem; text-align: center; position: relative; }
-        .hero-section h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3.2rem; font-weight: 800; max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.1; letter-spacing: -1px; }
-        .hero-section .lead { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 0 auto; }
-        .meta-info { margin-top: 2rem; font-size: 0.9rem; color: var(--dozi-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* Article Wrapper */
-        .content-wrapper { max-width: 800px; margin: -4rem auto 0; padding: 4rem 3.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); position: relative; z-index: 10; }
         
-        /* Typography */
-        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #475569; margin-bottom: 2rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; }
-        h2 { font-size: 2rem; color: var(--text-bold); margin: 3rem 0 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
-        p { margin-bottom: 1.8rem; font-size: 1.15rem; color: var(--text-main); }
+        .hero-section { background: var(--dozi-dark); color: white; padding: 8rem 2rem 6rem; text-align: center; }
+        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 850px; margin: 0 auto 1.5rem; line-height: 1.2; letter-spacing: -1px; }
+        .meta-info { color: var(--dozi-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
+
+        .content-wrapper { max-width: 850px; margin: -4rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.06); }
         
-        /* Dozi Insight Box */
-        .insight-card { background: #f8fafc; border-radius: 24px; padding: 2.5rem; margin: 3.5rem 0; border: 1px dashed #cbd5e1; position: relative; }
-        .insight-card::after { content: '💡'; position: absolute; top: -15px; left: 30px; background: white; padding: 5px; border-radius: 50%; font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .insight-card h4 { color: var(--dozi-dark); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; }
+        h2 { font-size: 2rem; color: var(--text-bold); margin: 3.5rem 0 1.5rem; font-weight: 800; }
+        p { margin-bottom: 1.8rem; font-size: 1.1rem; }
 
-        /* Highlight Boxes */
-        .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0; }
-        .highlight-item { background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
-        .highlight-item b { color: var(--dozi-primary); display: block; margin-bottom: 0.5rem; font-size: 1.2rem; }
+        /* Yeni Tasarlanan Özellik Kartları */
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 4rem 0; }
+        .feature-card { background: #ffffff; border: 1px solid #e2e8f0; padding: 2.5rem; border-radius: 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--dozi-primary); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+        .feature-card .number { font-size: 4rem; font-weight: 900; color: #f1f5f9; position: absolute; top: -10px; right: 10px; z-index: 1; }
+        .feature-card .icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; position: relative; z-index: 2; }
+        .feature-card h3 { font-size: 1.4rem; color: var(--text-bold); margin-bottom: 1rem; position: relative; z-index: 2; }
+        .feature-card p { font-size: 1rem; margin-bottom: 0; line-height: 1.6; position: relative; z-index: 2; }
 
-        /* Features/Solution Section */
-        .dozi-solution { background: var(--dozi-dark); color: white; padding: 3rem; border-radius: 30px; margin: 4rem 0; }
-        .dozi-solution h3 { color: var(--dozi-primary); font-size: 1.8rem; margin-bottom: 1.5rem; }
-        .feature-list { list-style: none; }
-        .feature-list li { margin-bottom: 1.2rem; display: flex; gap: 1rem; align-items: flex-start; }
-        .feature-list li span { color: var(--dozi-primary); font-weight: bold; }
-
-        /* CTA Area */
-        .final-cta { text-align: center; background: linear-gradient(135deg, #40E0D0 0%, #2dd4bf 100%); padding: 4rem 2rem; border-radius: 32px; color: var(--dozi-dark); margin-top: 5rem; }
-        .final-cta h2 { margin-top: 0; font-size: 2.2rem; }
-        .download-btn { display: inline-block; background: var(--dozi-dark); color: white; padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: 1.5rem; transition: 0.3s; }
-        .download-btn:hover { transform: scale(1.05); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
-
-        .author-box { display: flex; align-items: center; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #f1f5f9; }
-        .author-box img { width: 50px; border-radius: 50%; }
+        .dozi-cta { background: var(--dozi-dark); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; }
+        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; }
+        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: 0.3s; margin-top: 1.5rem; }
+        .download-btn:hover { background: #2dd4bf; transform: scale(1.05); }
 
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2.2rem; }
-            .content-wrapper { padding: 3rem 1.5rem; width: 95%; }
-            .highlight-grid { grid-template-columns: 1fr; }
-            .article-header { padding: 5rem 1rem 3rem; }
+            .content-wrapper { padding: 2rem; width: 95%; margin-top: -2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -70,87 +49,67 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi Logo"> DOZI</a>
+            <a href="#" class="nav-logo">DOZI</a>
         </div>
     </nav>
 
     <header class="hero-section">
-        <p class="meta-info">Davranış Bilimi & Sağlık</p>
+        <span class="meta-info">Davranışsal Psikoloji & Teknoloji</span>
         <h1>İlaç Unutmak Bir Dalgınlık Değil, Beynimizin Bir Oyunudur</h1>
-        <p class="lead">Neden en önemli dozları bile atlıyoruz? Bilimin bu konudaki yanıtı şaşırtıcı olabilir.</p>
     </header>
 
     <main class="content-wrapper">
-        
-        <p class="drop-cap">Doktorunuzun yanından ayrıldınız, reçetenizi aldınız ve "Bu sefer her şey düzenli olacak" dediniz. Ancak birkaç hafta sonra kendinizi mutfak masasında oturmuş, boş boş kutuya bakıp "Ben bugün ilacımı içmiş miydim?" diye düşünürken buldunuz. Tanıdık geldi mi? Merak etmeyin, bu sizin hatanız değil; beyninizin çalışma biçimi.</p>
+        <p class="drop-cap">Doktorunuzun yanından ayrıldınız, kutuyu masanın üzerine koydunuz ve kendinize bir söz verdiniz: "Bu sefer her şey düzenli olacak." Ancak sadece birkaç gün sonra o meşhur soruyla baş başasınız: "Ben bugün ilacımı içmiş miydim?"</p>
 
-        <h2>"Otomatik Pilot" Hatası</h2>
-        <p>İnsan beyni, enerji tasarrufu yapmak üzere evrimleşmiştir. Her gün aynı saatte yaptığınız eylemleri (diş fırçalamak, anahtarı yerine koymak veya hap yutmak) <strong>bazal ganglion</strong> adı verilen bölgeye, yani "otomatik pilot" merkezine gönderir.</p>
-        
-        <p>Bu süreç harikadır çünkü her sabah "dişlerimi nasıl fırçalamalıyım?" diye düşünmenizi engeller. Ancak bir dezavantajı vardır: <strong>Hafıza silikleşmesi.</strong> Beyniniz eylemi gerçekleştirdiğine dair bir kayıt oluştursa da, bu kaydın "bugüne" mi yoksa "düne" mi ait olduğunu bazen karıştırır. İşte o meşhur kararsızlık anı tam burada doğar.</p>
+        <p>Eğer bu durumu yaşıyorsanız yalnız değilsiniz. Dünya Sağlık Örgütü verilerine göre, kronik tedavi gören hastaların yarısı dozlarını atlıyor. Bunun nedeni irade zayıflığı değil; tamamen insan beyninin rutine karşı geliştirdiği bir savunma mekanizmasıdır.</p>
 
-        <div class="insight-card">
-            <h4>İlginç Bir Veri</h4>
-            <p>Dünya Sağlık Örgütü'ne (WHO) göre, kronik hastalıklarda tedavi başarısızlığının bir numaralı nedeni yanlış ilaç kullanımı değil, <strong>unutulan dozlardır.</strong> Hastaların %50'si tedavi planına tam uyum sağlayamıyor.</p>
-        </div>
+        <h2>"Otomatik Pilot" Neden Hata Yapar?</h2>
+        <p>Beynimiz enerji tasarrufu sağlamak için her gün tekrarlanan eylemleri <strong>"otomatik pilot"</strong> moduna alır. İlacınızı her gün aynı bardakla, aynı mutfak tezgahında içiyorsanız, beyin bu anı "önemsiz bir rutin" olarak kodlar. Sonuç? Eylemi yaptığınıza dair bir silüet hatırlarsınız ama bu anının "bugüne" mi yoksa "düne" mi ait olduğunu ayırt edemezsiniz.</p>
 
-        <h2>Neden Hatırlamak Bu Kadar Zor?</h2>
-        <p>Bilim insanları ilaç uyumunu bozan "Bilişsel Yük" faktörlerini şöyle sıralıyor:</p>
+        <p>İşte tam bu noktada Dozi, sadece bir alarm olmanın ötesine geçer ve hafızanızın bıraktığı boşlukları akıllıca doldurur.</p>
 
-        <div class="highlight-grid">
-            <div class="highlight-item">
-                <b>Sessiz Hastalıklar</b>
-                Tansiyon veya kolesterol gibi "hissetmediğiniz" durumlarda, beyin tehlike algılamadığı için ilacı önceliklendirmez.
+        <section class="feature-grid">
+            <div class="feature-card">
+                <span class="number">01</span>
+                <span class="icon">📍</span>
+                <h3>Akıllı Konum Hatırlatıcı</h3>
+                <p>Bazen sorun zaman değil, o an nerede olduğunuzdur. Dozi, eve girdiğinizde veya işten ayrıldığınızda sizi karşılayarak en uygun anda hatırlatma yapar.</p>
             </div>
-            <div class="highlight-item">
-                <b>Rutin Bozulması</b>
-                Hafta sonu kahvaltıları veya tatiller, beyninizin alışık olduğu "hatırlatıcı zincirleri" koparır.
+
+            <div class="feature-card">
+                <span class="number">02</span>
+                <span class="icon">👨‍👩‍👧‍👦</span>
+                <h3>Badi Sistemi</h3>
+                <p>Sosyal destek, sağlığın en güçlü ilacıdır. İlacınızı almayı geciktirdiğinizde Dozi sevdiklerinize haber verir; böylece asla yalnız hissetmezsiniz.</p>
             </div>
-            <div class="highlight-item">
-                <b>Çoklu Görev (Multi-tasking)</b>
-                Eğer ilacınızı sabah telaşı içinde, telefonla konuşurken içiyorsanız, beyin bu anı "önemsiz" olarak kodlar ve saniyeler içinde siler.
+
+            <div class="feature-card">
+                <span class="number">03</span>
+                <span class="icon">🚨</span>
+                <h3>Kritik Doz Alarmları</h3>
+                <p>Hayati önemdeki ilaçlar şansa bırakılamaz. Dozi, bu dozlar için telefonunuz sessizde olsa bile duyabileceğiniz özel, durdurulması zor alarmlar çalar.</p>
             </div>
-            <div class="highlight-item">
-                <b>Karmaşık Programlar</b>
-                "Aç karnına, yemekten 2 saat sonra, haftada sadece 3 gün" gibi kurallar, beynin işlem kapasitesini aşabilir.
+
+            <div class="feature-card">
+                <span class="number">04</span>
+                <span class="icon">🧠</span>
+                <h3>Zeki Dozi Asistan</h3>
+                <p>"İlacımı içtim mi?" şüphesine son. Dozi tüm geçmişinizi tutar, etkileşimleri kontrol eder ve sağlığınızla ilgili tüm sorularınızı anında yanıtlar.</p>
             </div>
-        </div>
+        </section>
 
-        <h2>Dozi: Teknolojinin Şefkatli Hali</h2>
-        <p>Biz Dozi'yi tasarlarken sadece bir "alarm uygulaması" yapmayı hedeflemedik. Beyninizin o boşluklarını dolduracak, size dijital bir <strong>"sağlık sırdaşı"</strong> olacak bir asistan kurguladık.</p>
+        <h2>Teknolojiyle Gelen Huzur</h2>
+        <p>İlaç takibi, zihninizde sürekli taşımanız gereken ağır bir yük olmamalı. Dozi'nin amacı bu yükü sizin yerinize sırtlanmak ve size sadece "iyileşmeye odaklanma" konforunu sunmaktır. Akıllı bir asistanla yol yürümek, sağlığı tesadüflere bırakmaktan her zaman daha güvenlidir.</p>
 
-        <div class="dozi-solution">
-            <h3>Dozi Sağlığınızı Nasıl Korur?</h3>
-            <ul class="feature-list">
-                <li><span>01. Sırdaş Modu:</span> Bildirimlerinizde ilaç adını gizler. Kilit ekranında sadece sizin anlayacağınız o zarif mesajlar görünür. Mahremiyetiniz bizim için kutsaldır.</li>
-                <li><span>02. Badi Sistemi:</span> İnsan sosyal bir canlıdır. Eğer ilacınızı unutursanız, Dozi seçtiğiniz bir sevdiğinize (Badinize) haber verir. Birinin sizi kolladığını bilmek, uyumu %40 artırır.</li>
-                <li><span>03. Akıllı Konum:</span> Sadece zamana değil, hayatınıza uyum sağlar. Eve girdiğinizde veya işten çıktığınızda, tam ihtiyacınız olan anda size seslenir.</li>
-                <li><span>04. Yapay Zeka Desteği:</span> "Bu ilaç ne işe yarıyordu?" veya "Aç mı içmeliydim?" diye düşünmeyin. Dozi Asistan'a sorun, o sizin yerinize tüm literatürü tarasın.</li>
-            </ul>
-        </div>
-
-        <h2>Sonuç: Sağlık Bir Yolculuktur</h2>
-        <p>İlaç takibi bir angarya değil, kendinize verdiğiniz bir sözdür. Biz bu sözü tutmanızı kolaylaştırmak, zihninizdeki o "İçmiş miydim?" şüphesini tamamen silmek için buradayım.</p>
-        
-        <p>Unutmayın, en iyi tedavi, <strong>vaktinde uygulanan</strong> tedavidir.</p>
-
-        <div class="final-cta">
-            <h2>Hadi, Birlikte Takip Edelim</h2>
-            <p>Zihnindeki yükü Dozi'ye devret, sen sadece iyi hissetmeye odaklan.</p>
-            <a href="#" class="download-btn">Dozi'yi Ücretsiz Keşfet</a>
-        </div>
-
-        <div class="author-box">
-            <img src="../dozi_brand.png" alt="Dozi Team">
-            <div>
-                <strong>Dozi Ekibi</strong><br>
-                <span>Sağlık Teknolojileri ve Kullanıcı Deneyimi Üzerine</span>
-            </div>
+        <div class="dozi-cta">
+            <h2>Hafızanızdaki Boşlukları Dozi Doldursun</h2>
+            <p>Zihnindeki o belirsiz şüpheyi silip atmaya hazır mısın? Dozi seni bekliyor.</p>
+            <a href="#" class="download-btn">Hemen Ücretsiz Dene</a>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 5rem 2rem; color: #94a3b8; font-size: 0.9rem;">
-        &copy; 2026 Dozi. Bilgi amaçlıdır, tıbbi tavsiye yerine geçmez.
+    <footer style="text-align: center; padding: 4rem; color: #94a3b8; font-size: 0.9rem;">
+        &copy; 2026 Dozi Health Technologies. Bu yazı bilgilendirme amaçlıdır.
     </footer>
 
 </body>
