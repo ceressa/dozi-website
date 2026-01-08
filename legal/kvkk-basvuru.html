@@ -309,11 +309,11 @@
             submitBtn.textContent = 'Gönderiliyor...';
             
             try {
-                // reCAPTCHA token al (invisible - kullanıcı görmez)
-                const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'data_request' });
-                
                 // Her talep tipi için ayrı istek gönder
                 const promises = selectedTypes.map(async (requestType) => {
+                    // Her istek için yeni reCAPTCHA token al
+                    const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'data_request' });
+                    
                     const formData = {
                         requestType: requestType,
                         name: document.getElementById('name').value.trim(),
