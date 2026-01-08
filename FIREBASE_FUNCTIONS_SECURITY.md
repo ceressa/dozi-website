@@ -55,6 +55,35 @@ All endpoints validate:
 - Request ID for tracking
 - Timeline expectations (7 days for deletion, 30 days for KVKK/GDPR)
 
+**Email Deliverability (Anti-Spam):**
+- ✅ Plain text + HTML versions (dual format)
+- ✅ Reply-To header (`info@dozi.app`)
+- ✅ Custom headers (`X-Entity-Ref-ID`, `X-Mailer`)
+- ✅ Professional formatting (no spam triggers)
+- ✅ Message ID logging for tracking
+
+**Spam Prevention Best Practices:**
+```typescript
+await transporter.sendMail({
+  from: '"Dozi" <noreply@...>',
+  replyTo: "info@dozi.app",        // ✅ Reply address
+  to: email,
+  subject: "...",
+  text: plainTextContent,          // ✅ Plain text version
+  html: htmlContent,               // ✅ HTML version
+  headers: {
+    "X-Entity-Ref-ID": requestDoc.id,
+    "X-Mailer": "Dozi",
+  },
+});
+```
+
+**Recommendations:**
+- Add SPF record to domain: `v=spf1 include:_spf.google.com ~all`
+- Consider dedicated email service (SendGrid, AWS SES) for production
+- Monitor bounce rate (keep below 5%)
+- Implement email warm-up for new domains
+
 ### 6. Data Storage
 **Firestore Collections:**
 - `account_deletion_requests` - Account deletion requests
@@ -233,6 +262,7 @@ firebase functions:log --follow
 
 ---
 
-**Last Updated:** 2026-01-08
-**Security Review:** Passed ✅
+**Last Updated:** 2026-01-08  
+**Security Review:** Passed ✅  
+**Email Deliverability:** Enhanced ✅  
 **Next Review:** 2026-04-08 (Quarterly)
