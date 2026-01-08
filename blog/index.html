@@ -94,14 +94,14 @@
         .blog-card.featured { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1e3a5f 100%); color: white; border: none; }
         .blog-card.featured .blog-card-image { background: rgba(64,224,208,0.15); }
         .blog-card.featured .blog-card-tag { background: rgba(64,224,208,0.2); color: var(--dozi-primary); }
-        .blog-card.featured h2 a { color: white; }
-        .blog-card.featured h2 a:hover { color: var(--dozi-primary); }
+        .blog-card.featured h2 { color: white; }
+        .blog-card.featured:hover h2 { color: var(--dozi-primary); }
         .blog-card.featured p { color: rgba(255,255,255,0.7); }
         .blog-card.featured .blog-card-meta { color: rgba(255,255,255,0.5); }
         .blog-card.featured:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
         
         /* Regular Card */
-        .blog-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; border: 1px solid #e2e8f0; }
+        .blog-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; border: 1px solid #e2e8f0; cursor: pointer; text-decoration: none; }
         .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--dozi-primary); }
         .blog-card-image { width: 260px; min-height: 200px; background: linear-gradient(135deg, var(--dozi-primary) 0%, var(--dozi-primary-dark) 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
         .blog-card-image::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); }
@@ -109,9 +109,8 @@
         .blog-card:hover .blog-card-image img { transform: scale(1.1) rotate(-3deg); }
         .blog-card-content { padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .blog-card-tag { display: inline-block; background: rgba(64,224,208,0.1); color: var(--dozi-primary-dark); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem; width: fit-content; }
-        .blog-card-content h2 { font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 800; line-height: 1.35; }
-        .blog-card-content h2 a { color: var(--text-bold); text-decoration: none; transition: color 0.3s; }
-        .blog-card-content h2 a:hover { color: var(--dozi-primary); }
+        .blog-card-content h2 { font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 800; line-height: 1.35; color: var(--text-bold); transition: color 0.3s; }
+        .blog-card:hover h2 { color: var(--dozi-primary); }
         .blog-card-content p { color: var(--text-main); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.65; }
         .blog-card-meta { font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 1.25rem; }
         .blog-card-meta span { display: flex; align-items: center; gap: 0.35rem; }
@@ -179,24 +178,24 @@
     <div class="container">
         <h2 class="section-title">Son Yazılar</h2>
         <div class="blog-grid">
-            <article class="blog-card featured">
+            <a href="ilac-unutmak-neden-yaygin.html" class="blog-card featured">
                 <div class="blog-card-image"><img src="../dozi_idea.png" alt="Dozi"></div>
                 <div class="blog-card-content">
                     <span class="blog-card-tag">Davranışsal Psikoloji</span>
-                    <h2><a href="ilac-unutmak-neden-yaygin.html">Hafızanızın Boşluklarını Dozi ile Doldurun: Neden Unutuyoruz?</a></h2>
+                    <h2>Hafızanızın Boşluklarını Dozi ile Doldurun: Neden Unutuyoruz?</h2>
                     <p>İlaç unutmak bir dalgınlık değil, beynimizin bir oyunudur. Otomatik pilot modunun tuzaklarını ve Dozi'nin akıllı çözümlerini keşfedin.</p>
                     <span class="blog-card-meta"><span>📅 8 Ocak 2026</span><span>⏱️ 5 dk okuma</span></span>
                 </div>
-            </article>
-            <article class="blog-card">
+            </a>
+            <a href="yasli-ebeveyn-ilac-takibi.html" class="blog-card">
                 <div class="blog-card-image"><img src="../dozi_family.webp" alt="Dozi Aile"></div>
                 <div class="blog-card-content">
                     <span class="blog-card-tag">Aile & Sağlık</span>
-                    <h2><a href="yasli-ebeveyn-ilac-takibi.html">Sormadan Bilmenin Huzuru: Aileler İçin Dozi Badi Sistemi</a></h2>
+                    <h2>Sormadan Bilmenin Huzuru: Aileler İçin Dozi Badi Sistemi</h2>
                     <p>Denetçi değil, evlat olun. "İlacını içtin mi?" sorusunun yarattığı gerilime son verin, Badi sistemi ile uzaktan takip edin.</p>
                     <span class="blog-card-meta"><span>📅 8 Ocak 2026</span><span>⏱️ 5 dk okuma</span></span>
                 </div>
-            </article>
+            </a>
         </div>
         
         <div class="coming-soon">
@@ -214,5 +213,23 @@
             <span>Ücretsiz İndir</span>
         </a>
     </section>
+    
+    <footer class="disclaimer">
+        <div class="disclaimer-content">
+            <div class="disclaimer-icon">⚠️</div>
+            <p><strong>Önemli Uyarı:</strong> Bu blog yazıları yalnızca bilgilendirme amaçlıdır ve tıbbi tavsiye niteliği taşımaz. Dozi bir ilaç takip uygulamasıdır, sağlık danışmanı değildir. İlaçlarınız ve tedaviniz hakkında mutlaka doktorunuza danışın. Sevgiyle hazırlandı. 💚</p>
+        </div>
+        <p class="copyright">© 2026 <a href="../">Dozi</a> - Bardino Technology</p>
+    </footer>
+    
+    <style>
+        .disclaimer { background: #fef3c7; border-top: 3px solid #f59e0b; padding: 2rem; text-align: center; }
+        .disclaimer-content { max-width: 800px; margin: 0 auto 1rem; display: flex; align-items: flex-start; gap: 1rem; text-align: left; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .disclaimer-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .disclaimer-content p { font-size: 0.9rem; color: #92400e; line-height: 1.6; margin: 0; }
+        .disclaimer-content strong { color: #78350f; }
+        .copyright { font-size: 0.8rem; color: #a16207; }
+        .copyright a { color: #92400e; text-decoration: none; font-weight: 600; }
+    </style>
 </body>
 </html>

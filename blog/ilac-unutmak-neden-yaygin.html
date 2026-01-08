@@ -116,10 +116,6 @@
         .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; margin-top: 1.5rem; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(64,224,208,0.3); }
         .download-btn:hover { background: #2dd4bf; transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(64,224,208,0.4); }
 
-        /* Footer */
-        footer { text-align: center; padding: 4rem 2rem; color: #94a3b8; font-size: 0.9rem; }
-        footer a { color: var(--dozi-primary); text-decoration: none; }
-
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2rem; }
             .content-wrapper { padding: 2rem 1.5rem; width: 95%; margin-top: -2rem; border-radius: 24px; }
@@ -202,9 +198,23 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 <a href="../">Dozi</a>. Bu yazı bilgilendirme amaçlıdır.</p>
+    <footer class="disclaimer">
+        <div class="disclaimer-content">
+            <div class="disclaimer-icon">⚠️</div>
+            <p><strong>Önemli Uyarı:</strong> Bu yazı yalnızca bilgilendirme amaçlıdır ve tıbbi tavsiye niteliği taşımaz. Dozi bir ilaç takip uygulamasıdır, sağlık danışmanı değildir. İlaçlarınız ve tedaviniz hakkında mutlaka doktorunuza danışın. Sevgiyle hazırlandı. 💚</p>
+        </div>
+        <p class="copyright">© 2026 <a href="../">Dozi</a> - Bardino Technology</p>
     </footer>
+    
+    <style>
+        .disclaimer { background: #fef3c7; border-top: 3px solid #f59e0b; padding: 2rem; text-align: center; }
+        .disclaimer-content { max-width: 800px; margin: 0 auto 1rem; display: flex; align-items: flex-start; gap: 1rem; text-align: left; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .disclaimer-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .disclaimer-content p { font-size: 0.9rem; color: #92400e; line-height: 1.6; margin: 0; }
+        .disclaimer-content strong { color: #78350f; }
+        .copyright { font-size: 0.8rem; color: #a16207; margin: 0; }
+        .copyright a { color: #92400e; text-decoration: none; font-weight: 600; }
+    </style>
 
 </body>
 </html>
