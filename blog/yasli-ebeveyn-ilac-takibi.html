@@ -1,150 +1,122 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yaşlı Ebeveynlerinizin İlaç Takibi: Uzaktan Nasıl Yapılır? | Dozi Blog</title>
-    <meta name="description" content="Yaşlı anne babanızın ilaçlarını uzaktan takip etmek mümkün mü? 'İlacını içtin mi?' sorusuna son verin.">
-    <link rel="icon" type="image/png" href="../dozi_brand.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Sormadan Bilmenin Huzuru | Dozi Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --dozi-turquoise: #40E0D0; --dozi-dark: #1a1a2e; --text-primary: #1a1a2e; --text-secondary: #64748b; }
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.8; color: var(--text-primary); }
-        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
-        .nav-logo img { height: 32px; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--dozi-turquoise); }
-        .article-header { background: linear-gradient(135deg, var(--dozi-dark) 0%, #16213e 100%); color: white; padding: 6rem 2rem 4rem; text-align: center; }
-        .article-header h1 { font-size: 2.5rem; max-width: 800px; margin: 0 auto 1rem; }
-        .article-meta { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
-        .article-content { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
-        .article-content h2 { color: var(--dozi-dark); margin: 2rem 0 1rem; font-size: 1.5rem; }
-        .article-content p { margin-bottom: 1.5rem; color: var(--text-secondary); }
-        .article-content ul { margin: 1rem 0 1.5rem 2rem; color: var(--text-secondary); }
-        .article-content li { margin-bottom: 0.5rem; }
-        .stat-box { background: linear-gradient(135deg, rgba(64,224,208,0.1) 0%, rgba(64,224,208,0.05) 100%); border-left: 4px solid var(--dozi-turquoise); padding: 1.5rem; margin: 2rem 0; border-radius: 0 12px 12px 0; }
-        .stat-box .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--dozi-turquoise); }
-        .stat-box .stat-label { color: var(--text-primary); font-weight: 600; }
-        .stat-box .stat-source { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; }
-        .quote-box { background: #f8fafc; border-radius: 16px; padding: 2rem; margin: 2rem 0; font-style: italic; color: var(--text-secondary); border: 1px solid #e2e8f0; }
-        .quote-box cite { display: block; margin-top: 1rem; font-style: normal; font-weight: 600; color: var(--text-primary); }
-        .solution-box { background: var(--dozi-dark); color: white; padding: 2rem; border-radius: 16px; margin: 2rem 0; }
-        .solution-box h3 { color: var(--dozi-turquoise); margin-bottom: 1rem; }
-        .solution-box p { color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
-        .solution-box ul { margin: 1rem 0 0 1.5rem; color: rgba(255,255,255,0.8); }
-        .solution-box li { margin-bottom: 0.5rem; }
-        .cta-box { background: linear-gradient(135deg, var(--dozi-turquoise) 0%, #2dd4bf 100%); color: var(--dozi-dark); padding: 2rem; border-radius: 16px; text-align: center; margin: 3rem 0; }
-        .cta-box h3 { margin-bottom: 1rem; }
-        .cta-btn { display: inline-block; background: var(--dozi-dark); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 1rem; }
-        .dozi-character { text-align: center; margin: 2rem 0; }
-        .dozi-character img { max-width: 180px; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-turquoise); text-decoration: none; margin-bottom: 2rem; }
-        .back-link:hover { text-decoration: underline; }
-        @media (max-width: 768px) { .article-header h1 { font-size: 1.75rem; } .nav-links { display: none; } }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
+        
+        .navbar { background: var(--dozi-dark); padding: 1.2rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; }
+        .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .hero-section { background: var(--dozi-dark); color: white; padding: 9rem 2rem 7rem; text-align: center; }
+        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 850px; margin: 0 auto 1.5rem; line-height: 1.2; letter-spacing: -1.5px; }
+        .meta-info { color: var(--dozi-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
+
+        .content-wrapper { max-width: 850px; margin: -5rem auto 0; padding: 5rem; background: white; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); }
+        
+        .drop-cap { font-family: 'Lora', serif; font-size: 1.3rem; font-style: italic; color: #64748b; margin-bottom: 3rem; border-left: 5px solid var(--dozi-primary); padding-left: 2rem; }
+        h2 { font-size: 2.2rem; color: var(--text-bold); margin: 4rem 0 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        p { margin-bottom: 2rem; font-size: 1.15rem; }
+
+        /* İstatistik & Alıntı Kutuları */
+        .highlight-box { background: #f1f5f9; border-radius: 24px; padding: 2.5rem; margin: 3.5rem 0; text-align: center; }
+        .stat-val { font-size: 3.5rem; font-weight: 900; color: var(--dozi-primary); display: block; line-height: 1; }
+        .stat-desc { font-weight: 700; color: var(--text-bold); font-size: 1.1rem; }
+
+        .quote-card { font-family: 'Lora', serif; font-size: 1.4rem; font-style: italic; color: var(--text-bold); text-align: center; margin: 4rem 0; padding: 0 2rem; position: relative; }
+        .quote-card::before { content: '“'; font-size: 5rem; color: var(--dozi-primary); position: absolute; top: -40px; left: 0; opacity: 0.3; }
+
+        /* Dozi Badi Sistemi Kartları */
+        .badi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 4rem 0; }
+        .badi-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 24px; }
+        .badi-card b { color: var(--dozi-dark); font-size: 1.2rem; display: block; margin-bottom: 0.8rem; }
+        .badi-card p { font-size: 1rem; margin-bottom: 0; line-height: 1.5; }
+
+        /* CTA */
+        .dozi-cta { background: var(--dozi-dark); color: white; padding: 4.5rem 3rem; border-radius: 40px; text-align: center; margin-top: 6rem; }
+        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1.5rem; font-size: 2.4rem; }
+        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.3rem 3.5rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.15rem; transition: 0.3s; }
+        .download-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(64, 224, 208, 0.3); }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.2rem; }
+            .content-wrapper { padding: 2.5rem 1.5rem; width: 95%; }
+            .badi-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi">Dozi</a>
-            <ul class="nav-links">
-                <li><a href="../#features">Özellikler</a></li>
-                <li><a href="../#pricing">Fiyatlar</a></li>
-                <li><a href="./">Blog</a></li>
-            </ul>
+            <a href="#" class="nav-logo">DOZI</a>
         </div>
     </nav>
 
-    <header class="article-header">
-        <h1>Yaşlı Ebeveynlerinizin İlaç Takibi: Uzaktan Nasıl Yapılır?</h1>
-        <p class="article-meta">8 Ocak 2026  5 dk okuma</p>
+    <header class="hero-section">
+        <span class="meta-info">Aile & Sağlık Teknolojileri</span>
+        <h1>Denetçi Değil, Evlat Olun: Uzaktan İlaç Takibinin En Zarif Yolu</h1>
     </header>
 
-    <article class="article-content">
-        <a href="./" class="back-link"> Tüm Yazılar</a>
-        
-        <div class="dozi-character"><img src="../dozi_family.png" alt="Dozi Aile"></div>
+    <main class="content-wrapper">
+        <p class="drop-cap">"Anne, ilacını içmiş miydin?" Bu masum soru, aslında hem sizin hem de ebeveyninizin omuzlarında sessiz bir yük taşır. Sizin için bir endişe göstergesi olan bu cümle, onlar için bazen "kontrol ediliyormuş" hissi yaratan bir gerilime dönüşebilir.</p>
 
-        <p>"Anne, ilacını içtin mi?" Bu soruyu günde kaç kez soruyorsunuz? Ve her seferinde hem siz hem de anneniz için ne kadar yorucu oluyor?</p>
-        
-        <p>Yaşlı ebeveynlerimizin sağlığı için endişelenmek doğal. Ancak bu endişe, zamanla hem bizim hem de onların üzerinde bir yük haline gelebiliyor.</p>
+        <p>Ebeveynlerimizin yaşları ilerledikçe sağlık rutinlerini yönetmek zorlaşır; ancak bu durumun aranızdaki o şefkatli bağı bir "denetçi-hastahane" ilişkisine çevirmesine izin vermek zorunda değilsiniz. Bilim ve teknoloji, artık bu mesafeleri sevgiyle aşmanın bir yolunu sunuyor.</p>
 
-        <h2>Yaşlılıkta İlaç Uyumu Neden Zorlaşır?</h2>
-
-        <div class="stat-box">
-            <div class="stat-number">%40-75</div>
-            <div class="stat-label">65 yaş üstü bireylerde ilaç uyumsuzluk oranı</div>
-            <div class="stat-source">Kaynak: Journal of the American Geriatrics Society, 2019</div>
+        <div class="highlight-box">
+            <span class="stat-val">%75</span>
+            <span class="stat-desc">65 yaş üstü bireylerde ilaç uyumsuzluğu oranı oldukça yüksektir.</span>
+            <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">Kaynak: Journal of the American Geriatrics Society</p>
         </div>
 
-        <p>Yaşlılıkta ilaç takibini zorlaştıran birçok faktör var:</p>
+        <h2>Neden Uzaktan Takip Bu Kadar Kritik?</h2>
+        <p>Yaşlılık dönemi, genellikle "polifarmasi" dediğimiz çoklu ilaç kullanımını da beraberinde getirir. Günde 5 ila 7 farklı ilacın farklı saatlerde, farklı kurallarla alınması; sadece hafızayı değil, dikkati de zorlayan bir süreçtir. "Az önce içmiş miydim?" belirsizliği yaşandığında, Dozi devreye girerek bu karmaşayı bir huzura dönüştürür.</p>
 
-        <ul>
-            <li><strong>Çoklu ilaç kullanımı:</strong> Ortalama 65+ birey günde 5-7 farklı ilaç kullanıyor</li>
-            <li><strong>Hafıza sorunları:</strong> "Az önce aldım mı?" belirsizliği</li>
-            <li><strong>Karmaşık dozajlar:</strong> Sabah 2, öğlen 1, akşam 3...</li>
-            <li><strong>Fiziksel zorluklar:</strong> Küçük yazıları okumak, kutuları açmak</li>
-            <li><strong>Yalnız yaşama:</strong> Hatırlatacak kimse yok</li>
-        </ul>
-
-        <h2>"İlacını İçtin mi?" Sorusunun Gizli Yükü</h2>
-
-        <div class="quote-box">
-            "Her gün aynı soruyu sormak, sanki annemi kontrol ediyormuşum gibi hissettiriyor. O da bundan rahatsız oluyor ama ben sormadan edemiyorum."
-            <cite> 45 yaşında bir kullanıcı</cite>
+        <div class="quote-card">
+            "Her gün aynı soruyu sormak annemle aramda gerginlik yaratıyordu. Dozi sayesinde artık sormuyorum, sadece biliyorum."
         </div>
 
-        <p>Bu soru masum görünse de, aslında ilişkilerde görünmez bir gerilim yaratıyor:</p>
+        <h2>Dozi Badi Sistemi: Sormadan Bilmenin Huzuru</h2>
+        <p>Dozi'nin sunduğu <strong>Badi Sistemi</strong>, ebeveynlerin özerkliğine saygı duyarken sizin içinizdeki endişeyi dindirmek için tasarlandı. İşte Dozi'nin bu süreci nasıl iyileştirdiği:</p>
 
-        <ul>
-            <li>Ebeveyn kendini "kontrol edilen" hissediyor</li>
-            <li>Çocuk "denetçi" rolüne giriyor</li>
-            <li>Her iki taraf da yoruluyor</li>
-            <li>Güven ilişkisi zedelenebiliyor</li>
-        </ul>
+        <section class="badi-grid">
+            <div class="badi-card">
+                <b>Anlık Bildirimler</b>
+                <p>Ebeveyniniz ilacını aldığında telefonunuza nazik bir onay gelir. Artık her gün arayıp sorgulamanıza gerek kalmaz.</p>
+            </div>
+            <div class="badi-card">
+                <b>Kritik Uyarılar</b>
+                <p>Doz atlandığında Dozi sizi hemen bilgilendirir. Müdahale etmeniz gereken gerçek anı bilir, gereksiz gerginlikten kaçınırsınız.</p>
+            </div>
+            <div class="badi-card">
+                <b>Mahremiyete Saygı</b>
+                <p>Badi sistemi, ebeveyninizin hangi ilacı aldığını değil, sadece "içmesi gerekeni içip içmediğini" söyler. Sağlık verileri özel kalır.</p>
+            </div>
+            <div class="badi-card">
+                <b>Kolay Mod Desteği</b>
+                <p>Dozi'nin yaşlı dostu arayüzü, büyük butonları ve sade dili sayesinde teknolojiyle arası mesafeli olan büyüklerimiz bile zorluk çekmez.</p>
+            </div>
+        </section>
 
-        <h2>Teknoloji Yardımcı Olabilir mi?</h2>
+        <h2>Bu Değişimi Nasıl Başlatmalı?</h2>
+        <p>Ebeveyninize bu sistemi sunarken "Seni kontrol edeceğim" yerine <strong>"İkimizin de kafası rahat olsun, sağlığın Dozi'ye emanet"</strong> yaklaşımını kullanmak çok daha yapıcıdır. Unutmayın; amacımız onları denetlemek değil, yanlarında olduğumuzu hissettirirken onlara kendi sağlıklarını yönetme özgürlüğünü geri vermektir.</p>
 
-        <div class="stat-box">
-            <div class="stat-number">+%40</div>
-            <div class="stat-label">Dijital hatırlatma sistemleri yaşlılarda ilaç uyumunu artırıyor</div>
-            <div class="stat-source">Kaynak: JMCP Meta-Analiz, 2020</div>
+        <div class="dozi-cta">
+            <h2>Ailenizin Sağlığı Dozi ile Güvende</h2>
+            <p>Sevdiklerinizin ilaç takibini bir yükten, bir huzur kaynağına dönüştürün.</p>
+            <a href="#" class="download-btn">Ücretsiz Denemeye Başlayın</a>
         </div>
+    </main>
 
-        <p>Araştırmalar, doğru tasarlanmış dijital araçların yaşlı bireylerde bile etkili olduğunu gösteriyor. Önemli olan, sistemin basit ve güvenilir olması.</p>
+    <footer style="text-align: center; padding: 4rem; color: #94a3b8; font-size: 0.9rem;">
+        &copy; 2026 Dozi. Bilgilendirme amaçlıdır, sevgiyle hazırlanmıştır.
+    </footer>
 
-        <div class="solution-box">
-            <h3>Dozi'nin Badi Sistemi</h3>
-            <p>Dozi'de "Badi" özelliği tam olarak bu sorunu çözmek için tasarlandı:</p>
-            <ul>
-                <li>Ebeveyniz ilacını aldığında siz otomatik bilgilendirilirsiniz</li>
-                <li>Almadığında da bilgilendirilirsiniz - sormak zorunda kalmazsınız</li>
-                <li>Ebeveyniz hangi ilaçları kullandığını görmezsiniz - sadece alıp almadığını</li>
-                <li>Gizlilik korunur, güven ilişkisi zedelenmez</li>
-            </ul>
-            <p style="margin-top: 1rem; font-weight: 600; color: var(--dozi-turquoise);">Sormadan bilmenin huzuru.</p>
-        </div>
-
-        <h2>Nasıl Başlanır?</h2>
-
-        <p>Ebeveynlerinizle bu konuyu konuşurken dikkatli olmak önemli. "Seni kontrol edeceğim" yerine "Birlikte daha rahat edelim" yaklaşımı çok daha etkili.</p>
-
-        <ul>
-            <li>Önce kendiniz uygulamayı deneyin</li>
-            <li>Ebeveynize "Ben de kullanıyorum" deyin</li>
-            <li>Birlikte kurun, birlikte öğrenin</li>
-            <li>İlk hafta destek olun, sonra bırakın</li>
-        </ul>
-
-        <div class="cta-box">
-            <h3>Ailenizin Huzuru İçin</h3>
-            <p>Dozi ile sevdiklerinizin ilaç takibini kolaylaştırın. Artık sormak zorunda değilsiniz.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="cta-btn">Ücretsiz Deneyin</a>
-        </div>
-    </article>
 </body>
 </html>
