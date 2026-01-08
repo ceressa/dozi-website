@@ -1,53 +1,83 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sormadan Bilmenin Huzuru | Dozi Blog</title>
+    <title>Sormadan Bilmenin Huzuru: Aileler İçin Dozi Badi Sistemi | Dozi Blog</title>
+    <meta name="description" content="Denetçi değil, evlat olun. Dozi Badi sistemi ile sevdiklerinizin ilaç takibini uzaktan yapın.">
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
         
-        .navbar { background: var(--dozi-dark); padding: 1.2rem 2rem; position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; }
+        /* Navbar */
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo img { height: 32px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-primary); }
         
-        .hero-section { background: var(--dozi-dark); color: white; padding: 9rem 2rem 7rem; text-align: center; }
-        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 850px; margin: 0 auto 1.5rem; line-height: 1.2; letter-spacing: -1.5px; }
-        .meta-info { color: var(--dozi-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
-
-        .content-wrapper { max-width: 850px; margin: -5rem auto 0; padding: 5rem; background: white; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); }
+        /* Hero */
+        .hero-section { background: var(--gradient-hero); color: white; padding: 8rem 2rem 7rem; text-align: center; position: relative; overflow: hidden; }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340E0D0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; }
+        .meta-info { color: var(--dozi-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: inline-block; background: rgba(64,224,208,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; }
+        .hero-section h1 { font-size: 3.2rem; font-weight: 800; max-width: 900px; margin: 0 auto 2rem; line-height: 1.15; letter-spacing: -1.5px; }
+        .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; }
+        .hero-character { margin-top: 2rem; }
+        .hero-character img { max-width: 140px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
         
-        .drop-cap { font-family: 'Lora', serif; font-size: 1.3rem; font-style: italic; color: #64748b; margin-bottom: 3rem; border-left: 5px solid var(--dozi-primary); padding-left: 2rem; }
-        h2 { font-size: 2.2rem; color: var(--text-bold); margin: 4rem 0 1.5rem; font-weight: 800; letter-spacing: -1px; }
-        p { margin-bottom: 2rem; font-size: 1.15rem; }
+        /* Content */
+        .content-wrapper { max-width: 850px; margin: -4rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); position: relative; z-index: 10; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: transform 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding: 1.5rem; border-radius: 0 16px 16px 0; background: linear-gradient(90deg, rgba(64,224,208,0.05) 0%, transparent 100%); }
+        h2 { font-size: 2rem; color: var(--text-bold); margin: 3.5rem 0 1.5rem; font-weight: 800; position: relative; }
+        h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 4px; background: var(--dozi-primary); border-radius: 2px; }
+        p { margin-bottom: 1.8rem; font-size: 1.1rem; }
 
-        /* İstatistik & Alıntı Kutuları */
-        .highlight-box { background: #f1f5f9; border-radius: 24px; padding: 2.5rem; margin: 3.5rem 0; text-align: center; }
-        .stat-val { font-size: 3.5rem; font-weight: 900; color: var(--dozi-primary); display: block; line-height: 1; }
-        .stat-desc { font-weight: 700; color: var(--text-bold); font-size: 1.1rem; }
+        /* Stat Box */
+        .highlight-box { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 24px; padding: 3rem; margin: 3.5rem 0; text-align: center; position: relative; overflow: hidden; }
+        .highlight-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--dozi-primary); }
+        .stat-val { font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, var(--dozi-primary) 0%, #2dd4bf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; line-height: 1; }
+        .stat-desc { font-weight: 700; color: var(--text-bold); font-size: 1.15rem; margin-top: 0.5rem; }
+        .stat-source { font-size: 0.85rem; color: var(--text-main); margin-top: 1rem; opacity: 0.7; }
 
-        .quote-card { font-family: 'Lora', serif; font-size: 1.4rem; font-style: italic; color: var(--text-bold); text-align: center; margin: 4rem 0; padding: 0 2rem; position: relative; }
-        .quote-card::before { content: '“'; font-size: 5rem; color: var(--dozi-primary); position: absolute; top: -40px; left: 0; opacity: 0.3; }
+        /* Quote */
+        .quote-card { font-family: 'Lora', serif; font-size: 1.4rem; font-style: italic; color: var(--text-bold); text-align: center; margin: 4rem 0; padding: 2rem 3rem; position: relative; background: linear-gradient(135deg, rgba(64,224,208,0.05) 0%, rgba(64,224,208,0.02) 100%); border-radius: 24px; }
+        .quote-card::before { content: '"'; font-size: 6rem; color: var(--dozi-primary); position: absolute; top: -20px; left: 20px; opacity: 0.2; font-family: Georgia, serif; }
 
-        /* Dozi Badi Sistemi Kartları */
-        .badi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 4rem 0; }
-        .badi-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 24px; }
-        .badi-card b { color: var(--dozi-dark); font-size: 1.2rem; display: block; margin-bottom: 0.8rem; }
-        .badi-card p { font-size: 1rem; margin-bottom: 0; line-height: 1.5; }
+        /* Badi Grid */
+        .badi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 4rem 0; }
+        .badi-card { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 1px solid #e2e8f0; padding: 2rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .badi-card:hover { transform: translateY(-5px); border-color: var(--dozi-primary); box-shadow: 0 20px 40px rgba(64,224,208,0.12); }
+        .badi-card b { color: var(--dozi-dark); font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; }
+        .badi-card b::before { content: ''; background: var(--dozi-primary); color: var(--dozi-dark); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
+        .badi-card p { font-size: 0.95rem; margin-bottom: 0; line-height: 1.6; }
 
         /* CTA */
-        .dozi-cta { background: var(--dozi-dark); color: white; padding: 4.5rem 3rem; border-radius: 40px; text-align: center; margin-top: 6rem; }
-        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1.5rem; font-size: 2.4rem; }
-        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.3rem 3.5rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.15rem; transition: 0.3s; }
-        .download-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(64, 224, 208, 0.3); }
+        .dozi-cta { background: var(--gradient-hero); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; position: relative; overflow: hidden; }
+        .dozi-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(64,224,208,0.1) 0%, transparent 70%); animation: pulse 4s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; font-size: 2.2rem; position: relative; z-index: 1; }
+        .dozi-cta p { color: rgba(255,255,255,0.8); position: relative; z-index: 1; margin-bottom: 0; }
+        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; margin-top: 1.5rem; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(64,224,208,0.3); }
+        .download-btn:hover { background: #2dd4bf; transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(64,224,208,0.4); }
+
+        /* Footer */
+        footer { text-align: center; padding: 4rem 2rem; color: #94a3b8; font-size: 0.9rem; }
+        footer a { color: var(--dozi-primary); text-decoration: none; }
 
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.2rem; }
-            .content-wrapper { padding: 2.5rem 1.5rem; width: 95%; }
+            .hero-section h1 { font-size: 2rem; }
+            .content-wrapper { padding: 2rem 1.5rem; width: 95%; margin-top: -2rem; border-radius: 24px; }
             .badi-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .stat-val { font-size: 3rem; }
         }
     </style>
 </head>
@@ -55,24 +85,35 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">DOZI</a>
+            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi">Dozi</a>
+            <ul class="nav-links">
+                <li><a href="../#features">Özellikler</a></li>
+                <li><a href="../#pricing">Fiyatlar</a></li>
+                <li><a href="./">Blog</a></li>
+            </ul>
         </div>
     </nav>
 
     <header class="hero-section">
-        <span class="meta-info">Aile & Sağlık Teknolojileri</span>
-        <h1>Denetçi Değil, Evlat Olun: Uzaktan İlaç Takibinin En Zarif Yolu</h1>
+        <div class="hero-content">
+            <span class="meta-info">Aile & Sağlık Teknolojileri</span>
+            <h1>Sormadan Bilmenin Huzuru: Aileler İçin Dozi Badi Sistemi</h1>
+            <p class="hero-subtitle">Denetçi değil, evlat olun. Uzaktan ilaç takibinin en zarif yolu.</p>
+            <div class="hero-character"><img src="../dozi_family.png" alt="Dozi Aile"></div>
+        </div>
     </header>
 
     <main class="content-wrapper">
+        <a href="./" class="back-link"> Tüm Yazılar</a>
+        
         <p class="drop-cap">"Anne, ilacını içmiş miydin?" Bu masum soru, aslında hem sizin hem de ebeveyninizin omuzlarında sessiz bir yük taşır. Sizin için bir endişe göstergesi olan bu cümle, onlar için bazen "kontrol ediliyormuş" hissi yaratan bir gerilime dönüşebilir.</p>
 
-        <p>Ebeveynlerimizin yaşları ilerledikçe sağlık rutinlerini yönetmek zorlaşır; ancak bu durumun aranızdaki o şefkatli bağı bir "denetçi-hastahane" ilişkisine çevirmesine izin vermek zorunda değilsiniz. Bilim ve teknoloji, artık bu mesafeleri sevgiyle aşmanın bir yolunu sunuyor.</p>
+        <p>Ebeveynlerimizin yaşları ilerledikçe sağlık rutinlerini yönetmek zorlaşır; ancak bu durumun aranızdaki o şefkatli bağı bir "denetçi-hasta" ilişkisine çevirmesine izin vermek zorunda değilsiniz. Bilim ve teknoloji, artık bu mesafeleri sevgiyle aşmanın bir yolunu sunuyor.</p>
 
         <div class="highlight-box">
             <span class="stat-val">%75</span>
             <span class="stat-desc">65 yaş üstü bireylerde ilaç uyumsuzluğu oranı oldukça yüksektir.</span>
-            <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">Kaynak: Journal of the American Geriatrics Society</p>
+            <p class="stat-source">Kaynak: Journal of the American Geriatrics Society</p>
         </div>
 
         <h2>Neden Uzaktan Takip Bu Kadar Kritik?</h2>
@@ -99,7 +140,7 @@
                 <p>Badi sistemi, ebeveyninizin hangi ilacı aldığını değil, sadece "içmesi gerekeni içip içmediğini" söyler. Sağlık verileri özel kalır.</p>
             </div>
             <div class="badi-card">
-                <b>Kolay Mod Desteği</b>
+                <b>Kolay Kullanım</b>
                 <p>Dozi'nin yaşlı dostu arayüzü, büyük butonları ve sade dili sayesinde teknolojiyle arası mesafeli olan büyüklerimiz bile zorluk çekmez.</p>
             </div>
         </section>
@@ -110,12 +151,12 @@
         <div class="dozi-cta">
             <h2>Ailenizin Sağlığı Dozi ile Güvende</h2>
             <p>Sevdiklerinizin ilaç takibini bir yükten, bir huzur kaynağına dönüştürün.</p>
-            <a href="#" class="download-btn">Ücretsiz Denemeye Başlayın</a>
+            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="download-btn">Ücretsiz Denemeye Başlayın</a>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 4rem; color: #94a3b8; font-size: 0.9rem;">
-        &copy; 2026 Dozi. Bilgilendirme amaçlıdır, sevgiyle hazırlanmıştır.
+    <footer>
+        <p>&copy; 2026 <a href="../">Dozi</a>. Bilgilendirme amaçlıdır, sevgiyle hazırlanmıştır.</p>
     </footer>
 
 </body>

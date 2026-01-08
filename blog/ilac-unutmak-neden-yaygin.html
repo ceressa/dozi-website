@@ -1,47 +1,72 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hafızamız Bize Neden Oyun Oynar? | Dozi Blog</title>
+    <title>Hafızanızın Boşluklarını Dozi ile Doldurun: Neden Unutuyoruz? | Dozi Blog</title>
+    <meta name="description" content="İlaç unutmak bir dalgınlık değil, beynimizin bir oyunudur. Dozi ile hafızanızın boşluklarını doldurun.">
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
         
-        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; }
+        /* Navbar */
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo img { height: 32px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-primary); }
         
-        .hero-section { background: var(--dozi-dark); color: white; padding: 8rem 2rem 6rem; text-align: center; }
-        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 850px; margin: 0 auto 1.5rem; line-height: 1.2; letter-spacing: -1px; }
-        .meta-info { color: var(--dozi-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
-
-        .content-wrapper { max-width: 850px; margin: -4rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.06); }
+        /* Hero */
+        .hero-section { background: var(--gradient-hero); color: white; padding: 8rem 2rem 7rem; text-align: center; position: relative; overflow: hidden; }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340E0D0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; }
+        .meta-info { color: var(--dozi-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: inline-block; background: rgba(64,224,208,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; }
+        .hero-section h1 { font-size: 3.2rem; font-weight: 800; max-width: 900px; margin: 0 auto 2rem; line-height: 1.15; letter-spacing: -1.5px; }
+        .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; }
+        .hero-character { margin-top: 2rem; }
+        .hero-character img { max-width: 140px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
         
-        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; }
-        h2 { font-size: 2rem; color: var(--text-bold); margin: 3.5rem 0 1.5rem; font-weight: 800; }
+        /* Content */
+        .content-wrapper { max-width: 850px; margin: -4rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); position: relative; z-index: 10; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: transform 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(64,224,208,0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 16px 16px 0; }
+        h2 { font-size: 2rem; color: var(--text-bold); margin: 3.5rem 0 1.5rem; font-weight: 800; position: relative; }
+        h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 4px; background: var(--dozi-primary); border-radius: 2px; }
         p { margin-bottom: 1.8rem; font-size: 1.1rem; }
 
-        /* Yeni Tasarlanan Özellik Kartları */
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 4rem 0; }
-        .feature-card { background: #ffffff; border: 1px solid #e2e8f0; padding: 2.5rem; border-radius: 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .feature-card:hover { transform: translateY(-5px); border-color: var(--dozi-primary); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
-        .feature-card .number { font-size: 4rem; font-weight: 900; color: #f1f5f9; position: absolute; top: -10px; right: 10px; z-index: 1; }
-        .feature-card .icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; position: relative; z-index: 2; }
-        .feature-card h3 { font-size: 1.4rem; color: var(--text-bold); margin-bottom: 1rem; position: relative; z-index: 2; }
-        .feature-card p { font-size: 1rem; margin-bottom: 0; line-height: 1.6; position: relative; z-index: 2; }
+        /* Feature Cards */
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 4rem 0; }
+        .feature-card { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 1px solid #e2e8f0; padding: 2.5rem; border-radius: 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+        .feature-card:hover { transform: translateY(-8px); border-color: var(--dozi-primary); box-shadow: 0 25px 50px rgba(64,224,208,0.15); }
+        .feature-card .number { font-size: 5rem; font-weight: 900; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: absolute; top: -15px; right: 15px; z-index: 1; }
+        .feature-card .icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; position: relative; z-index: 2; }
+        .feature-card h3 { font-size: 1.3rem; color: var(--text-bold); margin-bottom: 1rem; position: relative; z-index: 2; }
+        .feature-card p { font-size: 0.95rem; margin-bottom: 0; line-height: 1.7; position: relative; z-index: 2; }
 
-        .dozi-cta { background: var(--dozi-dark); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; }
-        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; }
-        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: 0.3s; margin-top: 1.5rem; }
-        .download-btn:hover { background: #2dd4bf; transform: scale(1.05); }
+        /* CTA */
+        .dozi-cta { background: var(--gradient-hero); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; position: relative; overflow: hidden; }
+        .dozi-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(64,224,208,0.1) 0%, transparent 70%); animation: pulse 4s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; position: relative; z-index: 1; }
+        .dozi-cta p { color: rgba(255,255,255,0.8); position: relative; z-index: 1; margin-bottom: 0; }
+        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; margin-top: 1.5rem; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(64,224,208,0.3); }
+        .download-btn:hover { background: #2dd4bf; transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(64,224,208,0.4); }
+
+        /* Footer */
+        footer { text-align: center; padding: 4rem 2rem; color: #94a3b8; font-size: 0.9rem; }
+        footer a { color: var(--dozi-primary); text-decoration: none; }
 
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.2rem; }
-            .content-wrapper { padding: 2rem; width: 95%; margin-top: -2rem; }
+            .hero-section h1 { font-size: 2rem; }
+            .content-wrapper { padding: 2rem 1.5rem; width: 95%; margin-top: -2rem; border-radius: 24px; }
             .feature-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -49,16 +74,27 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">DOZI</a>
+            <a href="../" class="nav-logo"><img src="../dozi_brand.png" alt="Dozi">Dozi</a>
+            <ul class="nav-links">
+                <li><a href="../#features">Özellikler</a></li>
+                <li><a href="../#pricing">Fiyatlar</a></li>
+                <li><a href="./">Blog</a></li>
+            </ul>
         </div>
     </nav>
 
     <header class="hero-section">
-        <span class="meta-info">Davranışsal Psikoloji & Teknoloji</span>
-        <h1>İlaç Unutmak Bir Dalgınlık Değil, Beynimizin Bir Oyunudur</h1>
+        <div class="hero-content">
+            <span class="meta-info">Davranışsal Psikoloji & Teknoloji</span>
+            <h1>Hafızanızın Boşluklarını Dozi ile Doldurun: Neden Unutuyoruz?</h1>
+            <p class="hero-subtitle">İlaç unutmak bir dalgınlık değil, beynimizin bir oyunudur.</p>
+            <div class="hero-character"><img src="../dozi_idea.png" alt="Dozi"></div>
+        </div>
     </header>
 
     <main class="content-wrapper">
+        <a href="./" class="back-link"> Tüm Yazılar</a>
+        
         <p class="drop-cap">Doktorunuzun yanından ayrıldınız, kutuyu masanın üzerine koydunuz ve kendinize bir söz verdiniz: "Bu sefer her şey düzenli olacak." Ancak sadece birkaç gün sonra o meşhur soruyla baş başasınız: "Ben bugün ilacımı içmiş miydim?"</p>
 
         <p>Eğer bu durumu yaşıyorsanız yalnız değilsiniz. Dünya Sağlık Örgütü verilerine göre, kronik tedavi gören hastaların yarısı dozlarını atlıyor. Bunun nedeni irade zayıflığı değil; tamamen insan beyninin rutine karşı geliştirdiği bir savunma mekanizmasıdır.</p>
@@ -71,28 +107,28 @@
         <section class="feature-grid">
             <div class="feature-card">
                 <span class="number">01</span>
-                <span class="icon">📍</span>
+                <span class="icon"></span>
                 <h3>Akıllı Konum Hatırlatıcı</h3>
                 <p>Bazen sorun zaman değil, o an nerede olduğunuzdur. Dozi, eve girdiğinizde veya işten ayrıldığınızda sizi karşılayarak en uygun anda hatırlatma yapar.</p>
             </div>
 
             <div class="feature-card">
                 <span class="number">02</span>
-                <span class="icon">👨‍👩‍👧‍👦</span>
+                <span class="icon"></span>
                 <h3>Badi Sistemi</h3>
                 <p>Sosyal destek, sağlığın en güçlü ilacıdır. İlacınızı almayı geciktirdiğinizde Dozi sevdiklerinize haber verir; böylece asla yalnız hissetmezsiniz.</p>
             </div>
 
             <div class="feature-card">
                 <span class="number">03</span>
-                <span class="icon">🚨</span>
+                <span class="icon"></span>
                 <h3>Kritik Doz Alarmları</h3>
                 <p>Hayati önemdeki ilaçlar şansa bırakılamaz. Dozi, bu dozlar için telefonunuz sessizde olsa bile duyabileceğiniz özel, durdurulması zor alarmlar çalar.</p>
             </div>
 
             <div class="feature-card">
                 <span class="number">04</span>
-                <span class="icon">🧠</span>
+                <span class="icon"></span>
                 <h3>Zeki Dozi Asistan</h3>
                 <p>"İlacımı içtim mi?" şüphesine son. Dozi tüm geçmişinizi tutar, etkileşimleri kontrol eder ve sağlığınızla ilgili tüm sorularınızı anında yanıtlar.</p>
             </div>
@@ -104,12 +140,12 @@
         <div class="dozi-cta">
             <h2>Hafızanızdaki Boşlukları Dozi Doldursun</h2>
             <p>Zihnindeki o belirsiz şüpheyi silip atmaya hazır mısın? Dozi seni bekliyor.</p>
-            <a href="#" class="download-btn">Hemen Ücretsiz Dene</a>
+            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="download-btn">Hemen Ücretsiz Dene</a>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 4rem; color: #94a3b8; font-size: 0.9rem;">
-        &copy; 2026 Dozi Health Technologies. Bu yazı bilgilendirme amaçlıdır.
+    <footer>
+        <p>&copy; 2026 <a href="../">Dozi</a>. Bu yazı bilgilendirme amaçlıdır.</p>
     </footer>
 
 </body>

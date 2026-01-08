@@ -4,38 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Dozi - İlaç Takip Uygulaması</title>
-    <meta name="description" content="Dozi blog: İlaç takibi, sağlık ipuçları ve bilimsel araştırmalar.">
+    <meta name="description" content="Dozi blog: İlaç takibi, bilimsel araştırmalar ve sağlıklı yaşam hakkında yazılar.">
     <link rel="icon" type="image/png" href="../dozi_brand.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --dozi-turquoise: #40E0D0; --dozi-dark: #1a1a2e; --text-primary: #1a1a2e; --text-secondary: #64748b; }
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-primary); background: #f8fafc; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; color: var(--text-main); background: var(--bg-light); }
+        
         .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 800; font-size: 1.4rem; }
         .nav-logo img { height: 32px; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; }
-        .nav-links a:hover { color: var(--dozi-turquoise); }
-        .hero { background: linear-gradient(135deg, var(--dozi-dark) 0%, #16213e 100%); color: white; padding: 4rem 2rem; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: var(--dozi-primary); }
+        
+        .hero { background: var(--gradient-hero); color: white; padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340E0D0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
+        .hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
         .hero-character { margin-top: 2rem; }
-        .hero-character img { max-width: 150px; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
-        .blog-grid { display: grid; gap: 1.5rem; }
-        .blog-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; }
-        .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
-        .blog-card-image { width: 200px; min-height: 180px; background: linear-gradient(135deg, var(--dozi-turquoise) 0%, #2dd4bf 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .blog-card-image img { max-width: 120px; }
-        .blog-card-content { padding: 1.5rem; flex: 1; }
-        .blog-card-content h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-        .blog-card-content h2 a { color: var(--text-primary); text-decoration: none; }
-        .blog-card-content h2 a:hover { color: var(--dozi-turquoise); }
-        .blog-card-content p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
-        .blog-card-meta { font-size: 0.8rem; color: var(--text-secondary); }
-        @media (max-width: 768px) { .blog-card { flex-direction: column; } .blog-card-image { width: 100%; min-height: 150px; } .nav-links { display: none; } .hero h1 { font-size: 1.75rem; } }
+        .hero-character img { max-width: 130px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3)); }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        .blog-grid { display: grid; gap: 2rem; }
+        
+        .blog-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; border: 1px solid #e2e8f0; }
+        .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--dozi-primary); }
+        .blog-card-image { width: 280px; min-height: 220px; background: linear-gradient(135deg, var(--dozi-primary) 0%, #2dd4bf 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
+        .blog-card-image::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); }
+        .blog-card-image img { max-width: 140px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); position: relative; z-index: 1; }
+        .blog-card-content { padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .blog-card-tag { display: inline-block; background: rgba(64,224,208,0.1); color: var(--dozi-primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem; }
+        .blog-card-content h2 { font-size: 1.4rem; margin-bottom: 0.75rem; font-weight: 800; line-height: 1.3; }
+        .blog-card-content h2 a { color: var(--text-bold); text-decoration: none; transition: color 0.3s; }
+        .blog-card-content h2 a:hover { color: var(--dozi-primary); }
+        .blog-card-content p { color: var(--text-main); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
+        .blog-card-meta { font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 1rem; }
+        
+        @media (max-width: 768px) { 
+            .blog-card { flex-direction: column; } 
+            .blog-card-image { width: 100%; min-height: 180px; } 
+            .nav-links { display: none; } 
+            .hero h1 { font-size: 2rem; } 
+        }
     </style>
 </head>
 <body>
@@ -51,9 +65,11 @@
     </nav>
 
     <section class="hero">
-        <h1>Dozi Blog</h1>
-        <p>İlaç takibi, bilimsel araştırmalar ve sağlıklı yaşam hakkında yazılar.</p>
-        <div class="hero-character"><img src="../dozi_happy.png" alt="Dozi"></div>
+        <div class="hero-content">
+            <h1>Dozi Blog</h1>
+            <p>İlaç takibi, bilimsel araştırmalar ve sağlıklı yaşam hakkında yazılar.</p>
+            <div class="hero-character"><img src="../dozi_happy.png" alt="Dozi"></div>
+        </div>
     </section>
 
     <div class="container">
@@ -61,17 +77,19 @@
             <article class="blog-card">
                 <div class="blog-card-image"><img src="../dozi_idea.png" alt="Dozi"></div>
                 <div class="blog-card-content">
-                    <h2><a href="ilac-unutmak-neden-yaygin.html">İlaç Unutmak Neden Bu Kadar Yaygın?</a></h2>
-                    <p>Dünya genelinde hastaların yarısı ilaçlarını düzenli almıyor. Peki neden? Bilimsel veriler ve çözüm önerileri.</p>
-                    <span class="blog-card-meta">8 Ocak 2026  5 dk okuma</span>
+                    <span class="blog-card-tag">Davranışsal Psikoloji</span>
+                    <h2><a href="ilac-unutmak-neden-yaygin.html">Hafızanızın Boşluklarını Dozi ile Doldurun: Neden Unutuyoruz?</a></h2>
+                    <p>İlaç unutmak bir dalgınlık değil, beynimizin bir oyunudur. Otomatik pilot modunun tuzaklarını ve Dozi'nin çözümlerini keşfedin.</p>
+                    <span class="blog-card-meta"><span> 8 Ocak 2026</span><span> 5 dk okuma</span></span>
                 </div>
             </article>
             <article class="blog-card">
                 <div class="blog-card-image"><img src="../dozi_family.png" alt="Dozi Aile"></div>
                 <div class="blog-card-content">
-                    <h2><a href="yasli-ebeveyn-ilac-takibi.html">Yaşlı Ebeveynlerinizin İlaç Takibi: Uzaktan Nasıl Yapılır?</a></h2>
-                    <p>Yaşlı anne babanızın ilaçlarını uzaktan takip etmek mümkün mü? "İlacını içtin mi?" sorusuna son verin.</p>
-                    <span class="blog-card-meta">8 Ocak 2026  5 dk okuma</span>
+                    <span class="blog-card-tag">Aile & Sağlık</span>
+                    <h2><a href="yasli-ebeveyn-ilac-takibi.html">Sormadan Bilmenin Huzuru: Aileler İçin Dozi Badi Sistemi</a></h2>
+                    <p>Denetçi değil, evlat olun. "İlacını içtin mi?" sorusunun yarattığı gerilime son verin, Badi sistemi ile uzaktan takip edin.</p>
+                    <span class="blog-card-meta"><span> 8 Ocak 2026</span><span> 5 dk okuma</span></span>
                 </div>
             </article>
         </div>
