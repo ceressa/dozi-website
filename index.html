@@ -9,7 +9,7 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.cloudfunctions.net; frame-ancestors 'self';">
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="mzztl8JoyWXcHoO2kzcXXoqrHAt23iWn4aJE5Zo2bo0">
@@ -1011,11 +1011,11 @@
                 }
             } catch (error) {
                 console.log('⚠️ Fiyat API hatası, varsayılan fiyatlar kullanılıyor');
-                // Fallback değerler
-                document.getElementById('price-ekstra-monthly').textContent = '₺100';
-                document.getElementById('price-ekstra-yearly').textContent = '₺1.199,99';
-                document.getElementById('price-family-monthly').textContent = '₺208';
-                document.getElementById('price-family-yearly').textContent = '₺2.499,99';
+                // Fallback değerler (güncel Play Console fiyatları)
+                document.getElementById('price-ekstra-monthly').textContent = '₺150';
+                document.getElementById('price-ekstra-yearly').textContent = '₺1.799,99';
+                document.getElementById('price-family-monthly').textContent = '₺438';
+                document.getElementById('price-family-yearly').textContent = '₺5.250,00';
             }
         }
         
