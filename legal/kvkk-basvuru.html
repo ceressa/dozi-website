@@ -402,23 +402,5 @@
             }
         });
     </script>
-                    successMessage.textContent = `✅ ${data.message} Talep numaranız: ${data.requestId}. Yanıt süresi: ${data.responseDeadline}`;
-                    successMessage.classList.add('show');
-                    form.reset();
-                } else {
-                    // Hata
-                    errorMessage.textContent = `❌ ${data.error || 'Bir hata oluştu'}`;
-                    errorMessage.classList.add('show');
-                }
-            } catch (error) {
-                console.error('Form gönderme hatası:', error);
-                errorMessage.textContent = '❌ Bağlantı hatası. Lütfen tekrar deneyin.';
-                errorMessage.classList.add('show');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Başvuruyu Gönder';
-            }
-        });
-    </script>
 </body>
 </html>
