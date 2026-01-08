@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dozi Hesap Silme Talebi - Hesabınızı güvenli bir şekilde silin">
+    <meta name="description" content="Dozi Account Deletion Request - Securely delete your account">
     <meta name="author" content="Bardino Technology">
     
     <!-- Security Headers -->
@@ -12,7 +12,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google.com https://europe-west3-dozi-cd7cc.cloudfunctions.net; frame-src https://www.google.com;">
 
-    <title>Hesap Silme Talebi - Dozi</title>
+    <title>Account Deletion Request - Dozi</title>
 
     <!-- reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Lcp60MsAAAAAFZ4qhzifUXH7YRmVfhFu2n36epX"></script>
@@ -335,38 +335,38 @@
     <div class="container">
         <!-- Language Switcher -->
         <div style="text-align: right; margin-bottom: 1rem;">
-            <a href="en/account-deletion.html" style="color: var(--dozi-turquoise); text-decoration: none; font-weight: 500; font-size: 0.9rem;">
-                🌐 English
+            <a href="../account-deletion.html" style="color: var(--dozi-turquoise); text-decoration: none; font-weight: 500; font-size: 0.9rem;">
+                🌐 Türkçe
             </a>
         </div>
 
         <div class="header">
-            <h1>Hesap Silme Talebi</h1>
-            <p>Hesabınızı ve tüm verilerinizi kalıcı olarak silin</p>
+            <h1>Account Deletion Request</h1>
+            <p>Permanently delete your account and all data</p>
         </div>
 
         <div class="content">
             <div class="warning-box">
-                <strong>⚠️ Önemli Uyarı</strong>
-                <p>Hesabınızı sildiğinizde tüm verileriniz kalıcı olarak silinecektir ve bu işlem geri alınamaz!</p>
+                <strong>⚠️ Important Warning</strong>
+                <p>When you delete your account, all your data will be permanently deleted and this action cannot be undone!</p>
             </div>
 
             <div class="info-box">
-                <h3>Silinecek Veriler:</h3>
+                <h3>Data to be Deleted:</h3>
                 <ul>
-                    <li>Tüm ilaç kayıtlarınız</li>
-                    <li>Hatırlatma geçmişi</li>
-                    <li>Reçete fotoğrafları</li>
-                    <li>Aile üyesi bağlantıları (Badi)</li>
-                    <li>Bulut yedeklemesi</li>
-                    <li>Premium abonelik durumu</li>
+                    <li>All your medication records</li>
+                    <li>Reminder history</li>
+                    <li>Prescription photos</li>
+                    <li>Family member connections (Badi)</li>
+                    <li>Cloud backup</li>
+                    <li>Premium subscription status</li>
                 </ul>
             </div>
 
             <form id="deletionForm">
                 <div class="form-group">
                     <label for="name">
-                        Adınız Soyadınız
+                        Full Name
                         <span class="required">*</span>
                     </label>
                     <input 
@@ -375,13 +375,13 @@
                         name="name" 
                         required 
                         maxlength="100"
-                        placeholder="Örn: Ahmet Yılmaz"
+                        placeholder="e.g., John Doe"
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="email">
-                        E-posta Adresiniz
+                        Email Address
                         <span class="required">*</span>
                     </label>
                     <input 
@@ -390,62 +390,62 @@
                         name="email" 
                         required 
                         maxlength="100"
-                        placeholder="ornek@email.com"
+                        placeholder="example@email.com"
                     >
-                    <div class="helper-text">Onay mesajı bu adrese gönderilecektir</div>
+                    <div class="helper-text">Confirmation message will be sent to this address</div>
                 </div>
 
                 <div class="form-group">
                     <label for="userId">
-                        Kullanıcı ID (Opsiyonel)
+                        User ID (Optional)
                     </label>
                     <input 
                         type="text" 
                         id="userId" 
                         name="userId" 
                         maxlength="100"
-                        placeholder="Ayarlar > Hakkında > Kullanıcı ID"
+                        placeholder="Settings > About > User ID"
                     >
-                    <div class="helper-text">Uygulamadan bulabilirsiniz</div>
+                    <div class="helper-text">You can find this in the app</div>
                 </div>
 
                 <div class="form-group">
                     <label for="reason">
-                        Silme Sebebi (Opsiyonel)
+                        Reason for Deletion (Optional)
                     </label>
                     <textarea 
                         id="reason" 
                         name="reason" 
                         maxlength="500"
-                        placeholder="Hesabınızı neden silmek istediğinizi belirtebilirsiniz (opsiyonel)"
+                        placeholder="You can specify why you want to delete your account (optional)"
                     ></textarea>
-                    <div class="helper-text">Geri bildiriminiz ürünümüzü geliştirmemize yardımcı olur</div>
+                    <div class="helper-text">Your feedback helps us improve our product</div>
                 </div>
 
                 <div class="info-box">
-                    <h3>Premium Abonelik Uyarısı:</h3>
-                    <p>Premium aboneliğiniz varsa, lütfen Google Play Store'dan manuel olarak iptal edin. Hesap silme işlemi aboneliği otomatik olarak iptal etmez.</p>
+                    <h3>Premium Subscription Notice:</h3>
+                    <p>If you have a premium subscription, please cancel it manually from Google Play Store. Account deletion does not automatically cancel your subscription.</p>
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">
-                    Hesap Silme Talebini Gönder
+                    Submit Account Deletion Request
                 </button>
 
                 <div class="recaptcha-notice">
-                    Bu site reCAPTCHA ile korunmaktadır.<br>
-                    Google <a href="https://policies.google.com/privacy" target="_blank">Gizlilik Politikası</a> ve 
-                    <a href="https://policies.google.com/terms" target="_blank">Hizmet Şartları</a> geçerlidir.<br>
-                    <small style="color: var(--dozi-gray); margin-top: 5px; display: block;">Tüm zaman damgaları Türkiye Saati (GMT+3) ile gösterilir</small>
+                    This site is protected by reCAPTCHA.<br>
+                    Google <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
+                    <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.<br>
+                    <small style="color: var(--dozi-gray); margin-top: 5px; display: block;">All timestamps are in Turkey Time (GMT+3)</small>
                 </div>
             </form>
         </div>
 
         <div class="footer">
-            <p>&copy; 2025 Dozi - Verileriniz size aittir</p>
+            <p>&copy; 2025 Dozi - Your data belongs to you</p>
             <p>
-                <a href="privacy-policy.html">Gizlilik Politikası</a> |
-                <a href="terms-of-use.html">Kullanım Şartları</a> |
-                <a href="index.html">Ana Sayfa</a>
+                <a href="../privacy-policy.html">Privacy Policy</a> |
+                <a href="../terms-of-use.html">Terms of Use</a> |
+                <a href="../en/index.html">Home</a>
             </p>
         </div>
     </div>
@@ -456,7 +456,7 @@
             <div class="modal-icon" id="modalIcon"></div>
             <h2 id="modalTitle"></h2>
             <p id="modalMessage"></p>
-            <button class="modal-btn" onclick="closeModal()">Tamam</button>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
         </div>
     </div>
 
@@ -472,7 +472,7 @@
             
             // Disable button
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Gönderiliyor...';
+            submitBtn.textContent = 'Sending...';
 
             try {
                 // Get form data
@@ -503,19 +503,19 @@
                 if (response.ok && result.success) {
                     showModal(
                         'success',
-                        'Talep Alındı!',
-                        'Hesap silme talebiniz başarıyla alındı. E-posta adresinize onay mesajı gönderildi. Talebiniz en geç 7 iş günü içinde işleme alınacaktır.'
+                        'Request Received!',
+                        'Your account deletion request has been successfully received. A confirmation message has been sent to your email address. Your request will be processed within 7 business days.'
                     );
                     document.getElementById('deletionForm').reset();
                 } else {
-                    throw new Error(result.error || 'Bir hata oluştu');
+                    throw new Error(result.error || 'An error occurred');
                 }
             } catch (error) {
-                console.error('Form gönderme hatası:', error);
+                console.error('Form submission error:', error);
                 showModal(
                     'error',
-                    'Hata Oluştu',
-                    error.message || 'Talep gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya info@dozi.app adresine e-posta gönderin.'
+                    'Error Occurred',
+                    error.message || 'An error occurred while submitting your request. Please try again later or send an email to info@dozi.app.'
                 );
             } finally {
                 submitBtn.disabled = false;
