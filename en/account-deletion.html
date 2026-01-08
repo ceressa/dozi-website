@@ -396,17 +396,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="userId">
-                        User ID (Optional)
+                    <label for="registeredEmail">
+                        Registered Email (Optional)
                     </label>
                     <input 
-                        type="text" 
-                        id="userId" 
-                        name="userId" 
+                        type="email" 
+                        id="registeredEmail" 
+                        name="registeredEmail" 
                         maxlength="100"
-                        placeholder="Settings > About > User ID"
+                        placeholder="Email you registered with"
                     >
-                    <div class="helper-text">You can find this in the app</div>
+                    <div class="helper-text">Settings > Account > Email Address</div>
                 </div>
 
                 <div class="form-group">
@@ -479,7 +479,7 @@
                 const formData = {
                     name: document.getElementById('name').value.trim(),
                     email: document.getElementById('email').value.trim(),
-                    userId: document.getElementById('userId').value.trim() || null,
+                    registeredEmail: document.getElementById('registeredEmail').value.trim() || null,
                     reason: document.getElementById('reason').value.trim() || null,
                 };
 

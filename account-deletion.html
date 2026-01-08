@@ -396,17 +396,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="userId">
-                        Kullanıcı ID (Opsiyonel)
+                    <label for="registeredEmail">
+                        Kayıt Email Adresiniz (Opsiyonel)
                     </label>
                     <input 
-                        type="text" 
-                        id="userId" 
-                        name="userId" 
+                        type="email" 
+                        id="registeredEmail" 
+                        name="registeredEmail" 
                         maxlength="100"
-                        placeholder="Ayarlar > Hakkında > Kullanıcı ID"
+                        placeholder="Uygulamaya kayıt olduğunuz email"
                     >
-                    <div class="helper-text">Uygulamadan bulabilirsiniz</div>
+                    <div class="helper-text">Ayarlar > Hesap > Email Adresi</div>
                 </div>
 
                 <div class="form-group">
@@ -479,7 +479,7 @@
                 const formData = {
                     name: document.getElementById('name').value.trim(),
                     email: document.getElementById('email').value.trim(),
-                    userId: document.getElementById('userId').value.trim() || null,
+                    registeredEmail: document.getElementById('registeredEmail').value.trim() || null,
                     reason: document.getElementById('reason').value.trim() || null,
                 };
 
