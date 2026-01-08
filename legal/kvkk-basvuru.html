@@ -70,6 +70,27 @@
         .error-message { background: #fee2e2; color: #991b1b; border-left: 4px solid var(--danger); }
         .success-message.show, .error-message.show { display: block; }
         
+        /* Modal Popup */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: none; align-items: center; justify-content: center; z-index: 1000; animation: fadeIn 0.3s; }
+        .modal-overlay.show { display: flex; }
+        .modal-content { background: white; border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); animation: slideUp 0.3s; }
+        .modal-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .modal-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .modal-icon.success { background: #d1fae5; color: #065f46; }
+        .modal-icon.error { background: #fee2e2; color: #991b1b; }
+        .modal-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
+        .modal-body { color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
+        .modal-body strong { color: var(--text-primary); display: block; margin-top: 0.5rem; }
+        .modal-footer { display: flex; gap: 0.5rem; justify-content: flex-end; }
+        .modal-btn { padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .modal-btn-primary { background: var(--dozi-turquoise); color: white; }
+        .modal-btn-primary:hover { background: #2dd4bf; }
+        .modal-btn-secondary { background: #f1f5f9; color: var(--text-primary); }
+        .modal-btn-secondary:hover { background: #e2e8f0; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
         .back-link { text-align: center; margin-top: 1.5rem; }
         .back-link a { color: var(--dozi-turquoise); text-decoration: none; font-weight: 500; }
         .back-link a:hover { text-decoration: underline; }
@@ -204,14 +225,48 @@
         </div>
     </div>
     
+    <!-- Success/Error Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="modalIcon" class="modal-icon"></div>
+                <h2 id="modalTitle" class="modal-title"></h2>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">Tamam</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         const form = document.getElementById('kvkkForm');
         const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
+        const modal = document.getElementById('modal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
         
         // reCAPTCHA site key
         const RECAPTCHA_SITE_KEY = '6Lcp60MsAAAAAFZ4qhzifUXH7YRmVfhFu2n36epX';
+        
+        // Modal fonksiyonları
+        function showModal(type, title, body) {
+            modalIcon.className = `modal-icon ${type}`;
+            modalIcon.textContent = type === 'success' ? '✓' : '✕';
+            modalTitle.textContent = title;
+            modalBody.innerHTML = body;
+            modal.classList.add('show');
+        }
+        
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+        
+        // Modal dışına tıklanınca kapat
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
         
         // Checkbox toggle fonksiyonu
         function toggleCheckbox(id) {
@@ -240,24 +295,18 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Mesajları temizle
-            successMessage.classList.remove('show');
-            errorMessage.classList.remove('show');
-            
             // En az bir talep tipi seçilmiş mi kontrol et
             const selectedTypes = Array.from(document.querySelectorAll('input[name="requestType"]:checked'))
                 .map(cb => cb.value);
             
             if (selectedTypes.length === 0) {
-                errorMessage.innerHTML = '<strong>❌ Hata:</strong> Lütfen en az bir talep tipi seçin.';
-                errorMessage.classList.add('show');
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                showModal('error', 'Eksik Bilgi', 'Lütfen en az bir talep tipi seçin.');
                 return;
             }
             
             // Button'u disable et
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span style="display: inline-block; animation: spin 1s linear infinite;">⏳</span> Gönderiliyor...';
+            submitBtn.textContent = 'Gönderiliyor...';
             
             try {
                 // reCAPTCHA token al (invisible - kullanıcı görmez)
@@ -304,15 +353,16 @@
                     
                     const successTypes = successful.map(r => typeLabels[r.requestType]).join(', ');
                     
-                    successMessage.innerHTML = `
-                        <strong>✅ Başarılı!</strong><br>
-                        <strong>Gönderilen Talepler:</strong> ${successTypes}<br>
-                        Email adresinize onay mesajı gönderildi.<br>
-                        <strong>Yanıt Süresi:</strong> En geç 30 gün içinde<br>
-                        <small>Talep numaranız email'inizde yer almaktadır.</small>
+                    const bodyHtml = `
+                        Talebiniz başarıyla alındı ve işleme konuldu.
+                        <strong>Gönderilen Talepler:</strong> ${successTypes}
+                        <strong>Sonraki Adımlar:</strong>
+                        • Email adresinize onay mesajı gönderildi
+                        • Talebiniz en geç 30 gün içinde yanıtlanacak
+                        • Talep numaranız email'inizde yer almaktadır
                     `;
-                    successMessage.classList.add('show');
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    showModal('success', 'Talep Gönderildi', bodyHtml);
                     
                     // Formu temizle
                     form.reset();
@@ -321,41 +371,36 @@
                 
                 if (failed.length > 0) {
                     const failedTypes = failed.map(r => r.requestType).join(', ');
-                    errorMessage.innerHTML = `
-                        <strong>⚠️ Kısmi Hata:</strong><br>
-                        Bazı talepler gönderilemedi: ${failedTypes}<br>
-                        ${failed[0].response.error || 'Lütfen tekrar deneyin.'}
+                    const errorMsg = failed[0].response.error || 'Bilinmeyen bir hata oluştu.';
+                    
+                    const bodyHtml = `
+                        Bazı talepler gönderilemedi: ${failedTypes}
+                        <strong>Hata:</strong> ${errorMsg}
+                        <strong>Çözüm:</strong>
+                        • Lütfen birkaç dakika sonra tekrar deneyin
+                        • Sorun devam ederse <a href="mailto:info@dozi.app" style="color: var(--dozi-turquoise);">info@dozi.app</a> adresine email gönderin
                     `;
-                    errorMessage.classList.add('show');
-                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    showModal('error', 'Gönderim Hatası', bodyHtml);
                 }
                 
             } catch (error) {
                 console.error('Form gönderme hatası:', error);
-                errorMessage.innerHTML = `
-                    <strong>❌ Hata:</strong><br>
-                    Talep gönderilirken bir hata oluştu.<br>
-                    <small>${error.message}</small><br>
-                    Lütfen tekrar deneyin veya <a href="mailto:info@dozi.app" style="color: #991b1b; text-decoration: underline;">info@dozi.app</a> adresine email gönderin.
+                
+                const bodyHtml = `
+                    Talep gönderilirken bir hata oluştu.
+                    <strong>Hata Detayı:</strong> ${error.message}
+                    <strong>Alternatif Yöntem:</strong>
+                    Lütfen <a href="mailto:info@dozi.app" style="color: var(--dozi-turquoise);">info@dozi.app</a> adresine email göndererek talebinizi iletebilirsiniz.
                 `;
-                errorMessage.classList.add('show');
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                showModal('error', 'Bağlantı Hatası', bodyHtml);
             } finally {
                 // Button'u tekrar aktif et
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Başvuruyu Gönder';
             }
         });
-        
-        // Spin animasyonu için CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
                     successMessage.textContent = `✅ ${data.message} Talep numaranız: ${data.requestId}. Yanıt süresi: ${data.responseDeadline}`;
                     successMessage.classList.add('show');
