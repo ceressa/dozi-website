@@ -53,11 +53,12 @@
         .form-group small { display: block; margin-top: 0.25rem; color: var(--text-secondary); font-size: 0.875rem; }
         
         .request-types { display: grid; gap: 0.75rem; margin-bottom: 1.5rem; }
-        .request-type { padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .request-type { padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s; position: relative; }
         .request-type:hover { border-color: var(--dozi-turquoise); background: #f0fdfa; }
-        .request-type input[type="radio"] { margin-right: 0.5rem; }
-        .request-type label { cursor: pointer; font-weight: 600; }
-        .request-type p { margin-top: 0.25rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .request-type input[type="checkbox"] { margin-right: 0.5rem; }
+        .request-type.selected { border-color: var(--dozi-turquoise); background: #f0fdfa; }
+        .request-type label { cursor: pointer; font-weight: 600; display: flex; align-items: center; }
+        .request-type p { margin-top: 0.25rem; margin-left: 1.5rem; font-size: 0.875rem; color: var(--text-secondary); }
         
         .btn { display: block; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .btn-primary { background: var(--dozi-turquoise); color: white; }
@@ -112,30 +113,41 @@
             <form id="kvkkForm">
                 <div class="form-group">
                     <label>Talep Tipi <span class="required">*</span></label>
+                    <small style="display: block; margin-bottom: 0.5rem;">Birden fazla seçebilirsiniz</small>
                     <div class="request-types">
-                        <div class="request-type">
-                            <input type="radio" id="access" name="requestType" value="access" required>
-                            <label for="access">Veri Erişim Talebi</label>
+                        <div class="request-type" onclick="toggleCheckbox('access')">
+                            <label for="access">
+                                <input type="checkbox" id="access" name="requestType" value="access" onclick="event.stopPropagation()">
+                                Veri Erişim Talebi
+                            </label>
                             <p>Hangi verilerinizin işlendiğini öğrenin</p>
                         </div>
-                        <div class="request-type">
-                            <input type="radio" id="correction" name="requestType" value="correction">
-                            <label for="correction">Veri Düzeltme Talebi</label>
+                        <div class="request-type" onclick="toggleCheckbox('correction')">
+                            <label for="correction">
+                                <input type="checkbox" id="correction" name="requestType" value="correction" onclick="event.stopPropagation()">
+                                Veri Düzeltme Talebi
+                            </label>
                             <p>Yanlış/eksik verilerin düzeltilmesini isteyin</p>
                         </div>
-                        <div class="request-type">
-                            <input type="radio" id="deletion" name="requestType" value="deletion">
-                            <label for="deletion">Veri Silme Talebi</label>
+                        <div class="request-type" onclick="toggleCheckbox('deletion')">
+                            <label for="deletion">
+                                <input type="checkbox" id="deletion" name="requestType" value="deletion" onclick="event.stopPropagation()">
+                                Veri Silme Talebi
+                            </label>
                             <p>Verilerinizin silinmesini/yok edilmesini isteyin</p>
                         </div>
-                        <div class="request-type">
-                            <input type="radio" id="portability" name="requestType" value="portability">
-                            <label for="portability">Veri Taşınabilirlik Talebi</label>
+                        <div class="request-type" onclick="toggleCheckbox('portability')">
+                            <label for="portability">
+                                <input type="checkbox" id="portability" name="requestType" value="portability" onclick="event.stopPropagation()">
+                                Veri Taşınabilirlik Talebi
+                            </label>
                             <p>Verilerinizi yapılandırılmış formatta alın</p>
                         </div>
-                        <div class="request-type">
-                            <input type="radio" id="objection" name="requestType" value="objection">
-                            <label for="objection">İtiraz Talebi</label>
+                        <div class="request-type" onclick="toggleCheckbox('objection')">
+                            <label for="objection">
+                                <input type="checkbox" id="objection" name="requestType" value="objection" onclick="event.stopPropagation()">
+                                İtiraz Talebi
+                            </label>
                             <p>Otomatik işleme sonuçlarına itiraz edin</p>
                         </div>
                     </div>
@@ -179,9 +191,11 @@
                     Başvuruyu Gönder
                 </button>
                 
-                <p class="recaptcha-notice">
-                    Bu site reCAPTCHA ile korunmaktadır. Google <a href="https://policies.google.com/privacy" target="_blank">Gizlilik Politikası</a> ve <a href="https://policies.google.com/terms" target="_blank">Hizmet Şartları</a> geçerlidir.
-                </p>
+                <div class="recaptcha-notice">
+                    🔒 Bu form Google reCAPTCHA v3 ile korunmaktadır.<br>
+                    <a href="https://policies.google.com/privacy" target="_blank" style="color: var(--dozi-turquoise);">Gizlilik</a> ve 
+                    <a href="https://policies.google.com/terms" target="_blank" style="color: var(--dozi-turquoise);">Hizmet Şartları</a> geçerlidir.
+                </div>
             </form>
             
             <div class="back-link">
@@ -199,6 +213,30 @@
         // reCAPTCHA site key
         const RECAPTCHA_SITE_KEY = '6Lcp60MsAAAAAFZ4qhzifUXH7YRmVfhFu2n36epX';
         
+        // Checkbox toggle fonksiyonu
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+            updateRequestTypeStyles();
+        }
+        
+        // Seçili talep tiplerinin stilini güncelle
+        function updateRequestTypeStyles() {
+            document.querySelectorAll('.request-type').forEach(div => {
+                const checkbox = div.querySelector('input[type="checkbox"]');
+                if (checkbox.checked) {
+                    div.classList.add('selected');
+                } else {
+                    div.classList.remove('selected');
+                }
+            });
+        }
+        
+        // Checkbox değişikliklerini dinle
+        document.querySelectorAll('input[name="requestType"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateRequestTypeStyles);
+        });
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -206,40 +244,119 @@
             successMessage.classList.remove('show');
             errorMessage.classList.remove('show');
             
+            // En az bir talep tipi seçilmiş mi kontrol et
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="requestType"]:checked'))
+                .map(cb => cb.value);
+            
+            if (selectedTypes.length === 0) {
+                errorMessage.innerHTML = '<strong>❌ Hata:</strong> Lütfen en az bir talep tipi seçin.';
+                errorMessage.classList.add('show');
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+            
             // Button'u disable et
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Gönderiliyor...';
+            submitBtn.innerHTML = '<span style="display: inline-block; animation: spin 1s linear infinite;">⏳</span> Gönderiliyor...';
             
             try {
-                // reCAPTCHA token al
+                // reCAPTCHA token al (invisible - kullanıcı görmez)
                 const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'data_request' });
                 
-                // Form verilerini topla
-                const requestType = document.querySelector('input[name="requestType"]:checked').value;
-                const formData = {
-                    requestType: requestType,
-                    name: document.getElementById('name').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    phone: document.getElementById('phone').value.trim() || null,
-                    identityDocument: document.getElementById('identityDocument').value.trim() || null,
-                    userId: document.getElementById('userId').value.trim() || null,
-                    details: document.getElementById('details').value.trim(),
-                    recaptchaToken: recaptchaToken
-                };
-                
-                // Firebase Function'a gönder
-                const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/submitDataRequest', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                // Her talep tipi için ayrı istek gönder
+                const promises = selectedTypes.map(async (requestType) => {
+                    const formData = {
+                        requestType: requestType,
+                        name: document.getElementById('name').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        phone: document.getElementById('phone').value.trim() || null,
+                        identityDocument: document.getElementById('identityDocument').value.trim() || null,
+                        userId: document.getElementById('userId').value.trim() || null,
+                        details: document.getElementById('details').value.trim(),
+                        recaptchaToken: recaptchaToken
+                    };
+                    
+                    const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/submitDataRequest', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    return { requestType, response: await response.json(), status: response.status };
                 });
                 
-                const data = await response.json();
+                const results = await Promise.all(promises);
                 
-                if (response.ok && data.success) {
-                    // Başarılı
+                // Sonuçları kontrol et
+                const successful = results.filter(r => r.status === 200);
+                const failed = results.filter(r => r.status !== 200);
+                
+                if (successful.length > 0) {
+                    const typeLabels = {
+                        access: 'Veri Erişim',
+                        correction: 'Veri Düzeltme',
+                        deletion: 'Veri Silme',
+                        portability: 'Veri Taşınabilirlik',
+                        objection: 'İtiraz'
+                    };
+                    
+                    const successTypes = successful.map(r => typeLabels[r.requestType]).join(', ');
+                    
+                    successMessage.innerHTML = `
+                        <strong>✅ Başarılı!</strong><br>
+                        <strong>Gönderilen Talepler:</strong> ${successTypes}<br>
+                        Email adresinize onay mesajı gönderildi.<br>
+                        <strong>Yanıt Süresi:</strong> En geç 30 gün içinde<br>
+                        <small>Talep numaranız email'inizde yer almaktadır.</small>
+                    `;
+                    successMessage.classList.add('show');
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    // Formu temizle
+                    form.reset();
+                    updateRequestTypeStyles();
+                }
+                
+                if (failed.length > 0) {
+                    const failedTypes = failed.map(r => r.requestType).join(', ');
+                    errorMessage.innerHTML = `
+                        <strong>⚠️ Kısmi Hata:</strong><br>
+                        Bazı talepler gönderilemedi: ${failedTypes}<br>
+                        ${failed[0].response.error || 'Lütfen tekrar deneyin.'}
+                    `;
+                    errorMessage.classList.add('show');
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+                
+            } catch (error) {
+                console.error('Form gönderme hatası:', error);
+                errorMessage.innerHTML = `
+                    <strong>❌ Hata:</strong><br>
+                    Talep gönderilirken bir hata oluştu.<br>
+                    <small>${error.message}</small><br>
+                    Lütfen tekrar deneyin veya <a href="mailto:info@dozi.app" style="color: #991b1b; text-decoration: underline;">info@dozi.app</a> adresine email gönderin.
+                `;
+                errorMessage.classList.add('show');
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } finally {
+                // Button'u tekrar aktif et
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Başvuruyu Gönder';
+            }
+        });
+        
+        // Spin animasyonu için CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
                     successMessage.textContent = `✅ ${data.message} Talep numaranız: ${data.requestId}. Yanıt süresi: ${data.responseDeadline}`;
                     successMessage.classList.add('show');
                     form.reset();
