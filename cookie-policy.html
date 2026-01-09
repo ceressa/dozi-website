@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dozi - Çerez Politikası ve Kullanım Bilgileri">
     <meta name="author" content="Bardino Technology">
+    <meta name="robots" content="index, follow">
     <title>Çerez Politikası - Dozi</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.dozi.app/cookie-policy.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="dozi_brand.png">
+    <link rel="apple-touch-icon" href="dozi_brand.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +22,6 @@
         rel="stylesheet">
 
     <style>
-        /* Same styling as KVKK page for consistency */
         * {
             margin: 0;
             padding: 0;
@@ -34,6 +41,17 @@
             line-height: 1.8;
             color: var(--dozi-dark);
             background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--dozi-turquoise);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dozi-pink);
         }
 
         header {
@@ -66,6 +84,21 @@
 
         .logo img {
             height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .update-date {
+            display: inline-block;
+            background: rgba(64, 224, 208, 0.15);
+            color: var(--dozi-turquoise);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         main {
@@ -83,7 +116,7 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--dozi-dark);
             margin: 2.5rem 0 1.5rem;
@@ -96,7 +129,7 @@
         }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--dozi-dark);
             margin: 2rem 0 1rem;
@@ -145,7 +178,13 @@
         .alert-box h4 {
             margin-top: 0;
             color: inherit;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-box p {
+            color: inherit;
+            margin-bottom: 0;
         }
 
         .data-table {
@@ -164,12 +203,14 @@
             padding: 1rem;
             text-align: left;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .data-table td {
             padding: 1rem;
             border-bottom: 1px solid #e9ecef;
             color: var(--dozi-gray);
+            font-size: 0.95rem;
         }
 
         .data-table tr:last-child td {
@@ -178,6 +219,79 @@
 
         .data-table tr:hover {
             background: var(--dozi-light-blue);
+        }
+
+        .cookie-type-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-required {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-analytics {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .badge-functional {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .browser-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .browser-item {
+            background: var(--dozi-light-blue);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .browser-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dozi-dark);
+        }
+
+        .browser-item span {
+            font-size: 0.85rem;
+            color: var(--dozi-gray);
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--dozi-light-blue);
+            border-radius: 10px;
+            color: var(--dozi-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            background: var(--dozi-turquoise);
+            color: white;
+            transform: translateY(-2px);
         }
 
         footer {
@@ -202,7 +316,19 @@
             color: var(--dozi-pink);
         }
 
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-top: 1rem;
+        }
+
         @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
             header h1 {
                 font-size: 1.8rem;
             }
@@ -212,11 +338,20 @@
             }
 
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .data-table {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .browser-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -229,6 +364,7 @@
         </a>
         <h1>Çerez Politikası</h1>
         <p>Web Sitemizde Kullanılan Çerezler Hakkında Bilgilendirme</p>
+        <span class="update-date">Son Güncelleme: 9 Ocak 2026</span>
     </header>
 
     <main>
@@ -276,31 +412,31 @@
                 <tbody>
                     <tr>
                         <td><strong>cookie_consent</strong></td>
-                        <td>Zorunlu</td>
+                        <td><span class="cookie-type-badge badge-required">Zorunlu</span></td>
                         <td>Çerez tercihlerinizi hatırlar</td>
                         <td>1 yıl</td>
                     </tr>
                     <tr>
                         <td><strong>session_id</strong></td>
-                        <td>Zorunlu</td>
+                        <td><span class="cookie-type-badge badge-required">Zorunlu</span></td>
                         <td>Oturum yönetimi</td>
                         <td>Oturum</td>
                     </tr>
                     <tr>
                         <td><strong>_ga</strong></td>
-                        <td>Analitik</td>
+                        <td><span class="cookie-type-badge badge-analytics">Analitik</span></td>
                         <td>Google Analytics - Kullanıcı tanımlama</td>
                         <td>2 yıl</td>
                     </tr>
                     <tr>
                         <td><strong>_gid</strong></td>
-                        <td>Analitik</td>
+                        <td><span class="cookie-type-badge badge-analytics">Analitik</span></td>
                         <td>Google Analytics - Kullanıcı tanımlama</td>
                         <td>24 saat</td>
                     </tr>
                     <tr>
                         <td><strong>_gat</strong></td>
-                        <td>Analitik</td>
+                        <td><span class="cookie-type-badge badge-analytics">Analitik</span></td>
                         <td>Google Analytics - İstek hızı sınırlama</td>
                         <td>1 dakika</td>
                     </tr>
@@ -343,14 +479,14 @@
             <ul>
                 <li><strong>Amaç:</strong> Site kullanım istatistikleri</li>
                 <li><strong>Veri:</strong> Sayfa görüntülemeleri, oturum süresi, coğrafi konum (ülke/şehir)</li>
-                <li><strong>Gizlilik:</strong> <a href="https://policies.google.com/privacy" target="_blank">Google
+                <li><strong>Gizlilik:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google
                         Gizlilik Politikası</a></li>
             </ul>
 
             <div class="alert-box alert-info">
                 <h4>ℹ️ Google Analytics Opt-Out</h4>
                 <p>Google Analytics'i devre dışı bırakmak isterseniz: <a href="https://tools.google.com/dlpage/gaoptout"
-                        target="_blank">Google Analytics Opt-out Browser Add-on</a></p>
+                        target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a></p>
             </div>
 
             <h2>6. Çerezleri Nasıl Yönetebilirsiniz?</h2>
@@ -358,12 +494,25 @@
             <h3>6.1. Tarayıcı Ayarları</h3>
             <p>Çoğu tarayıcı, çerezleri otomatik olarak kabul eder. Ancak tarayıcı ayarlarınızdan çerezleri
                 engelleyebilir veya silebilirsiniz:</p>
-            <ul>
-                <li><strong>Google Chrome:</strong> Ayarlar > Gizlilik ve güvenlik > Çerezler</li>
-                <li><strong>Firefox:</strong> Ayarlar > Gizlilik ve Güvenlik > Çerezler ve Site Verileri</li>
-                <li><strong>Safari:</strong> Tercihler > Gizlilik > Çerezler</li>
-                <li><strong>Edge:</strong> Ayarlar > Gizlilik, arama ve hizmetler > Çerezler</li>
-            </ul>
+
+            <div class="browser-list">
+                <div class="browser-item">
+                    <strong>Google Chrome</strong>
+                    <span>Ayarlar → Gizlilik ve güvenlik → Çerezler</span>
+                </div>
+                <div class="browser-item">
+                    <strong>Firefox</strong>
+                    <span>Ayarlar → Gizlilik ve Güvenlik → Çerezler</span>
+                </div>
+                <div class="browser-item">
+                    <strong>Safari</strong>
+                    <span>Tercihler → Gizlilik → Çerezler</span>
+                </div>
+                <div class="browser-item">
+                    <strong>Edge</strong>
+                    <span>Ayarlar → Gizlilik → Çerezler</span>
+                </div>
+            </div>
 
             <h3>6.2. Çerez Onay Banner'ı</h3>
             <p>Web sitemizi ilk ziyaretinizde çerez onay banner'ı görüntülenir. Burada çerez tercihlerinizi
@@ -400,7 +549,6 @@
             <h2>9. Değişiklikler</h2>
             <p>Bu çerez politikası, yasal düzenlemeler veya hizmet değişiklikleri nedeniyle güncellenebilir. Önemli
                 değişiklikler web sitesinde duyurulacaktır.</p>
-            <p><strong>Son Güncelleme:</strong> 08 Aralık 2025</p>
 
             <h2>10. İletişim</h2>
             <p>Çerez politikamız hakkında sorularınız için:</p>
@@ -411,22 +559,23 @@
 
             <h2>11. İlgili Politikalar</h2>
             <p>Daha fazla bilgi için diğer politikalarımızı inceleyebilirsiniz:</p>
-            <ul>
-                <li><a href="privacy-policy.html">Gizlilik Politikası</a></li>
-                <li><a href="kvkk.html">KVKK Aydınlatma Metni</a></li>
-                <li><a href="terms-of-use.html">Kullanım Şartları</a></li>
-            </ul>
+            
+            <div class="related-links">
+                <a href="privacy-policy.html" class="related-link">📄 Gizlilik Politikası</a>
+                <a href="legal/kvkk.html" class="related-link">🔒 KVKK Aydınlatma Metni</a>
+                <a href="terms-of-use.html" class="related-link">📋 Kullanım Şartları</a>
+            </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Bardino Technology - Tüm hakları saklıdır</p>
-        <p>
-            <a href="index.html">Ana Sayfa</a> |
-            <a href="privacy-policy.html">Gizlilik Politikası</a> |
-            <a href="kvkk.html">KVKK</a> |
+        <p>© 2026 Bardino Technology - Tüm hakları saklıdır</p>
+        <div class="footer-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="privacy-policy.html">Gizlilik Politikası</a>
+            <a href="legal/kvkk.html">KVKK</a>
             <a href="terms-of-use.html">Kullanım Şartları</a>
-        </p>
+        </div>
     </footer>
 </body>
 
