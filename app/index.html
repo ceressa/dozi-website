@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dozi - İlaç Takip Uygulaması</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Dozi ile ilaçlarını takip et, hatırlatmalar al ve sağlığını kontrol altında tut.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dozi - Akıllı İlaç Takip Uygulaması">
+    <meta property="og:description" content="İlaçlarını takip et, hatırlatmalar al ve sağlığını kontrol altında tut.">
+    <meta property="og:image" content="https://doziapp.com/dozi_brand.png">
+    <meta property="og:url" content="https://doziapp.com/app">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dozi - Akıllı İlaç Takip Uygulaması">
+    <meta name="twitter:description" content="İlaçlarını takip et, hatırlatmalar al ve sağlığını kontrol altında tut.">
+    <meta name="twitter:image" content="https://doziapp.com/dozi_brand.png">
+    
+    <!-- App Links -->
+    <meta property="al:android:url" content="dozi://home">
+    <meta property="al:android:package" content="com.bardino.dozi">
+    <meta property="al:android:app_name" content="Dozi">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/dozi.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .loading {
+            display: none;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #eee;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .features {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #eee;
+        }
+        
+        .features h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .feature-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+    </style>
+    
+    <script>
+        // Sayfa yüklendiğinde uygulamayı açmayı dene
+        window.onload = function() {
+            const path = window.location.pathname.replace('/app', '').replace('/', '') || 'home';
+            const params = window.location.search;
+            const appUrl = 'dozi://' + path + params;
+            const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.bardino.dozi';
+            
+            // Uygulama yüklüyse aç
+            const start = Date.now();
+            
+            // Intent URL ile dene (Android için daha güvenilir)
+            const intentUrl = 'intent://' + path + params + '#Intent;scheme=dozi;package=com.bardino.dozi;end';
+            
+            // Önce intent URL'i dene
+            window.location.href = intentUrl;
+            
+            // 2 saniye sonra hala buradaysak Play Store'a yönlendir
+            setTimeout(function() {
+                if (Date.now() - start < 2500) {
+                    document.getElementById('loading').style.display = 'block';
+                    setTimeout(function() {
+                        window.location.href = playStoreUrl;
+                    }, 500);
+                }
+            }, 2000);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="/dozi_brand.png" alt="Dozi" class="logo">
+        <h1>Dozi'ye Hoş Geldin!</h1>
+        <p>Uygulama açılıyor... Eğer otomatik açılmazsa aşağıdaki butona tıkla.</p>
+        
+        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="btn">
+            Google Play'den İndir
+        </a>
+        
+        <div id="loading" class="loading">
+            <span class="spinner"></span>
+            Play Store'a yönlendiriliyorsun...
+        </div>
+        
+        <div class="features">
+            <h3>Dozi ile neler yapabilirsin?</h3>
+            <div class="feature-list">
+                <span class="feature-tag">⏰ Akıllı Hatırlatmalar</span>
+                <span class="feature-tag">📊 İstatistikler</span>
+                <span class="feature-tag">👨‍👩‍👧 Aile Takibi</span>
+                <span class="feature-tag">🤖 AI Asistan</span>
+                <span class="feature-tag">📍 Konum Hatırlatma</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
