@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dozi'yi İndir - İlaç Hatırlatıcı</title>
+    <meta name="description" content="Dozi ile ilaçlarınızı hiç unutmayın. Akıllı hatırlatıcı, aile takibi ve yapay zeka asistanı ile sağlığınızı kontrol altında tutun.">
+    
+    <!-- Auto-redirect to Play Store -->
+    <meta http-equiv="refresh" content="0;url=https://play.google.com/store/apps/details?id=com.bardino.dozi">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dozi - İlaç Hatırlatıcı">
+    <meta property="og:description" content="İlaçlarınızı hiç unutmayın! Akıllı hatırlatıcı ve AI asistan.">
+    <meta property="og:image" content="https://www.dozi.app/dozi_brand.png">
+    <meta property="og:url" content="https://www.dozi.app/app/download">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 48px 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 16px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        
+        .feature-text {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+        }
+        
+        .redirect-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/dozi_happy5.webp" alt="Dozi" class="logo">
+        
+        <h1>Dozi'yi İndir</h1>
+        <p>İlaçlarınızı hiç unutmayın! Akıllı hatırlatıcı ve yapay zeka asistanı ile sağlığınızı kontrol altında tutun.</p>
+        
+        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="download-btn">
+            Google Play'den İndir
+        </a>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">⏰</span>
+                <p class="feature-text"><strong>Akıllı Hatırlatıcılar</strong> - Zamanında ve konuma göre</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🤖</span>
+                <p class="feature-text"><strong>AI Asistan</strong> - Kişiselleştirilmiş sağlık takibi</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">👨‍👩‍👧‍👦</span>
+                <p class="feature-text"><strong>Aile Takibi</strong> - Sevdiklerinizi uzaktan takip edin</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📊</span>
+                <p class="feature-text"><strong>İstatistikler</strong> - İlaç uyumunuzu görün</p>
+            </div>
+        </div>
+        
+        <p class="redirect-note">Otomatik olarak Play Store'a yönlendiriliyorsunuz...</p>
+    </div>
+    
+    <script>
+        // Analytics tracking
+        if (window.gtag) {
+            gtag('event', 'page_view', {
+                'page_title': 'Download Page',
+                'page_location': window.location.href,
+                'page_path': '/app/download'
+            });
+        }
+        
+        // Fallback redirect after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.bardino.dozi';
+        }, 3000);
+    </script>
+</body>
+</html>
