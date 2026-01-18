@@ -1,0 +1,13 @@
+Fiyat düzeltmeleri yapılacak:
+
+YANLIŞ: ₺99/ay
+DOĞRU: ₺150/ay (yıllık ₺1.799,99)
+
+YANLIŞ: ₺199.99/ay
+DOĞRU: ₺438/ay (yıllık ₺5.250, 4 kişi)
+
+Veri güvenliği vurgusu eklenecek:
+- End-to-end encryption
+- KVKK uyumlu
+- Firebase güvenlik
+- Verileriniz şifreli
