@@ -3,716 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlaç Hatırlatıcı Uygulaması Nasıl Seçilir? 7 Önemli Kriter | Dozi</title>
-    <meta name="description" content="İlaç hatırlatıcı uygulaması seçerken nelere dikkat etmelisiniz? Güvenilirlik, gizlilik, veri güvenliği, fiyat ve daha fazlası. Doğru uygulamayı seçmek için rehber.">
-    <meta name="keywords" content="ilaç hatırlatıcı seçimi, ilaç takip uygulaması nasıl seçilir, medication reminder seçimi, ilaç uygulaması kriterleri, güvenilir ilaç hatırlatıcı, veri güvenliği">
+    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <title>Sağlığınızı Şansa Bırakmayın: Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı | Dozi</title>
+    <meta name="description" content="Binlerce uygulama arasından hangisi sizin için doğru? Güvenilirlik, gizlilik ve kullanım kolaylığı ekseninde en iyi ilaç hatırlatıcıyı seçme rehberi.">
     <meta name="author" content="Dozi">
-    <link rel="canonical" href="https://dozi.app/blog/ilac-hatirlat-nasil-secilir.html">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="İlaç Hatırlatıcı Uygulaması Nasıl Seçilir? 7 Önemli Kriter">
-    <meta property="og:description" content="Doğru ilaç hatırlatıcı uygulamasını seçmek için bilmeniz gereken her şey.">
-    <meta property="og:image" content="https://dozi.app/dozi_teach1.png">
-    <meta property="og:url" content="https://dozi.app/blog/ilac-hatirlat-nasil-secilir.html">
     <meta property="og:type" content="article">
+    <meta property="og:title" content="Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı">
+    <meta property="og:image" content="../dozi_teach1.png">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="İlaç Hatırlatıcı Uygulaması Nasıl Seçilir?">
-    <meta name="twitter:description" content="7 önemli kriter ile doğru ilaç hatırlatıcı uygulamasını seçin.">
-    <meta name="twitter:image" content="https://dozi.app/dozi_teach1.png">
-    
-    <link rel="icon" type="image/png" href="../dozi.png">
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
+        :root { 
+            --dozi-primary: #40E0D0; 
+            --dozi-dark: #0f172a; 
+            --bg-light: #f8fafc; 
+            --text-main: #475569; 
+            --text-bold: #1e293b; 
+            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            --card-shadow: 0 25px 50px rgba(64,224,208,0.15);
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
         
-        /* Header & Nav */
-        header { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
-        nav.container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
-        .logo img { height: 32px; }
+        /* Navbar */
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo img { height: 32px; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--dozi-primary); }
-        .cta-button { background: var(--dozi-primary); color: var(--dozi-dark); padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 700; }
         
-        /* Blog Post */
-        .blog-post { max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .post-header { text-align: center; margin-bottom: 3rem; }
-        .post-header h1 { font-size: 2.5rem; color: var(--text-bold); margin-bottom: 1rem; line-height: 1.2; }
-        .post-meta { display: flex; gap: 1.5rem; justify-content: center; color: #64748b; font-size: 0.9rem; }
-        .category { background: var(--dozi-primary); color: var(--dozi-dark); padding: 0.3rem 1rem; border-radius: 20px; font-weight: 600; }
+        /* Hero */
+        .hero-section { background: var(--gradient-hero); color: white; padding: 8rem 2rem 7rem; text-align: center; position: relative; overflow: hidden; }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1; background-image: radial-gradient(#40E0D0 1px, transparent 1px); background-size: 30px 30px; }
+        .hero-content { position: relative; z-index: 1; }
+        .meta-info { color: var(--dozi-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: inline-block; background: rgba(64,224,208,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; }
+        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 900px; margin: 0 auto 2rem; line-height: 1.15; letter-spacing: -1px; }
+        .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; }
+        .hero-character { margin-top: 2rem; }
+        .hero-character img { max-width: 160px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); transform: rotate(-5deg); transition: transform 0.3s; }
+        .hero-character img:hover { transform: rotate(0deg) scale(1.05); }
         
-        /* Content */
-        .post-content { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-        .intro { margin-bottom: 3rem; }
-        .lead { font-size: 1.25rem; font-weight: 500; color: var(--text-bold); margin-bottom: 1.5rem; }
-        h2 { font-size: 2rem; color: var(--text-bold); margin: 3rem 0 1.5rem; font-weight: 800; }
-        h3 { font-size: 1.5rem; color: var(--text-bold); margin: 2rem 0 1rem; font-weight: 700; }
-        h4 { font-size: 1.2rem; color: var(--text-bold); margin: 1.5rem 0 0.8rem; font-weight: 600; }
-        h5 { font-size: 1.1rem; color: var(--text-bold); margin: 1rem 0 0.5rem; font-weight: 600; }
-        p { margin-bottom: 1.5rem; font-size: 1.05rem; }
-        ul, ol { margin: 1rem 0 1.5rem 2rem; }
-        li { margin-bottom: 0.5rem; }
-        strong { color: var(--text-bold); font-weight: 700; }
-        em { font-style: italic; color: #64748b; }
+        /* Content Wrapper */
+        .content-wrapper { max-width: 900px; margin: -5rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); position: relative; z-index: 10; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: transform 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
         
-        /* Criterion Cards */
-        .criteria-detailed { margin: 3rem 0; }
-        .criterion-card { background: white; border: 2px solid #e2e8f0; padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; position: relative; }
-        .criterion-number { position: absolute; top: -20px; left: 30px; background: var(--dozi-primary); color: var(--dozi-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; }
-        .criterion-content { margin-top: 1rem; }
-        .highlight-box { background: #fef3c7; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #f59e0b; }
-        .test-box { background: #f0fdfa; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid var(--dozi-primary); }
-        .good-example { background: #f0fdf4; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #10b981; }
-        .bad-example { background: #fef2f2; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #ef4444; }
-        .elderly-note { background: #faf5ff; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #a855f7; }
-        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 12px; margin: 2rem 0; }
-        .checklist { background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
-        .scenario { background: #eff6ff; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #3b82f6; }
-        .solution { background: #f0fdf4; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #10b981; }
-        .price-comparison table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        .price-comparison td { padding: 0.8rem; border-bottom: 1px solid #e2e8f0; }
-        .value-question { background: #f0fdfa; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
-        .feature-bloat { margin: 1.5rem 0; }
-        .critical-thinking { background: #fef2f2; padding: 1.5rem; border-radius: 12px; margin: 1rem 0; }
-        .good-approach { background: #f0fdf4; padding: 1.5rem; border-radius: 12px; margin: 1rem 0; }
-        .unnecessary-features { background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin: 1rem 0; }
-        .problem { background: #fef2f2; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #ef4444; }
-        .emphasis { font-weight: 600; color: var(--text-bold); font-style: italic; }
+        /* Typography */
+        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(64,224,208,0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 16px 16px 0; }
+        h2 { font-size: 2.2rem; color: var(--text-bold); margin: 4rem 0 2rem; font-weight: 800; position: relative; letter-spacing: -0.5px; }
+        h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 5px; background: var(--dozi-primary); border-radius: 10px; }
+        h3 { font-size: 1.4rem; color: var(--text-bold); margin: 1.5rem 0 0.5rem; font-weight: 700; }
+        p { margin-bottom: 1.8rem; font-size: 1.1rem; line-height: 1.9; color: #475569; }
         
-        /* Decision Framework */
-        .decision-framework { margin: 3rem 0; }
-        .decision-tree { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .decision-box { background: white; border: 2px solid #e2e8f0; padding: 2rem; border-radius: 16px; }
-        .recommendation { background: #f0fdfa; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-weight: 600; }
+        /* Criterion Cards (Redesigned Feature Cards) */
+        .criteria-list { display: flex; flex-direction: column; gap: 2rem; margin: 3rem 0; }
+        .criterion-card { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; background: white; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .criterion-card:hover { transform: translateY(-5px); border-color: var(--dozi-primary); box-shadow: var(--card-shadow); }
+        .criterion-number { font-size: 4rem; font-weight: 900; line-height: 1; color: rgba(64,224,208,0.2); font-family: 'Lora', serif; display: flex; align-items: flex-start; justify-content: center; }
+        .criterion-content h3 { margin-top: 0; color: var(--text-bold); }
+        .criterion-content ul { list-style: none; padding: 0; margin-top: 1rem; }
+        .criterion-content li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .criterion-content li::before { content: '→'; color: var(--dozi-primary); position: absolute; left: 0; font-weight: bold; }
         
-        /* Red Flags */
-        .red-flags { margin: 3rem 0; }
-        .red-flag-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        .red-flag-item { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; border-radius: 12px; }
+        /* Red Flags Box */
+        .red-flag-box { background: #fff1f2; border: 2px solid #fecdd3; border-radius: 24px; padding: 2.5rem; margin: 3rem 0; }
+        .red-flag-box h3 { color: #be123c; display: flex; align-items: center; gap: 0.5rem; }
+        .red-flag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .flag-item { background: white; padding: 1rem; border-radius: 12px; border: 1px solid #fecdd3; color: #9f1239; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
         
-        /* Checklist */
-        .final-checklist { margin: 3rem 0; }
-        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0; }
-        .checklist-item { display: flex; align-items: center; gap: 0.8rem; background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0; }
-        .checklist-item input[type="checkbox"] { width: 20px; height: 20px; }
-        .checklist-result { background: #f0fdfa; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-weight: 600; text-align: center; }
+        /* CTA Section */
+        .dozi-cta { background: var(--gradient-hero); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); }
+        .dozi-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(64,224,208,0.1) 0%, transparent 70%); animation: pulse 6s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; position: relative; z-index: 1; font-size: 2rem; }
+        .dozi-cta h2::after { display: none; }
+        .cta-list { text-align: left; max-width: 500px; margin: 2rem auto; list-style: none; position: relative; z-index: 1; }
+        .cta-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.9); }
+        .cta-list li svg { width: 20px; height: 20px; flex-shrink: 0; fill: var(--dozi-primary); }
         
-        /* Conclusion */
-        .conclusion { background: #f0fdfa; padding: 2rem; border-radius: 16px; margin: 2rem 0; }
-        .big-question { background: white; padding: 2rem; border-radius: 12px; text-align: center; font-size: 1.3rem; margin: 2rem 0; border: 3px solid var(--dozi-primary); }
-        .cta-box { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1e3a5f 100%); color: white; padding: 3rem; border-radius: 24px; text-align: center; margin: 3rem 0; }
-        .cta-box h3 { color: white; margin-top: 0; }
-        .cta-features { list-style: none; margin: 1.5rem 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .cta-button-large { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.1rem; margin: 1rem 0; }
+        .download-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; margin-top: 1rem; position: relative; z-index: 1; box-shadow: 0 0 20px rgba(64,224,208,0.4); }
+        .download-btn:hover { background: white; transform: translateY(-3px) scale(1.02); }
         
-        /* Responsive */
+        /* Footer Disclaimer */
+        .disclaimer { background: #fef3c7; border-top: 3px solid #f59e0b; padding: 2rem; margin-top: 4rem; text-align: center; border-radius: 16px; }
+        .disclaimer p { font-size: 0.9rem; color: #92400e; margin: 0; }
+        .copyright { text-align: center; margin-top: 2rem; color: #94a3b8; font-size: 0.85rem; }
+
         @media (max-width: 768px) {
-            .post-header h1 { font-size: 1.8rem; }
-            .post-content { padding: 1.5rem; }
-            .decision-tree { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2rem; }
+            .content-wrapper { padding: 2.5rem 1.5rem; width: 92%; margin-top: -3rem; }
+            .criterion-card { grid-template-columns: 1fr; gap: 0.5rem; }
+            .criterion-number { justify-content: flex-start; font-size: 3rem; margin-bottom: 0.5rem; }
             .nav-links { display: none; }
         }
     </style>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-        
-        gtag('event', 'blog_view', {
-            'blog_title': 'İlaç Hatırlatıcı Nasıl Seçilir',
-            'blog_category': 'guide',
-            'content_type': 'buying_guide'
-        });
-    </script>
-    
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "İlaç Hatırlatıcı Uygulaması Nasıl Seçilir",
-        "description": "İlaç hatırlatıcı uygulaması seçerken dikkat edilmesi gereken 7 önemli kriter",
-        "image": "https://dozi.app/dozi_teach1.png",
-        "step": [
-            {
-                "@type": "HowToStep",
-                "name": "Güvenilirliği Kontrol Edin",
-                "text": "Uygulamanın bildirim güvenilirliğini ve arka plan çalışma yeteneğini değerlendirin"
-            },
-            {
-                "@type": "HowToStep",
-                "name": "Basitliği Test Edin",
-                "text": "İlaç ekleme sürecinin ne kadar kolay olduğunu kontrol edin"
-            }
-        ]
-    }
-    </script>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="../index.html" class="logo">
-                <img src="../dozi.png" alt="Dozi Logo" width="40" height="40">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../" class="nav-logo">
+                <img src="../dozi_brand.png" alt="Dozi Logo">
                 <span>Dozi</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../index.html">Ana Sayfa</a></li>
-                <li><a href="index.html">Blog</a></li>
-                <li><a href="../app/download.html" class="cta-button">Uygulamayı İndir</a></li>
+                <li><a href="../#features">Özellikler</a></li>
+                <li><a href="../#pricing">Fiyatlar</a></li>
+                <li><a href="./">Blog</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="blog-post">
-        <article class="container">
-            <header class="post-header">
-                <h1>İlaç Hatırlatıcı Uygulaması Nasıl Seçilir? 7 Önemli Kriter</h1>
-                <div class="post-meta">
-                    <time datetime="2026-01-18">18 Ocak 2026</time>
-                    <span class="reading-time">10 dakika okuma</span>
-                    <span class="category">Rehber</span>
-                </div>
-            </header>
-
-            <div class="post-content">
-
-                <section class="intro">
-                    <p class="lead">Play Store'da "ilaç hatırlatıcı" diye aratınca yüzlerce uygulama çıkıyor. Hepsi benzer vaatler veriyor: "Asla ilaç kaçırmayın!", "Kolay kullanım!", "Ücretsiz!"</p>
-                    
-                    <p>Peki hangisi gerçekten işinizi görüyor? Hangisi sadece güzel görünüyor ama kritik anlarda sizi yarı yolda bırakıyor?</p>
-                    
-                    <p>Bu rehberde, <strong>ilaç hatırlatıcı uygulaması seçerken dikkat etmeniz gereken 7 kritik noktayı</strong> konuşacağız. Pazarlama sözlerinin ötesine geçip, gerçekten önemli olan şeylere odaklanacağız.</p>
-                </section>
-
-                <section class="criteria-detailed">
-                    <h2>7 Kritik Seçim Kriteri</h2>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">1</div>
-                        <div class="criterion-content">
-                            <h3>Güvenilirlik: Tek Gerçek Görev</h3>
-                            
-                            <p>Bir ilaç hatırlatıcısının <strong>tek bir görevi</strong> var: Zamanı geldiğinde sizi uyarmak. Bu kadar basit.</p>
-                            
-                            <div class="highlight-box">
-                                <h4>Neden Bazı Uygulamalar Başarısız Oluyor?</h4>
-                                <ul>
-                                    <li><strong>Batarya optimizasyonu:</strong> Android, arka planda çalışan uygulamaları kapatabilir</li>
-                                    <li><strong>Bildirim izinleri:</strong> Karmaşık izin yapıları kullanıcıyı şaşırtır</li>
-                                    <li><strong>İnternet bağımlılığı:</strong> Bağlantı kesilince hatırlatıcı da kesilir</li>
-                                    <li><strong>Sunucu sorunları:</strong> Cloud-only uygulamalar sunucu çöktüğünde çalışmaz</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="test-box">
-                                <h4>✅ Nasıl Test Edersiniz?</h4>
-                                <ol>
-                                    <li>Uygulamayı kurun ve bir test hatırlatıcısı ekleyin (5 dakika sonra)</li>
-                                    <li>Telefonu kilitleyin ve bekleyin</li>
-                                    <li>Bildirim geldi mi? Tam zamanında mı?</li>
-                                    <li>Uçak moduna alın ve tekrar deneyin (offline test)</li>
-                                </ol>
-                                <p class="emphasis">Eğer bu basit testte başarısız oluyorsa, o uygulama işinizi görmez.</p>
-                            </div>
-                            
-                            <div class="good-example">
-                                <h4>İyi Örnek: Dozi</h4>
-                                <p>Offline-first mimari: Tüm hatırlatıcılar cihazda saklanır. İnternet kesilse bile AlarmManager ile kesin zamanlı bildirimler. Batarya optimizasyonu için kullanıcıyı adım adım yönlendirir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">2</div>
-                        <div class="criterion-content">
-                            <h3>Basitlik: 2 Dakika Kuralı</h3>
-                            
-                            <p>İlaç eklemek 2 dakikadan uzun sürüyorsa, bir sorun var.</p>
-                            
-                            <div class="bad-example">
-                                <h4>❌ Kötü Deneyim:</h4>
-                                <p>"İlaç adını yazın... Dozaj? Birim? Şekil? Renk? Üretici firma? Etken madde? Kullanım amacı? Yan etkiler? Doktor adı? Reçete numarası?..."</p>
-                                <p class="emphasis">Bu bir ilaç hatırlatıcısı mı, yoksa tıbbi kayıt sistemi mi?</p>
-                            </div>
-                            
-                            <div class="good-example">
-                                <h4>✅ İyi Deneyim:</h4>
-                                <ol>
-                                    <li>Barkodu okut (2 saniye)</li>
-                                    <li>Saati seç</li>
-                                    <li>Bitti</li>
-                                </ol>
-                                <p>Gerisi opsiyonel olmalı. Kullanıcı isterse detay ekler, istemezse eklemez.</p>
-                            </div>
-                            
-                            <div class="elderly-note">
-                                <h4>👴 Yaşlı Kullanıcılar İçin Önemli</h4>
-                                <p>Eğer 70 yaşındaki anneniz uygulamayı kullanamıyorsa, uygulama çok karmaşıktır. Basitlik bir lüks değil, gerekliliktir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">3</div>
-                        <div class="criterion-content">
-                            <h3>Gizlilik: Verileriniz Kimin?</h3>
-                            
-                            <p>Hangi ilaçları kullandığınız, ne zaman aldığınız, hangi hastalıklarınız olduğu - bunlar <strong>en kişisel verileriniz</strong>.</p>
-                            
-                            <div class="warning-box">
-                                <h4>⚠️ "Ücretsiz" Uygulamaların Gerçek Maliyeti</h4>
-                                <p>Eğer bir uygulama tamamen ücretsizse, kendinize sorun: <strong>"Bu uygulama nasıl para kazanıyor?"</strong></p>
-                                
-                                <p>Üç yaygın model:</p>
-                                <ul>
-                                    <li><strong>Reklamlar:</strong> Sağlık uygulamasında ilaç reklamı görmek ister misiniz?</li>
-                                    <li><strong>Veri satışı:</strong> İlaç kullanım alışkanlıklarınız ilaç firmalarına değerli</li>
-                                    <li><strong>Freemium tuzağı:</strong> Temel özellikler ücretsiz, ama gerçekten işe yarar özellikler premium</li>
-                                </ul>
-                                
-                                <p class="emphasis">"Eğer ürün ücretsizse, ürün sizsiniz."</p>
-                            </div>
-                            
-                            <div class="checklist">
-                                <h4>✅ Gizlilik Kontrol Listesi:</h4>
-                                <ul>
-                                    <li>Veriler şifreli mi? (End-to-end encryption)</li>
-                                    <li>KVKK/GDPR uyumlu mu?</li>
-                                    <li>Verilerinizi üçüncü taraflarla paylaşıyor mu?</li>
-                                    <li>Hesap sildiğinizde veriler gerçekten siliniyor mu?</li>
-                                    <li>Gizlilik politikası anlaşılır mı? (100 sayfalık hukuki metin değil)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">4</div>
-                        <div class="criterion-content">
-                            <h3>Offline Çalışma: İnternet Kesilince Ne Olur?</h3>
-                            
-                            <p>Sağlık kritik bir konu. İnternet bağlantısına bağımlı olmamalı.</p>
-                            
-                            <div class="scenario">
-                                <h4>📱 Gerçek Senaryo:</h4>
-                                <p>Sabah 08:00'de tansiyon ilacınızı almanız gerekiyor. Gece internet bağlantınız kesilmiş. Uygulama cloud-only çalışıyor.</p>
-                                <p><strong>Sonuç:</strong> Hatırlatıcı gelmiyor. İlacı unutuyorsunuz.</p>
-                            </div>
-                            
-                            <div class="solution">
-                                <h4>✅ Doğru Yaklaşım: Offline-First</h4>
-                                <p><strong>Offline-first</strong> ne demek?</p>
-                                <ul>
-                                    <li>Tüm verileriniz cihazınızda saklanır</li>
-                                    <li>Hatırlatıcılar cihazın kendi alarm sistemi ile çalışır</li>
-                                    <li>İnternet olmadan tam fonksiyonel</li>
-                                    <li>Bağlantı geldiğinde otomatik senkronizasyon (opsiyonel)</li>
-                                </ul>
-                                <p class="emphasis">İnternet bir bonus olmalı, gereklilik değil.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">5</div>
-                        <div class="criterion-content">
-                            <h3>Fiyat-Performans: Ne Kadar Ödemelisiniz?</h3>
-                            
-                            <p>İlaç hatırlatıcı uygulamaları için fiyatlar çok değişken: Ücretsizden aylık 400₺'ye kadar.</p>
-                            
-                            <div class="price-comparison">
-                                <h4>Piyasa Fiyatları (2025)</h4>
-                                <table>
-                                    <tr>
-                                        <td><strong>Ücretsiz</strong></td>
-                                        <td>Temel özellikler, reklam yoğun, veri gizliliği şüpheli</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>₺99-150/ay</strong></td>
-                                        <td>Makul fiyat, tam özellikler, reklamsız (Dozi burada)</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>₺300-400/ay</strong></td>
-                                        <td>Global uygulamalar (Medisafe, MyTherapy) - Türkiye için pahalı</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            
-                            <div class="value-question">
-                                <h4>💡 Doğru Soru:</h4>
-                                <p>"Ne kadar ödüyorum?" değil, <strong>"Karşılığında ne alıyorum?"</strong></p>
-                                
-                                <p>Aylık 100₺ ödemek mantıklı mı? Düşünün:</p>
-                                <ul>
-                                    <li>Bir kahve: ~50₺</li>
-                                    <li>Netflix: ~100₺</li>
-                                    <li>Sağlığınız için güvenilir ve güvenli hatırlatıcı: ₺99.99</li>
-                                </ul>
-                                <p class="emphasis">Eğer uygulama işini yapıyorsa, değer.</p>
-                            </div>
-                            
-                            <div class="warning-box">
-                                <h4>⚠️ Pahalı = İyi Değil</h4>
-                                <p>Aylık 400₺ ödemek sizi daha iyi yapmaz. Bazı global uygulamalar Türkiye için optimize değil, sadece dolar bazlı fiyatlandırma yapıyorlar.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">6</div>
-                        <div class="criterion-content">
-                            <h3>Gereksiz Özelliklerden Kaçının</h3>
-                            
-                            <p>Bazı uygulamalar özellik şişirmesi yapıyor. Daha fazla özellik = daha iyi mi? Hayır.</p>
-                            
-                            <div class="feature-bloat">
-                                <h4>🎮 Gamification Tuzağı</h4>
-                                <p>Bazı uygulamalar ilaç almayı bir oyuna çeviriyor:</p>
-                                <ul>
-                                    <li>Puanlar kazanın!</li>
-                                    <li>Rozetler toplayın!</li>
-                                    <li>Liderlik tablosunda yüksellin!</li>
-                                    <li>Günlük ödüller!</li>
-                                    <li>Arkadaşlarınızla yarışın!</li>
-                                </ul>
-                                
-                                <p class="emphasis">Ama bekleyin... İlaç almak bir görev mi, oyun mu?</p>
-                                
-                                <div class="critical-thinking">
-                                    <h5>🤔 Kritik Düşünün:</h5>
-                                    <p><strong>Neden bir uygulama sizi sürekli meşgul etmek istiyor?</strong></p>
-                                    <ul>
-                                        <li>Daha fazla veri toplamak için</li>
-                                        <li>Daha fazla reklam göstermek için</li>
-                                        <li>Engagement metriklerini artırmak için</li>
-                                    </ul>
-                                    <p>Sağlığınız için yaptığınız bir şey için "ödül" kazanmanız mı gerekiyor? Yoksa sadece işini yapan bir araç mı istiyorsunuz?</p>
-                                </div>
-                            </div>
-                            
-                            <div class="good-approach">
-                                <h4>✅ Yalın Yaklaşım</h4>
-                                <p>İyi bir ilaç hatırlatıcısı:</p>
-                                <ul>
-                                    <li>Sessizce işini yapar</li>
-                                    <li>Sizi oyalamaz</li>
-                                    <li>Dikkatinizi dağıtmaz</li>
-                                    <li>Sadece ihtiyaç duyduğunuzda orada olur</li>
-                                </ul>
-                                <p class="emphasis">Tıpkı iyi bir asistan gibi: Görünmez ama etkili.</p>
-                            </div>
-                            
-                            <div class="unnecessary-features">
-                                <h4>Gereksiz Olabilecek Özellikler:</h4>
-                                <ul>
-                                    <li>Sosyal medya entegrasyonu (ilaç kullanımınızı paylaşmak ister misiniz?)</li>
-                                    <li>Karmaşık sağlık günlükleri (sadece hatırlatıcı istiyorsanız)</li>
-                                    <li>Doktor randevu sistemi (ayrı bir uygulama kullanabilirsiniz)</li>
-                                    <li>Eczane bulucu (Google Maps var)</li>
-                                    <li>İlaç etkileşim uyarıları (doktorunuz zaten kontrol ediyor)</li>
-                                </ul>
-                                <p><em>Not: Bunlar bazı kullanıcılar için yararlı olabilir. Ama çoğu kişi sadece basit bir hatırlatıcı istiyor.</em></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="criterion-card">
-                        <div class="criterion-number">7</div>
-                        <div class="criterion-content">
-                            <h3>Türkçe Destek ve Yerel İlaç Veritabanı</h3>
-                            
-                            <p>Türkiye'de yaşıyorsanız, bu kritik.</p>
-                            
-                            <div class="problem">
-                                <h4>❌ Global Uygulamaların Sorunu:</h4>
-                                <p>"Coraspin 100 mg" yazıyorsunuz, bulamıyor. "Aspirin" diye arıyor.</p>
-                                <p>"Beloc Zok" yazıyorsunuz, yok. "Metoprolol" diye manuel eklemeniz gerekiyor.</p>
-                                <p class="emphasis">Her ilaç için Google'da araştırma yapmak zorunda kalıyorsunuz.</p>
-                            </div>
-                            
-                            <div class="solution">
-                                <h4>✅ Türkçe İlaç Veritabanı:</h4>
-                                <p>İyi bir Türk uygulaması:</p>
-                                <ul>
-                                    <li>50,000+ Türkiye'de satılan ilaç</li>
-                                    <li>Ticari isimlerle arama (Coraspin, Beloc, Majezik, vb.)</li>
-                                    <li>Barkod okuma (Türk ilaç barkodları)</li>
-                                    <li>Türkçe arayüz (sadece çeviri değil, kültürel uyum)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="decision-framework">
-                    <h2>Karar Çerçevesi: Hangi Uygulama Sizin İçin?</h2>
-                    
-                    <div class="decision-tree">
-                        <div class="decision-box">
-                            <h3>🎯 Basit ve Güvenilir İstiyorum</h3>
-                            <p>Sadece ilaçlarımı hatırlatsın, fazla özellik istemiyorum.</p>
-                            <p class="recommendation"><strong>→ Dozi</strong> (Türkiye için) veya <strong>Round Health</strong> (yurtdışı)</p>
-                        </div>
-                        
-                        <div class="decision-box">
-                            <h3>📊 Detaylı Sağlık Takibi İstiyorum</h3>
-                            <p>İlaç + tansiyon + şeker + semptom takibi.</p>
-                            <p class="recommendation"><strong>→ MyTherapy</strong> (ama karmaşık ve pahalı)</p>
-                        </div>
-                        
-                        <div class="decision-box">
-                            <h3>👨‍👩‍👧‍👦 Aile İçin Kullanacağım</h3>
-                            <p>Yaşlı ebeveynlerimin ilaçlarını takip edeceğim.</p>
-                            <p class="recommendation"><strong>→ Dozi</strong> (Aile planı, 4 kişi) veya <strong>CareZone</strong> (ABD için)</p>
-                        </div>
-                        
-                        <div class="decision-box">
-                            <h3>💰 Ücretsiz İstiyorum</h3>
-                            <p>Ödeme yapmak istemiyorum.</p>
-                            <p class="recommendation"><strong>→ Pill Reminder</strong> (ama reklam yoğun) veya <strong>Dozi Free</strong> (5 ilaca kadar)</p>
-                        </div>
-                        
-                        <div class="decision-box">
-                            <h3>🌍 Yurtdışında Yaşıyorum</h3>
-                            <p>Türkiye dışında, global ilaç veritabanı lazım.</p>
-                            <p class="recommendation"><strong>→ Medisafe</strong> veya <strong>MyTherapy</strong></p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="red-flags">
-                    <h2>🚩 Kırmızı Bayraklar: Bu Uygulamalardan Kaçının</h2>
-                    
-                    <div class="red-flag-list">
-                        <div class="red-flag-item">
-                            <h3>🚩 Aşırı İzin İsteği</h3>
-                            <p>Neden bir ilaç hatırlatıcısı kameranıza, mikrofonunuza, konumunuza (sürekli), kişilerinize erişmek istesin?</p>
-                            <p><strong>Makul izinler:</strong> Bildirim, alarm, kamera (sadece barkod için), konum (opsiyonel, konum hatırlatıcı için)</p>
-                        </div>
-                        
-                        <div class="red-flag-item">
-                            <h3>🚩 Belirsiz Gizlilik Politikası</h3>
-                            <p>"Verilerinizi gelişmiş hizmetler için kullanabiliriz" gibi belirsiz ifadeler.</p>
-                            <p><strong>İyi politika:</strong> Net, anlaşılır, "verilerinizi satmıyoruz" gibi açık ifadeler</p>
-                        </div>
-                        
-                        <div class="red-flag-item">
-                            <h3>🚩 Sürekli Engagement Taktikleri</h3>
-                            <p>Günde 10 bildirim, "uygulamayı aç", "arkadaşlarını davet et", "günlük ödülünü al"</p>
-                            <p><strong>İyi uygulama:</strong> Sadece ilaç zamanı bildirim gönderir</p>
-                        </div>
-                        
-                        <div class="red-flag-item">
-                            <h3>🚩 Kötü Yorumlar (Özellikle Bildirim Sorunları)</h3>
-                            <p>"Bildirim gelmiyor", "hatırlatıcı çalışmıyor", "uygulama kapanıyor"</p>
-                            <p><strong>Kontrol edin:</strong> Play Store yorumlarında "bildirim" kelimesini aratın</p>
-                        </div>
-                        
-                        <div class="red-flag-item">
-                            <h3>🚩 Freemium Tuzağı</h3>
-                            <p>Ücretsiz diye indiriyorsunuz, ama temel özellikler bile premium.</p>
-                            <p><strong>Örnek:</strong> "2'den fazla ilaç eklemek için premium", "bildirim sesi için premium"</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="final-checklist">
-                    <h2>✅ Son Kontrol Listesi</h2>
-                    
-                    <p>Bir uygulamayı indirmeden önce bu soruları sorun:</p>
-                    
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check1">
-                            <label for="check1">Offline çalışıyor mu?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check2">
-                            <label for="check2">İlaç eklemek kolay mı? (2 dakika kuralı)</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check3">
-                            <label for="check3">Türkçe ilaç veritabanı var mı?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check4">
-                            <label for="check4">Gizlilik politikası net mi?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check5">
-                            <label for="check5">Fiyat makul mü?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check6">
-                            <label for="check6">Gereksiz gamification yok mu?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check7">
-                            <label for="check7">Play Store yorumları olumlu mu?</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="check8">
-                            <label for="check8">Test hatırlatıcısı çalıştı mı?</label>
-                        </div>
-                    </div>
-                    
-                    <p class="checklist-result">Eğer 6/8 veya daha fazla "evet" ise, o uygulama denemeye değer.</p>
-                </section>
-
-                <section class="conclusion">
-                    <h2>Sonuç: Basit Ama Etkili</h2>
-                    
-                    <p>İlaç hatırlatıcı uygulaması seçerken en önemli soru:</p>
-                    
-                    <div class="big-question">
-                        <p><strong>"Bu uygulama benim için mi çalışıyor, yoksa ben uygulama için mi çalışıyorum?"</strong></p>
-                    </div>
-                    
-                    <p>İyi bir ilaç hatırlatıcısı:</p>
-                    <ul>
-                        <li>Görünmezdir - sadece ihtiyaç duyduğunuzda orada olur</li>
-                        <li>Güvenilirdir - her zaman çalışır, bahane üretmez</li>
-                        <li>Basittir - karmaşık menüler, gereksiz özellikler yok</li>
-                        <li>Saygılıdır - verilerinizi korur, sizi oyalamaz</li>
-                    </ul>
-                    
-                    <p class="emphasis">Sağlığınız bir oyun değil. Uygulamanız da öyle olmamalı.</p>
-                    
-                    <div class="cta-box">
-                        <h3>Dozi'yi Deneyin</h3>
-                        <p>7 kriterin hepsini karşılayan, Türkiye için optimize edilmiş ilaç hatırlatıcısı.</p>
-                        <ul class="cta-features">
-                            <li>✅ Offline-first: İnternet olmadan tam çalışır</li>
-                            <li>✅ 50,000+ Türkçe ilaç veritabanı</li>
-                            <li>✅ Barkod okuma: 2 saniyede ilaç ekle</li>
-                            <li>✅ Gereksiz gamification yok</li>
-                            <li>✅ KVKK uyumlu, şifreli</li>
-                            <li>✅ ₺99/ay - rakiplerden 3x ucuz</li>
-                            <li>✅ 5 ilaca kadar ücretsiz</li>
-                        </ul>
-                        <a href="../app/download.html" class="cta-button-large">Ücretsiz Dene - Kredi Kartı Gerekmez</a>
-                    </div>
-                </section>
-
-                <section class="faq">
-                    <h2>Sık Sorulan Sorular</h2>
-                    
-                    <div class="faq-item">
-                        <h3>En önemli özellik nedir?</h3>
-                        <p>Güvenilirlik. Uygulama zamanında hatırlatmazsa, diğer özelliklerin önemi yok.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h3>Ücretsiz uygulama kullanmalı mıyım?</h3>
-                        <p>Ücretsiz uygulamalar genellikle reklam gösterir veya verilerinizi kullanır. Makul bir ücret ödemek, gizliliğiniz için küçük bir bedel.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h3>Gamification kötü mü?</h3>
-                        <p>Kötü değil, ama gereksiz. İlaç almak bir görev değil, sağlık gerekliliği. Puanlar ve rozetler dikkat dağıtıcı olabilir.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h3>Offline çalışma neden önemli?</h3>
-                        <p>Sağlık kritik. İnternet bağlantısına bağımlı olmamalı. Offline-first uygulamalar her zaman çalışır.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h3>Türkçe ilaç veritabanı şart mı?</h3>
-                        <p>Türkiye'de yaşıyorsanız evet. Global uygulamalar Türk ilaçlarını bulamıyor, manuel ekleme gerekiyor.</p>
-                    </div>
-                </section>
-
-                <section class="related-posts">
-                    <h2>İlgili Yazılar</h2>
-                    <div class="related-grid">
-                        <a href="en-iyi-ilac-hatirlat-2026.html" class="related-card">
-                            <h3>2025'te En İyi 10 İlaç Hatırlatıcı</h3>
-                            <p>Detaylı karşılaştırma ve inceleme</p>
-                        </a>
-                        <a href="ilac-unutmak-neden-yaygin.html" class="related-card">
-                            <h3>İlaç Unutmak Neden Yaygın?</h3>
-                            <p>Psikolojik ve pratik nedenler</p>
-                        </a>
-                        <a href="yasli-ebeveyn-ilac-takibi.html" class="related-card">
-                            <h3>Yaşlı Ebeveyn İlaç Takibi</h3>
-                            <p>Ailece ilaç takibi rehberi</p>
-                        </a>
-                    </div>
-                </section>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Dozi</h3>
-                    <p>Türkiye'nin en güvenilir ilaç hatırlatıcı uygulaması</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Bağlantılar</h4>
-                    <ul>
-                        <li><a href="../index.html">Ana Sayfa</a></li>
-                        <li><a href="index.html">Blog</a></li>
-                        <li><a href="../privacy-policy.html">Gizlilik</a></li>
-                        <li><a href="../terms-of-use.html">Kullanım Koşulları</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>İletişim</h4>
-                    <p>destek@dozi.app</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Dozi. Tüm hakları saklıdır.</p>
+    <header class="hero-section">
+        <div class="hero-content">
+            <span class="meta-info">Teknoloji & Sağlık Rehberi</span>
+            <h1>Sağlığınızı Şansa Bırakmayın: Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı</h1>
+            <p class="hero-subtitle">App Store ve Play Store'daki binlerce seçenek arasından sizin için en doğrusunu nasıl bulursunuz?</p>
+            <div class="hero-character">
+                <img src="../dozi_teach1.png" alt="Dozi Öğretiyor">
             </div>
         </div>
+    </header>
+
+    <main class="content-wrapper">
+        <a href="./" class="back-link">← Tüm Yazılar</a>
+        
+        <p class="drop-cap">Telefonunuzun uygulama mağazasını açıp "ilaç hatırlatıcı" yazdığınızda karşınıza çıkan manzara biraz kafa karıştırıcı olabilir: Yüzlerce renkli ikon, birbirine benzeyen vaatler ve "en iyisi biziz" iddiaları. Hepsi tek bir şeyi vaat ediyor: İlacınızı unutturmamak. Peki, hepsi bu sözü tutabiliyor mu?</p>
+
+        <p>Sağlık, deneme yanılma yapılabilecek bir alan değildir. Yanlış bir takvim uygulaması seçerseniz en fazla bir toplantıya geç kalırsınız; ancak yanlış bir ilaç hatırlatıcı, tedavinizin seyrini değiştirebilir. Bu rehberde, pazarlama cümlelerini bir kenara bırakıp, bir uygulamanın gerçekten "güvenilir" olup olmadığını anlamanızı sağlayacak 7 kritik filtreyi inceliyoruz.</p>
+
+        <h2>Karar Vermeden Önce: 7 Kritik Filtre</h2>
+
+        <div class="criteria-list">
+            <div class="criterion-card">
+                <div class="criterion-number">01</div>
+                <div class="criterion-content">
+                    <h3>Sarsılmaz Güvenilirlik</h3>
+                    <p>Bir uygulamanın arayüzü dünyanın en güzel tasarımı olabilir, ama sabah 09:00'da o bildirimi göndermiyorsa değeri sıfırdır.</p>
+                    <ul>
+                        <li><strong>Batarya Testi:</strong> Uygulama, telefonunuzun "güç tasarrufu" moduna yenik düşüyor mu?</li>
+                        <li><strong>Offline Güç:</strong> İnternetiniz kesildiğinde hafızası da siliniyor mu? Gerçek bir sağlık asistanı, internet yokken bile çalışmalıdır.</li>
+                        <li><strong>Kritik Bildirimler:</strong> Telefonunuz sessizdeyken bile hayati ilaçlarınız için ses çıkarabiliyor mu?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="criterion-card">
+                <div class="criterion-number">02</div>
+                <div class="criterion-content">
+                    <h3>2 Dakika Kuralı (Basitlik)</h3>
+                    <p>İlaç eklemek bir bürokrasiye dönüşmemeli. Eğer bir ilacı sisteme girmek 2 dakikadan uzun sürüyorsa, o uygulamayı uzun vadede kullanmayacaksınız demektir.</p>
+                    <ul>
+                        <li><strong>Barkod Gücü:</strong> İlaç kutusunu okutup geçebiliyor musunuz?</li>
+                        <li><strong>Gereksiz Detaylar:</strong> Sizden ilacın rengini, şeklini, üreticisini zorla istiyor mu? İyi bir uygulama, detayları opsiyonel tutar.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="criterion-card">
+                <div class="criterion-number">03</div>
+                <div class="criterion-content">
+                    <h3>Mahremiyet ve Veri Modeli</h3>
+                    <p>Sağlık verileriniz, parmak iziniz kadar size özeldir. "Tamamen ücretsiz" olduğunu iddia eden uygulamalara şüpheyle yaklaşın.</p>
+                    <ul>
+                        <li><strong>Ürünün Kendisi Siz misiniz?</strong> Ücretsiz uygulamalar genellikle verilerinizi anonimleştirip ilaç firmalarına satarak ayakta kalır.</li>
+                        <li><strong>Reklamsız Alan:</strong> Sağlığınızı yönetirken ekranda beliren reklamlar sadece sinir bozucu değil, aynı zamanda etik dışıdır.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="criterion-card">
+                <div class="criterion-number">04</div>
+                <div class="criterion-content">
+                    <h3>Yerelleştirme (Dilimizi Konuşuyor mu?)</h3>
+                    <p>Global uygulamalar harikadır, ta ki Türkiye'deki eczaneden aldığınız ilacı bulamayana kadar.</p>
+                    <ul>
+                        <li><strong>Türkçe Veritabanı:</strong> "Coraspin" yazdığınızda buluyor mu, yoksa sizi "Aspirin" aramaya mı zorluyor?</li>
+                        <li><strong>Kültürel Uyum:</strong> Eczane nöbet sisteminden, SGK ödeme mantığına kadar yerel dinamiklere hakim mi?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="criterion-card">
+                <div class="criterion-number">05</div>
+                <div class="criterion-content">
+                    <h3>İnternetsiz Özgürlük (Offline-First)</h3>
+                    <p>Sağlık kritik bir konudur ve bulut sunucularına bağımlı olmamalıdır.</p>
+                    <ul>
+                        <li><strong>Senaryo:</strong> Bodrum katta telefonunuz çekmiyor veya uçak modundasınız. Hatırlatıcı çalışacak mı?</li>
+                        <li><strong>Doğru Tercih:</strong> Verileri cihazınızda saklayan (Offline-first) uygulamalar, sunucu çökse bile sizi yarı yolda bırakmaz.</li>
+                    </ul>
+                </div>
+            </div>
+            
+             <div class="criterion-card">
+                <div class="criterion-number">06</div>
+                <div class="criterion-content">
+                    <h3>Sizi Oyuna Getirmemeli (Gamification)</h3>
+                    <p>Bazı uygulamalar sağlığı bir video oyununa çevirir. Puanlar, liderlik tabloları, rozetler...</p>
+                    <ul>
+                        <li><strong>Gerçek Motivasyon:</strong> İlaç almanın ödülü sanal bir rozet değil, sağlıklı bir hayattır.</li>
+                        <li><strong>Dikkat Dağınıklığı:</strong> Uygulama sürekli "içeri gel, puan topla" diyerek sizi taciz etmemeli. İyi bir asistan görünmezdir; sadece gerektiğinde oradadır.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="criterion-card">
+                <div class="criterion-number">07</div>
+                <div class="criterion-content">
+                    <h3>Maliyetin Ötesindeki Değer</h3>
+                    <p>Fiyat tek kriter değildir. Önemli olan fiyat/performans dengesidir.</p>
+                    <ul>
+                        <li><strong>Global vs Yerel:</strong> Yurt dışı menşeli uygulamalar dolar bazlı olduğu için aylık 300-400₺ bandında olabilir. Yerel uygulamalar ise alım gücüne göre optimize edilmiştir.</li>
+                        <li><strong>Yatırım:</strong> Ayda bir kahve parasına sağlığınızı sigortalamak, yapabileceğiniz en mantıklı yatırımdır.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="red-flag-box">
+            <h3>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                Kırmızı Bayraklar: Bunları Görürseniz Kaçın
+            </h3>
+            <p>Bir uygulamada şu özellikleri görüyorsanız, "Sil" butonuna basma vakti gelmiştir:</p>
+            <div class="red-flag-grid">
+                <div class="flag-item">🚩 Gereksiz İzinler (Mikrofon, Rehber)</div>
+                <div class="flag-item">🚩 Tam Ekran Reklamlar</div>
+                <div class="flag-item">🚩 "Hemen Kayıt Ol" Zorlaması</div>
+                <div class="flag-item">🚩 Son Güncelleme: 2 Yıl Önce</div>
+            </div>
+        </div>
+
+        <h2>Sonuç: Teknoloji Sizin İçin Çalışmalı</h2>
+        <p>En iyi ilaç hatırlatıcı, varlığını unuttuğunuz ama eksikliğini asla hissetmediğiniz uygulamadır. Sizi sürekli ekran başına çağıran değil, hayatınızı yaşamanız için size alan açan bir asistan seçin.</p>
+        <p>Dozi olarak felsefemiz tam da bu: <strong>"Teknoloji, insan sağlığının hizmetkarı olmalıdır, efendisi değil."</strong></p>
+
+        <div class="dozi-cta">
+            <h2>Aradığınız Tüm Kriterler Tek Uygulamada</h2>
+            <p>Offline çalışma, Türkçe veritabanı ve sade tasarım. Dozi ile tanışın.</p>
+            
+            <ul class="cta-list">
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    İnternetsiz tam fonksiyon
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    50.000+ Türkçe İlaç & Barkod Okuma
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Reklamsız ve KVKK Uyumlu
+                </li>
+            </ul>
+
+            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="download-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.14L6.05,2.66Z" /></svg>
+                Dozi'yi Ücretsiz İndir
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="disclaimer">
+        <p><strong>Yasal Uyarı:</strong> Bu içerik bilgilendirme amaçlıdır. Dozi, ilaç kullanımınızı düzenlemenize yardımcı olan bir teknoloji asistanıdır; tıbbi tavsiye vermez. Tedavinizle ilgili kararları daima doktorunuza danışarak alınız.</p>
+        <div class="copyright">© 2026 Dozi - Bardino Technology</div>
     </footer>
 
-    <script>
-        let maxScroll = 0;
-        window.addEventListener('scroll', function() {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            if (scrollPercent > maxScroll) {
-                maxScroll = Math.floor(scrollPercent / 25) * 25;
-                if (maxScroll > 0) {
-                    gtag('event', 'scroll_depth', {
-                        'percent': maxScroll,
-                        'blog_title': 'İlaç Hatırlatıcı Nasıl Seçilir'
-                    });
-                }
-            }
-        });
-
-        document.querySelectorAll('.cta-button-large').forEach(btn => {
-            btn.addEventListener('click', function() {
-                gtag('event', 'blog_cta_click', {
-                    'blog_title': 'İlaç Hatırlatıcı Nasıl Seçilir',
-                    'cta_location': 'conclusion'
-                });
-            });
-        });
-
-        let startTime = Date.now();
-        window.addEventListener('beforeunload', function() {
-            const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-            gtag('event', 'time_on_page', {
-                'seconds': timeSpent,
-                'blog_title': 'İlaç Hatırlatıcı Nasıl Seçilir'
-            });
-        });
-    </script>
 </body>
 </html>
