@@ -22,9 +22,97 @@
     <meta name="twitter:description" content="İlaç hatırlatıcı uygulamalarının detaylı karşılaştırması, veri güvenliği ve incelemesi.">
     <meta name="twitter:image" content="https://dozi.app/dozi_brand.png">
     
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/blog.css">
     <link rel="icon" type="image/png" href="../dozi.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --dozi-primary: #40E0D0; --dozi-dark: #0f172a; --bg-light: #f8fafc; --text-main: #475569; --text-bold: #1e293b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
+        
+        /* Header & Nav */
+        header { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        nav.container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .logo img { height: 32px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-primary); }
+        .cta-button { background: var(--dozi-primary); color: var(--dozi-dark); padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 700; }
+        
+        /* Blog Post */
+        .blog-post { max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .post-header { text-align: center; margin-bottom: 3rem; }
+        .post-header h1 { font-size: 2.5rem; color: var(--text-bold); margin-bottom: 1rem; line-height: 1.2; }
+        .post-meta { display: flex; gap: 1.5rem; justify-content: center; color: #64748b; font-size: 0.9rem; }
+        .category { background: var(--dozi-primary); color: var(--dozi-dark); padding: 0.3rem 1rem; border-radius: 20px; font-weight: 600; }
+        
+        /* Content */
+        .post-content { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .intro { margin-bottom: 3rem; }
+        .lead { font-size: 1.25rem; font-weight: 500; color: var(--text-bold); margin-bottom: 1.5rem; }
+        h2 { font-size: 2rem; color: var(--text-bold); margin: 3rem 0 1.5rem; font-weight: 800; }
+        h3 { font-size: 1.5rem; color: var(--text-bold); margin: 2rem 0 1rem; font-weight: 700; }
+        h4 { font-size: 1.2rem; color: var(--text-bold); margin: 1.5rem 0 0.8rem; font-weight: 600; }
+        p { margin-bottom: 1.5rem; font-size: 1.05rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; }
+        li { margin-bottom: 0.5rem; }
+        strong { color: var(--text-bold); font-weight: 700; }
+        em { font-style: italic; color: #64748b; }
+        
+        /* App Cards */
+        .app-ranking { display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0; }
+        .app-card { background: white; border: 2px solid #e2e8f0; padding: 2rem; border-radius: 20px; position: relative; }
+        .rank-1 { border-color: var(--dozi-primary); background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); }
+        .rank-badge { position: absolute; top: -15px; left: 20px; background: var(--dozi-primary); color: var(--dozi-dark); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; }
+        .app-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .app-icon { width: 60px; height: 60px; border-radius: 12px; }
+        .rating { color: #f59e0b; font-weight: 600; }
+        .tagline { font-size: 1.1rem; color: var(--text-bold); margin-bottom: 1.5rem; }
+        .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0; }
+        .pros h4 { color: #10b981; }
+        .cons h4 { color: #ef4444; }
+        .best-for { background: #f0fdfa; padding: 1rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid var(--dozi-primary); }
+        .verdict { background: #fef3c7; padding: 1rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #f59e0b; }
+        .download-btn { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 800; margin-top: 1rem; transition: all 0.3s; }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(64,224,208,0.3); }
+        .app-card-compact { background: #f8fafc; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #cbd5e1; }
+        
+        /* Table */
+        .comparison-table-wrapper { overflow-x: auto; margin: 2rem 0; }
+        .comparison-table { width: 100%; border-collapse: collapse; background: white; }
+        .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .comparison-table th { background: var(--dozi-dark); color: white; font-weight: 700; }
+        .comparison-table .highlight { background: #f0fdfa; font-weight: 600; color: var(--text-bold); }
+        
+        /* Boxes */
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 12px; margin: 2rem 0; }
+        .cta-box { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1e3a5f 100%); color: white; padding: 3rem; border-radius: 24px; text-align: center; margin: 3rem 0; }
+        .cta-box h3 { color: white; margin-top: 0; }
+        .cta-button-large { display: inline-block; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.1rem; margin-top: 1rem; }
+        .small-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 1rem; }
+        .emphasis { font-weight: 600; color: var(--text-bold); font-style: italic; }
+        .conclusion { background: #f0fdfa; padding: 2rem; border-radius: 16px; margin: 2rem 0; }
+        .final-thoughts { background: white; border: 2px solid var(--dozi-primary); padding: 2rem; border-radius: 16px; margin: 2rem 0; }
+        
+        /* FAQ */
+        .faq { margin-top: 3rem; }
+        .faq-item { background: white; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; }
+        .faq-item h3 { margin-top: 0; color: var(--dozi-primary); }
+        
+        /* Table of Contents */
+        .table-of-contents { background: #f8fafc; padding: 2rem; border-radius: 16px; margin: 2rem 0; }
+        .table-of-contents ul { list-style: none; margin-left: 0; }
+        .table-of-contents a { color: var(--dozi-primary); text-decoration: none; font-weight: 500; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-header h1 { font-size: 1.8rem; }
+            .post-content { padding: 1.5rem; }
+            .pros-cons { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
