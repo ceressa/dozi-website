@@ -5,280 +5,393 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>2026 İncelemesi: En İyi 10 İlaç Hatırlatıcı Uygulaması | Dozi Blog</title>
+    <meta name="description" content="2026 yılında kullanabileceğiniz en iyi ilaç takip uygulamalarını inceledik. Özellikler, güvenlik, fiyatlar ve Türkiye için en mantıklı seçenekler.">
     
-    <title>Sağlığınızı Şansa Bırakmayın: Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı | Dozi</title>
-    <meta name="description" content="Binlerce uygulama arasından hangisi sizin için doğru? Güvenilirlik, gizlilik ve kullanım kolaylığı ekseninde en iyi ilaç hatırlatıcıyı seçme rehberi.">
-    <meta name="author" content="Dozi">
-    
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı">
-    <meta property="og:image" content="../dozi_teach1.png">
-    
-    <link rel="icon" type="image/png" href="../dozi_brand.png">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root { 
-            --dozi-primary: #40E0D0; 
-            --dozi-dark: #0f172a; 
-            --bg-light: #f8fafc; 
-            --text-main: #475569; 
-            --text-bold: #1e293b; 
-            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
-            --card-shadow: 0 25px 50px rgba(64,224,208,0.15);
+            --primary: #40E0D0; 
+            --primary-dark: #2dd4bf;
+            --dark: #0f172a; 
+            --light: #f8fafc; 
+            --text: #334155; 
+            --text-heading: #1e293b; 
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.8; color: var(--text-main); background-color: var(--bg-light); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.7; color: var(--text); background-color: #fafafa; }
         
-        /* Navbar */
-        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; }
-        .nav-logo img { height: 32px; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--dozi-primary); }
+        /* Navbar & Header */
+        .navbar { background: var(--dark); padding: 1rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; text-decoration: none; font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: white; padding: 0.5rem 1.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+        .nav-btn:hover { background: var(--primary); color: var(--dark); }
+
+        /* Blog Layout */
+        .blog-header { text-align: center; padding: 5rem 1rem 3rem; background: linear-gradient(180deg, #f1f5f9 0%, #fafafa 100%); }
+        .blog-header h1 { font-size: 2.8rem; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -1px; margin-bottom: 1rem; }
+        .meta { color: #64748b; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
         
-        /* Hero */
-        .hero-section { background: var(--gradient-hero); color: white; padding: 8rem 2rem 7rem; text-align: center; position: relative; overflow: hidden; }
-        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1; background-image: radial-gradient(#40E0D0 1px, transparent 1px); background-size: 30px 30px; }
-        .hero-content { position: relative; z-index: 1; }
-        .meta-info { color: var(--dozi-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: inline-block; background: rgba(64,224,208,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; }
-        .hero-section h1 { font-size: 3rem; font-weight: 800; max-width: 900px; margin: 0 auto 2rem; line-height: 1.15; letter-spacing: -1px; }
-        .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; }
-        .hero-character { margin-top: 2rem; }
-        .hero-character img { max-width: 160px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); transform: rotate(-5deg); transition: transform 0.3s; }
-        .hero-character img:hover { transform: rotate(0deg) scale(1.05); }
-        
-        /* Content Wrapper */
-        .content-wrapper { max-width: 900px; margin: -5rem auto 0; padding: 4.5rem; background: white; border-radius: 32px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08); position: relative; z-index: 10; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--dozi-primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: transform 0.3s; }
-        .back-link:hover { transform: translateX(-5px); }
+        .content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem 4rem; }
         
         /* Typography */
-        .drop-cap { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; color: #64748b; margin-bottom: 2.5rem; border-left: 4px solid var(--dozi-primary); padding-left: 1.5rem; background: linear-gradient(90deg, rgba(64,224,208,0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 16px 16px 0; }
-        h2 { font-size: 2.2rem; color: var(--text-bold); margin: 4rem 0 2rem; font-weight: 800; position: relative; letter-spacing: -0.5px; }
-        h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 5px; background: var(--dozi-primary); border-radius: 10px; }
-        h3 { font-size: 1.4rem; color: var(--text-bold); margin: 1.5rem 0 0.5rem; font-weight: 700; }
-        p { margin-bottom: 1.8rem; font-size: 1.1rem; line-height: 1.9; color: #475569; }
+        p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        h2 { font-size: 2rem; color: var(--text-heading); margin: 3.5rem 0 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        h3 { font-size: 1.4rem; color: var(--text-heading); margin: 2rem 0 1rem; font-weight: 700; }
         
-        /* Criterion Cards (Redesigned Feature Cards) */
-        .criteria-list { display: flex; flex-direction: column; gap: 2rem; margin: 3rem 0; }
-        .criterion-card { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; background: white; border: 1px solid #e2e8f0; padding: 2rem; border-radius: 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .criterion-card:hover { transform: translateY(-5px); border-color: var(--dozi-primary); box-shadow: var(--card-shadow); }
-        .criterion-number { font-size: 4rem; font-weight: 900; line-height: 1; color: rgba(64,224,208,0.2); font-family: 'Lora', serif; display: flex; align-items: flex-start; justify-content: center; }
-        .criterion-content h3 { margin-top: 0; color: var(--text-bold); }
-        .criterion-content ul { list-style: none; padding: 0; margin-top: 1rem; }
-        .criterion-content li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; }
-        .criterion-content li::before { content: '→'; color: var(--dozi-primary); position: absolute; left: 0; font-weight: bold; }
+        /* App Cards */
+        .app-ranking { display: flex; flex-direction: column; gap: 2.5rem; margin: 3rem 0; }
+        .app-card { background: white; border-radius: 24px; padding: 2.5rem; border: 1px solid #e2e8f0; position: relative; transition: transform 0.3s ease; }
+        .app-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
         
-        /* Red Flags Box */
-        .red-flag-box { background: #fff1f2; border: 2px solid #fecdd3; border-radius: 24px; padding: 2.5rem; margin: 3rem 0; }
-        .red-flag-box h3 { color: #be123c; display: flex; align-items: center; gap: 0.5rem; }
-        .red-flag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .flag-item { background: white; padding: 1rem; border-radius: 12px; border: 1px solid #fecdd3; color: #9f1239; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+        /* Rank 1 Special Styles */
+        .rank-1 { border: 2px solid var(--primary); background: linear-gradient(160deg, #ffffff 0%, #f0fdfa 100%); }
+        .rank-badge { position: absolute; top: -15px; left: 2rem; background: var(--dark); color: white; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .rank-1 .rank-badge { background: var(--primary); color: var(--dark); }
+
+        .app-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .app-icon { width: 72px; height: 72px; border-radius: 18px; object-fit: cover; box-shadow: var(--shadow-sm); }
+        .rating { color: #f59e0b; font-weight: 700; font-size: 0.9rem; margin-top: 0.2rem; display: block; }
         
-        /* CTA Section */
-        .dozi-cta { background: var(--gradient-hero); color: white; padding: 4rem 3rem; border-radius: 32px; text-align: center; margin-top: 5rem; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); }
-        .dozi-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(64,224,208,0.1) 0%, transparent 70%); animation: pulse 6s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .dozi-cta h2 { color: white; margin-top: 0; margin-bottom: 1rem; position: relative; z-index: 1; font-size: 2rem; }
-        .dozi-cta h2::after { display: none; }
-        .cta-list { text-align: left; max-width: 500px; margin: 2rem auto; list-style: none; position: relative; z-index: 1; }
-        .cta-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.9); }
-        .cta-list li svg { width: 20px; height: 20px; flex-shrink: 0; fill: var(--dozi-primary); }
+        .pros-cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.6); border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); }
+        .pros h4 { color: #059669; margin-bottom: 0.8rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .cons h4 { color: #dc2626; margin-bottom: 0.8rem; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .pros-cons-grid ul { list-style: none; padding: 0; }
+        .pros-cons-grid li { font-size: 0.95rem; margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative; }
+        .pros li::before { content: '✓'; color: #059669; position: absolute; left: 0; font-weight: bold; }
+        .cons li::before { content: '×'; color: #dc2626; position: absolute; left: 0; font-weight: bold; }
+
+        .verdict { background: var(--dark); color: white; padding: 1.5rem; border-radius: 16px; margin-top: 1.5rem; font-size: 1rem; line-height: 1.6; }
+        .verdict strong { color: var(--primary); }
+
+        /* Compact List */
+        .compact-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .compact-item { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; }
+        .compact-item h4 { color: var(--text-heading); font-weight: 700; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        .compact-badge { font-size: 0.75rem; background: #f1f5f9; padding: 0.2rem 0.6rem; border-radius: 4px; color: #64748b; }
+
+        /* Comparison Table */
+        .table-wrapper { overflow-x: auto; margin: 3rem 0; border-radius: 20px; box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; }
+        table { width: 100%; border-collapse: collapse; background: white; min-width: 600px; }
+        th { background: #f8fafc; text-align: left; padding: 1.2rem; font-weight: 700; color: var(--text-heading); border-bottom: 1px solid #e2e8f0; }
+        td { padding: 1rem 1.2rem; border-bottom: 1px solid #f1f5f9; color: var(--text); font-size: 0.95rem; }
+        .col-highlight { background: #f0fdfa; font-weight: 600; color: var(--dark); }
+        .check { color: #059669; font-weight: bold; }
+        .cross { color: #cbd5e1; }
+
+        /* New Pricing Section */
+        .pricing-section { margin: 4rem 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .pricing-card { background: white; border: 1px solid #e2e8f0; border-radius: 24px; padding: 2rem; text-align: center; transition: all 0.3s; }
+        .pricing-card.featured { border: 2px solid var(--primary); transform: scale(1.03); box-shadow: 0 20px 40px rgba(64,224,208,0.15); z-index: 2; position: relative; }
+        .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--dark); padding: 0.3rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.8rem; }
         
-        .download-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1.2rem 3rem; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; margin-top: 1rem; position: relative; z-index: 1; box-shadow: 0 0 20px rgba(64,224,208,0.4); }
-        .download-btn:hover { background: white; transform: translateY(-3px) scale(1.02); }
+        .price-tag { margin: 1.5rem 0; }
+        .price-amount { font-size: 2.2rem; font-weight: 800; color: var(--dark); }
+        .price-period { font-size: 0.9rem; color: #64748b; }
+        .price-total { font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; display: block; }
         
-        /* Footer Disclaimer */
-        .disclaimer { background: #fef3c7; border-top: 3px solid #f59e0b; padding: 2rem; margin-top: 4rem; text-align: center; border-radius: 16px; }
-        .disclaimer p { font-size: 0.9rem; color: #92400e; margin: 0; }
-        .copyright { text-align: center; margin-top: 2rem; color: #94a3b8; font-size: 0.85rem; }
+        .feature-list { text-align: left; margin: 1.5rem 0; list-style: none; }
+        .feature-list li { margin-bottom: 0.8rem; font-size: 0.9rem; color: var(--text); padding-left: 1.5rem; position: relative; }
+        .feature-list li::before { content: '•'; color: var(--primary); font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
+        
+        .btn-pricing { display: block; padding: 0.8rem; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .btn-outline { border: 2px solid #e2e8f0; color: var(--text-heading); }
+        .btn-primary { background: var(--primary); color: var(--dark); }
+        .btn-dark { background: var(--dark); color: white; }
+        .btn-pricing:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Footer */
+        .footer { background: white; padding: 4rem 1rem 2rem; border-top: 1px solid #e2e8f0; text-align: center; margin-top: 5rem; }
+        .footer p { font-size: 0.9rem; color: #94a3b8; }
 
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2rem; }
-            .content-wrapper { padding: 2.5rem 1.5rem; width: 92%; margin-top: -3rem; }
-            .criterion-card { grid-template-columns: 1fr; gap: 0.5rem; }
-            .criterion-number { justify-content: flex-start; font-size: 3rem; margin-bottom: 0.5rem; }
-            .nav-links { display: none; }
+            .blog-header h1 { font-size: 2rem; }
+            .pros-cons-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="../" class="nav-logo">
-                <img src="../dozi_brand.png" alt="Dozi Logo">
+        <div class="container nav-inner">
+            <a href="../" class="logo">
+                <img src="../dozi.png" alt="Dozi" width="36" height="36">
                 <span>Dozi</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="../#features">Özellikler</a></li>
-                <li><a href="../#pricing">Fiyatlar</a></li>
-                <li><a href="./">Blog</a></li>
-            </ul>
+            <a href="../app/download.html" class="nav-btn">Ücretsiz İndir</a>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="hero-content">
-            <span class="meta-info">Teknoloji & Sağlık Rehberi</span>
-            <h1>Sağlığınızı Şansa Bırakmayın: Doğru İlaç Hatırlatıcıyı Seçmenin 7 Altın Kuralı</h1>
-            <p class="hero-subtitle">App Store ve Play Store'daki binlerce seçenek arasından sizin için en doğrusunu nasıl bulursunuz?</p>
-            <div class="hero-character">
-                <img src="../dozi_teach1.png" alt="Dozi Öğretiyor">
+    <header class="blog-header">
+        <div class="container">
+            <h1>2026'nın En İyi İlaç Hatırlatıcı Uygulamaları</h1>
+            <div class="meta">
+                <span>Son Güncelleme: Ocak 2026</span> • <span>12 dk okuma</span>
             </div>
         </div>
     </header>
 
-    <main class="content-wrapper">
-        <a href="./" class="back-link">← Tüm Yazılar</a>
+    <article class="content">
+        <p class="lead" style="font-size: 1.25rem; color: var(--text-heading); font-weight: 500;">
+            Sağlık teknolojilerinde seçenekler çoğaldıkça doğru kararı vermek zorlaşıyor. Özellikle Türkiye pazarında, döviz kurları ve yerel ihtiyaçlar göz önüne alındığında "en pahalı" her zaman "en iyi" anlamına gelmiyor.
+        </p>
+
+        <p>Bu incelemede, sadece özellik listelerini değil; <strong>gerçek dünya performansını, veri gizliliğini ve fiyat-performans dengesini</strong> masaya yatırdık. Amacımız sizi bir uygulamaya yönlendirmekten ziyade, ihtiyaçlarınıza en uygun dijital asistanı bulmanızı sağlamak.</p>
+
+        <h2>Önce Kriterler: Neye Göre Seçtik?</h2>
+        <ul>
+            <li><strong>Güvenilirlik:</strong> İnternet kesilse bile çalışıyor mu? (Offline-First)</li>
+            <li><strong>Yerelleştirme:</strong> Türkiye'deki ilaçları tanıyor mu?</li>
+            <li><strong>Mahremiyet:</strong> Verileriniz satılıyor mu, yoksa korunuyor mu?</li>
+            <li><strong>Fiyat/Performans:</strong> Ödediğiniz ücretin karşılığını veriyor mu?</li>
+        </ul>
+
+        <h2>Detaylı İnceleme: En İyi 3 Uygulama</h2>
+
+        <div class="app-ranking">
+            
+            <div class="app-card rank-1">
+                <div class="rank-badge">#1 Editörün Seçimi</div>
+                <div class="app-header">
+                    <img src="../dozi.png" alt="Dozi" class="app-icon">
+                    <div>
+                        <h3>Dozi</h3>
+                        <span class="rating">★★★★★ 4.9/5</span>
+                        <span style="font-size: 0.9rem; color: #64748b;">Türkiye için En İyisi</span>
+                    </div>
+                </div>
+
+                <div class="pros-cons-grid">
+                    <div class="pros">
+                        <h4>Neden Sevdik?</h4>
+                        <ul>
+                            <li>Türkiye'nin en geniş ilaç veritabanı (50.000+)</li>
+                            <li><strong>Offline-First:</strong> İnternet olmadan tam fonksiyon</li>
+                            <li>Barkod okuma ile 2 saniyede ilaç ekleme</li>
+                            <li>Aile Paketi ile 4 kişiye kadar uygun fiyatlı takip</li>
+                            <li>Gizlilik odaklı: Veri satışı yok, reklam yok</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Geliştirilebilir</h4>
+                        <ul>
+                            <li>Şimdilik sadece Android (iOS yolda)</li>
+                            <li>Global rakipler kadar eski değil</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="verdict">
+                    <strong>Karar:</strong> Dozi, gereksiz özelliklerden arındırılmış, modern ve güvenilir bir asistan. Rakiplerinin aksine dolar bazlı değil, Türkiye şartlarına uygun fiyatlandırma sunuyor. Özellikle <strong>yaşlı ebeveynlerinin ilaçlarını uzaktan takip etmek isteyenler</strong> için "Aile Planı" rakipsiz bir özellik.
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="rank-badge">#2 Global Lider</div>
+                <div class="app-header">
+                    <div style="width:72px; height:72px; background:#eee; border-radius:18px; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#999;">M</div>
+                    <div>
+                        <h3>Medisafe</h3>
+                        <span class="rating">★★★★☆ 4.6/5</span>
+                        <span style="font-size: 0.9rem; color: #64748b;">Uluslararası Standart</span>
+                    </div>
+                </div>
+
+                <div class="pros-cons-grid">
+                    <div class="pros">
+                        <h4>Neden Sevdik?</h4>
+                        <ul>
+                            <li>Çok geniş özellik seti ve entegrasyonlar</li>
+                            <li>İlaç etkileşim uyarıları (Drug interactions)</li>
+                            <li>Yılların getirdiği oturmuş altyapı</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Geliştirilebilir</h4>
+                        <ul>
+                            <li>Arayüz biraz karmaşık ve yoğun</li>
+                            <li>Türkiye fiyatlandırması yüksek (~350₺/ay)</li>
+                            <li>Türkçe ilaç veritabanı zayıf</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="verdict">
+                    <strong>Karar:</strong> Eğer bütçe sorununuz yoksa ve İngilizce terimlerle aranız iyiyse Medisafe mükemmel bir seçenek. Ancak Türkiye'deki bir kullanıcı için fiyat/performans oranı düşük kalıyor.
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="rank-badge">#3 Sağlık Günlüğü</div>
+                <div class="app-header">
+                     <div style="width:72px; height:72px; background:#eee; border-radius:18px; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#999;">MT</div>
+                    <div>
+                        <h3>MyTherapy</h3>
+                        <span class="rating">★★★★☆ 4.5/5</span>
+                        <span style="font-size: 0.9rem; color: #64748b;">Holistik Takip</span>
+                    </div>
+                </div>
+
+                <div class="pros-cons-grid">
+                    <div class="pros">
+                        <h4>Neden Sevdik?</h4>
+                        <ul>
+                            <li>Sadece ilaç değil; tansiyon ve ruh hali takibi</li>
+                            <li>Doktor raporları oluşturabilme</li>
+                            <li>Temiz ve anlaşılır tasarım</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Geliştirilebilir</h4>
+                        <ul>
+                            <li>Sadece ilaç hatırlatıcısı arayanlar için fazla detaylı</li>
+                            <li>Senkronizasyon sorunları yaşanabiliyor</li>
+                            <li>Premium özellikleri pahalı</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>Hızlı Karşılaştırma</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Özellik</th>
+                        <th class="col-highlight">Dozi</th>
+                        <th>Medisafe</th>
+                        <th>MyTherapy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Maliyet (Yaklaşık)</strong></td>
+                        <td class="col-highlight">₺150 / ay</td>
+                        <td>~₺350 / ay</td>
+                        <td>~₺350 / ay</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Türkçe İlaç Veritabanı</strong></td>
+                        <td class="col-highlight"><span class="check">Tam Destek</span></td>
+                        <td><span class="cross">Kısmi</span></td>
+                        <td><span class="cross">Kısmi</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Offline Çalışma</strong></td>
+                        <td class="col-highlight"><span class="check">Evet (Offline-First)</span></td>
+                        <td><span class="cross">Sınırlı</span></td>
+                        <td><span class="cross">Sınırlı</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aile Takibi</strong></td>
+                        <td class="col-highlight"><span class="check">4 Kişiye Kadar</span></td>
+                        <td><span class="cross">Ekstra Ücret</span></td>
+                        <td><span class="cross">Yok</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Veri Güvenliği</strong></td>
+                        <td class="col-highlight"><span class="check">KVKK & Şifreli</span></td>
+                        <td>GDPR</td>
+                        <td>GDPR</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Dozi Fiyatlandırma ve Paketler</h2>
+        <p>Dozi, Türkiye şartlarına uygun, şeffaf ve adil bir fiyatlandırma politikası izler. Sürpriz ücretler veya gizli maliyetler yoktur.</p>
+
+        <div class="pricing-section">
+            <div class="pricing-grid">
+                
+                <div class="pricing-card">
+                    <div class="pricing-badge" style="background: #e2e8f0; color: #64748b;">Başlangıç</div>
+                    <h3>Ücretsiz</h3>
+                    <div class="price-tag">
+                        <span class="price-amount">₺0</span>
+                        <span class="price-period">/ sonsuza dek</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li>5 ilaca kadar takip</li>
+                        <li>Temel hatırlatmalar</li>
+                        <li>İstatistikler</li>
+                        <li>Çevrimdışı çalışma</li>
+                        <li>KVKK uyumlu güvenlik</li>
+                    </ul>
+                    <a href="../app/download.html" class="btn-pricing btn-outline">Hemen Başla</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">En Popüler</div>
+                    <h3>Dozi Ekstra</h3>
+                    <div class="price-tag">
+                        <span class="price-amount">₺150</span>
+                        <span class="price-period">/ ay'a denk gelir</span>
+                        <span class="price-total">Yıllık abonelik • tek seferde ödenir<br>Toplam: <strong>₺1.799,99</strong></span>
+                    </div>
+                    <ul class="feature-list">
+                        <li><strong>Tüm ilaçlarını</strong> tek yerden takip et</li>
+                        <li>Sevdiklerinin ilaç takibini yap</li>
+                        <li>İlaç kutusunu göster, ben ekleyeyim</li>
+                        <li>Kapatmadan geçemeyeceğin alarmlar</li>
+                        <li>Eve gelince hatırlat</li>
+                        <li>İlacın bitmeden haber ver</li>
+                        <li>Sırdaş Modu ile mahremiyetini koru</li>
+                    </ul>
+                    <a href="#" class="btn-pricing btn-primary">Ekstra'ya Geç</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge" style="background: var(--dark); color: white;">Büyük Değer</div>
+                    <h3>Aile Planı</h3>
+                    <div class="price-tag">
+                        <span class="price-amount">₺438</span>
+                        <span class="price-period">/ ay'a denk gelir</span>
+                        <span class="price-total">Yıllık abonelik • 4 kişi için<br>Toplam: <strong>₺5.250,00</strong></span>
+                    </div>
+                    <ul class="feature-list">
+                        <li><strong>4 kişiye kadar</strong> Ekstra hesabı</li>
+                        <li>Tüm Ekstra özellikleri dahil</li>
+                        <li>Aile üyelerini ayrı ayrı takip et</li>
+                        <li>Herkes kendi ilaçlarını yönetsin</li>
+                        <li>Öncelikli destek</li>
+                    </ul>
+                    <a href="#" class="btn-pricing btn-dark">Aile Planı Al</a>
+                </div>
+
+            </div>
+        </div>
+
+        <h2>Sonuç: Hangi Uygulamayı Seçmelisiniz?</h2>
+        <p>Eğer <strong>ABD veya Avrupa'da yaşıyorsanız</strong>, Medisafe veya MyTherapy mükemmel seçeneklerdir; ekosistemleri oraya göre kurulmuştur. Ancak <strong>Türkiye'de yaşıyorsanız</strong>, yerel veritabanı, çevrimdışı çalışma özelliği ve makul fiyatlandırmasıyla <strong>Dozi</strong> en mantıklı tercih olarak öne çıkıyor.</p>
         
-        <p class="drop-cap">Telefonunuzun uygulama mağazasını açıp "ilaç hatırlatıcı" yazdığınızda karşınıza çıkan manzara biraz kafa karıştırıcı olabilir: Yüzlerce renkli ikon, birbirine benzeyen vaatler ve "en iyisi biziz" iddiaları. Hepsi tek bir şeyi vaat ediyor: İlacınızı unutturmamak. Peki, hepsi bu sözü tutabiliyor mu?</p>
+        <p>Sağlığınız şansa bırakılmayacak kadar değerli. Hangi uygulamayı seçerseniz seçin, düzenli kullanmak en önemli adımdır.</p>
 
-        <p>Sağlık, deneme yanılma yapılabilecek bir alan değildir. Yanlış bir takvim uygulaması seçerseniz en fazla bir toplantıya geç kalırsınız; ancak yanlış bir ilaç hatırlatıcı, tedavinizin seyrini değiştirebilir. Bu rehberde, pazarlama cümlelerini bir kenara bırakıp, bir uygulamanın gerçekten "güvenilir" olup olmadığını anlamanızı sağlayacak 7 kritik filtreyi inceliyoruz.</p>
+    </article>
 
-        <h2>Karar Vermeden Önce: 7 Kritik Filtre</h2>
-
-        <div class="criteria-list">
-            <div class="criterion-card">
-                <div class="criterion-number">01</div>
-                <div class="criterion-content">
-                    <h3>Sarsılmaz Güvenilirlik</h3>
-                    <p>Bir uygulamanın arayüzü dünyanın en güzel tasarımı olabilir, ama sabah 09:00'da o bildirimi göndermiyorsa değeri sıfırdır.</p>
-                    <ul>
-                        <li><strong>Batarya Testi:</strong> Uygulama, telefonunuzun "güç tasarrufu" moduna yenik düşüyor mu?</li>
-                        <li><strong>Offline Güç:</strong> İnternetiniz kesildiğinde hafızası da siliniyor mu? Gerçek bir sağlık asistanı, internet yokken bile çalışmalıdır.</li>
-                        <li><strong>Kritik Bildirimler:</strong> Telefonunuz sessizdeyken bile hayati ilaçlarınız için ses çıkarabiliyor mu?</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="criterion-card">
-                <div class="criterion-number">02</div>
-                <div class="criterion-content">
-                    <h3>2 Dakika Kuralı (Basitlik)</h3>
-                    <p>İlaç eklemek bir bürokrasiye dönüşmemeli. Eğer bir ilacı sisteme girmek 2 dakikadan uzun sürüyorsa, o uygulamayı uzun vadede kullanmayacaksınız demektir.</p>
-                    <ul>
-                        <li><strong>Barkod Gücü:</strong> İlaç kutusunu okutup geçebiliyor musunuz?</li>
-                        <li><strong>Gereksiz Detaylar:</strong> Sizden ilacın rengini, şeklini, üreticisini zorla istiyor mu? İyi bir uygulama, detayları opsiyonel tutar.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="criterion-card">
-                <div class="criterion-number">03</div>
-                <div class="criterion-content">
-                    <h3>Mahremiyet ve Veri Modeli</h3>
-                    <p>Sağlık verileriniz, parmak iziniz kadar size özeldir. "Tamamen ücretsiz" olduğunu iddia eden uygulamalara şüpheyle yaklaşın.</p>
-                    <ul>
-                        <li><strong>Ürünün Kendisi Siz misiniz?</strong> Ücretsiz uygulamalar genellikle verilerinizi anonimleştirip ilaç firmalarına satarak ayakta kalır.</li>
-                        <li><strong>Reklamsız Alan:</strong> Sağlığınızı yönetirken ekranda beliren reklamlar sadece sinir bozucu değil, aynı zamanda etik dışıdır.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="criterion-card">
-                <div class="criterion-number">04</div>
-                <div class="criterion-content">
-                    <h3>Yerelleştirme (Dilimizi Konuşuyor mu?)</h3>
-                    <p>Global uygulamalar harikadır, ta ki Türkiye'deki eczaneden aldığınız ilacı bulamayana kadar.</p>
-                    <ul>
-                        <li><strong>Türkçe Veritabanı:</strong> "Coraspin" yazdığınızda buluyor mu, yoksa sizi "Aspirin" aramaya mı zorluyor?</li>
-                        <li><strong>Kültürel Uyum:</strong> Eczane nöbet sisteminden, SGK ödeme mantığına kadar yerel dinamiklere hakim mi?</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="criterion-card">
-                <div class="criterion-number">05</div>
-                <div class="criterion-content">
-                    <h3>İnternetsiz Özgürlük (Offline-First)</h3>
-                    <p>Sağlık kritik bir konudur ve bulut sunucularına bağımlı olmamalıdır.</p>
-                    <ul>
-                        <li><strong>Senaryo:</strong> Bodrum katta telefonunuz çekmiyor veya uçak modundasınız. Hatırlatıcı çalışacak mı?</li>
-                        <li><strong>Doğru Tercih:</strong> Verileri cihazınızda saklayan (Offline-first) uygulamalar, sunucu çökse bile sizi yarı yolda bırakmaz.</li>
-                    </ul>
-                </div>
-            </div>
-            
-             <div class="criterion-card">
-                <div class="criterion-number">06</div>
-                <div class="criterion-content">
-                    <h3>Sizi Oyuna Getirmemeli (Gamification)</h3>
-                    <p>Bazı uygulamalar sağlığı bir video oyununa çevirir. Puanlar, liderlik tabloları, rozetler...</p>
-                    <ul>
-                        <li><strong>Gerçek Motivasyon:</strong> İlaç almanın ödülü sanal bir rozet değil, sağlıklı bir hayattır.</li>
-                        <li><strong>Dikkat Dağınıklığı:</strong> Uygulama sürekli "içeri gel, puan topla" diyerek sizi taciz etmemeli. İyi bir asistan görünmezdir; sadece gerektiğinde oradadır.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="criterion-card">
-                <div class="criterion-number">07</div>
-                <div class="criterion-content">
-                    <h3>Maliyetin Ötesindeki Değer</h3>
-                    <p>Fiyat tek kriter değildir. Önemli olan fiyat/performans dengesidir.</p>
-                    <ul>
-                        <li><strong>Global vs Yerel:</strong> Yurt dışı menşeli uygulamalar dolar bazlı olduğu için aylık 300-400₺ bandında olabilir. Yerel uygulamalar ise alım gücüne göre optimize edilmiştir.</li>
-                        <li><strong>Yatırım:</strong> Ayda bir kahve parasına sağlığınızı sigortalamak, yapabileceğiniz en mantıklı yatırımdır.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="red-flag-box">
-            <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-                Kırmızı Bayraklar: Bunları Görürseniz Kaçın
-            </h3>
-            <p>Bir uygulamada şu özellikleri görüyorsanız, "Sil" butonuna basma vakti gelmiştir:</p>
-            <div class="red-flag-grid">
-                <div class="flag-item">🚩 Gereksiz İzinler (Mikrofon, Rehber)</div>
-                <div class="flag-item">🚩 Tam Ekran Reklamlar</div>
-                <div class="flag-item">🚩 "Hemen Kayıt Ol" Zorlaması</div>
-                <div class="flag-item">🚩 Son Güncelleme: 2 Yıl Önce</div>
-            </div>
-        </div>
-
-        <h2>Sonuç: Teknoloji Sizin İçin Çalışmalı</h2>
-        <p>En iyi ilaç hatırlatıcı, varlığını unuttuğunuz ama eksikliğini asla hissetmediğiniz uygulamadır. Sizi sürekli ekran başına çağıran değil, hayatınızı yaşamanız için size alan açan bir asistan seçin.</p>
-        <p>Dozi olarak felsefemiz tam da bu: <strong>"Teknoloji, insan sağlığının hizmetkarı olmalıdır, efendisi değil."</strong></p>
-
-        <div class="dozi-cta">
-            <h2>Aradığınız Tüm Kriterler Tek Uygulamada</h2>
-            <p>Offline çalışma, Türkçe veritabanı ve sade tasarım. Dozi ile tanışın.</p>
-            
-            <ul class="cta-list">
-                <li>
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    İnternetsiz tam fonksiyon
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    50.000+ Türkçe İlaç & Barkod Okuma
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Reklamsız ve KVKK Uyumlu
-                </li>
-            </ul>
-
-            <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="download-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.14L6.05,2.66Z" /></svg>
-                Dozi'yi Ücretsiz İndir
+    <footer class="footer">
+        <div class="container">
+            <a href="../" class="logo" style="justify-content: center; color: var(--dark);">
+                <img src="../dozi_brand.png" alt="Dozi" width="32" height="32">
+                <span>Dozi</span>
             </a>
+            <p style="margin-top: 1rem;">© 2026 Dozi - Sağlığınızın Dijital Asistanı. Tüm hakları saklıdır.</p>
         </div>
-
-    </main>
-
-    <footer class="disclaimer">
-        <p><strong>Yasal Uyarı:</strong> Bu içerik bilgilendirme amaçlıdır. Dozi, ilaç kullanımınızı düzenlemenize yardımcı olan bir teknoloji asistanıdır; tıbbi tavsiye vermez. Tedavinizle ilgili kararları daima doktorunuza danışarak alınız.</p>
-        <div class="copyright">© 2026 Dozi - Bardino Technology</div>
     </footer>
 
+    <script>
+        console.log("Analytics Loaded");
+    </script>
 </body>
 </html>
