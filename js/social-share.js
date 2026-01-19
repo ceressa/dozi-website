@@ -14,15 +14,19 @@
         document.querySelector('meta[property="og:image"]')?.content || 
         'https://www.dozi.app/dozi_brand.png'
     );
+    
+    // Google Play link
+    const playStoreLink = 'https://play.google.com/store/apps/details?id=com.bardino.dozi';
+    const playStoreText = encodeURIComponent(`\n\n📱 Dozi'yi İndir: ${playStoreLink}`);
 
-    // Share URLs
+    // Share URLs with Play Store link
     const shareUrls = {
-        whatsapp: `https://wa.me/?text=${pageTitle}%0A%0A${pageUrl}`,
-        telegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`,
+        whatsapp: `https://wa.me/?text=${pageTitle}%0A%0A${pageUrl}${playStoreText}`,
+        telegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}${playStoreText}`,
         twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}&via=Doziapp`,
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`,
-        email: `mailto:?subject=${pageTitle}&body=${pageDescription}%0A%0A${pageUrl}`,
+        email: `mailto:?subject=${pageTitle}&body=${pageDescription}%0A%0A${pageUrl}${playStoreText}`,
         copy: pageUrl
     };
 

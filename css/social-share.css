@@ -43,7 +43,49 @@
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+}
+
+.share-btn::before {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background: #0f172a;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.share-btn::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #0f172a;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.share-btn:hover::before,
+.share-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .share-btn svg {
@@ -141,12 +183,12 @@
 
 .copy-feedback {
     position: absolute;
-    top: -35px;
+    bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%) scale(0.8);
-    background: #0f172a;
+    background: #10b981;
     color: white;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -154,24 +196,31 @@
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    z-index: 101;
 }
 
 .copy-feedback::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #0f172a;
+    border-top: 6px solid #10b981;
 }
 
 .copy-feedback.show {
     opacity: 1;
     transform: translateX(-50%) scale(1);
+}
+
+/* Hide tooltip when copy feedback is shown */
+.share-btn.copy:has(.copy-feedback.show)::before,
+.share-btn.copy:has(.copy-feedback.show)::after {
+    opacity: 0 !important;
 }
 
 /* Mobile Responsive */
@@ -200,6 +249,12 @@
     .share-btn svg {
         width: 18px;
         height: 18px;
+    }
+    
+    /* Disable tooltips on mobile (touch devices) */
+    .share-btn::before,
+    .share-btn::after {
+        display: none;
     }
 }
 
