@@ -9,10 +9,11 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://*.cloudfunctions.net; form-action 'self' https://*.cloudfunctions.net;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://*.cloudfunctions.net https://googleads.g.doubleclick.net https://www.googleadservices.com; form-action 'self' https://*.cloudfunctions.net;">
     
-    <!-- Google Analytics with Consent Mode v2 -->
+    <!-- Google tag (gtag.js) - Analytics & Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKE1QTSMWJ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17862936779"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -26,7 +27,11 @@
         });
         
         gtag('js', new Date());
+        
+        // Google Analytics
         gtag('config', 'G-FKE1QTSMWJ');
+        
+        // Google Ads Conversion Tracking
         gtag('config', 'AW-17862936779');
     </script>
     
