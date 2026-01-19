@@ -53,7 +53,7 @@
         
         try {
             // Cloud Function endpoint'ine POST
-            const response = await fetch('https://us-central1-dozi-app.cloudfunctions.net/trackPageView', {
+            const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/trackPageView', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
