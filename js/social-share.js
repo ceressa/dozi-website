@@ -17,7 +17,8 @@
     
     // Google Play link
     const playStoreLink = 'https://play.google.com/store/apps/details?id=com.bardino.dozi';
-    const playStoreText = encodeURIComponent(`\n\n📱 Dozi'yi İndir: ${playStoreLink}`);
+    // Properly encode the entire text including emoji and Turkish characters
+    const playStoreText = encodeURIComponent('\n\n📱 Dozi\'yi İndir: ') + playStoreLink;
 
     // Share URLs with Play Store link
     const shareUrls = {
