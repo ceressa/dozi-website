@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eczacılara Özel - Dozi İlaç Takip Uygulaması</title>
+    <meta name="description" content="Hastalarınız için ücretsiz ilaç takip çözümü. Eczanenize özel promo kodları ve materyaller.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero-pharmacy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero-pharmacy h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero-pharmacy .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        .benefits-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+        .benefit-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+        .materials-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .material-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .material-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .testimonial-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .submit-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-pharmacy">
+        <h1>💊 Eczacılara Özel İş Birliği</h1>
+        <p class="subtitle">Hastalarınıza katma değer sunun, ilaç uyumunu artırın</p>
+        <p style="font-size: 1.1rem; margin-top: 20px;">Premium özellikleri hastalarınıza <strong>tamamen ücretsiz</strong> sunuyoruz</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Aktif Kullanıcı</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">4.8★</div>
+            <div class="stat-label">Google Play Puanı</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">%85</div>
+            <div class="stat-label">İlaç Uyum Oranı</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">₺0</div>
+            <div class="stat-label">Eczanenize Maliyet</div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 50px;">Eczanenize Faydaları</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>🎯 Hasta Memnuniyeti</h3>
+                <p>Hastalarınıza modern bir çözüm sunarak memnuniyeti artırın. İlaç uyumu arttıkça, hastalarınız daha sağlıklı olur.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>🔄 Tekrar Satış</h3>
+                <p>Dozi, ilaç stoku bittiğinde hatırlatma yapar. Hastalarınız ilacı almak için eczanenize geri döner.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>💰 Hiçbir Maliyet Yok</h3>
+                <p>Eczanenize hiçbir ücret yansımaz. Broşür, QR kod, eğitim materyalleri tamamen ücretsiz.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>📱 Kolay Tanıtım</h3>
+                <p>Reçete torbalarına QR kod etiketleri yapıştırın. Hastalarınız hemen indirebilir.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>🏆 Rekabet Avantajı</h3>
+                <p>Dijital çözümler sunan modern bir eczane imajı oluşturun. Rakiplerinizden öne çıkın.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>📊 Raporlama</h3>
+                <p>Eczanenize özel dashboard ile kaç hastanın uygulamayı kullandığını takip edin.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section class="materials-section">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">Size Sağladığımız Materyaller</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Tüm materyaller ücretsiz ve eczanenize özel hazırlanır</p>
+        <div class="materials-grid">
+            <div class="material-card">
+                <div class="material-icon">📱</div>
+                <h3>QR Kod Etiketleri</h3>
+                <p>Reçete torbalarına yapıştırılacak etiketler</p>
+            </div>
+            <div class="material-card">
+                <div class="material-icon">📄</div>
+                <h3>A5 Broşürler</h3>
+                <p>Eczane tezgahında dağıtım için</p>
+            </div>
+            <div class="material-card">
+                <div class="material-icon">🎫</div>
+                <h3>Promo Kodları</h3>
+                <p>Hastalarınıza özel premium kodları</p>
+            </div>
+            <div class="material-card">
+                <div class="material-icon">🖼️</div>
+                <h3>Vitrin Posteri</h3>
+                <p>A3 boyutunda tanıtım posteri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 40px;">Kullanıcılarımız Ne Diyor?</h2>
+        <div class="testimonial">
+            <p class="testimonial-text">"Annem 8 farklı ilaç kullanıyordu ve sürekli karıştırıyordu. Dozi sayesinde artık hiç ilaç unutmuyor. Eczacımız bize önerdiği için çok teşekkür ediyoruz."</p>
+            <p class="testimonial-author">— Ayşe K., İstanbul</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Hemen Başlayın</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">Eczanenize özel materyalleri ve promo kodlarını almak için iletişime geçin</p>
+        <a href="mailto:info@dozi.app?subject=Eczane İş Birliği Talebi" class="cta-button">📧 Email Gönder</a>
+        <a href="https://wa.me/905XXXXXXXXX?text=Merhaba, eczane iş birliği hakkında bilgi almak istiyorum" class="cta-button">💬 WhatsApp</a>
+    </section>
+
+    <!-- Contact Form -->
+    <section style="padding: 60px 20px;">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">İletişim Formu</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Formu doldurun, 24 saat içinde size dönelim</p>
+        <form class="contact-form" id="pharmacyForm">
+            <div class="form-group">
+                <label for="pharmacyName">Eczane Adı *</label>
+                <input type="text" id="pharmacyName" name="pharmacyName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactName">Yetkili Adı Soyadı *</label>
+                <input type="text" id="contactName" name="contactName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="city">Şehir *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Mesajınız</label>
+                <textarea id="message" name="message" rows="4" placeholder="Ek bilgi veya sorularınız..."></textarea>
+            </div>
+            <button type="submit" class="submit-button">Gönder</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('pharmacyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                pharmacyName: document.getElementById('pharmacyName').value,
+                contactName: document.getElementById('contactName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                city: document.getElementById('city').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Firebase Cloud Function'a gönder
+            fetch('https://us-central1-dozi-app.cloudfunctions.net/submitPharmacyLead', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Teşekkürler! Başvurunuz alındı. 24 saat içinde size dönüş yapacağız.');
+                document.getElementById('pharmacyForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Form gönderilirken bir hata oluştu. Lütfen doğrudan info@dozi.app adresine email gönderin.');
+            });
+        });
+    </script>
+</body>
+</html>
