@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoziRez Login Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #00BCD4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0097A7;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .success {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+        .error {
+            background: #FFCDD2;
+            color: #C62828;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 DoziRez Login Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: API Endpoint Erişimi</h2>
+        <button onclick="testEndpoint()">Test Et</button>
+        <div id="endpoint-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Login İşlemi</h2>
+        <p><strong>Eczane ID:</strong> PILOT001</p>
+        <p><strong>Şifre:</strong> Dozi2025!</p>
+        <button onclick="testLogin()">Giriş Yap</button>
+        <div id="login-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: CORS Kontrolü</h2>
+        <button onclick="testCORS()">CORS Test</button>
+        <div id="cors-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://us-central1-dozi-cd7cc.cloudfunctions.net/pharmacyLogin';
+        
+        async function testEndpoint() {
+            const resultDiv = document.getElementById('endpoint-result');
+            resultDiv.textContent = 'Test ediliyor...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'OPTIONS'
+                });
+                
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Endpoint erişilebilir!\nStatus: ${response.status}\nHeaders: ${JSON.stringify([...response.headers], null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Hata: ${error.message}`;
+            }
+        }
+        
+        async function testLogin() {
+            const resultDiv = document.getElementById('login-result');
+            resultDiv.textContent = 'Giriş yapılıyor...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        pharmacyId: 'PILOT001',
+                        password: 'Dozi2025!'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ GİRİŞ BAŞARILI!\n\nToken: ${data.token.substring(0, 50)}...\nEczane: ${data.pharmacyName}\nID: ${data.pharmacyId}`;
+                    
+                    // Store session
+                    sessionStorage.setItem('dozirez_session', JSON.stringify({
+                        pharmacyId: data.pharmacyId,
+                        pharmacyName: data.pharmacyName,
+                        token: data.token,
+                        timestamp: Date.now()
+                    }));
+                    
+                    // Show redirect option
+                    setTimeout(() => {
+                        if (confirm('Dashboard\'a gitmek ister misiniz?')) {
+                            window.location.href = 'dashboard.html';
+                        }
+                    }, 1000);
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Giriş başarısız!\n\nStatus: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Hata: ${error.message}\n\nStack: ${error.stack}`;
+            }
+        }
+        
+        async function testCORS() {
+            const resultDiv = document.getElementById('cors-result');
+            resultDiv.textContent = 'CORS test ediliyor...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        pharmacyId: 'TEST',
+                        password: 'test'
+                    })
+                });
+                
+                const corsHeaders = {
+                    'Access-Control-Allow-Origin': response.headers.get('Access-Control-Allow-Origin'),
+                    'Access-Control-Allow-Methods': response.headers.get('Access-Control-Allow-Methods'),
+                    'Access-Control-Allow-Headers': response.headers.get('Access-Control-Allow-Headers')
+                };
+                
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ CORS başlıkları:\n${JSON.stringify(corsHeaders, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ CORS hatası: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
