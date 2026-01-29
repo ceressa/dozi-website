@@ -44,7 +44,7 @@ function checkAuth() {
 // Load Dashboard Data
 async function loadDashboardData() {
     try {
-        const response = await fetch(`https://us-central1-dozi-app.cloudfunctions.net/getPharmacyReservations?pharmacyId=${currentSession.pharmacyId}`, {
+        const response = await fetch(`https://us-central1-dozi-cd7cc.cloudfunctions.net/getPharmacyReservations?pharmacyId=${currentSession.pharmacyId}`, {
             headers: {
                 'Authorization': `Bearer ${currentSession.token}`
             }

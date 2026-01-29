@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     
     try {
         // Call Firebase Function for authentication
-        const response = await fetch('https://us-central1-dozi-app.cloudfunctions.net/pharmacyLogin', {
+        const response = await fetch('https://us-central1-dozi-cd7cc.cloudfunctions.net/pharmacyLogin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
