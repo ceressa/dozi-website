@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DoziRez</title>
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../dozi_brand.png" alt="Dozi" class="sidebar-logo">
+            <span class="sidebar-title">DoziRez</span>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="overview">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                <span>Genel Bakış</span>
+            </a>
+            <a href="#" class="nav-item" data-page="reservations">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+                <span>Rezervasyonlar</span>
+                <span class="badge" id="pendingBadge">0</span>
+            </a>
+            <a href="#" class="nav-item" data-page="stats">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>
+                </svg>
+                <span>İstatistikler</span>
+            </a>
+            <a href="#" class="nav-item" data-page="settings">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+                </svg>
+                <span>Ayarlar</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+                </svg>
+                <span>Çıkış Yap</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1 class="page-title">Genel Bakış</h1>
+                <p class="page-subtitle">Rezervasyon yönetim panelinize hoş geldiniz</p>
+            </div>
+            <div class="header-right">
+                <div class="pharmacy-info">
+                    <div class="pharmacy-avatar">E</div>
+                    <div class="pharmacy-details">
+                        <div class="pharmacy-name" id="pharmacyName">Yükleniyor...</div>
+                        <div class="pharmacy-id" id="pharmacyId">-</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overview Page -->
+        <div class="page-content" id="overviewPage">
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="stat-card-dash">
+                    <div class="stat-card-header">
+                        <div class="stat-icon-wrapper blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-trend up">+12%</div>
+                    </div>
+                    <div class="stat-value" id="totalReservations">0</div>
+                    <div class="stat-label">Toplam Rezervasyon</div>
+                </div>
+
+                <div class="stat-card-dash">
+                    <div class="stat-card-header">
+                        <div class="stat-icon-wrapper green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                        </div>
+                        <div class="stat-trend up">+8%</div>
+                    </div>
+                    <div class="stat-value" id="completedReservations">0</div>
+                    <div class="stat-label">Tamamlanan</div>
+                </div>
+
+                <div class="stat-card-dash">
+                    <div class="stat-card-header">
+                        <div class="stat-icon-wrapper yellow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-trend">-</div>
+                    </div>
+                    <div class="stat-value" id="pendingReservations">0</div>
+                    <div class="stat-label">Bekleyen</div>
+                </div>
+
+                <div class="stat-card-dash">
+                    <div class="stat-card-header">
+                        <div class="stat-icon-wrapper purple">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                            </svg>
+                        </div>
+                        <div class="stat-trend up">+15%</div>
+                    </div>
+                    <div class="stat-value" id="avgResponseTime">-</div>
+                    <div class="stat-label">Ort. Yanıt Süresi</div>
+                </div>
+            </div>
+
+            <!-- Recent Reservations -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2 class="card-title">Son Rezervasyonlar</h2>
+                    <button class="btn btn-secondary btn-small" onclick="loadPage('reservations')">
+                        Tümünü Gör
+                    </button>
+                </div>
+                <div class="reservations-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Müşteri</th>
+                                <th>İlaç</th>
+                                <th>Miktar</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentReservationsTable">
+                            <tr>
+                                <td colspan="6" class="loading-cell">Yükleniyor...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservations Page -->
+        <div class="page-content hidden" id="reservationsPage">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2 class="card-title">Tüm Rezervasyonlar</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-status="all">Tümü</button>
+                        <button class="filter-btn" data-status="PENDING">Bekleyen</button>
+                        <button class="filter-btn" data-status="CONFIRMED">Onaylanan</button>
+                        <button class="filter-btn" data-status="READY">Hazır</button>
+                        <button class="filter-btn" data-status="COMPLETED">Tamamlanan</button>
+                    </div>
+                </div>
+                <div class="reservations-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tarih</th>
+                                <th>Müşteri</th>
+                                <th>İlaç</th>
+                                <th>Miktar</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allReservationsTable">
+                            <tr>
+                                <td colspan="7" class="loading-cell">Yükleniyor...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Page -->
+        <div class="page-content hidden" id="statsPage">
+            <div class="content-card">
+                <h2 class="card-title">İstatistikler</h2>
+                <p>Detaylı istatistikler yakında eklenecek...</p>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page-content hidden" id="settingsPage">
+            <div class="content-card">
+                <h2 class="card-title">Ayarlar</h2>
+                <p>Ayarlar sayfası yakında eklenecek...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Reservation Detail Modal -->
+    <div class="modal hidden" id="reservationModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Rezervasyon Detayı</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
