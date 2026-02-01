@@ -542,3 +542,84 @@ tr:last-child td {
         padding: 12px 8px;
     }
 }
+
+
+/* ========================================
+   BROADCAST RESERVATION STYLES (v1.6.7)
+   ======================================== */
+
+/* Broadcast Badge */
+.broadcast-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFB800, #FF6B00);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+    box-shadow: 0 2px 4px rgba(255, 107, 0, 0.2);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 2px 4px rgba(255, 107, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(255, 107, 0, 0.4), 0 0 12px rgba(255, 107, 0, 0.3);
+    }
+}
+
+/* Quick Action Buttons */
+.action-btn.quick-confirm {
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 6px;
+}
+
+.action-btn.quick-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.action-btn.quick-reject {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn.quick-reject:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Broadcast Info Tooltip */
+.broadcast-badge[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}

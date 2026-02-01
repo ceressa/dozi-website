@@ -157,15 +157,27 @@ function updateRecentReservations(reservations) {
     
     tbody.innerHTML = reservations.map(res => `
         <tr>
-            <td>${formatDate(res.date)}</td>
+            <td>
+                ${formatDate(res.date)}
+                ${res.isBroadcast ? '<span class="broadcast-badge" title="Yarışmalı Rezervasyon - İlk cevap veren kazanır">⚡ Yarışmalı</span>' : ''}
+            </td>
             <td>${res.customerName}</td>
             <td>${res.medicineName}</td>
             <td>${res.quantity}</td>
             <td><span class="status-badge ${res.status.toLowerCase()}">${getStatusText(res.status)}</span></td>
             <td>
-                <button class="action-btn view" onclick="viewReservation('${res.id}')">
-                    Detay
-                </button>
+                ${res.isBroadcast && res.status === 'PENDING' ? `
+                    <button class="action-btn quick-confirm" onclick="quickConfirm('${res.id}')" title="Var, Hazırlıyorum">
+                        ✓ Var
+                    </button>
+                    <button class="action-btn quick-reject" onclick="quickReject('${res.id}')" title="Yok">
+                        ✗ Yok
+                    </button>
+                ` : `
+                    <button class="action-btn view" onclick="viewReservation('${res.id}')">
+                        Detay
+                    </button>
+                `}
             </td>
         </tr>
     `).join('');
@@ -187,16 +199,28 @@ function updateAllReservations(reservations, filterStatus = 'all') {
     
     tbody.innerHTML = filtered.map(res => `
         <tr>
-            <td>${res.id}</td>
+            <td>
+                ${res.id}
+                ${res.isBroadcast ? '<br><span class="broadcast-badge" title="Yarışmalı Rezervasyon">⚡ Yarışmalı</span>' : ''}
+            </td>
             <td>${formatDate(res.date)}</td>
             <td>${res.customerName}</td>
             <td>${res.medicineName}</td>
             <td>${res.quantity}</td>
             <td><span class="status-badge ${res.status.toLowerCase()}">${getStatusText(res.status)}</span></td>
             <td>
-                <button class="action-btn view" onclick="viewReservation('${res.id}')">
-                    Detay
-                </button>
+                ${res.isBroadcast && res.status === 'PENDING' ? `
+                    <button class="action-btn quick-confirm" onclick="quickConfirm('${res.id}')" title="Var, Hazırlıyorum">
+                        ✓ Var
+                    </button>
+                    <button class="action-btn quick-reject" onclick="quickReject('${res.id}')" title="Yok">
+                        ✗ Yok
+                    </button>
+                ` : `
+                    <button class="action-btn view" onclick="viewReservation('${res.id}')">
+                        Detay
+                    </button>
+                `}
             </td>
         </tr>
     `).join('');
@@ -387,7 +411,76 @@ function getStatusText(status) {
     return statusMap[status] || status;
 }
 
-// Auto refresh every 2 minutes
-setInterval(() => {
-    loadDashboardData();
-}, 120000);
+// Auto refresh disabled - will be enabled when pilot pharmacies are active
+// TODO: Enable with longer interval (10 minutes) when pilot program starts
+// setInterval(() => {
+//     loadDashboardData();
+// }, 600000); // 10 minutes
+
+// 🆕 Quick Confirm (v1.6.7 - Broadcast Reservation)
+async function quickConfirm(reservationId) {
+    if (!confirm('Bu ilacı hazırlayacağınızı onaylıyor musunuz?\n\nYarışmalı rezervasyonda ilk onaylayan kazanır!')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch('https://us-central1-dozi-cd7cc.cloudfunctions.net/updateReservationStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentSession.token}`
+            },
+            body: JSON.stringify({
+                reservationId,
+                status: 'CONFIRMED',
+                pharmacyId: currentSession.pharmacyId,
+                pharmacyNotes: 'İlaç mevcut, hazırlanıyor'
+            })
+        });
+        
+        if (response.ok) {
+            alert('✓ Rezervasyon onaylandı! Diğer eczanelerin rezervasyonları iptal edildi.');
+            loadDashboardData();
+        } else {
+            const error = await response.json();
+            alert('Hata: ' + (error.message || 'Rezervasyon onaylanamadı'));
+        }
+    } catch (error) {
+        console.error('Quick confirm error:', error);
+        alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+    }
+}
+
+// 🆕 Quick Reject (v1.6.7 - Broadcast Reservation)
+async function quickReject(reservationId) {
+    if (!confirm('Bu ilacın stokta olmadığını onaylıyor musunuz?')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch('https://us-central1-dozi-cd7cc.cloudfunctions.net/updateReservationStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentSession.token}`
+            },
+            body: JSON.stringify({
+                reservationId,
+                status: 'REJECTED',
+                pharmacyId: currentSession.pharmacyId,
+                pharmacyNotes: 'İlaç stokta yok'
+            })
+        });
+        
+        if (response.ok) {
+            alert('✗ Rezervasyon reddedildi.');
+            loadDashboardData();
+        } else {
+            const error = await response.json();
+            alert('Hata: ' + (error.message || 'Rezervasyon reddedilemedi'));
+        }
+    } catch (error) {
+        console.error('Quick reject error:', error);
+        alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+    }
+}
