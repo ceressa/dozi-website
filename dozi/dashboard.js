@@ -90,8 +90,10 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
         
         // Load data for the tab if needed
         if (tabName === 'medicines') renderMedicines();
+        if (tabName === 'reminders') renderReminders();
         if (tabName === 'stats') renderStats();
         if (tabName === 'badis') renderBadis();
+        if (tabName === 'settings') loadSettings();
     });
 });
 
