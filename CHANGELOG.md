@@ -4,6 +4,39 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.3.0 - Real-time Notification System & Animated Background (2026-02-02)
+**Type:** Feature | **Impact:** High
+
+#### Added
+- 🔔 **Real-time notification panel** with live updates from Firestore reminderLogs
+- 📊 **Notification badge** with unread count and pulse animation
+- 🎨 **Animated gradient background** with smooth color transitions (15s cycle)
+- 🌈 **Radial gradient overlays** for depth and visual interest
+- 🔴 **Notification types**: reminder (yellow), alert (red), success (green)
+- ⏰ **Time ago display**: "Az önce", "5 dk önce", "2 saat önce"
+- 📱 **Slide-in notification panel** from right side (full-screen on mobile)
+- 👁️ **Auto-read notifications** after 1 second of panel open
+- 🔄 **Firestore snapshot listener** for real-time updates
+- 🎯 **Event tracking**: NOTIFICATION_SENT, ALARM_TRIGGERED, ALARM_SCHEDULED
+
+#### Changed
+- 🎨 Background upgraded from static gradient to animated multi-color gradient
+- 🔔 Notification bell icon added to header with badge
+- 📐 Improved z-index layering for proper stacking
+
+#### Technical
+- Real-time Firestore listener on `users/{userId}/reminderLogs` collection
+- Notification panel with overlay and smooth animations
+- CSS keyframe animations for gradient shift
+- Mobile-responsive notification panel (400px desktop, 100% mobile)
+
+**Files:**
+- `dozi/dashboard.html` - Added notification panel and overlay
+- `dozi/dashboard.js` - Notification system logic and Firestore listener
+- `dozi/dashboard.css` - Animated background and notification panel styles
+
+---
+
 ### v1.2.2 - Dynamic Dozi Character Animations (2026-02-02)
 **Type:** Enhancement | **Impact:** Medium
 
