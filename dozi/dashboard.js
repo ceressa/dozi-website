@@ -1385,6 +1385,20 @@ quietHoursToggle.addEventListener('change', () => {
     quietHoursSettings.style.display = quietHoursToggle.checked ? 'block' : 'none';
 });
 
+// Web Notifications Toggle - Request permission immediately when enabled
+webNotificationsToggle.addEventListener('change', async () => {
+    if (webNotificationsToggle.checked) {
+        // Request permission immediately
+        const granted = await requestNotificationPermission();
+        
+        // If permission denied, revert toggle
+        if (!granted) {
+            webNotificationsToggle.checked = false;
+            showToast('Bildirim izni verilmedi. Toggle kapatıldı.', 'warning');
+        }
+    }
+});
+
 saveSettingsBtn.addEventListener('click', saveSettings);
 resetSettingsBtn.addEventListener('click', resetSettings);
 
