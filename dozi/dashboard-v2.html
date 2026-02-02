@@ -42,6 +42,12 @@
                     </div>
                 </div>
                 <div class="header-right">
+                    <div class="notification-bell">
+                        <button class="icon-btn" id="notificationBtn" title="Bildirimler">
+                            <i class="ri-notification-3-line"></i>
+                            <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+                        </button>
+                    </div>
                     <button class="icon-btn" id="refreshBtn" title="Yenile">
                         <i class="ri-refresh-line"></i>
                     </button>
@@ -200,6 +206,27 @@
 
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Notification Panel -->
+    <div class="notification-overlay" id="notificationOverlay"></div>
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-panel-header">
+            <h2>
+                <i class="ri-notification-3-fill"></i>
+                Bildirimler
+            </h2>
+            <button class="notification-panel-close" id="notificationPanelClose">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="notification-panel-content" id="notificationPanelContent">
+            <div class="notification-empty">
+                <img src="../images/dozi_waiting.webp" alt="Dozi">
+                <h3>Henüz bildirim yok</h3>
+                <p>Yeni bildirimler burada görünecek</p>
+            </div>
+        </div>
+    </div>
 
     <script src="dashboard-v2.js"></script>
 </body>

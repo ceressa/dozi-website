@@ -21,9 +21,11 @@ let dashboardData = {
     user: null,
     medicines: [],
     medicationLogs: [],
-    timelineItems: []
+    timelineItems: [],
+    notifications: []
 };
 let currentFilter = 'all';
+let notificationListener = null;
 
 // Auth State
 auth.onAuthStateChanged(async (user) => {
@@ -33,6 +35,7 @@ auth.onAuthStateChanged(async (user) => {
     }
     currentUser = user;
     await loadDashboard();
+    startNotificationListener();
 });
 
 // Event Listeners
@@ -47,6 +50,19 @@ document.getElementById('refreshBtn')?.addEventListener('click', async () => {
     btn.style.transform = 'rotate(360deg)';
     await loadDashboard();
     setTimeout(() => btn.style.transform = 'rotate(0deg)', 500);
+});
+
+// Notification Panel
+document.getElementById('notificationBtn')?.addEventListener('click', () => {
+    openNotificationPanel();
+});
+
+document.getElementById('notificationPanelClose')?.addEventListener('click', () => {
+    closeNotificationPanel();
+});
+
+document.getElementById('notificationOverlay')?.addEventListener('click', () => {
+    closeNotificationPanel();
 });
 
 // Filter buttons
@@ -447,6 +463,151 @@ document.getElementById('doziCharacter')?.addEventListener('click', () => {
     const random = messages[Math.floor(Math.random() * messages.length)];
     showDoziMessage(random.text, random.emotion);
 });
+
+
+// ============================================
+// NOTIFICATION SYSTEM
+// ============================================
+
+// Start Real-time Notification Listener
+function startNotificationListener() {
+    if (!currentUser) return;
+    
+    // Listen to reminder logs (NOTIFICATION_SENT events)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    notificationListener = db.collection('users')
+        .doc(currentUser.uid)
+        .collection('reminderLogs')
+        .where('timestamp', '>=', firebase.firestore.Timestamp.fromDate(today))
+        .orderBy('timestamp', 'desc')
+        .limit(50)
+        .onSnapshot((snapshot) => {
+            const notifications = [];
+            
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                
+                // Create notification from reminder log
+                if (data.eventType === 'NOTIFICATION_SENT') {
+                    notifications.push({
+                        id: doc.id,
+                        type: 'reminder',
+                        title: '💊 İlaç Hatırlatması',
+                        message: `${data.medicineName || 'İlaç'} alma zamanı!`,
+                        time: data.timestamp?.toDate() || new Date(),
+                        read: false,
+                        icon: 'ri-capsule-fill'
+                    });
+                } else if (data.eventType === 'ALARM_TRIGGERED') {
+                    notifications.push({
+                        id: doc.id,
+                        type: 'alert',
+                        title: '⏰ Alarm Tetiklendi',
+                        message: `${data.medicineName || 'İlaç'} için alarm çaldı`,
+                        time: data.timestamp?.toDate() || new Date(),
+                        read: false,
+                        icon: 'ri-alarm-warning-fill'
+                    });
+                } else if (data.eventType === 'ALARM_SCHEDULED') {
+                    notifications.push({
+                        id: doc.id,
+                        type: 'success',
+                        title: '✅ Alarm Kuruldu',
+                        message: `${data.medicineName || 'İlaç'} için alarm ayarlandı`,
+                        time: data.timestamp?.toDate() || new Date(),
+                        read: true,
+                        icon: 'ri-checkbox-circle-fill'
+                    });
+                }
+            });
+            
+            dashboardData.notifications = notifications;
+            updateNotificationBadge();
+            renderNotifications();
+        }, (error) => {
+            console.error('Notification listener error:', error);
+        });
+}
+
+// Update Notification Badge
+function updateNotificationBadge() {
+    const badge = document.getElementById('notificationBadge');
+    const unreadCount = dashboardData.notifications.filter(n => !n.read).length;
+    
+    if (unreadCount > 0) {
+        badge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+        badge.style.display = 'block';
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+// Open Notification Panel
+function openNotificationPanel() {
+    document.getElementById('notificationPanel').classList.add('open');
+    document.getElementById('notificationOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Mark all as read after 1 second
+    setTimeout(() => {
+        dashboardData.notifications.forEach(n => n.read = true);
+        updateNotificationBadge();
+    }, 1000);
+}
+
+// Close Notification Panel
+function closeNotificationPanel() {
+    document.getElementById('notificationPanel').classList.remove('open');
+    document.getElementById('notificationOverlay').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Render Notifications
+function renderNotifications() {
+    const content = document.getElementById('notificationPanelContent');
+    
+    if (dashboardData.notifications.length === 0) {
+        content.innerHTML = `
+            <div class="notification-empty">
+                <img src="../images/dozi_waiting.webp" alt="Dozi">
+                <h3>Henüz bildirim yok</h3>
+                <p>Yeni bildirimler burada görünecek</p>
+            </div>
+        `;
+        return;
+    }
+    
+    content.innerHTML = dashboardData.notifications.map(notif => {
+        const timeAgo = getTimeAgo(notif.time);
+        const unreadClass = notif.read ? '' : 'unread';
+        
+        return `
+            <div class="notification-item ${unreadClass} ${notif.type}" data-id="${notif.id}">
+                <div class="notification-header">
+                    <div class="notification-title">
+                        <i class="${notif.icon}"></i>
+                        ${notif.title}
+                    </div>
+                    <div class="notification-time">${timeAgo}</div>
+                </div>
+                <div class="notification-message">${notif.message}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Get Time Ago
+function getTimeAgo(date) {
+    const now = new Date();
+    const diff = Math.floor((now - date) / 1000); // seconds
+    
+    if (diff < 60) return 'Az önce';
+    if (diff < 3600) return `${Math.floor(diff / 60)} dk önce`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} saat önce`;
+    return `${Math.floor(diff / 86400)} gün önce`;
+}
 
 
 // Render Medicines Tab
