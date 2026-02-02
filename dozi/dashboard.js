@@ -1279,7 +1279,7 @@ async function renderMedicineAdherenceChart() {
         }
         
         medicineAdherenceChart = new Chart(ctx, {
-            type: 'horizontalBar',
+            type: 'bar',
             data: {
                 labels: medicineNames,
                 datasets: [{
