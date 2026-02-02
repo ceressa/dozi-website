@@ -4,6 +4,35 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.2.0 - Dozi Timeline Dashboard (2026-02-02)
+**Type:** Feature | **Impact:** High
+
+#### Added
+- ✨ **Complete dashboard redesign** with unique glassmorphism + gradient UI
+- 🎨 **Timeline view** with color-coded medication status (green/red/orange)
+- ⚡ **Real-time UI updates** after marking medications (no page reload)
+- 🤖 **Auto-mark missed medications** if 30+ minutes past scheduled time
+- 📅 **Chronological sorting** from past to future
+- 📊 **Stats bar** with 4 key metrics (Taken, Pending, Missed, Streak)
+- 🔍 **Filter buttons** (All, Pending, Taken, Missed)
+- 💬 **Floating Dozi character** with interactive speech bubbles
+- 🔔 **Toast notifications** for user feedback
+- 📱 **Mobile-first responsive design** with modern animations
+- 🎯 **Direct Firestore writes** (no Firebase Functions dependency)
+
+#### Changed
+- 🔄 Old dashboard.html now redirects to dashboard-v2.html
+- 🎨 Switched from generic design to unique Dozi-branded experience
+- ⚡ Improved performance with direct Firestore access
+
+#### Technical
+- Files: `dashboard-v2.html`, `dashboard-v2.css`, `dashboard-v2.js`
+- Design: Glassmorphism, gradient backgrounds, smooth animations
+- Icons: Remix Icons for consistent iconography
+- Fonts: Inter font family for modern typography
+
+---
+
 ### v1.1.0 - Web Dashboard Redesign (2026-02-02)
 **Type:** Feature | **Impact:** High
 
