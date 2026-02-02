@@ -27,6 +27,14 @@ let dashboardData = {
 let currentFilter = 'all';
 let notificationListener = null;
 
+// Inactivity Timer (15 minutes)
+let inactivityTimer = null;
+const INACTIVITY_TIMEOUT = 15 * 60 * 1000; // 15 minutes in milliseconds
+
+// Day Change Checker
+let dayChangeInterval = null;
+let currentDate = new Date().toDateString();
+
 // Auth State
 auth.onAuthStateChanged(async (user) => {
     if (!user) {
@@ -36,6 +44,12 @@ auth.onAuthStateChanged(async (user) => {
     currentUser = user;
     await loadDashboard();
     startNotificationListener();
+    
+    // Start inactivity timer
+    startInactivityTimer();
+    
+    // Start day change checker
+    startDayChangeChecker();
 });
 
 // Event Listeners
@@ -168,11 +182,17 @@ function buildTimeline() {
     const today = new Date();
     const todayStr = today.toISOString().split('T')[0];
     const now = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
     
     dashboardData.timelineItems = [];
 
     // For each medicine, create timeline items for today's doses
     dashboardData.medicines.forEach(medicine => {
+        // Check if medicine should be taken today based on frequency
+        if (!shouldTakeMedicineToday(medicine, today, dayOfWeek)) {
+            return; // Skip this medicine for today
+        }
+
         const times = medicine.times || ['09:00'];
         
         times.forEach(time => {
@@ -226,6 +246,37 @@ function buildTimeline() {
 
     // Sort by time (chronological)
     dashboardData.timelineItems.sort((a, b) => a.scheduledTime - b.scheduledTime);
+}
+
+// Check if medicine should be taken today based on frequency
+function shouldTakeMedicineToday(medicine, today, dayOfWeek) {
+    const frequency = medicine.frequency || 'DAILY';
+    
+    switch (frequency) {
+        case 'DAILY':
+            return true;
+            
+        case 'WEEKLY':
+            // Check if today is in the weeklyDays array
+            const weeklyDays = medicine.weeklyDays || [];
+            // weeklyDays: [1, 3, 5] means Monday, Wednesday, Friday
+            // dayOfWeek: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            return weeklyDays.includes(dayOfWeek);
+            
+        case 'INTERVAL':
+            // Check if today matches the interval pattern
+            const intervalDays = medicine.intervalDays || 1;
+            const startDate = medicine.startDate ? new Date(medicine.startDate.toDate ? medicine.startDate.toDate() : medicine.startDate) : new Date();
+            const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            return daysSinceStart % intervalDays === 0;
+            
+        case 'AS_NEEDED':
+            // As needed medicines don't show in timeline automatically
+            return false;
+            
+        default:
+            return true;
+    }
 }
 
 // Auto-mark missed medications
@@ -1705,4 +1756,76 @@ saveSettings = async function() {
 window.addEventListener('load', async () => {
     const hasPermission = await checkNotificationPermission();
     console.log('Notification permission:', Notification.permission);
+});
+
+
+// ========================================
+// INACTIVITY TIMER & DAY CHANGE CHECKER
+// ========================================
+
+// Start Inactivity Timer
+function startInactivityTimer() {
+    // Reset timer on any user activity
+    const resetTimer = () => {
+        if (inactivityTimer) {
+            clearTimeout(inactivityTimer);
+        }
+        
+        inactivityTimer = setTimeout(async () => {
+            console.log('User inactive for 15 minutes, logging out...');
+            showToast('15 dakika hareketsizlik nedeniyle çıkış yapılıyor...', 'warning');
+            
+            // Wait 2 seconds before logout
+            setTimeout(async () => {
+                await auth.signOut();
+            }, 2000);
+        }, INACTIVITY_TIMEOUT);
+    };
+    
+    // Listen to user activity events
+    const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    
+    activityEvents.forEach(event => {
+        document.addEventListener(event, resetTimer, true);
+    });
+    
+    // Start initial timer
+    resetTimer();
+}
+
+// Start Day Change Checker
+function startDayChangeChecker() {
+    // Check every minute if day has changed
+    dayChangeInterval = setInterval(() => {
+        const newDate = new Date().toDateString();
+        
+        if (newDate !== currentDate) {
+            console.log('Day changed, reloading dashboard...');
+            currentDate = newDate;
+            
+            // Show notification
+            showDoziMessage('Yeni güne hoş geldin! Dashboard yenileniyor... 🌅', 'morning');
+            
+            // Reload dashboard after 2 seconds
+            setTimeout(async () => {
+                await loadDashboard();
+            }, 2000);
+        }
+    }, 60000); // Check every minute
+}
+
+// Cleanup on logout
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        // Clear timers
+        if (inactivityTimer) {
+            clearTimeout(inactivityTimer);
+        }
+        if (dayChangeInterval) {
+            clearInterval(dayChangeInterval);
+        }
+        if (notificationListener) {
+            notificationListener();
+        }
+    }
 });

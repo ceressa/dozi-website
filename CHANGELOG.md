@@ -4,6 +4,45 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.5.0 - Dashboard Smart Features & Security (2026-02-03)
+**Type:** Feature + Security | **Impact:** High
+
+#### Added
+- 🎯 **Medicine Frequency Support**
+  - Dashboard now respects medicine frequency settings
+  - Supports DAILY, WEEKLY, INTERVAL, AS_NEEDED frequencies
+  - `shouldTakeMedicineToday()` function checks if medicine should be taken today
+  - Weekly medicines only show on specified days (weeklyDays array)
+  - Interval medicines show based on intervalDays and startDate
+  - As-needed medicines don't show in timeline automatically
+
+- 🌅 **Auto Day Change Detection**
+  - Dashboard automatically refreshes when day changes
+  - Checks every minute for date change
+  - Shows Dozi welcome message on new day
+  - Smooth transition with 2-second delay
+
+- 🔒 **15-Minute Inactivity Logout**
+  - Automatic logout after 15 minutes of inactivity
+  - Tracks user activity: mouse, keyboard, scroll, touch
+  - Warning toast before logout
+  - Improves security for shared devices
+
+#### Technical
+- Added `shouldTakeMedicineToday()` function with frequency logic
+- Added `startDayChangeChecker()` with 1-minute interval check
+- Added `startInactivityTimer()` with activity event listeners
+- Added global state: `inactivityTimer`, `dayChangeInterval`, `currentDate`
+- Added cleanup logic in `auth.onAuthStateChanged()` for memory leak prevention
+- Updated `buildTimeline()` to filter medicines by frequency
+
+#### Security
+- ✅ Auto-logout prevents unauthorized access on idle sessions
+- ✅ Timer cleanup prevents memory leaks
+- ✅ Notification listener properly closed on logout
+
+**Files:** `dozi/dashboard.js`, `dozi/DASHBOARD_IMPROVEMENTS_v1.1.md`
+
 ### v1.4.2 - Medicine Management Fixes & Reminders Tab (2026-02-02)
 **Type:** Fix + Feature | **Impact:** High
 
