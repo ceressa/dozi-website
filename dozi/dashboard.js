@@ -161,11 +161,33 @@ function calculateStats() {
     const activeMeds = dashboardData.medicines.filter(m => m.status === 'active' || !m.status);
     const totalDoses = activeMeds.length; // Basitleştirilmiş
     
-    // Bugün alınanlar
+    // Bugün alınanlar - güvenli tarih işleme
     const todayLogs = dashboardData.medicationLogs.filter(log => {
-        // Timestamp kontrolü
-        const logDate = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date(log.timestamp);
-        return logDate.toISOString().split('T')[0] === today && log.status === 'taken';
+        try {
+            // Timestamp kontrolü - güvenli
+            let logDate;
+            if (log.takenAt && log.takenAt._seconds) {
+                logDate = new Date(log.takenAt._seconds * 1000);
+            } else if (log.takenAt) {
+                logDate = new Date(log.takenAt);
+            } else if (log.timestamp && log.timestamp._seconds) {
+                logDate = new Date(log.timestamp._seconds * 1000);
+            } else if (log.timestamp) {
+                logDate = new Date(log.timestamp);
+            } else {
+                return false; // Tarih yok, filtrele
+            }
+            
+            // Geçersiz tarih kontrolü
+            if (isNaN(logDate.getTime())) {
+                return false;
+            }
+            
+            return logDate.toISOString().split('T')[0] === today && log.status === 'taken';
+        } catch (e) {
+            console.warn('Log tarih hatası:', e, log);
+            return false;
+        }
     });
 
     dashboardData.stats = {
@@ -619,13 +641,31 @@ function renderStatsPage() {
     const totalTaken = dashboardData.medicationLogs.filter(log => log.status === 'taken').length;
     set('statsTotalTaken', totalTaken);
     
-    // Calculate active days (unique dates with logs)
-    const uniqueDates = new Set(
-        dashboardData.medicationLogs.map(log => {
-            const date = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date();
-            return date.toISOString().split('T')[0];
-        })
-    );
+    // Calculate active days (unique dates with logs) - güvenli tarih işleme
+    const uniqueDates = new Set();
+    dashboardData.medicationLogs.forEach(log => {
+        try {
+            let date;
+            if (log.takenAt && log.takenAt._seconds) {
+                date = new Date(log.takenAt._seconds * 1000);
+            } else if (log.takenAt) {
+                date = new Date(log.takenAt);
+            } else if (log.timestamp && log.timestamp._seconds) {
+                date = new Date(log.timestamp._seconds * 1000);
+            } else if (log.timestamp) {
+                date = new Date(log.timestamp);
+            } else {
+                return; // Tarih yok, atla
+            }
+            
+            // Geçersiz tarih kontrolü
+            if (!isNaN(date.getTime())) {
+                uniqueDates.add(date.toISOString().split('T')[0]);
+            }
+        } catch (e) {
+            console.warn('Stats tarih hatası:', e, log);
+        }
+    });
     set('statsActiveDays', uniqueDates.size);
     
     // Render monthly chart
@@ -646,8 +686,26 @@ function renderStatsPage() {
         days.push(date.getDate() + '/' + (date.getMonth() + 1));
         
         const dayLogs = dashboardData.medicationLogs.filter(log => {
-            const logDate = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date();
-            return logDate.toISOString().split('T')[0] === dateStr;
+            try {
+                let logDate;
+                if (log.takenAt && log.takenAt._seconds) {
+                    logDate = new Date(log.takenAt._seconds * 1000);
+                } else if (log.takenAt) {
+                    logDate = new Date(log.takenAt);
+                } else if (log.timestamp && log.timestamp._seconds) {
+                    logDate = new Date(log.timestamp._seconds * 1000);
+                } else if (log.timestamp) {
+                    logDate = new Date(log.timestamp);
+                } else {
+                    return false;
+                }
+                
+                if (isNaN(logDate.getTime())) return false;
+                
+                return logDate.toISOString().split('T')[0] === dateStr;
+            } catch (e) {
+                return false;
+            }
         });
         
         takenData.push(dayLogs.filter(l => l.status === 'taken').length);

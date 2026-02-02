@@ -45,12 +45,34 @@ Official marketing website for **Dozi**, the AI-powered medication reminder app.
 |------|---------|---------|-------------|
 | **Homepage** | `/index.html` | `/en/index.html` | Main landing page with features |
 | **Download** | `/app/download.html` | `/app/index.html` | App download page |
+| **Web Dashboard** | `/dozi/dashboard.html` | - | User medication dashboard (Firebase Auth) |
 | **Blog** | `/blog/index.html` | - | Turkish blog articles |
 | **Privacy Policy** | `/privacy-policy.html` | - | Privacy policy (KVKK/GDPR) |
 | **Terms of Use** | `/terms-of-use.html` | - | Terms and conditions |
 | **Cookie Policy** | `/cookie-policy.html` | - | Cookie usage policy |
 | **Account Deletion** | `/account-deletion.html` | `/en/account-deletion.html` | Account deletion request form |
 | **Pharmacies** | `/eczacilara.html` | - | Pharmacy partnership page |
+
+### 🎯 Web Dashboard Features
+
+**URL**: `https://dozi.app/dozi/dashboard.html`
+
+The web dashboard provides users with a comprehensive view of their medication tracking:
+
+- **📊 Genel Bakış (Overview)**: Stats cards, weekly chart, recent activity
+- **💊 İlaçlarım (My Medicines)**: Beautiful medicine cards with dosage, frequency, and times
+- **📅 Bugün (Today)**: Timeline view with Al/Atla/Ertele action buttons
+- **👥 Badilerim (My Buddies)**: Family tracking contacts with avatar cards
+- **📈 İstatistikler (Statistics)**: Monthly performance charts and adherence metrics
+
+**Technical Stack**:
+- Firebase Auth for authentication
+- Firebase Functions for backend API (`getUserDashboardData`, `markMedicationTaken`)
+- Chart.js for data visualization
+- Responsive design with mobile support
+- Real-time data sync with Firestore
+
+**Security**: Top-level security with Firebase Auth session management and secure HTTPS.
 
 ### 📝 Blog Articles (Turkish)
 
@@ -116,6 +138,19 @@ dozi-website-temp/
 ├── en/
 │   ├── index.html                  # English homepage
 │   └── account-deletion.html       # English account deletion
+├── dozi/
+│   ├── dashboard.html              # Web dashboard (Firebase Auth)
+│   ├── dashboard.js                # Dashboard logic and API calls
+│   ├── dashboard.css               # Modern dashboard styling
+│   ├── auth.js                     # Firebase authentication
+│   ├── index.html                  # Dashboard login page
+│   ├── images/                     # Dozi brand images
+│   │   ├── dozi_brand.webp
+│   │   ├── dozi_happy.webp
+│   │   └── dozi_logo.webp
+│   ├── README.md                   # Dashboard documentation
+│   ├── SECURITY.md                 # Security implementation
+│   └── DEPLOYMENT.md               # Deployment guide
 ├── app/
 │   ├── download.html               # Turkish download page
 │   └── index.html                  # English download page
@@ -154,6 +189,7 @@ dozi-website-temp/
 ├── CNAME                           # Custom domain configuration
 ├── _config.yml                     # Jekyll configuration
 ├── .nojekyll                       # Disable Jekyll processing
+├── CHANGELOG.md                    # Version history
 ├── DEPLOYMENT_CHECKLIST.md         # Deployment guide
 ├── IMPLEMENTATION_SUMMARY.md       # Implementation notes
 ├── QUICK_REFERENCE.md              # Quick reference
