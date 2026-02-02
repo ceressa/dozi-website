@@ -1,11 +1,11 @@
 // Firebase Configuration - dozi.app için
 const firebaseConfig = {
-    apiKey: "AIzaSyBqZ9YqZ9YqZ9YqZ9YqZ9YqZ9YqZ9YqZ9Y",
-    authDomain: "dozi-app.firebaseapp.com",
-    projectId: "dozi-app",
-    storageBucket: "dozi-app.appspot.com",
-    messagingSenderId: "123456789012",
-    appId: "1:123456789012:web:abcdef123456"
+    apiKey: "AIzaSyBqxped2ZQS7uJHCX-MmCq0Nnj5Vtudloo",
+    authDomain: "dozi-cd7cc.firebaseapp.com",
+    projectId: "dozi-cd7cc",
+    storageBucket: "dozi-cd7cc.firebasestorage.app",
+    messagingSenderId: "393677078355",
+    appId: "1:393677078355:web:415e8d15c58ec4d48ceba6"
 };
 
 // Initialize Firebase
