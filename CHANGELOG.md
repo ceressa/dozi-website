@@ -4,6 +4,29 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.2.2 - Dynamic Dozi Character Animations (2026-02-02)
+**Type:** Enhancement | **Impact:** Medium
+
+#### Added
+- 🎭 **14 different Dozi emotions**: happy, bravo, congrats, king, love, star, time, anxious, cry, waiting, morning, sleepy, wink, idea, noted
+- 🎬 **Animated GIFs**: Special moments use animated Dozi (congrats, king, love, star, time)
+- ⏰ **Time-based greetings**: Morning, afternoon, evening messages with appropriate Dozi
+- 🎨 **Contextual empty states**: Different Dozi images for each empty state (waiting, family, happy5)
+- 👋 **Welcome animation**: Loading screen uses hosgeldin_anim.gif
+- 💬 **Interactive Dozi**: Click for random encouraging messages with emotions
+- 🎯 **Action feedback**: Different Dozi reactions for taken/skipped medications
+
+#### Changed
+- 🖼️ All Dozi images now use relative paths (../images/)
+- 🎨 Loading screen uses larger animated Dozi (120px)
+
+#### Technical
+- Emotion-to-image mapping system
+- Dynamic image switching based on context
+- Auto-reset to default Dozi after 5 seconds
+
+---
+
 ### v1.2.1 - Multi-Tab Dashboard (2026-02-02)
 **Type:** Feature | **Impact:** High
 
