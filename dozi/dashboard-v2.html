@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dozi Timeline</title>
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
+    
+    <link rel="stylesheet" href="dashboard-v2.css">
+</head>
+<body>
+    <!-- Loading -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="dozi-loader">
+            <img src="images/dozi_logo.webp" alt="Dozi" class="dozi-spin">
+            <p>Dozi hazırlanıyor...</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <img src="images/dozi_brand.webp" alt="Dozi" class="header-logo">
+                    <div class="header-info">
+                        <h1 id="userName">Kullanıcı</h1>
+                        <p id="todayDate">Bugün</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn" id="refreshBtn" title="Yenile">
+                        <i class="ri-refresh-line"></i>
+                    </button>
+                    <button class="icon-btn" id="logoutBtn" title="Çıkış">
+                        <i class="ri-logout-box-r-line"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-icon green">
+                    <i class="ri-checkbox-circle-fill"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-value" id="statTaken">0</span>
+                    <span class="stat-label">Alındı</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon orange">
+                    <i class="ri-time-fill"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-value" id="statPending">0</span>
+                    <span class="stat-label">Bekliyor</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon red">
+                    <i class="ri-close-circle-fill"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-value" id="statMissed">0</span>
+                    <span class="stat-label">Kaçırıldı</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon purple">
+                    <i class="ri-fire-fill"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-value" id="statStreak">0</span>
+                    <span class="stat-label">Seri</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2>İlaç Takvimi</h2>
+                <div class="timeline-filters">
+                    <button class="filter-btn active" data-filter="all">Tümü</button>
+                    <button class="filter-btn" data-filter="pending">Bekleyen</button>
+                    <button class="filter-btn" data-filter="taken">Alınan</button>
+                    <button class="filter-btn" data-filter="missed">Kaçırılan</button>
+                </div>
+            </div>
+
+            <div class="timeline" id="timeline">
+                <!-- Timeline items will be inserted here -->
+            </div>
+
+            <div class="empty-timeline" id="emptyTimeline" style="display: none;">
+                <img src="images/dozi_happy.webp" alt="Dozi" class="empty-dozi">
+                <h3>Bugün için ilaç yok!</h3>
+                <p>Harika! Bugün alman gereken ilaç bulunmuyor.</p>
+            </div>
+        </div>
+
+        <!-- Dozi Character (Floating) -->
+        <div class="dozi-character" id="doziCharacter">
+            <img src="images/dozi_happy.webp" alt="Dozi">
+            <div class="dozi-speech" id="doziSpeech" style="display: none;">
+                <p id="doziMessage">Merhaba!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="dashboard-v2.js"></script>
+</body>
+</html>
