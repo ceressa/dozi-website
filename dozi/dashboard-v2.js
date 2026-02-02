@@ -59,6 +59,27 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
+// Tab switching
+document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        
+        // Update active tab
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Update active content
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(tabName + 'Tab').classList.add('active');
+        
+        // Load data for the tab if needed
+        if (tabName === 'medicines') renderMedicines();
+        if (tabName === 'stats') renderStats();
+        if (tabName === 'badis') renderBadis();
+    });
+});
+
+
 // Load Dashboard
 async function loadDashboard() {
     try {
@@ -391,3 +412,210 @@ document.getElementById('doziCharacter')?.addEventListener('click', () => {
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
     showDoziMessage(randomMessage);
 });
+
+
+// Render Medicines Tab
+function renderMedicines() {
+    const grid = document.getElementById('medicinesGrid');
+    const empty = document.getElementById('emptyMedicines');
+    
+    if (dashboardData.medicines.length === 0) {
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+    }
+    
+    grid.style.display = 'grid';
+    empty.style.display = 'none';
+    
+    grid.innerHTML = dashboardData.medicines.map(med => `
+        <div class="medicine-card">
+            <div class="medicine-card-header">
+                <div class="medicine-icon">
+                    <i class="ri-capsule-fill"></i>
+                </div>
+                <div class="medicine-info">
+                    <h3>${med.name}</h3>
+                    <p>${med.dosage || '1 doz'}</p>
+                </div>
+            </div>
+            <div class="medicine-times">
+                ${(med.times || ['09:00']).map(time => `
+                    <span class="time-badge"><i class="ri-time-line"></i> ${time}</span>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+// Render Stats Tab
+function renderStats() {
+    // Calculate adherence
+    const last7Days = dashboardData.medicationLogs.filter(log => {
+        const logDate = new Date(log.takenAt?.toDate() || log.createdAt?.toDate());
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        return logDate >= weekAgo;
+    });
+    
+    const taken = last7Days.filter(log => log.status === 'TAKEN').length;
+    const total = last7Days.length;
+    const adherence = total > 0 ? Math.round((taken / total) * 100) : 0;
+    
+    document.getElementById('adherencePercent').textContent = `%${adherence}`;
+    document.getElementById('streakDays').textContent = dashboardData.user?.streak || 0;
+    
+    // Render weekly chart
+    renderWeeklyChart();
+}
+
+// Render Weekly Chart
+function renderWeeklyChart() {
+    const canvas = document.getElementById('weeklyStatsChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Get last 7 days data
+    const days = [];
+    const takenData = [];
+    const missedData = [];
+    
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dayStr = date.toLocaleDateString('tr-TR', { weekday: 'short' });
+        days.push(dayStr);
+        
+        const dayLogs = dashboardData.medicationLogs.filter(log => {
+            const logDate = new Date(log.takenAt?.toDate() || log.createdAt?.toDate());
+            return logDate.toDateString() === date.toDateString();
+        });
+        
+        takenData.push(dayLogs.filter(l => l.status === 'TAKEN').length);
+        missedData.push(dayLogs.filter(l => l.status === 'MISSED' || l.status === 'SKIPPED').length);
+    }
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [
+                {
+                    label: 'Alınan',
+                    data: takenData,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                },
+                {
+                    label: 'Kaçırılan',
+                    data: missedData,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Render Badis Tab
+async function renderBadis() {
+    const list = document.getElementById('badisList');
+    const empty = document.getElementById('emptyBadis');
+    
+    try {
+        // Fetch badis
+        const badisSnapshot = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('badis')
+            .get();
+        
+        if (badisSnapshot.empty) {
+            list.style.display = 'none';
+            empty.style.display = 'block';
+            return;
+        }
+        
+        list.style.display = 'grid';
+        empty.style.display = 'none';
+        
+        const badis = [];
+        for (const doc of badisSnapshot.docs) {
+            const badiData = doc.data();
+            
+            // Fetch badi user data
+            const badiUserDoc = await db.collection('users').doc(badiData.badiUserId).get();
+            const badiUser = badiUserDoc.data();
+            
+            // Fetch badi's today logs
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            const logsSnapshot = await db.collection('medication_logs')
+                .where('userId', '==', badiData.badiUserId)
+                .where('scheduledTime', '>=', firebase.firestore.Timestamp.fromDate(today))
+                .get();
+            
+            const taken = logsSnapshot.docs.filter(d => d.data().status === 'TAKEN').length;
+            const total = logsSnapshot.docs.length;
+            
+            badis.push({
+                name: badiUser?.displayName || 'Badi',
+                email: badiUser?.email || '',
+                taken: taken,
+                total: total
+            });
+        }
+        
+        list.innerHTML = badis.map(badi => {
+            const initial = badi.name.charAt(0).toUpperCase();
+            return `
+                <div class="badi-card">
+                    <div class="badi-card-header">
+                        <div class="badi-avatar">${initial}</div>
+                        <div class="badi-info">
+                            <h3>${badi.name}</h3>
+                            <p>${badi.email}</p>
+                        </div>
+                    </div>
+                    <div class="badi-stats">
+                        <div class="badi-stat">
+                            <div class="badi-stat-value">${badi.taken}</div>
+                            <div class="badi-stat-label">Alındı</div>
+                        </div>
+                        <div class="badi-stat">
+                            <div class="badi-stat-value">${badi.total}</div>
+                            <div class="badi-stat-label">Toplam</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+    } catch (error) {
+        console.error('Badis render error:', error);
+        list.style.display = 'none';
+        empty.style.display = 'block';
+    }
+}
