@@ -485,6 +485,28 @@ function startNotificationListener() {
         .limit(50)
         .onSnapshot((snapshot) => {
             const notifications = [];
+            let hasNewNotification = false;
+            
+            snapshot.docChanges().forEach(change => {
+                if (change.type === 'added') {
+                    const data = change.doc.data();
+                    
+                    // Check if this is a new notification (within last 10 seconds)
+                    const notifTime = data.timestamp?.toDate() || new Date();
+                    const now = new Date();
+                    const diffSeconds = (now - notifTime) / 1000;
+                    
+                    if (diffSeconds < 10 && data.eventType === 'NOTIFICATION_SENT') {
+                        hasNewNotification = true;
+                        // Send browser notification
+                        sendBrowserNotification(
+                            '💊 İlaç Hatırlatması',
+                            `${data.medicineName || 'İlaç'} alma zamanı!`,
+                            data
+                        );
+                    }
+                }
+            });
             
             snapshot.forEach(doc => {
                 const data = doc.data();
@@ -1375,3 +1397,214 @@ if (settingsTab) {
 // Make functions globally accessible
 window.openMedicineModal = openMedicineModal;
 window.deleteMedicine = deleteMedicine;
+
+
+// ========================================
+// BROWSER NOTIFICATIONS
+// ========================================
+
+// Check Notification Permission
+async function checkNotificationPermission() {
+    if (!('Notification' in window)) {
+        console.log('Bu tarayıcı bildirimleri desteklemiyor');
+        return false;
+    }
+    
+    if (Notification.permission === 'granted') {
+        return true;
+    }
+    
+    if (Notification.permission === 'denied') {
+        return false;
+    }
+    
+    return false;
+}
+
+// Request Notification Permission
+async function requestNotificationPermission() {
+    if (!('Notification' in window)) {
+        showToast('Bu tarayıcı bildirimleri desteklemiyor', 'error');
+        return false;
+    }
+    
+    if (Notification.permission === 'granted') {
+        return true;
+    }
+    
+    if (Notification.permission === 'denied') {
+        showToast('Bildirim izni reddedilmiş. Tarayıcı ayarlarından izin verebilirsiniz.', 'error');
+        return false;
+    }
+    
+    try {
+        const permission = await Notification.requestPermission();
+        
+        if (permission === 'granted') {
+            showToast('Bildirim izni verildi!', 'success');
+            
+            // Send test notification
+            new Notification('Dozi Bildirimleri Aktif! 🎉', {
+                body: 'Artık ilaç hatırlatmalarını tarayıcıdan alacaksınız.',
+                icon: '../dozi_brand.png',
+                badge: '../dozi_brand.png',
+                tag: 'dozi-welcome',
+                requireInteraction: false
+            });
+            
+            return true;
+        } else {
+            showToast('Bildirim izni verilmedi', 'warning');
+            return false;
+        }
+    } catch (error) {
+        console.error('Notification permission error:', error);
+        showToast('Bildirim izni alınırken hata oluştu', 'error');
+        return false;
+    }
+}
+
+// Send Browser Notification
+async function sendBrowserNotification(title, body, data = {}) {
+    // Check if notifications are enabled in settings
+    try {
+        const settingsDoc = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('settings')
+            .doc('preferences')
+            .get();
+        
+        const settings = settingsDoc.exists ? settingsDoc.data() : {};
+        
+        // Check if web notifications are enabled
+        if (!settings.webNotifications) {
+            console.log('Web notifications disabled in settings');
+            return;
+        }
+        
+        // Check quiet hours
+        if (settings.quietHours?.enabled) {
+            const now = new Date();
+            const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            const startTime = settings.quietHours.start || '22:00';
+            const endTime = settings.quietHours.end || '08:00';
+            
+            // Check if current time is in quiet hours
+            if (isInQuietHours(currentTime, startTime, endTime)) {
+                console.log('In quiet hours, notification suppressed');
+                return;
+            }
+        }
+        
+        // Check notification permission
+        if (Notification.permission !== 'granted') {
+            console.log('Notification permission not granted');
+            return;
+        }
+        
+        // Play notification sound if enabled
+        if (settings.notificationSound !== false) {
+            playNotificationSound();
+        }
+        
+        // Create notification
+        const notification = new Notification(title, {
+            body: body,
+            icon: '../dozi_brand.png',
+            badge: '../dozi_brand.png',
+            tag: data.medicineId || 'dozi-reminder',
+            requireInteraction: true,
+            vibrate: [200, 100, 200],
+            data: data
+        });
+        
+        // Handle notification click
+        notification.onclick = function(event) {
+            event.preventDefault();
+            window.focus();
+            notification.close();
+            
+            // Open notification panel
+            openNotificationPanel();
+        };
+        
+        // Auto close after 10 seconds
+        setTimeout(() => {
+            notification.close();
+        }, 10000);
+        
+    } catch (error) {
+        console.error('Error sending browser notification:', error);
+    }
+}
+
+// Check if time is in quiet hours
+function isInQuietHours(currentTime, startTime, endTime) {
+    // Convert times to minutes for comparison
+    const toMinutes = (time) => {
+        const [hours, minutes] = time.split(':').map(Number);
+        return hours * 60 + minutes;
+    };
+    
+    const current = toMinutes(currentTime);
+    const start = toMinutes(startTime);
+    const end = toMinutes(endTime);
+    
+    // Handle overnight quiet hours (e.g., 22:00 - 08:00)
+    if (start > end) {
+        return current >= start || current < end;
+    }
+    
+    // Normal quiet hours (e.g., 14:00 - 16:00)
+    return current >= start && current < end;
+}
+
+// Play Notification Sound
+function playNotificationSound() {
+    try {
+        // Create a simple beep sound using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+    } catch (error) {
+        console.error('Error playing notification sound:', error);
+    }
+}
+
+// Update saveSettings to request permission when enabling
+const originalSaveSettings = saveSettings;
+saveSettings = async function() {
+    const webNotificationsEnabled = webNotificationsToggle.checked;
+    
+    // If enabling web notifications, request permission first
+    if (webNotificationsEnabled) {
+        const hasPermission = await requestNotificationPermission();
+        
+        if (!hasPermission) {
+            // Revert toggle if permission denied
+            webNotificationsToggle.checked = false;
+            return;
+        }
+    }
+    
+    // Call original save function
+    await originalSaveSettings();
+};
+
+// Check permission on page load
+window.addEventListener('load', async () => {
+    const hasPermission = await checkNotificationPermission();
+    console.log('Notification permission:', Notification.permission);
+});
