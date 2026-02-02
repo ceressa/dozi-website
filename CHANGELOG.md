@@ -4,6 +4,53 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.4.2 - Medicine Management Fixes & Reminders Tab (2026-02-02)
+**Type:** Fix + Feature | **Impact:** High
+
+#### Fixed
+- 🐛 **Medicine deletion not working**
+  - Added `data-medicine-id` attribute to medicine cards
+  - Delete function now properly identifies medicine to delete
+  
+- 🐛 **Medicine editing opening as new medicine**
+  - `editingMedicineId` now properly set in `openMedicineModal()`
+  - Modal title and form correctly populate with existing medicine data
+  
+- 🐛 **Notification toggle showing incorrect state**
+  - `loadSettings()` now checks actual browser permission status
+  - Toggle only enabled if permission is granted
+  - Default values properly set when no settings exist
+  
+- 🔧 **Code cleanup**
+  - Removed duplicate `renderMedicines` wrapper function
+  - Cleaner medicine card rendering with inline action buttons
+
+#### Added
+- ⏰ **New Reminders Tab**
+  - View all medicine reminders in one place
+  - See reminder times, frequency, and active status
+  - Edit reminders (opens medicine modal)
+  - Toggle reminder active/inactive status
+  - Beautiful card-based UI with status badges
+  - Frequency labels (Daily, Weekly, Interval, As Needed)
+  
+- 🎨 **Reminder Card Styling**
+  - Glass morphism design
+  - Color-coded status badges (active/inactive)
+  - Time badges with alarm icons
+  - Hover effects and smooth transitions
+
+#### Technical
+- Added `renderReminders()` function
+- Added `toggleReminder()` function for active status control
+- Added reminder-specific CSS styles
+- Global function declarations for onclick handlers
+- Improved settings initialization logic
+
+**Files:** `dashboard.html`, `dashboard.css`, `dashboard.js`
+
+---
+
 ### v1.4.1 - Browser Notification Permission Fix (2026-02-02)
 **Type:** Fix | **Impact:** Medium
 
