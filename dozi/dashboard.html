@@ -6,213 +6,196 @@
     <title>Dozi Dashboard</title>
     <link rel="icon" type="image/png" href="../dozi_brand.png">
     
-    <!-- Firebase -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
     
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
-            <div class="logo-loader">
-                <img src="../dozi_brand.png" alt="Dozi">
-            </div>
-            <div class="loading-spinner"></div>
-            <p>Verileriniz yükleniyor...</p>
+            <div class="spinner"></div>
+            <p>Dozi hazırlanıyor...</p>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="dashboard-container" id="dashboardContainer" style="display: none;">
-        <!-- Sidebar -->
-        <aside class="sidebar">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="../dozi_brand.png" alt="Dozi" class="sidebar-logo">
-                <h2>Dozi</h2>
+                <div class="brand">
+                    <img src="../dozi_brand.png" alt="Dozi" class="brand-icon">
+                    <span class="brand-name">Dozi</span>
+                </div>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">
+                    <i class="ri-close-line"></i>
+                </button>
             </div>
 
-            <nav class="sidebar-nav">
-                <a href="#" class="nav-item active" data-page="overview">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-text">Genel Bakış</span>
+            <nav class="sidebar-menu">
+                <div class="menu-label">MENÜ</div>
+                <a href="#" class="menu-item active" data-page="overview">
+                    <i class="ri-dashboard-line"></i>
+                    <span>Genel Bakış</span>
                 </a>
-                <a href="#" class="nav-item" data-page="medicines">
-                    <span class="nav-icon">💊</span>
-                    <span class="nav-text">İlaçlarım</span>
+                <a href="#" class="menu-item" data-page="medicines">
+                    <i class="ri-capsule-line"></i>
+                    <span>İlaçlarım</span>
                 </a>
-                <a href="#" class="nav-item" data-page="today">
-                    <span class="nav-icon">📅</span>
-                    <span class="nav-text">Bugün</span>
-                    <span class="badge" id="todayBadge">0</span>
+                <a href="#" class="menu-item" data-page="today">
+                    <i class="ri-calendar-check-line"></i>
+                    <span>Bugün</span>
+                    <span class="badge" id="todayBadge" style="display:none">0</span>
                 </a>
-                <a href="#" class="nav-item" data-page="badis">
-                    <span class="nav-icon">👥</span>
-                    <span class="nav-text">Badilerim</span>
-                    <span class="badge badge-secondary" id="badisBadge">0</span>
+                <a href="#" class="menu-item" data-page="badis">
+                    <i class="ri-team-line"></i>
+                    <span>Badilerim</span>
+                    <span class="badge badge-soft" id="badisBadge" style="display:none">0</span>
                 </a>
-                <a href="#" class="nav-item" data-page="stats">
-                    <span class="nav-icon">📈</span>
-                    <span class="nav-text">İstatistikler</span>
+                <a href="#" class="menu-item" data-page="stats">
+                    <i class="ri-bar-chart-grouped-line"></i>
+                    <span>İstatistikler</span>
                 </a>
             </nav>
 
             <div class="sidebar-footer">
-                <div class="user-profile" id="userProfile">
-                    <img src="" alt="User" class="user-avatar" id="userAvatar">
+                <div class="user-card">
+                    <img src="../dozi_brand.png" alt="User" id="userAvatar" class="user-avatar">
                     <div class="user-info">
-                        <div class="user-name" id="userName">Yükleniyor...</div>
-                        <div class="user-email" id="userEmail"></div>
+                        <span class="user-name" id="userName">Kullanıcı</span>
+                        <span class="user-role">Dozi Üyesi</span>
                     </div>
                 </div>
-                <button class="logout-btn" id="logoutBtn">
-                    <span>🚪</span>
-                    Çıkış Yap
+                <button class="logout-btn" id="logoutBtn" title="Çıkış Yap">
+                    <i class="ri-logout-box-r-line"></i>
                 </button>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
-            <header class="header">
+            <header class="top-header">
                 <div class="header-left">
-                    <h1 id="pageTitle">Genel Bakış</h1>
-                    <p class="header-subtitle" id="pageSubtitle">İlaç takibinizin özeti</p>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="ri-menu-2-line"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Genel Bakış</h1>
                 </div>
                 <div class="header-right">
-                    <button class="icon-btn" id="refreshBtn" title="Yenile">
-                        <span>🔄</span>
+                    <button class="action-btn" id="refreshBtn">
+                        <i class="ri-refresh-line"></i>
                     </button>
-                    <button class="icon-btn" id="notificationBtn" title="Bildirimler">
-                        <span>🔔</span>
+                    <button class="action-btn">
+                        <i class="ri-notification-3-line"></i>
                         <span class="notification-dot"></span>
                     </button>
                 </div>
             </header>
 
-            <!-- Content Area -->
             <div class="content-area">
-                <!-- Overview Page -->
+                
                 <div class="page active" id="overviewPage">
-                    <!-- Stats Cards -->
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">💊</div>
-                            <div class="stat-content">
-                                <div class="stat-label">Toplam İlaç</div>
-                                <div class="stat-value" id="totalMedicines">0</div>
-                                <div class="stat-change positive">
-                                    <span>↑</span> Aktif
-                                </div>
+                            <div class="stat-icon blue">
+                                <i class="ri-capsule-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Toplam İlaç</span>
+                                <span class="stat-value" id="totalMedicines">0</span>
                             </div>
                         </div>
-
                         <div class="stat-card">
-                            <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">📅</div>
-                            <div class="stat-content">
-                                <div class="stat-label">Bugün</div>
-                                <div class="stat-value" id="todayDoses">0</div>
-                                <div class="stat-change">
-                                    <span id="todayTaken">0</span> alındı
-                                </div>
+                            <div class="stat-icon green">
+                                <i class="ri-checkbox-circle-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Bugün Alınan</span>
+                                <span class="stat-value"><span id="todayTaken">0</span>/<span id="todayDoses">0</span></span>
                             </div>
                         </div>
-
                         <div class="stat-card">
-                            <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🔥</div>
-                            <div class="stat-content">
-                                <div class="stat-label">Seri</div>
-                                <div class="stat-value" id="currentStreak">0</div>
-                                <div class="stat-change">
-                                    gün
-                                </div>
+                            <div class="stat-icon orange">
+                                <i class="ri-fire-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Seri</span>
+                                <span class="stat-value" id="currentStreak">0 Gün</span>
                             </div>
                         </div>
-
                         <div class="stat-card">
-                            <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">📊</div>
-                            <div class="stat-content">
-                                <div class="stat-label">Uyum Oranı</div>
-                                <div class="stat-value" id="adherenceRate">0%</div>
-                                <div class="stat-change positive">
-                                    <span>↑</span> Son 7 gün
-                                </div>
+                            <div class="stat-icon purple">
+                                <i class="ri-pie-chart-2-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Uyum</span>
+                                <span class="stat-value" id="adherenceRate">%0</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Charts Row -->
-                    <div class="charts-row">
-                        <div class="chart-card">
-                            <div class="chart-header">
-                                <h3>Son 7 Gün</h3>
-                                <select class="chart-filter" id="weekChartFilter">
-                                    <option value="7">7 Gün</option>
-                                    <option value="14">14 Gün</option>
-                                    <option value="30">30 Gün</option>
-                                </select>
+                    <div class="content-grid">
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h3>Haftalık Özet</h3>
                             </div>
-                            <canvas id="weeklyChart"></canvas>
+                            <div class="card-body">
+                                <canvas id="weeklyChart"></canvas>
+                            </div>
                         </div>
 
-                        <div class="chart-card">
-                            <div class="chart-header">
-                                <h3>İlaç Dağılımı</h3>
+                        <div class="card activity-card">
+                            <div class="card-header">
+                                <h3>Son Aktiviteler</h3>
+                                <button class="text-btn">Tümü</button>
                             </div>
-                            <canvas id="distributionChart"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Recent Activity -->
-                    <div class="activity-card">
-                        <div class="activity-header">
-                            <h3>Son Aktiviteler</h3>
-                            <button class="text-btn">Tümünü Gör</button>
-                        </div>
-                        <div class="activity-list" id="recentActivity">
-                            <!-- Activity items will be inserted here -->
+                            <div class="card-body no-padding">
+                                <div class="activity-list" id="recentActivity">
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Medicines Page -->
                 <div class="page" id="medicinesPage">
-                    <div class="medicines-grid" id="medicinesGrid">
-                        <!-- Medicine cards will be inserted here -->
+                    <div class="empty-state">
+                        <i class="ri-capsule-line"></i>
+                        <h3>İlaçların burada listelenir</h3>
                     </div>
                 </div>
-
-                <!-- Today Page -->
                 <div class="page" id="todayPage">
-                    <div class="today-timeline" id="todayTimeline">
-                        <!-- Today's doses will be inserted here -->
+                     <div class="empty-state">
+                        <i class="ri-calendar-check-line"></i>
+                        <h3>Bugünün takvimi</h3>
                     </div>
                 </div>
-
-                <!-- Badis Page -->
                 <div class="page" id="badisPage">
-                    <div class="badis-grid" id="badisGrid">
-                        <!-- Badi cards will be inserted here -->
+                     <div class="empty-state">
+                        <i class="ri-team-line"></i>
+                        <h3>Badilerin listesi</h3>
+                    </div>
+                </div>
+                 <div class="page" id="statsPage">
+                     <div class="empty-state">
+                        <i class="ri-bar-chart-grouped-line"></i>
+                        <h3>Detaylı istatistikler</h3>
                     </div>
                 </div>
 
-                <!-- Stats Page -->
-                <div class="page" id="statsPage">
-                    <div class="stats-detailed">
-                        <!-- Detailed stats will be inserted here -->
-                    </div>
-                </div>
             </div>
         </main>
     </div>
 
-    <script src="dashboard.js?v=3"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>
