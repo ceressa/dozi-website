@@ -822,3 +822,556 @@ async function renderBadis() {
         empty.style.display = 'block';
     }
 }
+
+
+// ========================================
+// NEW FEATURES: Medicine Management
+// ========================================
+
+let editingMedicineId = null;
+
+// Medicine Modal Controls
+const medicineModal = document.getElementById('medicineModal');
+const medicineModalOverlay = document.getElementById('medicineModalOverlay');
+const addMedicineBtn = document.getElementById('addMedicineBtn');
+const medicineModalClose = document.getElementById('medicineModalClose');
+const cancelMedicineBtn = document.getElementById('cancelMedicineBtn');
+const medicineForm = document.getElementById('medicineForm');
+const addReminderTimeBtn = document.getElementById('addReminderTimeBtn');
+
+// Open Medicine Modal
+function openMedicineModal(medicineId = null) {
+    editingMedicineId = medicineId;
+    const modalTitle = document.getElementById('medicineModalTitle');
+    
+    if (medicineId) {
+        modalTitle.textContent = 'İlaç Düzenle';
+        loadMedicineData(medicineId);
+    } else {
+        modalTitle.textContent = 'İlaç Ekle';
+        medicineForm.reset();
+        resetReminderTimes();
+    }
+    
+    medicineModal.classList.add('active');
+    medicineModalOverlay.classList.add('active');
+}
+
+// Close Medicine Modal
+function closeMedicineModal() {
+    medicineModal.classList.remove('active');
+    medicineModalOverlay.classList.remove('active');
+    editingMedicineId = null;
+    medicineForm.reset();
+}
+
+// Load Medicine Data for Editing
+async function loadMedicineData(medicineId) {
+    try {
+        const doc = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('medicines')
+            .doc(medicineId)
+            .get();
+        
+        if (!doc.exists) return;
+        
+        const medicine = doc.data();
+        
+        document.getElementById('medicineName').value = medicine.name || '';
+        document.getElementById('medicineDosage').value = medicine.dosage || '';
+        document.getElementById('medicineForm').value = medicine.form || 'TABLET';
+        document.getElementById('medicineFrequency').value = medicine.frequency || 'DAILY';
+        document.getElementById('medicineStock').value = medicine.stock || '';
+        document.getElementById('medicineNotes').value = medicine.notes || '';
+        
+        // Load reminder times
+        if (medicine.times && medicine.times.length > 0) {
+            const timesList = document.getElementById('reminderTimesList');
+            timesList.innerHTML = '';
+            
+            medicine.times.forEach((time, index) => {
+                addReminderTimeInput(time, index === 0);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading medicine:', error);
+        showToast('İlaç yüklenirken hata oluştu', 'error');
+    }
+}
+
+// Reset Reminder Times
+function resetReminderTimes() {
+    const timesList = document.getElementById('reminderTimesList');
+    timesList.innerHTML = '';
+    addReminderTimeInput('09:00', true);
+}
+
+// Add Reminder Time Input
+function addReminderTimeInput(value = '09:00', isFirst = false) {
+    const timesList = document.getElementById('reminderTimesList');
+    const timeItem = document.createElement('div');
+    timeItem.className = 'reminder-time-item';
+    
+    timeItem.innerHTML = `
+        <input type="time" class="form-input reminder-time-input" value="${value}" required>
+        <button type="button" class="btn-icon-small remove-time-btn" style="display: ${isFirst ? 'none' : 'inline-flex'};">
+            <i class="ri-close-line"></i>
+        </button>
+    `;
+    
+    const removeBtn = timeItem.querySelector('.remove-time-btn');
+    removeBtn.addEventListener('click', () => {
+        timeItem.remove();
+        updateRemoveButtons();
+    });
+    
+    timesList.appendChild(timeItem);
+}
+
+// Update Remove Buttons Visibility
+function updateRemoveButtons() {
+    const timeItems = document.querySelectorAll('.reminder-time-item');
+    timeItems.forEach((item, index) => {
+        const removeBtn = item.querySelector('.remove-time-btn');
+        removeBtn.style.display = timeItems.length === 1 ? 'none' : 'inline-flex';
+    });
+}
+
+// Save Medicine
+async function saveMedicine(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('medicineName').value.trim();
+    const dosage = document.getElementById('medicineDosage').value.trim();
+    const form = document.getElementById('medicineForm').value;
+    const frequency = document.getElementById('medicineFrequency').value;
+    const stock = document.getElementById('medicineStock').value;
+    const notes = document.getElementById('medicineNotes').value.trim();
+    
+    // Get reminder times
+    const timeInputs = document.querySelectorAll('.reminder-time-input');
+    const times = Array.from(timeInputs).map(input => input.value).filter(t => t);
+    
+    if (times.length === 0) {
+        showToast('En az bir hatırlatıcı saati ekleyin', 'error');
+        return;
+    }
+    
+    const medicineData = {
+        name,
+        dosage,
+        form,
+        frequency,
+        times,
+        stock: stock ? parseInt(stock) : null,
+        notes,
+        isActive: true,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    
+    try {
+        const medicinesRef = db.collection('users')
+            .doc(currentUser.uid)
+            .collection('medicines');
+        
+        if (editingMedicineId) {
+            // Update existing medicine
+            await medicinesRef.doc(editingMedicineId).update(medicineData);
+            showToast('İlaç güncellendi', 'success');
+        } else {
+            // Create new medicine
+            medicineData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+            await medicinesRef.add(medicineData);
+            showToast('İlaç eklendi', 'success');
+        }
+        
+        closeMedicineModal();
+        await renderMedicines();
+        
+    } catch (error) {
+        console.error('Error saving medicine:', error);
+        showToast('İlaç kaydedilirken hata oluştu', 'error');
+    }
+}
+
+// Delete Medicine
+async function deleteMedicine(medicineId, medicineName) {
+    if (!confirm(`"${medicineName}" ilacını silmek istediğinize emin misiniz?`)) {
+        return;
+    }
+    
+    try {
+        await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('medicines')
+            .doc(medicineId)
+            .delete();
+        
+        showToast('İlaç silindi', 'success');
+        await renderMedicines();
+        
+    } catch (error) {
+        console.error('Error deleting medicine:', error);
+        showToast('İlaç silinirken hata oluştu', 'error');
+    }
+}
+
+// Update renderMedicines to add action buttons
+const originalRenderMedicines = renderMedicines;
+renderMedicines = async function() {
+    await originalRenderMedicines();
+    
+    // Add action buttons to medicine cards
+    const medicineCards = document.querySelectorAll('.medicine-card');
+    medicineCards.forEach(card => {
+        const medicineId = card.dataset.medicineId;
+        const medicineName = card.querySelector('h3').textContent;
+        
+        // Check if actions already exist
+        if (card.querySelector('.medicine-card-actions')) return;
+        
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'medicine-card-actions';
+        actionsDiv.innerHTML = `
+            <button class="btn-edit" onclick="openMedicineModal('${medicineId}')">
+                <i class="ri-edit-line"></i>
+                Düzenle
+            </button>
+            <button class="btn-delete" onclick="deleteMedicine('${medicineId}', '${medicineName}')">
+                <i class="ri-delete-bin-line"></i>
+                Sil
+            </button>
+        `;
+        
+        card.appendChild(actionsDiv);
+    });
+};
+
+// Event Listeners
+addMedicineBtn.addEventListener('click', () => openMedicineModal());
+medicineModalClose.addEventListener('click', closeMedicineModal);
+cancelMedicineBtn.addEventListener('click', closeMedicineModal);
+medicineModalOverlay.addEventListener('click', closeMedicineModal);
+medicineForm.addEventListener('submit', saveMedicine);
+addReminderTimeBtn.addEventListener('click', () => {
+    addReminderTimeInput('09:00', false);
+    updateRemoveButtons();
+});
+
+// ========================================
+// NEW FEATURES: Enhanced Statistics
+// ========================================
+
+let dailyPatternChart = null;
+let medicineAdherenceChart = null;
+
+// Render Daily Pattern Chart
+async function renderDailyPatternChart() {
+    const canvas = document.getElementById('dailyPatternChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    try {
+        // Get medication logs for last 30 days
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        
+        const logsSnapshot = await db.collection('medication_logs')
+            .where('userId', '==', currentUser.uid)
+            .where('scheduledTime', '>=', firebase.firestore.Timestamp.fromDate(thirtyDaysAgo))
+            .where('status', '==', 'TAKEN')
+            .get();
+        
+        // Group by hour
+        const hourCounts = new Array(24).fill(0);
+        
+        logsSnapshot.forEach(doc => {
+            const log = doc.data();
+            if (log.takenAt) {
+                const hour = log.takenAt.toDate().getHours();
+                hourCounts[hour]++;
+            }
+        });
+        
+        // Destroy existing chart
+        if (dailyPatternChart) {
+            dailyPatternChart.destroy();
+        }
+        
+        dailyPatternChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+                datasets: [{
+                    label: 'İlaç Sayısı',
+                    data: hourCounts,
+                    backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error rendering daily pattern chart:', error);
+    }
+}
+
+// Render Medicine Adherence Chart
+async function renderMedicineAdherenceChart() {
+    const canvas = document.getElementById('medicineAdherenceChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    try {
+        // Get medicines
+        const medicinesSnapshot = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('medicines')
+            .where('isActive', '==', true)
+            .get();
+        
+        const medicineNames = [];
+        const adherenceRates = [];
+        
+        for (const doc of medicinesSnapshot.docs) {
+            const medicine = doc.data();
+            
+            // Calculate adherence for this medicine
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            const logsSnapshot = await db.collection('medication_logs')
+                .where('userId', '==', currentUser.uid)
+                .where('medicineId', '==', doc.id)
+                .where('scheduledTime', '>=', firebase.firestore.Timestamp.fromDate(thirtyDaysAgo))
+                .get();
+            
+            let taken = 0;
+            let total = 0;
+            
+            logsSnapshot.forEach(logDoc => {
+                const log = logDoc.data();
+                total++;
+                if (log.status === 'TAKEN') taken++;
+            });
+            
+            if (total > 0) {
+                medicineNames.push(medicine.name);
+                adherenceRates.push(Math.round((taken / total) * 100));
+            }
+        }
+        
+        // Destroy existing chart
+        if (medicineAdherenceChart) {
+            medicineAdherenceChart.destroy();
+        }
+        
+        medicineAdherenceChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: medicineNames,
+                datasets: [{
+                    label: 'Uyum Oranı (%)',
+                    data: adherenceRates,
+                    backgroundColor: adherenceRates.map(rate => 
+                        rate >= 80 ? 'rgba(16, 185, 129, 0.6)' :
+                        rate >= 60 ? 'rgba(245, 158, 11, 0.6)' :
+                        'rgba(239, 68, 68, 0.6)'
+                    ),
+                    borderColor: adherenceRates.map(rate => 
+                        rate >= 80 ? 'rgba(16, 185, 129, 1)' :
+                        rate >= 60 ? 'rgba(245, 158, 11, 1)' :
+                        'rgba(239, 68, 68, 1)'
+                    ),
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error rendering medicine adherence chart:', error);
+    }
+}
+
+// Update renderStats to include new charts
+const originalRenderStats = renderStats;
+renderStats = async function() {
+    await originalRenderStats();
+    await renderDailyPatternChart();
+    await renderMedicineAdherenceChart();
+};
+
+// ========================================
+// NEW FEATURES: Settings & Notifications
+// ========================================
+
+// Settings Controls
+const webNotificationsToggle = document.getElementById('webNotificationsToggle');
+const notificationSoundToggle = document.getElementById('notificationSoundToggle');
+const reminderFrequency = document.getElementById('reminderFrequency');
+const quietHoursToggle = document.getElementById('quietHoursToggle');
+const quietHoursSettings = document.getElementById('quietHoursSettings');
+const quietHoursStart = document.getElementById('quietHoursStart');
+const quietHoursEnd = document.getElementById('quietHoursEnd');
+const themeSelect = document.getElementById('themeSelect');
+const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+const resetSettingsBtn = document.getElementById('resetSettingsBtn');
+
+// Load Settings
+async function loadSettings() {
+    try {
+        const doc = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('settings')
+            .doc('preferences')
+            .get();
+        
+        if (doc.exists) {
+            const settings = doc.data();
+            
+            webNotificationsToggle.checked = settings.webNotifications || false;
+            notificationSoundToggle.checked = settings.notificationSound !== false;
+            reminderFrequency.value = settings.reminderFrequency || '30';
+            quietHoursToggle.checked = settings.quietHours?.enabled || false;
+            quietHoursStart.value = settings.quietHours?.start || '22:00';
+            quietHoursEnd.value = settings.quietHours?.end || '08:00';
+            themeSelect.value = settings.theme || 'light';
+            
+            // Show/hide quiet hours settings
+            quietHoursSettings.style.display = quietHoursToggle.checked ? 'block' : 'none';
+        }
+    } catch (error) {
+        console.error('Error loading settings:', error);
+    }
+}
+
+// Save Settings
+async function saveSettings() {
+    try {
+        const settings = {
+            webNotifications: webNotificationsToggle.checked,
+            notificationSound: notificationSoundToggle.checked,
+            reminderFrequency: reminderFrequency.value,
+            quietHours: {
+                enabled: quietHoursToggle.checked,
+                start: quietHoursStart.value,
+                end: quietHoursEnd.value
+            },
+            theme: themeSelect.value,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        
+        await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('settings')
+            .doc('preferences')
+            .set(settings, { merge: true });
+        
+        showToast('Ayarlar kaydedildi', 'success');
+        
+        // Request notification permission if enabled
+        if (settings.webNotifications && 'Notification' in window) {
+            if (Notification.permission === 'default') {
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    showToast('Bildirim izni verildi', 'success');
+                }
+            }
+        }
+        
+    } catch (error) {
+        console.error('Error saving settings:', error);
+        showToast('Ayarlar kaydedilirken hata oluştu', 'error');
+    }
+}
+
+// Reset Settings
+async function resetSettings() {
+    if (!confirm('Tüm ayarları sıfırlamak istediğinize emin misiniz?')) {
+        return;
+    }
+    
+    try {
+        await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('settings')
+            .doc('preferences')
+            .delete();
+        
+        // Reset form
+        webNotificationsToggle.checked = false;
+        notificationSoundToggle.checked = true;
+        reminderFrequency.value = '30';
+        quietHoursToggle.checked = false;
+        quietHoursStart.value = '22:00';
+        quietHoursEnd.value = '08:00';
+        themeSelect.value = 'light';
+        quietHoursSettings.style.display = 'none';
+        
+        showToast('Ayarlar sıfırlandı', 'success');
+        
+    } catch (error) {
+        console.error('Error resetting settings:', error);
+        showToast('Ayarlar sıfırlanırken hata oluştu', 'error');
+    }
+}
+
+// Event Listeners
+quietHoursToggle.addEventListener('change', () => {
+    quietHoursSettings.style.display = quietHoursToggle.checked ? 'block' : 'none';
+});
+
+saveSettingsBtn.addEventListener('click', saveSettings);
+resetSettingsBtn.addEventListener('click', resetSettings);
+
+// Load settings when settings tab is opened
+const settingsTab = document.querySelector('[data-tab="settings"]');
+if (settingsTab) {
+    settingsTab.addEventListener('click', loadSettings);
+}
+
+// Make functions globally accessible
+window.openMedicineModal = openMedicineModal;
+window.deleteMedicine = deleteMedicine;

@@ -76,6 +76,10 @@
                 <i class="ri-team-line"></i>
                 <span>Badilerim</span>
             </button>
+            <button class="nav-tab" data-tab="settings">
+                <i class="ri-settings-3-line"></i>
+                <span>Ayarlar</span>
+            </button>
         </div>
 
         <!-- Tab Content: Today -->
@@ -146,13 +150,20 @@
 
         <!-- Tab Content: Medicines -->
         <div class="tab-content" id="medicinesTab">
+            <div class="medicines-header">
+                <h2>İlaçlarım</h2>
+                <button class="btn-primary" id="addMedicineBtn">
+                    <i class="ri-add-line"></i>
+                    İlaç Ekle
+                </button>
+            </div>
             <div class="medicines-grid" id="medicinesGrid">
                 <!-- Medicine cards will be inserted here -->
             </div>
             <div class="empty-state" id="emptyMedicines" style="display: none;">
                 <img src="../images/dozi_waiting.webp" alt="Dozi" class="empty-dozi">
                 <h3>Henüz ilaç eklenmemiş</h3>
-                <p>Mobil uygulamadan ilaç ekleyebilirsin.</p>
+                <p>Yukarıdaki butona tıklayarak ilaç ekleyebilirsin.</p>
             </div>
         </div>
 
@@ -176,9 +187,35 @@
                     <div class="stat-card-desc">Gün üst üste</div>
                 </div>
             </div>
-            <div class="weekly-chart-container">
-                <h3>Haftalık Performans</h3>
+            
+            <!-- Weekly Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Haftalık Performans</h3>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-dot green"></span> Alındı</span>
+                        <span class="legend-item"><span class="legend-dot red"></span> Kaçırıldı</span>
+                    </div>
+                </div>
                 <canvas id="weeklyStatsChart"></canvas>
+            </div>
+
+            <!-- Daily Pattern Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Günlük Dağılım</h3>
+                    <p class="chart-desc">Hangi saatlerde daha çok ilaç alıyorsun?</p>
+                </div>
+                <canvas id="dailyPatternChart"></canvas>
+            </div>
+
+            <!-- Medicine Adherence Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>İlaç Bazlı Uyum</h3>
+                    <p class="chart-desc">Her ilacın uyum oranı</p>
+                </div>
+                <canvas id="medicineAdherenceChart"></canvas>
             </div>
         </div>
 
@@ -191,6 +228,109 @@
                 <img src="../images/dozi_family.webp" alt="Dozi" class="empty-dozi">
                 <h3>Henüz badi eklenmemiş</h3>
                 <p>Mobil uygulamadan aile üyelerini ekleyebilirsin.</p>
+            </div>
+        </div>
+
+        <!-- Tab Content: Settings -->
+        <div class="tab-content" id="settingsTab">
+            <div class="settings-container">
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <i class="ri-notification-3-line"></i>
+                        <h3>Bildirim Ayarları</h3>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-info">
+                            <h4>Web Bildirimleri</h4>
+                            <p>Tarayıcı bildirimleri al</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="webNotificationsToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-info">
+                            <h4>Bildirim Sesi</h4>
+                            <p>Bildirim geldiğinde ses çal</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notificationSoundToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-info">
+                            <h4>Hatırlatma Sıklığı</h4>
+                            <p>Kaçırılan ilaçlar için tekrar hatırlat</p>
+                        </div>
+                        <select class="settings-select" id="reminderFrequency">
+                            <option value="never">Hiçbir zaman</option>
+                            <option value="15">15 dakika sonra</option>
+                            <option value="30" selected>30 dakika sonra</option>
+                            <option value="60">1 saat sonra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <i class="ri-moon-line"></i>
+                        <h3>Sessiz Saatler</h3>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-info">
+                            <h4>Sessiz Saatleri Etkinleştir</h4>
+                            <p>Belirli saatlerde bildirim alma</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="quietHoursToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item" id="quietHoursSettings" style="display: none;">
+                        <div class="time-range-picker">
+                            <div class="time-input-group">
+                                <label>Başlangıç</label>
+                                <input type="time" id="quietHoursStart" value="22:00">
+                            </div>
+                            <span class="time-separator">-</span>
+                            <div class="time-input-group">
+                                <label>Bitiş</label>
+                                <input type="time" id="quietHoursEnd" value="08:00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <i class="ri-palette-line"></i>
+                        <h3>Görünüm</h3>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-info">
+                            <h4>Tema</h4>
+                            <p>Aydınlık veya karanlık mod</p>
+                        </div>
+                        <select class="settings-select" id="themeSelect">
+                            <option value="light" selected>Aydınlık</option>
+                            <option value="dark">Karanlık</option>
+                            <option value="auto">Otomatik</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn-secondary" id="resetSettingsBtn">
+                        <i class="ri-restart-line"></i>
+                        Ayarları Sıfırla
+                    </button>
+                    <button class="btn-primary" id="saveSettingsBtn">
+                        <i class="ri-save-line"></i>
+                        Kaydet
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -225,6 +365,87 @@
                 <h3>Henüz bildirim yok</h3>
                 <p>Yeni bildirimler burada görünecek</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Medicine Modal -->
+    <div class="modal-overlay" id="medicineModalOverlay"></div>
+    <div class="modal" id="medicineModal">
+        <div class="modal-header">
+            <h2 id="medicineModalTitle">İlaç Ekle</h2>
+            <button class="modal-close" id="medicineModalClose">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="medicineForm">
+                <div class="form-group">
+                    <label for="medicineName">İlaç Adı *</label>
+                    <input type="text" id="medicineName" class="form-input" placeholder="Örn: Aspirin" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medicineDosage">Doz *</label>
+                        <input type="text" id="medicineDosage" class="form-input" placeholder="Örn: 100mg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineForm">Form</label>
+                        <select id="medicineForm" class="form-select">
+                            <option value="TABLET">Tablet</option>
+                            <option value="CAPSULE">Kapsül</option>
+                            <option value="SYRUP">Şurup</option>
+                            <option value="INJECTION">Enjeksiyon</option>
+                            <option value="CREAM">Krem</option>
+                            <option value="DROP">Damla</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicineFrequency">Kullanım Sıklığı *</label>
+                    <select id="medicineFrequency" class="form-select" required>
+                        <option value="DAILY">Her gün</option>
+                        <option value="WEEKLY">Haftada belirli günler</option>
+                        <option value="INTERVAL">Belirli aralıklarla</option>
+                        <option value="AS_NEEDED">Gerektiğinde</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="reminderTimesGroup">
+                    <label>Hatırlatıcı Saatleri *</label>
+                    <div id="reminderTimesList">
+                        <div class="reminder-time-item">
+                            <input type="time" class="form-input reminder-time-input" value="09:00" required>
+                            <button type="button" class="btn-icon-small remove-time-btn" style="display: none;">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary btn-small" id="addReminderTimeBtn">
+                        <i class="ri-add-line"></i>
+                        Saat Ekle
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicineStock">Stok (Opsiyonel)</label>
+                    <input type="number" id="medicineStock" class="form-input" placeholder="Kalan ilaç sayısı" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="medicineNotes">Notlar (Opsiyonel)</label>
+                    <textarea id="medicineNotes" class="form-textarea" placeholder="İlaç hakkında notlar..." rows="3"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelMedicineBtn">İptal</button>
+                    <button type="submit" class="btn-primary" id="saveMedicineBtn">
+                        <i class="ri-save-line"></i>
+                        Kaydet
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

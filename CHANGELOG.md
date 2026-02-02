@@ -4,6 +4,45 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.4.0 - Medicine Management, Enhanced Stats & Settings (2026-02-02)
+**Type:** Feature | **Impact:** High
+
+#### Added
+- 💊 **Medicine Management System**
+  - Add new medicines directly from web dashboard
+  - Edit existing medicines (name, dosage, form, times, stock, notes)
+  - Delete medicines with confirmation
+  - Multiple reminder times per medicine
+  - Stock tracking support
+  - Medicine form selection (tablet, capsule, syrup, etc.)
+  - Frequency options (daily, weekly, interval, as needed)
+
+- 📊 **Enhanced Statistics**
+  - Daily pattern chart showing medication times by hour
+  - Medicine-specific adherence rates (horizontal bar chart)
+  - Color-coded adherence (green ≥80%, orange ≥60%, red <60%)
+  - Last 30 days analysis for all charts
+
+- ⚙️ **Settings & Preferences**
+  - Web push notifications toggle
+  - Notification sound control
+  - Reminder frequency settings (15/30/60 min)
+  - Quiet hours configuration (start/end time)
+  - Theme selection (light/dark/auto)
+  - Settings persistence in Firestore
+  - Reset settings option
+
+#### Technical
+- Modal system for medicine add/edit
+- Form validation and error handling
+- Firestore integration for settings storage
+- Chart.js integration for new visualizations
+- Responsive design for all new features
+
+**Files:** `dashboard.html`, `dashboard.css`, `dashboard.js`
+
+---
+
 ### v1.3.0 - Real-time Notification System & Animated Background (2026-02-02)
 **Type:** Feature | **Impact:** High
 
