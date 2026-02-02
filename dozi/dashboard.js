@@ -187,7 +187,7 @@ function calculateStreak() {
     // Group logs by date
     const logsByDate = {};
     medicationLogs.forEach(log => {
-        const date = log.scheduledTime.toDate();
+        const date = new Date(log.scheduledTime);
         date.setHours(0, 0, 0, 0);
         const dateKey = date.getTime();
 
@@ -223,7 +223,7 @@ function calculateAdherenceRate(days) {
     startDate.setHours(0, 0, 0, 0);
 
     const recentLogs = medicationLogs.filter(log => {
-        return log.scheduledTime.toDate() >= startDate;
+        return new Date(log.scheduledTime) >= startDate;
     });
 
     if (recentLogs.length === 0) return 0;
@@ -253,7 +253,7 @@ function renderWeeklyChart() {
         date.setHours(0, 0, 0, 0);
 
         const dayLogs = medicationLogs.filter(log => {
-            const logDate = log.scheduledTime.toDate();
+            const logDate = new Date(log.scheduledTime);
             logDate.setHours(0, 0, 0, 0);
             return logDate.getTime() === date.getTime();
         });
@@ -400,7 +400,7 @@ function renderRecentActivity() {
     container.innerHTML = recentLogs.map(log => {
         const medicine = medicines.find(m => m.id === log.medicineId);
         const medicineName = medicine ? medicine.name : 'Bilinmeyen İlaç';
-        const time = log.scheduledTime.toDate();
+        const time = new Date(log.scheduledTime);
         const timeStr = time.toLocaleString('tr-TR', { 
             day: 'numeric', 
             month: 'short', 
@@ -508,10 +508,10 @@ function renderTodayPage() {
     today.setHours(0, 0, 0, 0);
 
     const todayLogs = medicationLogs.filter(log => {
-        const logDate = log.scheduledTime.toDate();
+        const logDate = new Date(log.scheduledTime);
         logDate.setHours(0, 0, 0, 0);
         return logDate.getTime() === today.getTime();
-    }).sort((a, b) => a.scheduledTime.toDate() - b.scheduledTime.toDate());
+    }).sort((a, b) => new Date(a.scheduledTime) - new Date(b.scheduledTime));
 
     if (todayLogs.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px;">Bugün için doz yok</p>';
@@ -520,7 +520,7 @@ function renderTodayPage() {
 
     container.innerHTML = todayLogs.map(log => {
         const medicine = medicines.find(m => m.id === log.medicineId);
-        const time = log.scheduledTime.toDate();
+        const time = new Date(log.scheduledTime);
         const timeStr = time.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
 
         const statusConfig = {
