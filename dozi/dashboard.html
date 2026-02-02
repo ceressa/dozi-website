@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dozi Dashboard</title>
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="logo-loader">
+                <img src="../dozi_brand.png" alt="Dozi">
+            </div>
+            <div class="loading-spinner"></div>
+            <p>Verileriniz yükleniyor...</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="dashboard-container" id="dashboardContainer" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../dozi_brand.png" alt="Dozi" class="sidebar-logo">
+                <h2>Dozi</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Genel Bakış</span>
+                </a>
+                <a href="#" class="nav-item" data-page="medicines">
+                    <span class="nav-icon">💊</span>
+                    <span class="nav-text">İlaçlarım</span>
+                </a>
+                <a href="#" class="nav-item" data-page="today">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Bugün</span>
+                    <span class="badge" id="todayBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="badis">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Badilerim</span>
+                    <span class="badge badge-secondary" id="badisBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="stats">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">İstatistikler</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile" id="userProfile">
+                    <img src="" alt="User" class="user-avatar" id="userAvatar">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Yükleniyor...</div>
+                        <div class="user-email" id="userEmail"></div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <span>🚪</span>
+                    Çıkış Yap
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Genel Bakış</h1>
+                    <p class="header-subtitle" id="pageSubtitle">İlaç takibinizin özeti</p>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn" id="refreshBtn" title="Yenile">
+                        <span>🔄</span>
+                    </button>
+                    <button class="icon-btn" id="notificationBtn" title="Bildirimler">
+                        <span>🔔</span>
+                        <span class="notification-dot"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Overview Page -->
+                <div class="page active" id="overviewPage">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">💊</div>
+                            <div class="stat-content">
+                                <div class="stat-label">Toplam İlaç</div>
+                                <div class="stat-value" id="totalMedicines">0</div>
+                                <div class="stat-change positive">
+                                    <span>↑</span> Aktif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">📅</div>
+                            <div class="stat-content">
+                                <div class="stat-label">Bugün</div>
+                                <div class="stat-value" id="todayDoses">0</div>
+                                <div class="stat-change">
+                                    <span id="todayTaken">0</span> alındı
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🔥</div>
+                            <div class="stat-content">
+                                <div class="stat-label">Seri</div>
+                                <div class="stat-value" id="currentStreak">0</div>
+                                <div class="stat-change">
+                                    gün
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-label">Uyum Oranı</div>
+                                <div class="stat-value" id="adherenceRate">0%</div>
+                                <div class="stat-change positive">
+                                    <span>↑</span> Son 7 gün
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="charts-row">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Son 7 Gün</h3>
+                                <select class="chart-filter" id="weekChartFilter">
+                                    <option value="7">7 Gün</option>
+                                    <option value="14">14 Gün</option>
+                                    <option value="30">30 Gün</option>
+                                </select>
+                            </div>
+                            <canvas id="weeklyChart"></canvas>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>İlaç Dağılımı</h3>
+                            </div>
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <h3>Son Aktiviteler</h3>
+                            <button class="text-btn">Tümünü Gör</button>
+                        </div>
+                        <div class="activity-list" id="recentActivity">
+                            <!-- Activity items will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicines Page -->
+                <div class="page" id="medicinesPage">
+                    <div class="medicines-grid" id="medicinesGrid">
+                        <!-- Medicine cards will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Today Page -->
+                <div class="page" id="todayPage">
+                    <div class="today-timeline" id="todayTimeline">
+                        <!-- Today's doses will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Badis Page -->
+                <div class="page" id="badisPage">
+                    <div class="badis-grid" id="badisGrid">
+                        <!-- Badi cards will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Stats Page -->
+                <div class="page" id="statsPage">
+                    <div class="stats-detailed">
+                        <!-- Detailed stats will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
