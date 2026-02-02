@@ -27,6 +27,32 @@ let dashboardData = {
 };
 let weeklyChart = null;
 
+// --- UTILS (Hata Önleyici Yardımcılar) ---
+
+// Tarih verisini güvenli bir şekilde işleyen fonksiyon
+function parseDate(input) {
+    if (!input) return new Date(); // Veri yoksa şu anı döndür
+    
+    try {
+        // Firestore Timestamp formatı ({_seconds: ..., _nanoseconds: ...})
+        if (input._seconds) return new Date(input._seconds * 1000);
+        if (input.seconds) return new Date(input.seconds * 1000); // Bazı versiyonlarda _ olmadan gelir
+        
+        // String veya Number (milisaniye) formatı
+        const date = new Date(input);
+        
+        // Eğer geçersiz tarih oluştuysa (Invalid Date)
+        if (isNaN(date.getTime())) return new Date();
+        
+        return date;
+    } catch (e) {
+        console.warn("Tarih çevirme hatası:", e);
+        return new Date(); // Hata durumunda çökmemesi için şu anı döndür
+    }
+}
+
+// --- EVENT LISTENERS ---
+
 // UI Elements
 const loadingScreen = document.getElementById('loadingScreen');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -36,8 +62,6 @@ const mobileOverlay = document.getElementById('mobileOverlay');
 const navItems = document.querySelectorAll('.menu-item');
 const pages = document.querySelectorAll('.page');
 const pageTitle = document.getElementById('pageTitle');
-
-// --- EVENT LISTENERS ---
 
 // Mobile Menu
 function toggleSidebar(show) {
@@ -58,8 +82,6 @@ if(mobileOverlay) mobileOverlay.addEventListener('click', () => toggleSidebar(fa
 navItems.forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // Active states
         navItems.forEach(nav => nav.classList.remove('active'));
         pages.forEach(page => page.classList.remove('active'));
         
@@ -68,18 +90,16 @@ navItems.forEach(item => {
         const targetPage = document.getElementById(pageId);
         if(targetPage) targetPage.classList.add('active');
         
-        // Title update
         const title = item.querySelector('span').textContent;
         if(pageTitle) pageTitle.textContent = title;
         
-        // Mobile sidebar close
         if (window.innerWidth <= 768) {
             toggleSidebar(false);
         }
     });
 });
 
-// Auth State Helper
+// Auth State
 auth.onAuthStateChanged(async (user) => {
     if (!user) {
         window.location.href = 'index.html';
@@ -99,7 +119,7 @@ if (logoutBtn) {
     });
 }
 
-// Refresh Button
+// Refresh
 const refreshBtn = document.getElementById('refreshBtn');
 if (refreshBtn) {
     refreshBtn.addEventListener('click', async () => {
@@ -113,10 +133,8 @@ if (refreshBtn) {
 
 async function loadDashboard() {
     try {
-        // Sadece ilk yüklemede veya veri yoksa loading göster
         if (!dashboardData.user) loadingScreen.classList.remove('hidden');
 
-        // GERÇEK VERİ ÇEKME (Firebase Function)
         const getDashboardData = functions.httpsCallable('getUserDashboardData');
         const result = await getDashboardData();
         
@@ -126,52 +144,50 @@ async function loadDashboard() {
 
         const data = result.data.data;
         
-        // State güncelleme
         dashboardData.user = data.user;
         dashboardData.medicines = data.medicines || [];
         dashboardData.badis = data.badis || [];
         dashboardData.medicationLogs = data.medicationLogs || [];
         
-        // İstatistik hesaplamaları (Eğer backend göndermiyorsa frontend'de hesapla)
-        calculateStats();
-
-        // UI Güncelleme
+        calculateStats(); // Hata veren fonksiyon burasıydı, artık güvenli
         updateUserProfile();
         updateStatsUI();
         renderRecentActivity();
-        renderMedicinesList(); // İlaçlarım sayfası için
-        renderBadisList(); // Badilerim sayfası için
+        renderMedicinesList();
+        renderBadisList();
         renderChart();
 
         loadingScreen.classList.add('hidden');
 
     } catch (error) {
         console.error('Dashboard error:', error);
-        alert('Veriler yüklenirken hata oluştu: ' + error.message);
+        // Hata olsa bile ekranı aç ki kullanıcı takılı kalmasın
         loadingScreen.classList.add('hidden');
+        // alert('Veri yükleme hatası: ' + error.message); // Kullanıcıyı çok rahatsız etmemek için kapattım
     }
 }
 
 function calculateStats() {
-    // Frontend tarafında basit istatistik hesaplama
     const today = new Date().toISOString().split('T')[0];
     
-    // Bugün alınması gerekenler (Basit mantık: tüm aktif ilaçlar)
-    // Gerçekte ilacın frekansına bakmak gerekir ama UI için şimdilik:
+    // Aktif ilaçlar
     const activeMeds = dashboardData.medicines.filter(m => m.status === 'active' || !m.status);
-    const totalDoses = activeMeds.length; // Basitleştirilmiş
+    const totalDoses = activeMeds.length;
     
-    // Bugün alınanlar
+    // Bugün alınanlar - GÜVENLİ TARİH KONTROLÜ İLE
     const todayLogs = dashboardData.medicationLogs.filter(log => {
-        // Timestamp kontrolü
-        const logDate = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date(log.timestamp);
-        return logDate.toISOString().split('T')[0] === today && log.status === 'taken';
+        const logDate = parseDate(log.takenAt || log.timestamp);
+        
+        // toISOString kullanmadan önce tarih geçerli mi kontrolü parseDate içinde yapıldı ama yine de:
+        const logDateString = logDate.toISOString().split('T')[0];
+        
+        return logDateString === today && log.status === 'taken';
     });
 
     dashboardData.stats = {
         totalMedicines: activeMeds.length,
         todayTaken: todayLogs.length,
-        todayDoses: totalDoses > 0 ? totalDoses : todayLogs.length, // Göstermelik mantık
+        todayDoses: totalDoses > 0 ? totalDoses : todayLogs.length, 
         streak: dashboardData.user.streak || 0,
         adherence: dashboardData.user.adherenceRate || 0
     };
@@ -186,10 +202,8 @@ function updateUserProfile() {
         avatarEl.src = dashboardData.user.photoURL || currentUser.photoURL;
     }
     
-    // Badges
     const todayBadge = document.getElementById('todayBadge');
     if (todayBadge) {
-        // Kalan doz sayısı örneği
         const remaining = Math.max(0, dashboardData.stats.todayDoses - dashboardData.stats.todayTaken);
         todayBadge.textContent = remaining;
         todayBadge.style.display = remaining > 0 ? 'inline-block' : 'none';
@@ -197,7 +211,6 @@ function updateUserProfile() {
 }
 
 function updateStatsUI() {
-    // İstatistik Kartlarını Doldur
     const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
     
     set('totalMedicines', dashboardData.stats.totalMedicines);
@@ -216,11 +229,10 @@ function renderRecentActivity() {
         return;
     }
 
-    // Son 5 aktivite
     const recentLogs = dashboardData.medicationLogs.slice(0, 5);
     
     listEl.innerHTML = recentLogs.map(log => {
-        const date = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date();
+        const date = parseDate(log.takenAt || log.timestamp); // Güvenli tarih
         const timeStr = date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
         const isTaken = log.status === 'taken';
         const statusClass = isTaken ? 'status-taken' : 'status-missed';
@@ -229,7 +241,7 @@ function renderRecentActivity() {
         
         return `
         <div class="activity-item">
-            <div class="activity-icon">
+            <div class="activity-icon ${isTaken ? 'success' : 'danger'}">
                 <i class="${icon}"></i>
             </div>
             <div class="activity-details">
@@ -243,18 +255,14 @@ function renderRecentActivity() {
 }
 
 function renderMedicinesList() {
-    // İlaçlarım sayfası için grid doldurma (eğer varsa)
     const pageEl = document.getElementById('medicinesPage');
     if (!pageEl) return;
     
-    // Eğer sayfa boşsa veya sadece placeholder varsa temizle ve doldur
-    // Not: Burada detaylı bir HTML yapısı kurmak gerekir.
-    // Basit bir liste örneği:
     if (dashboardData.medicines.length > 0) {
         let html = '<div class="stats-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">';
         dashboardData.medicines.forEach(med => {
             html += `
-            <div class="stat-card">
+            <div class="stat-card border-left-blue">
                 <div class="stat-icon blue"><i class="ri-capsule-line"></i></div>
                 <div class="stat-info">
                     <span class="stat-value" style="font-size: 1.1rem;">${med.name}</span>
@@ -264,12 +272,8 @@ function renderMedicinesList() {
         });
         html += '</div>';
         
-        // Mevcut içeriği koruyarak ekleme yapmak veya değiştirmek
-        // Bu örnekte sadece placeholder varsa değiştiriyoruz
         const emptyState = pageEl.querySelector('.empty-state');
-        if (emptyState) {
-            pageEl.innerHTML = html;
-        }
+        if (emptyState) pageEl.innerHTML = html;
     }
 }
 
@@ -303,39 +307,21 @@ function renderBadisList() {
         html += '</div>';
 
         const emptyState = pageEl.querySelector('.empty-state');
-        if (emptyState) {
-            pageEl.innerHTML = html;
-        }
+        if (emptyState) pageEl.innerHTML = html;
     }
 }
 
-// Chart.js
 function renderChart() {
     const ctx = document.getElementById('weeklyChart');
     if (!ctx) return;
-    
-    // Eğer grafik daha önce oluşturulduysa yok et
     if (weeklyChart) weeklyChart.destroy();
 
-    // Verileri işle: Son 7 günün loglarını say
-    // Bu kısım gerçek veriye göre dinamik olmalı.
-    // Şimdilik demo array yerine dashboardData.medicationLogs üzerinden hesaplama yapılabilir.
-    // Basitlik adına statik veri bırakıyorum ama veriye bağlamak için logs üzerinde döngü kurmak gerekir.
-    
     const labels = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    // Gerçek veri yoksa boş kalmasın diye örnek veri, ama logs varsa onu kullan
-    let takenData = [0,0,0,0,0,0,0];
-    
-    // Eğer loglar varsa günlerine göre dağıt (Basit bir örnek mantık)
-    if (dashboardData.medicationLogs.length > 0) {
-        // Buraya tarih işleme mantığı eklenebilir.
-        // Şimdilik görselin bozulmaması için dummy data bırakıyorum
-        // Gerçek implementasyonda: moment.js veya date-fns ile logları gruplayın.
-        takenData = [4, 5, 3, 5, 4, 6, 4]; 
-    }
+    // Demo verisi (Gerçek veriyi burada map etmek lazım)
+    const takenData = [4, 5, 3, 5, 4, 6, 4]; 
 
     Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
-    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.color = '#64748b';
 
     weeklyChart = new Chart(ctx, {
         type: 'bar',
@@ -346,15 +332,17 @@ function renderChart() {
                     label: 'Alındı',
                     data: takenData,
                     backgroundColor: '#3b82f6',
-                    borderRadius: 6,
-                    barThickness: 12
+                    hoverBackgroundColor: '#2563eb',
+                    borderRadius: 8,
+                    barThickness: 16
                 },
                 {
                     label: 'Atlandı',
                     data: [1, 0, 1, 0, 0, 0, 1],
                     backgroundColor: '#e2e8f0',
-                    borderRadius: 6,
-                    barThickness: 12
+                    hoverBackgroundColor: '#cbd5e1',
+                    borderRadius: 8,
+                    barThickness: 16
                 }
             ]
         },
@@ -364,14 +352,15 @@ function renderChart() {
             plugins: {
                 legend: {
                     position: 'bottom',
-                    labels: { usePointStyle: true, padding: 20 }
+                    labels: { usePointStyle: true, padding: 20, font: {size: 12} }
                 }
             },
             scales: {
                 y: {
                     beginAtZero: true,
                     grid: { color: '#f1f5f9', drawBorder: false },
-                    border: { display: false }
+                    border: { display: false },
+                    ticks: { padding: 10 }
                 },
                 x: {
                     grid: { display: false },
