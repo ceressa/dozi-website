@@ -1687,3 +1687,180 @@ input:checked + .toggle-slider:before {
         text-align: center;
     }
 }
+
+/* ========================================
+   REMINDERS TAB
+   ======================================== */
+
+.reminders-header {
+    margin-bottom: 30px;
+}
+
+.reminders-header h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.reminders-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+.reminders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reminder-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.reminder-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.reminder-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.reminder-medicine-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reminder-medicine-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.reminder-medicine-details h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.reminder-medicine-details p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.reminder-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.reminder-status.active {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success);
+}
+
+.reminder-status.inactive {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.reminder-times-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.reminder-time-badge {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-weight: 500;
+}
+
+.reminder-time-badge i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.reminder-frequency {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.reminder-frequency i {
+    color: var(--info);
+}
+
+.reminder-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reminder-actions button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-edit-reminder {
+    background: rgba(102, 126, 234, 0.2);
+    color: var(--primary);
+}
+
+.btn-edit-reminder:hover {
+    background: rgba(102, 126, 234, 0.3);
+}
+
+.btn-toggle-reminder {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success);
+}
+
+.btn-toggle-reminder:hover {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+.btn-toggle-reminder.inactive {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.btn-toggle-reminder.inactive:hover {
+    background: rgba(239, 68, 68, 0.3);
+}

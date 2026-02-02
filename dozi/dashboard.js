@@ -647,7 +647,7 @@ function renderMedicines() {
     empty.style.display = 'none';
     
     grid.innerHTML = dashboardData.medicines.map(med => `
-        <div class="medicine-card">
+        <div class="medicine-card" data-medicine-id="${med.id}">
             <div class="medicine-card-header">
                 <div class="medicine-icon">
                     <i class="ri-capsule-fill"></i>
@@ -662,8 +662,106 @@ function renderMedicines() {
                     <span class="time-badge"><i class="ri-time-line"></i> ${time}</span>
                 `).join('')}
             </div>
+            <div class="medicine-card-actions">
+                <button class="btn-edit" onclick="openMedicineModal('${med.id}')">
+                    <i class="ri-edit-line"></i>
+                    Düzenle
+                </button>
+                <button class="btn-delete" onclick="deleteMedicine('${med.id}', '${med.name.replace(/'/g, "\\'")}')">
+                    <i class="ri-delete-bin-line"></i>
+                    Sil
+                </button>
+            </div>
         </div>
     `).join('');
+}
+
+// Render Reminders Tab
+function renderReminders() {
+    const list = document.getElementById('remindersList');
+    const empty = document.getElementById('emptyReminders');
+    
+    if (dashboardData.medicines.length === 0) {
+        list.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+    }
+    
+    list.style.display = 'flex';
+    empty.style.display = 'none';
+    
+    const frequencyLabels = {
+        'DAILY': 'Her gün',
+        'WEEKLY': 'Haftalık',
+        'INTERVAL': 'Belirli aralıklarla',
+        'AS_NEEDED': 'Gerektiğinde'
+    };
+    
+    list.innerHTML = dashboardData.medicines.map(med => `
+        <div class="reminder-card">
+            <div class="reminder-card-header">
+                <div class="reminder-medicine-info">
+                    <div class="reminder-medicine-icon">
+                        <i class="ri-capsule-fill"></i>
+                    </div>
+                    <div class="reminder-medicine-details">
+                        <h3>${med.name}</h3>
+                        <p>${med.dosage || '1 doz'}</p>
+                    </div>
+                </div>
+                <span class="reminder-status ${med.isActive ? 'active' : 'inactive'}">
+                    ${med.isActive ? 'Aktif' : 'Pasif'}
+                </span>
+            </div>
+            
+            <div class="reminder-frequency">
+                <i class="ri-repeat-line"></i>
+                <span>${frequencyLabels[med.frequency] || 'Her gün'}</span>
+            </div>
+            
+            <div class="reminder-times-grid">
+                ${(med.times || ['09:00']).map(time => `
+                    <div class="reminder-time-badge">
+                        <i class="ri-alarm-line"></i>
+                        <span>${time}</span>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="reminder-actions">
+                <button class="btn-edit-reminder" onclick="openMedicineModal('${med.id}')">
+                    <i class="ri-edit-line"></i>
+                    Düzenle
+                </button>
+                <button class="btn-toggle-reminder ${med.isActive ? '' : 'inactive'}" onclick="toggleReminder('${med.id}', ${!med.isActive})">
+                    <i class="ri-${med.isActive ? 'pause' : 'play'}-circle-line"></i>
+                    ${med.isActive ? 'Duraklat' : 'Aktifleştir'}
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Toggle Reminder Active Status
+async function toggleReminder(medicineId, newStatus) {
+    try {
+        await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('medicines')
+            .doc(medicineId)
+            .update({
+                isActive: newStatus,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        
+        showToast(newStatus ? 'Hatırlatma aktifleştirildi' : 'Hatırlatma duraklatıldı', 'success');
+        await loadDashboardData();
+        renderReminders();
+        
+    } catch (error) {
+        console.error('Error toggling reminder:', error);
+        showToast('Hatırlatma durumu değiştirilemedi', 'error');
+    }
 }
 
 // Render Stats Tab
@@ -1039,37 +1137,6 @@ async function deleteMedicine(medicineId, medicineName) {
     }
 }
 
-// Update renderMedicines to add action buttons
-const originalRenderMedicines = renderMedicines;
-renderMedicines = async function() {
-    await originalRenderMedicines();
-    
-    // Add action buttons to medicine cards
-    const medicineCards = document.querySelectorAll('.medicine-card');
-    medicineCards.forEach(card => {
-        const medicineId = card.dataset.medicineId;
-        const medicineName = card.querySelector('h3').textContent;
-        
-        // Check if actions already exist
-        if (card.querySelector('.medicine-card-actions')) return;
-        
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'medicine-card-actions';
-        actionsDiv.innerHTML = `
-            <button class="btn-edit" onclick="openMedicineModal('${medicineId}')">
-                <i class="ri-edit-line"></i>
-                Düzenle
-            </button>
-            <button class="btn-delete" onclick="deleteMedicine('${medicineId}', '${medicineName}')">
-                <i class="ri-delete-bin-line"></i>
-                Sil
-            </button>
-        `;
-        
-        card.appendChild(actionsDiv);
-    });
-};
-
 // Event Listeners
 addMedicineBtn.addEventListener('click', () => openMedicineModal());
 medicineModalClose.addEventListener('click', closeMedicineModal);
@@ -1284,6 +1351,9 @@ const resetSettingsBtn = document.getElementById('resetSettingsBtn');
 // Load Settings
 async function loadSettings() {
     try {
+        // Check current notification permission status
+        const hasPermission = await checkNotificationPermission();
+        
         const doc = await db.collection('users')
             .doc(currentUser.uid)
             .collection('settings')
@@ -1293,7 +1363,8 @@ async function loadSettings() {
         if (doc.exists) {
             const settings = doc.data();
             
-            webNotificationsToggle.checked = settings.webNotifications || false;
+            // Only enable toggle if permission is granted
+            webNotificationsToggle.checked = settings.webNotifications && hasPermission;
             notificationSoundToggle.checked = settings.notificationSound !== false;
             reminderFrequency.value = settings.reminderFrequency || '30';
             quietHoursToggle.checked = settings.quietHours?.enabled || false;
@@ -1303,6 +1374,16 @@ async function loadSettings() {
             
             // Show/hide quiet hours settings
             quietHoursSettings.style.display = quietHoursToggle.checked ? 'block' : 'none';
+        } else {
+            // Default values
+            webNotificationsToggle.checked = false;
+            notificationSoundToggle.checked = true;
+            reminderFrequency.value = '30';
+            quietHoursToggle.checked = false;
+            quietHoursStart.value = '22:00';
+            quietHoursEnd.value = '08:00';
+            themeSelect.value = 'light';
+            quietHoursSettings.style.display = 'none';
         }
     } catch (error) {
         console.error('Error loading settings:', error);
@@ -1411,6 +1492,7 @@ if (settingsTab) {
 // Make functions globally accessible
 window.openMedicineModal = openMedicineModal;
 window.deleteMedicine = deleteMedicine;
+window.toggleReminder = toggleReminder;
 
 
 // ========================================
