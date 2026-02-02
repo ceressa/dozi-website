@@ -4,6 +4,30 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.2.1 - Multi-Tab Dashboard (2026-02-02)
+**Type:** Feature | **Impact:** High
+
+#### Added
+- 🎯 **Tab navigation system** with 4 sections (Bugün, İlaçlarım, İstatistikler, Badilerim)
+- 💊 **Medicines tab**: Grid view of all active medicines with dosage times
+- 📊 **Stats tab**: Adherence rate, streak counter, weekly performance chart
+- 👥 **Badis tab**: Family members tracking with today's medication progress
+- 📱 **Mobile-responsive tabs**: Icons only on mobile, full labels on desktop
+- 📈 **Chart.js integration**: Weekly stats visualization with line chart
+- ⚡ **Smart data loading**: Each tab loads data only when accessed
+
+#### Changed
+- 🔄 Reorganized dashboard into tabbed interface for better UX
+- 🎨 Improved navigation with active state indicators
+
+#### Technical
+- Tab switching with smooth fade animations
+- Real-time Firestore queries for badis data
+- Chart.js for data visualization
+- Responsive grid layouts for all tabs
+
+---
+
 ### v1.2.0 - Dozi Timeline Dashboard (2026-02-02)
 **Type:** Feature | **Impact:** High
 
