@@ -532,25 +532,48 @@ function renderTodayPage() {
 
 // İlaç işaretleme fonksiyonu
 window.markMedication = async function(medicineId, time, action) {
+    const clickedButton = event?.target?.closest('button');
+    
     try {
         // Loading göster
-        const btn = event.target.closest('button');
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = '<i class="ri-loader-4-line"></i> İşleniyor...';
+        if (clickedButton) {
+            clickedButton.disabled = true;
+            clickedButton.innerHTML = '<i class="ri-loader-4-line"></i> İşleniyor...';
         }
 
-        // Firebase Function çağır
-        const markTaken = functions.httpsCallable('markMedicationTaken');
-        const result = await markTaken({
-            medicineId: medicineId,
-            scheduledTime: time,
-            status: action,
-            timestamp: new Date().toISOString()
-        });
+        // Önce log'u bul veya oluştur
+        const today = new Date().toISOString().split('T')[0];
+        const scheduledDateTime = `${today}T${time}:00`;
+        
+        // Log ID'yi bul (eğer varsa)
+        const existingLog = dashboardData.medicationLogs.find(log => 
+            log.medicineId === medicineId && 
+            log.scheduledTime && 
+            log.scheduledTime.includes(time)
+        );
 
-        if (!result.data.success) {
-            throw new Error(result.data.message || 'İşlem başarısız');
+        let logId = existingLog?.id;
+
+        // Eğer log yoksa, yeni log oluştur
+        if (!logId) {
+            // Firestore'a direkt yazalım
+            const logRef = await db.collection('medication_logs').add({
+                userId: currentUser.uid,
+                medicineId: medicineId,
+                scheduledTime: firebase.firestore.Timestamp.fromDate(new Date(scheduledDateTime)),
+                status: action.toUpperCase(),
+                takenAt: action === 'taken' ? firebase.firestore.Timestamp.now() : null,
+                takenVia: 'WEB_DASHBOARD',
+                createdAt: firebase.firestore.Timestamp.now()
+            });
+            logId = logRef.id;
+        } else {
+            // Mevcut log'u güncelle
+            await db.collection('medication_logs').doc(logId).update({
+                status: action.toUpperCase(),
+                takenAt: action === 'taken' ? firebase.firestore.FieldValue.serverTimestamp() : null,
+                takenVia: 'WEB_DASHBOARD'
+            });
         }
 
         // Başarılı mesajı
@@ -560,23 +583,22 @@ window.markMedication = async function(medicineId, time, action) {
             'postponed': '⏰ İlaç ertelendi'
         };
         
-        // Toast notification (basit alert yerine)
         showToast(messages[action] || 'İşlem tamamlandı');
 
         // Dashboard'u yenile
         await loadDashboard();
-        renderTodayPage(); // Bugün sayfasını tekrar render et
+        renderTodayPage();
 
     } catch (error) {
         console.error('Mark medication error:', error);
         showToast('❌ Hata: ' + error.message, 'error');
         
         // Butonu eski haline getir
-        if (btn) {
-            btn.disabled = false;
+        if (clickedButton) {
+            clickedButton.disabled = false;
             const icons = { 'taken': 'check', 'skipped': 'close', 'postponed': 'time' };
             const texts = { 'taken': 'Al', 'skipped': 'Atla', 'postponed': 'Ertele' };
-            btn.innerHTML = `<i class="ri-${icons[action]}-line"></i> ${texts[action]}`;
+            clickedButton.innerHTML = `<i class="ri-${icons[action]}-line"></i> ${texts[action]}`;
         }
     }
 };
