@@ -127,7 +127,16 @@ async function loadDashboard() {
         renderTimeline();
         
         showLoading(false);
-        showDoziMessage('Merhaba! Bugünün ilaçlarını görebilirsin 💊');
+        
+        // Show contextual Dozi message based on stats
+        const hour = new Date().getHours();
+        if (hour < 12) {
+            showDoziMessage('Günaydın! Bugünün ilaçlarını görebilirsin 💊', 'morning');
+        } else if (hour < 18) {
+            showDoziMessage('Merhaba! İlaçlarını almayı unutma 😊', 'happy');
+        } else {
+            showDoziMessage('İyi akşamlar! Bugünkü durumunu kontrol et 🌙', 'sleepy');
+        }
 
     } catch (error) {
         console.error('Dashboard error:', error);
@@ -334,7 +343,9 @@ window.markMedication = async function(medicineId, time, action) {
         showToast(messages[action] || 'İşlem tamamlandı', 'success');
         
         if (action === 'taken') {
-            showDoziMessage('Aferin! İlacını almayı unutmadın 🎉');
+            showDoziMessage('Aferin! İlacını almayı unutmadın 🎉', 'bravo');
+        } else {
+            showDoziMessage('Tamam, not aldım 📝', 'noted');
         }
 
         // Reload dashboard
@@ -387,30 +398,54 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
-// Show Dozi Message
-function showDoziMessage(message) {
+// Show Dozi Message with dynamic image
+function showDoziMessage(message, emotion = 'happy') {
     const doziSpeech = document.getElementById('doziSpeech');
     const doziMessage = document.getElementById('doziMessage');
+    const doziImg = document.querySelector('.dozi-character img');
     
+    // Emotion to image mapping
+    const emotions = {
+        'happy': 'dozi_happy.webp',
+        'bravo': 'dozi_bravo.webp',
+        'congrats': 'dozi_congrats_anim.gif',
+        'king': 'dozi_king_anim.gif',
+        'love': 'dozi_love_anim.gif',
+        'star': 'dozi_star_anim.gif',
+        'time': 'dozi_time_anim.gif',
+        'anxious': 'dozi_anxious.webp',
+        'cry': 'dozi_cry.webp',
+        'waiting': 'dozi_waiting.webp',
+        'morning': 'dozi_morning.webp',
+        'sleepy': 'dozi_sleepy.webp',
+        'wink': 'dozi_wink.webp',
+        'idea': 'dozi_idea.webp',
+        'noted': 'dozi_noted.webp'
+    };
+    
+    doziImg.src = `../images/${emotions[emotion] || emotions.happy}`;
     doziMessage.textContent = message;
     doziSpeech.style.display = 'block';
     
     setTimeout(() => {
         doziSpeech.style.display = 'none';
+        doziImg.src = '../images/dozi_happy.webp';
     }, 5000);
 }
 
 // Dozi Character Click
 document.getElementById('doziCharacter')?.addEventListener('click', () => {
     const messages = [
-        'Merhaba! Bugün nasılsın? 😊',
-        'İlaçlarını almayı unutma! 💊',
-        'Harika gidiyorsun! 🎉',
-        'Sağlığın çok önemli! ❤️',
-        'Her gün biraz daha iyisin! 🌟'
+        { text: 'Merhaba! Bugün nasılsın? 😊', emotion: 'happy' },
+        { text: 'İlaçlarını almayı unutma! 💊', emotion: 'time' },
+        { text: 'Harika gidiyorsun! 🎉', emotion: 'bravo' },
+        { text: 'Sağlığın çok önemli! ❤️', emotion: 'love' },
+        { text: 'Her gün biraz daha iyisin! 🌟', emotion: 'star' },
+        { text: 'Seninle gurur duyuyorum! 👑', emotion: 'king' },
+        { text: 'Devam et böyle! 💪', emotion: 'wink' }
     ];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    showDoziMessage(randomMessage);
+    const random = messages[Math.floor(Math.random() * messages.length)];
+    showDoziMessage(random.text, random.emotion);
 });
 
 
