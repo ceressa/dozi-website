@@ -154,7 +154,7 @@ function updateOverviewStats() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const todayLogs = medicationLogs.filter(log => {
-        const logDate = log.scheduledTime.toDate();
+        const logDate = new Date(log.scheduledTime);
         logDate.setHours(0, 0, 0, 0);
         return logDate.getTime() === today.getTime();
     });
