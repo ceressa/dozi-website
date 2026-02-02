@@ -4,6 +4,25 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.4.1 - Browser Notification Permission Fix (2026-02-02)
+**Type:** Fix | **Impact:** Medium
+
+#### Fixed
+- 🔔 **Immediate permission request on web notifications toggle**
+  - Added direct event listener to webNotificationsToggle
+  - Permission dialog now appears immediately when toggle is enabled
+  - Toggle automatically reverts if permission is denied
+  - User feedback with toast messages for permission status
+
+#### Technical
+- Event listener triggers `requestNotificationPermission()` on toggle change
+- Graceful handling of denied permissions
+- Better UX flow for notification setup
+
+**Files:** `dozi/dashboard.js`
+
+---
+
 ### v1.4.0 - Medicine Management, Enhanced Stats & Settings (2026-02-02)
 **Type:** Feature | **Impact:** High
 
