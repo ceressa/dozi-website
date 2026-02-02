@@ -469,6 +469,66 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="addMedicineModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Yeni İlaç Ekle</h2>
+            <button class="btn-icon-only" id="closeModalBtn">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="addMedicineForm">
+                <div class="form-group">
+                    <label class="form-label">İlaç Adı</label>
+                    <input type="text" class="form-control" placeholder="Örn: Aspirin" required>
+                </div>
+                
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div>
+                        <label class="form-label">Dozaj</label>
+                        <input type="text" class="form-control" placeholder="Örn: 1 Tablet">
+                    </div>
+                    <div>
+                        <label class="form-label">Tip</label>
+                        <select class="form-control">
+                            <option value="tablet">Hap / Tablet</option>
+                            <option value="syrup">Şurup</option>
+                            <option value="injection">İğne</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Kullanım Sıklığı</label>
+                    <select class="form-control" id="frequencySelect">
+                        <option value="daily">Her Gün</option>
+                        <option value="custom">Özel Günler</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Hatırlatma Saati</label>
+                    <input type="time" class="form-control" value="09:00">
+                </div>
+
+                <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+                    <label class="form-label" style="margin:0">Hatırlatıcılar Aktif</label>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Vazgeç</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <script src="dashboard.js"></script>
 </body>
 </html>
