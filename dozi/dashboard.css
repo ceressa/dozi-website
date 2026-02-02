@@ -804,3 +804,166 @@ body {
         justify-content: center;
     }
 }
+
+
+/* === İLAÇLARIM SAYFASI === */
+.medicines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.medicine-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.medicine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: var(--primary-light);
+}
+
+.medicine-card.inactive {
+    opacity: 0.6;
+    background: #f8fafc;
+}
+
+.medicine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.medicine-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.75rem;
+}
+
+.medicine-status {
+    display: flex;
+    gap: 8px;
+}
+
+.medicine-body h4 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.medicine-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.medicine-details p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-body);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.medicine-details i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* === BADİLERİM SAYFASI === */
+.badis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.badi-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.badi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: #e0f2fe;
+}
+
+.badi-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.badi-info {
+    flex: 1;
+}
+
+.badi-info h4 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.badi-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-body);
+    font-size: 0.875rem;
+    margin: 4px 0;
+}
+
+.badi-info i {
+    color: var(--primary);
+}
+
+.badi-status {
+    flex-shrink: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .medicines-grid,
+    .badis-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .badi-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .badi-info p {
+        justify-content: center;
+    }
+}

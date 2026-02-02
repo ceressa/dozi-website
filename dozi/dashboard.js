@@ -243,33 +243,57 @@ function renderRecentActivity() {
 }
 
 function renderMedicinesList() {
-    // İlaçlarım sayfası için grid doldurma (eğer varsa)
     const pageEl = document.getElementById('medicinesPage');
     if (!pageEl) return;
     
-    // Eğer sayfa boşsa veya sadece placeholder varsa temizle ve doldur
-    // Not: Burada detaylı bir HTML yapısı kurmak gerekir.
-    // Basit bir liste örneği:
     if (dashboardData.medicines.length > 0) {
-        let html = '<div class="stats-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">';
+        let html = `
+        <div style="text-align: center; margin-bottom: 32px;">
+            <img src="images/dozi_logo.webp" alt="Dozi" style="width: 100px; height: 100px; margin-bottom: 16px;">
+            <h2 style="color: var(--text-dark); margin-bottom: 8px;">İlaçlarım</h2>
+            <p style="color: var(--text-light);">Toplam ${dashboardData.medicines.length} ilaç takip ediliyor</p>
+        </div>
+        <div class="medicines-grid">`;
+        
         dashboardData.medicines.forEach(med => {
+            const isActive = med.status === 'active' || !med.status;
+            const times = med.times || ['09:00'];
+            const timesStr = times.join(', ');
+            
             html += `
-            <div class="stat-card">
-                <div class="stat-icon blue"><i class="ri-capsule-line"></i></div>
-                <div class="stat-info">
-                    <span class="stat-value" style="font-size: 1.1rem;">${med.name}</span>
-                    <span class="stat-label">${med.dosage || '1'} Doz • ${med.frequency || 'Her gün'}</span>
+            <div class="medicine-card ${isActive ? '' : 'inactive'}">
+                <div class="medicine-header">
+                    <div class="medicine-icon">
+                        <i class="ri-capsule-fill"></i>
+                    </div>
+                    <div class="medicine-status">
+                        <span class="status-badge ${isActive ? 'taken' : 'skipped'}">
+                            ${isActive ? 'Aktif' : 'Pasif'}
+                        </span>
+                    </div>
+                </div>
+                <div class="medicine-body">
+                    <h4>${med.name}</h4>
+                    <div class="medicine-details">
+                        <p><i class="ri-medicine-bottle-line"></i> ${med.dosage || '1 doz'}</p>
+                        <p><i class="ri-calendar-line"></i> ${med.frequency || 'Her gün'}</p>
+                        <p><i class="ri-time-line"></i> ${timesStr}</p>
+                        ${med.stock ? `<p><i class="ri-stack-line"></i> Stok: ${med.stock}</p>` : ''}
+                    </div>
                 </div>
             </div>`;
         });
         html += '</div>';
         
-        // Mevcut içeriği koruyarak ekleme yapmak veya değiştirmek
-        // Bu örnekte sadece placeholder varsa değiştiriyoruz
-        const emptyState = pageEl.querySelector('.empty-state');
-        if (emptyState) {
-            pageEl.innerHTML = html;
-        }
+        pageEl.innerHTML = html;
+    } else {
+        pageEl.innerHTML = `
+        <div class="empty-state">
+            <img src="images/dozi_brand.webp" alt="Dozi" style="width: 150px; height: 150px; margin-bottom: 24px; opacity: 0.7;">
+            <i class="ri-capsule-line"></i>
+            <h3>Henüz ilaç eklenmemiş</h3>
+            <p style="color: var(--text-light); margin-top: 8px;">Mobil uygulamadan ilaçlarını ekleyebilirsin</p>
+        </div>`;
     }
 }
 
@@ -285,27 +309,40 @@ function renderBadisList() {
     if (!pageEl) return;
 
     if (dashboardData.badis.length > 0) {
-        let html = '<div class="content-grid">';
+        let html = `
+        <div style="text-align: center; margin-bottom: 32px;">
+            <img src="images/dozi_happy.webp" alt="Dozi" style="width: 120px; height: 120px; margin-bottom: 16px;">
+            <h2 style="color: var(--text-dark); margin-bottom: 8px;">Badilerim</h2>
+            <p style="color: var(--text-light);">Seni takip eden ve destek olan sevdiklerin</p>
+        </div>
+        <div class="badis-grid">`;
+        
         dashboardData.badis.forEach(badi => {
+            const initial = (badi.name || badi.email || 'B').charAt(0).toUpperCase();
             html += `
-            <div class="card">
-                <div class="card-body" style="display:flex; align-items:center; gap:15px;">
-                    <div class="activity-icon" style="background:#e0f2fe; color:#0284c7;">
-                        <i class="ri-user-smile-line"></i>
-                    </div>
-                    <div>
-                        <h4 style="margin:0; color:var(--text-dark)">${badi.name || badi.email}</h4>
-                        <p style="margin:0; font-size:0.85rem; color:var(--text-light)">Badi</p>
-                    </div>
+            <div class="badi-card">
+                <div class="badi-avatar">${initial}</div>
+                <div class="badi-info">
+                    <h4>${badi.name || badi.email}</h4>
+                    <p><i class="ri-mail-line"></i> ${badi.email}</p>
+                    ${badi.phone ? `<p><i class="ri-phone-line"></i> ${badi.phone}</p>` : ''}
+                </div>
+                <div class="badi-status">
+                    <span class="status-badge taken">Aktif</span>
                 </div>
             </div>`;
         });
         html += '</div>';
 
-        const emptyState = pageEl.querySelector('.empty-state');
-        if (emptyState) {
-            pageEl.innerHTML = html;
-        }
+        pageEl.innerHTML = html;
+    } else {
+        pageEl.innerHTML = `
+        <div class="empty-state">
+            <img src="images/dozi_brand.webp" alt="Dozi" style="width: 150px; height: 150px; margin-bottom: 24px; opacity: 0.7;">
+            <i class="ri-team-line"></i>
+            <h3>Henüz badin yok</h3>
+            <p style="color: var(--text-light); margin-top: 8px;">Mobil uygulamadan sevdiklerini ekleyebilirsin</p>
+        </div>`;
     }
 }
 
@@ -557,6 +594,8 @@ navItems.forEach(item => {
         const page = this.dataset.page;
         if (page === 'today') {
             setTimeout(() => renderTodayPage(), 100);
+        } else if (page === 'stats') {
+            setTimeout(() => renderStatsPage(), 100);
         }
     });
 });
@@ -564,4 +603,100 @@ navItems.forEach(item => {
 // İlk yüklemede eğer bugün sayfası aktifse render et
 if (document.querySelector('[data-page="today"]').classList.contains('active')) {
     renderTodayPage();
+}
+
+// Stats page render function
+let monthlyChart = null;
+
+function renderStatsPage() {
+    // Update stat cards
+    const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+    
+    set('statsAdherence', `%${Math.round(dashboardData.stats.adherence)}`);
+    set('statsStreak', `${dashboardData.stats.streak} Gün`);
+    
+    // Calculate total taken from logs
+    const totalTaken = dashboardData.medicationLogs.filter(log => log.status === 'taken').length;
+    set('statsTotalTaken', totalTaken);
+    
+    // Calculate active days (unique dates with logs)
+    const uniqueDates = new Set(
+        dashboardData.medicationLogs.map(log => {
+            const date = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date();
+            return date.toISOString().split('T')[0];
+        })
+    );
+    set('statsActiveDays', uniqueDates.size);
+    
+    // Render monthly chart
+    const ctx = document.getElementById('monthlyChart');
+    if (!ctx) return;
+    
+    if (monthlyChart) monthlyChart.destroy();
+    
+    // Generate last 30 days data
+    const days = [];
+    const takenData = [];
+    const missedData = [];
+    
+    for (let i = 29; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        days.push(date.getDate() + '/' + (date.getMonth() + 1));
+        
+        const dayLogs = dashboardData.medicationLogs.filter(log => {
+            const logDate = log.takenAt ? new Date(log.takenAt._seconds * 1000) : new Date();
+            return logDate.toISOString().split('T')[0] === dateStr;
+        });
+        
+        takenData.push(dayLogs.filter(l => l.status === 'taken').length);
+        missedData.push(dayLogs.filter(l => l.status === 'missed' || l.status === 'skipped').length);
+    }
+    
+    monthlyChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [
+                {
+                    label: 'Alındı',
+                    data: takenData,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Kaçırıldı',
+                    data: missedData,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { usePointStyle: true, padding: 20 }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#f1f5f9', drawBorder: false },
+                    border: { display: false }
+                },
+                x: {
+                    grid: { display: false },
+                    border: { display: false }
+                }
+            }
+        }
+    });
 }

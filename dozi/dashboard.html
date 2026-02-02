@@ -186,9 +186,58 @@
                     </div>
                 </div>
                  <div class="page" id="statsPage">
-                     <div class="empty-state">
-                        <i class="ri-bar-chart-grouped-line"></i>
-                        <h3>Detaylı istatistikler</h3>
+                    <div style="text-align: center; margin-bottom: 32px;">
+                        <img src="images/dozi_logo.webp" alt="Dozi" style="width: 100px; height: 100px; margin-bottom: 16px;">
+                        <h2 style="color: var(--text-dark); margin-bottom: 8px;">İstatistikler</h2>
+                        <p style="color: var(--text-light);">İlaç takip performansın</p>
+                    </div>
+                    
+                    <div class="stats-grid" style="margin-bottom: 32px;">
+                        <div class="stat-card">
+                            <div class="stat-icon purple">
+                                <i class="ri-pie-chart-2-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Uyum Oranı</span>
+                                <span class="stat-value" id="statsAdherence">%0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">
+                                <i class="ri-fire-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Güncel Seri</span>
+                                <span class="stat-value" id="statsStreak">0 Gün</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <i class="ri-checkbox-circle-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Toplam Alınan</span>
+                                <span class="stat-value" id="statsTotalTaken">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <i class="ri-calendar-check-fill"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Aktif Gün</span>
+                                <span class="stat-value" id="statsActiveDays">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Aylık Performans</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="monthlyChart" style="max-height: 300px;"></canvas>
+                        </div>
                     </div>
                 </div>
 
@@ -196,6 +245,6 @@
         </main>
     </div>
 
-    <script src="dashboard.js"></script>
+    <script src="dashboard.js?v=4"></script>
 </body>
 </html>
