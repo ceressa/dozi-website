@@ -577,3 +577,230 @@ body {
         padding: 0 20px;
     }
 }
+
+
+/* === BUGÜN SAYFASI - TIMELINE === */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.timeline-item.taken {
+    border-left-color: #10b981;
+    background: linear-gradient(to right, #f0fdf4 0%, white 100%);
+}
+
+.timeline-item.skipped {
+    border-left-color: #ef4444;
+    background: linear-gradient(to right, #fef2f2 0%, white 100%);
+}
+
+.timeline-item.postponed {
+    border-left-color: #f59e0b;
+    background: linear-gradient(to right, #fffbeb 0%, white 100%);
+}
+
+.timeline-time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    min-width: 60px;
+    padding-top: 4px;
+}
+
+.timeline-content {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.timeline-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.timeline-item.taken .timeline-icon {
+    background: #d1fae5;
+    color: #10b981;
+}
+
+.timeline-item.skipped .timeline-icon {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.timeline-item.postponed .timeline-icon {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+.timeline-info {
+    flex: 1;
+}
+
+.timeline-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.timeline-info p {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.taken {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.status-badge.skipped {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.status-badge.postponed {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-badge:not(.taken):not(.skipped):not(.postponed) {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.timeline-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn-primary,
+.action-btn-secondary {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.action-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.action-btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.action-btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.action-btn-secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.action-btn-primary:disabled,
+.action-btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Toast Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .timeline-time {
+        min-width: auto;
+    }
+    
+    .timeline-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .timeline-actions {
+        width: 100%;
+    }
+    
+    .action-btn-primary,
+    .action-btn-secondary {
+        flex: 1;
+        justify-content: center;
+    }
+}
