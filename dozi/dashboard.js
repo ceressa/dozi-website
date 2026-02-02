@@ -156,6 +156,7 @@ async function loadDashboard() {
         renderMedicinesList();
         renderBadisList();
         renderChart();
+        renderTodaySchedule();
 
         loadingScreen.classList.add('hidden');
 
@@ -165,6 +166,104 @@ async function loadDashboard() {
         loadingScreen.classList.add('hidden');
         // alert('Veri yükleme hatası: ' + error.message); // Kullanıcıyı çok rahatsız etmemek için kapattım
     }
+}
+
+function renderTodaySchedule() {
+    const pageEl = document.getElementById('todayPage');
+    if (!pageEl) return;
+
+    // Eğer ilaç yoksa
+    if (!dashboardData.medicines || dashboardData.medicines.length === 0) {
+        pageEl.innerHTML = `
+            <div class="empty-state">
+                <i class="ri-calendar-check-line"></i>
+                <h3>Bugün için planlanmış ilaç yok</h3>
+                <p>İlaçlarım sayfasından yeni ilaç ekleyebilirsin.</p>
+            </div>`;
+        return;
+    }
+
+    // 1. Verileri Hazırla (Simülasyon Dahil)
+    // Gerçek uygulamada: medicine.times array'inden gelir.
+    // Burada demo için her ilaca rastgele bir saat atayıp sıralayacağız.
+    const today = new Date().toISOString().split('T')[0];
+    
+    let scheduleItems = dashboardData.medicines.map(med => {
+        // DEMO: Rastgele saat üret (08:00, 14:00, 20:00 gibi)
+        // Gerçekte: med.times || ['09:00'] kullanılır.
+        const mockHours = ["09:00", "13:30", "20:00", "22:00"]; 
+        const randomTime = med.scheduledTime || mockHours[Math.floor(Math.random() * mockHours.length)];
+        
+        // Bu ilaç bugün alınmış mı kontrol et
+        const isTaken = dashboardData.medicationLogs.some(log => {
+             const logDate = parseDate(log.takenAt || log.timestamp);
+             const logDay = logDate.toISOString().split('T')[0];
+             // Basit isim eşleşmesi (ID varsa ID kullanın)
+             return logDay === today && log.medicineName === med.name && log.status === 'taken';
+        });
+
+        return {
+            ...med,
+            time: randomTime,
+            status: isTaken ? 'taken' : 'pending' 
+        };
+    });
+
+    // Saate göre sırala
+    scheduleItems.sort((a, b) => a.time.localeCompare(b.time));
+
+    // 2. HTML Üret
+    let html = '<div class="timeline-container">';
+    
+    scheduleItems.forEach(item => {
+        // Durum belirleme (Geçmiş saat mi, gelecek mi?)
+        const now = new Date();
+        const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        let statusClass = '';
+        let statusText = 'Bekliyor';
+        let statusIcon = 'ri-time-line';
+
+        if (item.status === 'taken') {
+            statusClass = 'taken';
+            statusText = 'Alındı';
+            statusIcon = 'ri-check-double-line';
+        } else if (item.time < currentTime) {
+            statusClass = 'missed'; // Veya 'late'
+            statusText = 'Gecikti';
+            statusIcon = 'ri-alert-line';
+        } else {
+            statusClass = 'future';
+        }
+
+        html += `
+        <div class="timeline-item ${statusClass}">
+            <div class="timeline-time">${item.time}</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <span class="timeline-title">${item.name}</span>
+                    <span class="timeline-status">
+                        <i class="${statusIcon}"></i> ${statusText}
+                    </span>
+                </div>
+                <div class="timeline-desc">
+                    ${item.dosage || '1 adet'} • ${item.instructions || 'Tok karnına'}
+                </div>
+                ${item.status !== 'taken' ? `
+                    <div style="margin-top: 12px; display:flex; gap:8px;">
+                        <button class="action-btn-sm" style="background:var(--primary); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;" onclick="alert('İlaç alındı işaretlenecek: ${item.name}')">
+                            Al
+                        </button>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+        `;
+    });
+
+    html += '</div>';
+    pageEl.innerHTML = html;
 }
 
 function calculateStats() {
