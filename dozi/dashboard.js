@@ -776,8 +776,15 @@ async function renderBadis() {
             const taken = logsSnapshot.docs.filter(d => d.data().status === 'TAKEN').length;
             const total = logsSnapshot.docs.length;
             
+            // Get name from displayName, nickname, or email
+            let name = badiUser?.displayName || badiData.nickname || 'Badi';
+            if (!badiUser?.displayName && !badiData.nickname && badiUser?.email) {
+                // Extract name from email (before @)
+                name = badiUser.email.split('@')[0];
+            }
+            
             badis.push({
-                name: badiUser?.displayName || 'Badi',
+                name: name,
                 email: badiUser?.email || '',
                 taken: taken,
                 total: total
