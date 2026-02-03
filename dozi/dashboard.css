@@ -3751,3 +3751,280 @@ input:checked + .toggle-slider:before {
     background: rgba(239, 68, 68, 0.3);
 
 }
+
+
+/* ========================================
+   POSTPONED STATUS & DISABLED BUTTONS
+   ======================================== */
+
+/* Postponed timeline item */
+.timeline-item.postponed::before {
+    background: var(--warning);
+    border-color: var(--warning);
+    animation: pulse 2s infinite;
+}
+
+.timeline-item.postponed .timeline-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid var(--warning);
+}
+
+.timeline-status.postponed {
+    background: rgba(245, 158, 11, 0.2);
+    color: #d97706;
+}
+
+/* Disabled action buttons */
+.action-btn.disabled,
+.action-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.action-btn.disabled:hover,
+.action-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ========================================
+   POSTPONE MODAL ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   IMPROVED REMINDERS TAB DESIGN
+   ======================================== */
+
+.reminders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.reminder-card {
+    background: white;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.reminder-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(91, 111, 216, 0.15);
+}
+
+.reminder-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.reminder-medicine-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.reminder-medicine-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.reminder-medicine-details h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.reminder-medicine-details p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.reminder-status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.reminder-status.active {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+}
+
+.reminder-status.inactive {
+    background: rgba(148, 163, 184, 0.15);
+    color: #64748b;
+}
+
+.reminder-frequency {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.reminder-frequency i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.reminder-frequency span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-body);
+}
+
+.reminder-times-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.reminder-time-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.reminder-time-badge i {
+    font-size: 1rem;
+}
+
+.reminder-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-edit-reminder,
+.btn-toggle-reminder {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit-reminder {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-edit-reminder:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(91, 111, 216, 0.3);
+}
+
+.btn-toggle-reminder {
+    background: var(--success);
+    color: white;
+}
+
+.btn-toggle-reminder.inactive {
+    background: #f1f5f9;
+    color: var(--text-body);
+}
+
+.btn-toggle-reminder:hover {
+    transform: translateY(-2px);
+}
+
+.btn-toggle-reminder.inactive:hover {
+    background: #e2e8f0;
+}
+
+/* Empty reminders state */
+.empty-reminders {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-reminders img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+    animation: float 3s ease-in-out infinite;
+}
+
+.empty-reminders h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.empty-reminders p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* Responsive for reminders */
+@media (max-width: 768px) {
+    .reminders-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .reminder-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .reminder-status {
+        align-self: flex-start;
+    }
+}

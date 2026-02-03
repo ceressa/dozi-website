@@ -4,6 +4,58 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.6.0 - App-Like Action Rules & UX Improvements (2026-02-03)
+**Type:** Feature + Fix | **Impact:** High
+
+#### Added
+- ⏱️ **Time Window Validation (App Rules)**
+  - Implemented same action rules as mobile app
+  - **Take**: Only allowed 1 hour before scheduled time or after
+  - **Postpone**: Only allowed 1 hour before to 3 hours after scheduled time
+  - **Skip**: Only allowed up to 3 hours after scheduled time
+  - Buttons automatically disabled when action not allowed
+  - Helpful error messages explain why action is disabled and when it becomes available
+  - Functions: `canTakeMedication()`, `canPostponeMedication()`, `canSkipMedication()`, `getTimeWindowMessage()`
+
+- 🎨 **App-Style Postpone Modal**
+  - Replaced ugly browser prompt with beautiful custom modal
+  - Material Design styling with gradient buttons
+  - Smooth animations (fadeIn, slideUp)
+  - Three options: 15 dakika, 30 dakika, 1 saat
+  - Hover effects and transitions
+  - Click outside to close
+
+- 📊 **Postponed Status in Timeline**
+  - Postponed items now show in timeline with orange badge
+  - Shows postpone duration: "Ertelendi (15 dk)"
+  - Postponed items keep action buttons active (can take, re-postpone, or skip)
+  - Visual indicator with warning color and pulse animation
+
+- 🎨 **Improved Reminders Tab Design**
+  - Complete redesign with modern card layout
+  - Better visual hierarchy and spacing
+  - Gradient medicine icons
+  - Color-coded status badges (active/inactive)
+  - Frequency display with icons
+  - Time badges with alarm icons
+  - Hover effects and smooth transitions
+  - Responsive grid layout
+
+#### Fixed
+- 🐛 **Button State Management**
+  - Buttons now properly disabled based on time windows
+  - Disabled buttons show reduced opacity (0.4)
+  - Disabled buttons have no hover effects
+  - Cursor changes to not-allowed for disabled buttons
+
+#### Technical Details
+- **Time Calculation**: `getMinutesUntil()` calculates minutes until scheduled time
+- **Validation**: All actions validated before execution
+- **User Feedback**: Toast messages explain why actions are blocked
+- **Consistency**: Web dashboard now matches mobile app behavior exactly
+
+**Files:** `dozi/dashboard.js`, `dozi/dashboard.css`
+
 ### v1.5.1 - Dashboard UX Improvements & Bug Fixes (2026-02-03)
 **Type:** Fix + Feature | **Impact:** High
 
