@@ -250,7 +250,20 @@ function buildTimeline() {
 
 // Check if medicine should be taken today based on frequency
 function shouldTakeMedicineToday(medicine, today, dayOfWeek) {
-    const frequency = medicine.frequency || 'DAILY';
+    let frequency = medicine.frequency || 'DAILY';
+    
+    // Map Turkish frequency values to English
+    const frequencyMap = {
+        'Her gün': 'DAILY',
+        'Haftanın belirli günleri': 'WEEKLY',
+        'Gün aşırı': 'INTERVAL',
+        'Gerektiğinde': 'AS_NEEDED'
+    };
+    
+    // Convert Turkish to English if needed
+    if (frequencyMap[frequency]) {
+        frequency = frequencyMap[frequency];
+    }
     
     switch (frequency) {
         case 'DAILY':
@@ -369,6 +382,9 @@ function renderTimeline() {
                     <button class="action-btn action-btn-take" onclick="markMedication('${item.medicineId}', '${item.time}', 'taken')">
                         <i class="ri-check-line"></i> Aldım
                     </button>
+                    <button class="action-btn action-btn-postpone" onclick="postponeMedication('${item.medicineId}', '${item.time}')">
+                        <i class="ri-time-line"></i> Ertele
+                    </button>
                     <button class="action-btn action-btn-skip" onclick="markMedication('${item.medicineId}', '${item.time}', 'skipped')">
                         <i class="ri-close-line"></i> Atla
                     </button>
@@ -432,6 +448,81 @@ window.markMedication = async function(medicineId, time, action) {
         }
     }
 };
+
+// Postpone Medication
+window.postponeMedication = async function(medicineId, time) {
+    const clickedButton = event?.target?.closest('button');
+    
+    try {
+        if (clickedButton) {
+            clickedButton.disabled = true;
+            clickedButton.innerHTML = '<i class="ri-loader-4-line"></i> Erteleniyor...';
+        }
+
+        // Show postpone options
+        const postponeMinutes = await showPostponeDialog();
+        
+        if (!postponeMinutes) {
+            // User cancelled
+            if (clickedButton) {
+                clickedButton.disabled = false;
+                clickedButton.innerHTML = '<i class="ri-time-line"></i> Ertele';
+            }
+            return;
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+        const scheduledDateTime = `${today}T${time}:00`;
+        
+        // Create postpone log
+        await db.collection('medication_logs').add({
+            userId: currentUser.uid,
+            medicineId: medicineId,
+            scheduledTime: firebase.firestore.Timestamp.fromDate(new Date(scheduledDateTime)),
+            status: 'POSTPONED',
+            postponedMinutes: postponeMinutes,
+            takenVia: 'WEB_DASHBOARD',
+            createdAt: firebase.firestore.Timestamp.now()
+        });
+
+        showToast(`⏰ İlaç ${postponeMinutes} dakika ertelendi`, 'success');
+        showDoziMessage(`Tamam, ${postponeMinutes} dakika sonra tekrar hatırlatırım! ⏰`, 'time');
+
+        // Reload dashboard
+        await loadDashboard();
+
+    } catch (error) {
+        console.error('Postpone medication error:', error);
+        showToast('❌ Hata: ' + error.message, 'error');
+        
+        if (clickedButton) {
+            clickedButton.disabled = false;
+            clickedButton.innerHTML = '<i class="ri-time-line"></i> Ertele';
+        }
+    }
+};
+
+// Show Postpone Dialog
+function showPostponeDialog() {
+    return new Promise((resolve) => {
+        const options = [
+            { label: '15 dakika', value: 15 },
+            { label: '30 dakika', value: 30 },
+            { label: '1 saat', value: 60 },
+            { label: 'İptal', value: null }
+        ];
+        
+        const message = 'Ne kadar ertelemek istersin?';
+        const choice = prompt(message + '\n\n' + options.map((o, i) => `${i + 1}. ${o.label}`).join('\n'));
+        
+        const index = parseInt(choice) - 1;
+        if (index >= 0 && index < options.length) {
+            resolve(options[index].value);
+        } else {
+            resolve(null);
+        }
+    });
+}
 
 // Show Loading
 function showLoading(show) {

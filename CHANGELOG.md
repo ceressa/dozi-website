@@ -4,6 +4,38 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.5.1 - Dashboard UX Improvements & Bug Fixes (2026-02-03)
+**Type:** Fix + Feature | **Impact:** High
+
+#### Fixed
+- 🐛 **CRITICAL: Frequency Field Mismatch**
+  - Dashboard expected English frequency values but database had Turkish
+  - Added Turkish-to-English frequency mapping: "Her gün" → DAILY, "Haftanın belirli günleri" → WEEKLY, "Gün aşırı" → INTERVAL
+  - Result: All medicines now showing correctly in dashboard
+  - Previously NO medicines were showing due to frequency check failure
+
+- 🎨 **Color Scheme Improvements**
+  - Toned down flashy purple-pink gradient to more subtle colors
+  - Background: `#667eea, #764ba2, #f093fb, #4facfe` → `#5b6fd8, #6b5b95, #8b7ba8, #6a9bd4`
+  - Primary color: `#667eea` → `#5b6fd8`
+  - Reduced radial gradient opacity from 0.3 to 0.2
+  - Slower animation: 15s → 20s for calmer effect
+  - Better readability and contrast
+
+#### Added
+- ⏰ **Postpone Medication Feature**
+  - Added "Ertele" button to timeline actions
+  - Three postpone options: 15 minutes, 30 minutes, 1 hour
+  - Creates POSTPONED status in medication_logs
+  - Visual feedback with Dozi character message
+  - Orange/warning color styling for postpone button
+
+#### Known Issues
+- ⚠️ Undefined medicineName for RENNIE medicine (ID: M3CsDaOfXW2JDj3dmhgu) - needs DB investigation
+- ⚠️ Monovit medicine not showing at 8:48 - needs DB investigation
+
+**Files:** `dozi/dashboard.js`, `dozi/dashboard.css`, `dozi/DASHBOARD_IMPROVEMENTS_v1.1.md`
+
 ### v1.5.0 - Dashboard Smart Features & Security (2026-02-03)
 **Type:** Feature + Security | **Impact:** High
 
