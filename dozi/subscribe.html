@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dozi Ekstra - Abone Ol</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#5b6fd8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="../dozi_brand.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F8FAFC;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(91, 111, 216, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .subscribe-container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .subscribe-header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .subscribe-header img {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .subscribe-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            margin-bottom: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .plan-card.popular {
+            border-color: #f59e0b;
+        }
+
+        .plan-card.popular::before {
+            content: 'En Populer';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .plan-card.selected {
+            border-color: #5b6fd8;
+            box-shadow: 0 10px 30px rgba(91, 111, 216, 0.2);
+        }
+
+        .plan-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #5b6fd8;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .plan-save {
+            font-size: 0.8rem;
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-list {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .features-list h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-item i {
+            font-size: 1.1rem;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .subscribe-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, #5b6fd8, #6b5b95);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 111, 216, 0.4);
+        }
+
+        .subscribe-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: #5b6fd8;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .status-message.active {
+            display: block;
+        }
+
+        .status-message.success {
+            background: #ecfdf5;
+            color: #065f46;
+        }
+
+        .status-message.error {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .status-message.info {
+            background: #eff6ff;
+            color: #1e40af;
+        }
+
+        .already-premium {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .already-premium i {
+            font-size: 4rem;
+            color: #f59e0b;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .already-premium h2 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .already-premium p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="subscribe-container">
+        <div class="subscribe-header">
+            <img src="../dozi_brand.png" alt="Dozi">
+            <h1>Dozi Ekstra</h1>
+            <p>Aile uyelerinin ilaclarini takip et, huzurlu ol.</p>
+        </div>
+
+        <!-- Already Premium -->
+        <div class="already-premium" id="alreadyPremium" style="display:none;">
+            <i class="ri-vip-crown-2-fill"></i>
+            <h2>Zaten Ekstra Uyesin!</h2>
+            <p>Dozi Ekstra aboneligin aktif. Tum ozelliklerden yararlanabilirsin.</p>
+            <a href="dashboard.html" class="subscribe-btn" style="text-decoration:none; display:inline-flex; max-width:250px; margin:0 auto;">
+                <i class="ri-arrow-left-line"></i> Dashboard'a Don
+            </a>
+        </div>
+
+        <!-- Subscription Plans -->
+        <div id="plansSection">
+            <div class="plan-card" id="monthlyPlan" data-plan="monthly">
+                <div class="plan-name">Aylik Plan</div>
+                <div class="plan-price">29.99 TL <span>/ ay</span></div>
+            </div>
+
+            <div class="plan-card popular selected" id="yearlyPlan" data-plan="yearly">
+                <div class="plan-name">Yillik Plan</div>
+                <div class="plan-price">199.99 TL <span>/ yil</span></div>
+                <div class="plan-save">%44 tasarruf - ayda sadece 16.67 TL</div>
+            </div>
+
+            <div class="features-list">
+                <h3>Ekstra ile Neler Kazanirsin?</h3>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Badi sistemi - aile uyelerinin ilaclarini takip et</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Sinirsiz badi ekleme</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Badi'ye durtme ve tessekkur mesaji gonder</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Stok uyarisi bildirimleri</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Kacirilmis ilac bildirimleri</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Detayli istatistikler ve raporlar</span>
+                </div>
+                <div class="feature-item">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Oncelikli destek</span>
+                </div>
+            </div>
+
+            <button class="subscribe-btn" id="subscribeBtn">
+                <i class="ri-vip-crown-2-fill"></i>
+                Abone Ol
+            </button>
+
+            <div class="status-message" id="statusMessage"></div>
+
+            <a href="dashboard.html" class="back-link">
+                <i class="ri-arrow-left-s-line"></i> Dashboard'a don
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqxped2ZQS7uJHCX-MmCq0Nnj5Vtudloo",
+            authDomain: "dozi-cd7cc.firebaseapp.com",
+            projectId: "dozi-cd7cc",
+            storageBucket: "dozi-cd7cc.firebasestorage.app",
+            messagingSenderId: "393677078355",
+            appId: "1:393677078355:web:415e8d15c58ec4d48ceba6"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.app().functions('europe-west3');
+
+        let selectedPlan = 'yearly';
+        let currentUser = null;
+
+        // Plan selection
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedPlan = card.dataset.plan;
+            });
+        });
+
+        // Auth check
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                window.location.href = 'index.html';
+                return;
+            }
+            currentUser = user;
+
+            // Check if already premium
+            try {
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                const userData = userDoc.data();
+                if (userData && (userData.isPremium === true || userData.subscriptionPlan === 'PREMIUM' || userData.subscriptionPlan === 'EKSTRA')) {
+                    document.getElementById('plansSection').style.display = 'none';
+                    document.getElementById('alreadyPremium').style.display = 'block';
+                }
+            } catch (e) {
+                console.error('Error checking premium status:', e);
+            }
+        });
+
+        // Subscribe button
+        document.getElementById('subscribeBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('subscribeBtn');
+            const status = document.getElementById('statusMessage');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="ri-loader-4-line"></i> Yukleniyor...';
+
+            try {
+                // Call Stripe checkout Cloud Function
+                const createCheckout = functions.httpsCallable('createStripeCheckout');
+                const result = await createCheckout({ plan: selectedPlan });
+
+                if (result.data.url) {
+                    // Redirect to Stripe Checkout
+                    window.location.href = result.data.url;
+                } else {
+                    throw new Error(result.data.message || 'Odeme sayfasi olusturulamadi.');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                
+                // If createStripeCheckout doesn't exist yet, show info message
+                if (error.code === 'not-found' || error.code === 'unimplemented' || error.message.includes('not found')) {
+                    status.className = 'status-message active info';
+                    status.textContent = 'Odeme sistemi yakin zamanda aktif olacak. Lutfen daha sonra tekrar deneyin.';
+                } else {
+                    status.className = 'status-message active error';
+                    status.textContent = 'Bir hata olustu: ' + (error.message || 'Bilinmeyen hata');
+                }
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="ri-vip-crown-2-fill"></i> Abone Ol';
+            }
+        });
+    </script>
+</body>
+</html>

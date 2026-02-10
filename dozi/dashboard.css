@@ -4211,3 +4211,112 @@ input:checked + .toggle-slider:before {
         font-size: 0.8rem;
     }
 }
+
+/* ========================================
+   ONBOARDING MODAL
+   ======================================== */
+
+.onboarding-modal {
+    max-width: 420px;
+}
+
+.onboarding-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.onboarding-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.onboarding-feature i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(91, 111, 216, 0.1);
+    border-radius: 10px;
+}
+
+.onboarding-feature h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+}
+
+.onboarding-feature p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* ========================================
+   PREMIUM LOCK / GATE
+   ======================================== */
+
+.premium-lock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 2rem;
+}
+
+.premium-lock-content {
+    text-align: center;
+    max-width: 320px;
+}
+
+.premium-lock-content i {
+    font-size: 3rem;
+    color: #f59e0b;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.premium-lock-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.premium-lock-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Subscription badge in settings */
+.subscription-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.subscription-badge.free {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.subscription-badge.premium {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #92400e;
+}

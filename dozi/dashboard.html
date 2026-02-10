@@ -260,13 +260,34 @@
 
         <!-- Tab Content: Badis -->
         <div class="tab-content" id="badisTab">
-            <div class="badis-list" id="badisList">
-                <!-- Badi cards will be inserted here -->
+            <!-- Premium lock overlay -->
+            <div class="premium-lock" id="badisLock" style="display:none;">
+                <div class="premium-lock-content">
+                    <i class="ri-vip-crown-2-fill"></i>
+                    <h3>Dozi Ekstra Ozelligi</h3>
+                    <p>Aile uyelerinin ilaclarini takip etmek icin Dozi Ekstra'ya abone ol.</p>
+                    <a href="subscribe.html" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:12px 24px;">
+                        <i class="ri-vip-crown-2-fill"></i> Abone Ol
+                    </a>
+                </div>
             </div>
-            <div class="empty-state" id="emptyBadis" style="display: none;">
-                <img src="../images/dozi_family.webp" alt="Dozi" class="empty-dozi">
-                <h3>Henüz badi eklenmemiş</h3>
-                <p>Mobil uygulamadan aile üyelerini ekleyebilirsin.</p>
+            <!-- Normal badis content -->
+            <div id="badisContent">
+                <div class="badis-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h2>Badilerim</h2>
+                    <button class="btn-primary" id="addBadiBtn">
+                        <i class="ri-user-add-line"></i>
+                        Badi Ekle
+                    </button>
+                </div>
+                <div class="badis-list" id="badisList">
+                    <!-- Badi cards will be inserted here -->
+                </div>
+                <div class="empty-state" id="emptyBadis" style="display: none;">
+                    <img src="../images/dozi_family.webp" alt="Dozi" class="empty-dozi">
+                    <h3>Henuz badi eklenmemis</h3>
+                    <p>Yukardaki butona tiklayarak aile uyelerini ekleyebilirsin.</p>
+                </div>
             </div>
         </div>
 
@@ -485,6 +506,67 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Onboarding Modal (for new web users) -->
+    <div class="modal-overlay" id="onboardingOverlay" style="display:none;"></div>
+    <div class="modal onboarding-modal" id="onboardingModal" style="display:none;">
+        <div class="modal-body" style="text-align:center; padding: 2rem;">
+            <img src="../images/dozi_happy.webp" alt="Dozi" style="width:100px; margin-bottom:1rem;">
+            <h2 style="margin-bottom:0.5rem;">Dozi'ye Hos Geldin!</h2>
+            <p style="color:var(--text-light); margin-bottom:1.5rem;">Ilac takibini akillica yonetmeye hazirsin.</p>
+
+            <div class="onboarding-features">
+                <div class="onboarding-feature">
+                    <i class="ri-capsule-line"></i>
+                    <div>
+                        <h4>Ilac Takibi</h4>
+                        <p>Ilaclarini ekle, hatirlatma al</p>
+                    </div>
+                </div>
+                <div class="onboarding-feature">
+                    <i class="ri-team-line"></i>
+                    <div>
+                        <h4>Badi Sistemi</h4>
+                        <p>Aile uyelerinin ilaclarini takip et</p>
+                    </div>
+                </div>
+                <div class="onboarding-feature">
+                    <i class="ri-bar-chart-line"></i>
+                    <div>
+                        <h4>Istatistikler</h4>
+                        <p>Uyum oranini ve serileri gor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:10px;">
+                <a href="subscribe.html" class="btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px;">
+                    <i class="ri-vip-crown-2-fill"></i>
+                    Dozi Ekstra'ya Abone Ol
+                </a>
+                <button class="btn-secondary" id="onboardingSkipBtn" style="padding:12px;">
+                    Ucretsiz Devam Et
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Gate Modal (shown when non-premium user tries premium features) -->
+    <div class="modal-overlay" id="premiumGateOverlay" style="display:none;"></div>
+    <div class="modal" id="premiumGateModal" style="display:none;">
+        <div class="modal-body" style="text-align:center; padding: 2rem;">
+            <i class="ri-vip-crown-2-fill" style="font-size:3rem; color:#f59e0b; margin-bottom:1rem; display:block;"></i>
+            <h2 style="margin-bottom:0.5rem;">Dozi Ekstra Gerekli</h2>
+            <p style="color:var(--text-light); margin-bottom:1.5rem;" id="premiumGateMessage">Bu ozellik Dozi Ekstra aboneligini gerektiriyor.</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a href="subscribe.html" class="btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px;">
+                    <i class="ri-vip-crown-2-fill"></i>
+                    Dozi Ekstra'ya Abone Ol
+                </a>
+                <button class="btn-secondary" id="premiumGateCloseBtn" style="padding:12px;">Kapat</button>
+            </div>
         </div>
     </div>
 

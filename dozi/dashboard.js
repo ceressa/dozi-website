@@ -160,19 +160,25 @@ async function loadDashboard() {
         
         showLoading(false);
         
+        // Check premium status and lock features accordingly
+        checkPremiumStatus();
+        
+        // Show onboarding for new web users
+        checkOnboarding();
+        
         // Show contextual Dozi message based on stats
         const hour = new Date().getHours();
         if (hour < 12) {
-            showDoziMessage('Günaydın! Bugünün ilaçlarını görebilirsin 💊', 'morning');
+            showDoziMessage('Gunaydin! Bugunun ilaclarini gorebilirsin', 'morning');
         } else if (hour < 18) {
-            showDoziMessage('Merhaba! İlaçlarını almayı unutma 😊', 'happy');
+            showDoziMessage('Merhaba! Ilaclarini almayi unutma', 'happy');
         } else {
-            showDoziMessage('İyi akşamlar! Bugünkü durumunu kontrol et 🌙', 'sleepy');
+            showDoziMessage('Iyi aksamlar! Bugunku durumunu kontrol et', 'sleepy');
         }
 
     } catch (error) {
         console.error('Dashboard error:', error);
-        showToast('Veriler yüklenirken hata oluştu: ' + error.message, 'error');
+        showToast('Veriler yuklenirken hata olustu: ' + error.message, 'error');
         showLoading(false);
     }
 }
@@ -2201,3 +2207,156 @@ auth.onAuthStateChanged((user) => {
         }
     }
 });
+
+// ========================================
+// ONBOARDING (New Web Users)
+// ========================================
+
+function checkOnboarding() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('welcome') === 'new') {
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+        // Show onboarding modal
+        showOnboardingModal();
+    }
+}
+
+function showOnboardingModal() {
+    const overlay = document.getElementById('onboardingOverlay');
+    const modal = document.getElementById('onboardingModal');
+    if (overlay && modal) {
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+    }
+}
+
+function hideOnboardingModal() {
+    const overlay = document.getElementById('onboardingOverlay');
+    const modal = document.getElementById('onboardingModal');
+    if (overlay) overlay.style.display = 'none';
+    if (modal) modal.style.display = 'none';
+}
+
+document.getElementById('onboardingSkipBtn')?.addEventListener('click', hideOnboardingModal);
+document.getElementById('onboardingOverlay')?.addEventListener('click', hideOnboardingModal);
+
+// ========================================
+// PREMIUM STATUS CHECK
+// ========================================
+
+function checkPremiumStatus() {
+    const user = dashboardData.user;
+    if (!user) return;
+
+    const isPremium = user.isPremium === true || user.subscriptionPlan === 'PREMIUM' || user.subscriptionPlan === 'EKSTRA';
+
+    // Lock/unlock badis tab
+    const badisLock = document.getElementById('badisLock');
+    const badisContent = document.getElementById('badisContent');
+    if (badisLock && badisContent) {
+        if (isPremium) {
+            badisLock.style.display = 'none';
+            badisContent.style.display = 'block';
+        } else {
+            badisLock.style.display = 'flex';
+            badisContent.style.display = 'none';
+        }
+    }
+}
+
+function showPremiumGate(message) {
+    const overlay = document.getElementById('premiumGateOverlay');
+    const modal = document.getElementById('premiumGateModal');
+    const msg = document.getElementById('premiumGateMessage');
+    if (overlay && modal) {
+        if (msg && message) msg.textContent = message;
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+    }
+}
+
+function hidePremiumGate() {
+    const overlay = document.getElementById('premiumGateOverlay');
+    const modal = document.getElementById('premiumGateModal');
+    if (overlay) overlay.style.display = 'none';
+    if (modal) modal.style.display = 'none';
+}
+
+document.getElementById('premiumGateCloseBtn')?.addEventListener('click', hidePremiumGate);
+document.getElementById('premiumGateOverlay')?.addEventListener('click', hidePremiumGate);
+
+// ========================================
+// BADI (BUDDY) ADD FLOW
+// ========================================
+
+document.getElementById('addBadiBtn')?.addEventListener('click', () => {
+    const user = dashboardData.user;
+    const isPremium = user?.isPremium === true || user?.subscriptionPlan === 'PREMIUM' || user?.subscriptionPlan === 'EKSTRA';
+    
+    if (!isPremium) {
+        showPremiumGate('Badi eklemek icin Dozi Ekstra aboneligi gereklidir.');
+        return;
+    }
+    
+    // Show simple prompt for badi email
+    const email = prompt('Eklemek istediginiz kişinin Dozi e-posta adresini girin:');
+    if (!email || !email.trim()) return;
+    
+    sendBadiRequest(email.trim());
+});
+
+async function sendBadiRequest(email) {
+    try {
+        showToast('Badi istegi gonderiliyor...', 'info');
+        
+        // Find user by email
+        const usersSnapshot = await db.collection('users')
+            .where('email', '==', email)
+            .limit(1)
+            .get();
+        
+        if (usersSnapshot.empty) {
+            showToast('Bu e-posta ile kayitli kullanici bulunamadi.', 'error');
+            return;
+        }
+        
+        const targetUser = usersSnapshot.docs[0];
+        const targetUid = targetUser.id;
+        
+        if (targetUid === currentUser.uid) {
+            showToast('Kendinizi badi olarak ekleyemezsiniz.', 'error');
+            return;
+        }
+        
+        // Check if already a badi
+        const existingBadi = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('badis')
+            .where('badiUserId', '==', targetUid)
+            .get();
+        
+        if (!existingBadi.empty) {
+            showToast('Bu kisi zaten badiniz.', 'error');
+            return;
+        }
+        
+        // Create buddy request
+        await db.collection('buddy_requests').add({
+            fromUserId: currentUser.uid,
+            fromUserName: dashboardData.user?.name || dashboardData.user?.displayName || currentUser.email,
+            fromUserEmail: currentUser.email,
+            toUserId: targetUid,
+            toUserEmail: email,
+            status: 'PENDING',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdVia: 'WEB'
+        });
+        
+        showToast('Badi istegi gonderildi! Karsi tarafin onayini bekleyin.', 'success');
+        
+    } catch (error) {
+        console.error('Send badi request error:', error);
+        showToast('Badi istegi gonderilemedi: ' + error.message, 'error');
+    }
+}
