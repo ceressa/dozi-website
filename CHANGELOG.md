@@ -4,6 +4,27 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.6.2 - Security Fix: Badi Nudge Message Selection (2026-02-10)
+**Type:** Fix | **Impact:** High
+
+#### Fixed
+- 🔒 **Security: Removed XSS Vulnerability**
+  - Replaced insecure `prompt()` with secure message selection modal
+  - Users can no longer type arbitrary messages (XSS risk eliminated)
+  - Added 5 predefined message options with icons
+  - Beautiful modal UI with gradient buttons and animations
+  - Messages: "İlaçlarını almayı unutma! 💊", "İlaç zamanı geldi! ⏰", etc.
+  - Function: `showBadiNudgeMessageModal(buddyName)`
+
+- 🎨 **UX: Improved Badi Nudge Flow**
+  - Visual message selection instead of text input
+  - Each message has an icon for better UX
+  - Hover effects on message buttons
+  - Click outside modal to cancel
+  - Made `sendBadiNudge()` globally accessible
+
+**Files:** `dozi-website-temp/dozi/dashboard.js`
+
 ### v1.6.1 - Badi Notification Feature (2026-02-10)
 **Type:** Feature | **Impact:** High
 
