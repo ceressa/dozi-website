@@ -2249,66 +2249,62 @@ function checkPremiumStatus() {
     const user = dashboardData.user;
     if (!user) return;
 
-    const isPremium = user.isPremium === true || user.subscriptionPlan === 'PREMIUM' || user.subscriptionPlan === 'EKSTRA';
-
-    // Lock/unlock badis tab
+    // Badi is free for everyone - always show badis content
     const badisLock = document.getElementById('badisLock');
     const badisContent = document.getElementById('badisContent');
     if (badisLock && badisContent) {
-        if (isPremium) {
-            badisLock.style.display = 'none';
-            badisContent.style.display = 'block';
-        } else {
-            badisLock.style.display = 'flex';
-            badisContent.style.display = 'none';
-        }
+        badisLock.style.display = 'none';
+        badisContent.style.display = 'block';
     }
 }
-
-function showPremiumGate(message) {
-    const overlay = document.getElementById('premiumGateOverlay');
-    const modal = document.getElementById('premiumGateModal');
-    const msg = document.getElementById('premiumGateMessage');
-    if (overlay && modal) {
-        if (msg && message) msg.textContent = message;
-        overlay.style.display = 'block';
-        modal.style.display = 'block';
-    }
-}
-
-function hidePremiumGate() {
-    const overlay = document.getElementById('premiumGateOverlay');
-    const modal = document.getElementById('premiumGateModal');
-    if (overlay) overlay.style.display = 'none';
-    if (modal) modal.style.display = 'none';
-}
-
-document.getElementById('premiumGateCloseBtn')?.addEventListener('click', hidePremiumGate);
-document.getElementById('premiumGateOverlay')?.addEventListener('click', hidePremiumGate);
 
 // ========================================
 // BADI (BUDDY) ADD FLOW
 // ========================================
 
-document.getElementById('addBadiBtn')?.addEventListener('click', () => {
-    const user = dashboardData.user;
-    const isPremium = user?.isPremium === true || user?.subscriptionPlan === 'PREMIUM' || user?.subscriptionPlan === 'EKSTRA';
-    
-    if (!isPremium) {
-        showPremiumGate('Badi eklemek icin Dozi Ekstra aboneligi gereklidir.');
+const BADI_LIMIT_FREE = 3;
+const MAX_REQUESTS_PER_DAY = 5;
+
+document.getElementById('addBadiBtn')?.addEventListener('click', async () => {
+    // Check badi limit (free: 3)
+    try {
+        const badisSnapshot = await db.collection('users')
+            .doc(currentUser.uid)
+            .collection('badis')
+            .get();
+        
+        if (badisSnapshot.size >= BADI_LIMIT_FREE) {
+            showToast('Maksimum badi limitine ulastiniz (' + BADI_LIMIT_FREE + ' kisi).', 'error');
+            return;
+        }
+    } catch (e) {
+        console.error('Badi count check error:', e);
+    }
+
+    // Anti-spam: check daily request limit
+    const today = new Date().toISOString().split('T')[0];
+    const dailyKey = 'badi_requests_' + today;
+    const dailyCount = parseInt(localStorage.getItem(dailyKey) || '0');
+    if (dailyCount >= MAX_REQUESTS_PER_DAY) {
+        showToast('Bugun cok fazla badi istegi gonderdiniz. Yarin tekrar deneyin.', 'error');
         return;
     }
     
-    // Show simple prompt for badi email
-    const email = prompt('Eklemek istediginiz kişinin Dozi e-posta adresini girin:');
+    const email = prompt('Eklemek istediginiz kisinin Dozi e-posta adresini girin:');
     if (!email || !email.trim()) return;
     
-    sendBadiRequest(email.trim());
+    sendBadiRequest(email.trim(), dailyKey, dailyCount);
 });
 
-async function sendBadiRequest(email) {
+async function sendBadiRequest(email, dailyKey, dailyCount) {
     try {
         showToast('Badi istegi gonderiliyor...', 'info');
+        
+        // Basic email validation
+        if (!email.includes('@') || !email.includes('.')) {
+            showToast('Gecerli bir e-posta adresi girin.', 'error');
+            return;
+        }
         
         // Find user by email
         const usersSnapshot = await db.collection('users')
@@ -2333,11 +2329,24 @@ async function sendBadiRequest(email) {
         const existingBadi = await db.collection('users')
             .doc(currentUser.uid)
             .collection('badis')
-            .where('badiUserId', '==', targetUid)
+            .where('userId', '==', targetUid)
             .get();
         
         if (!existingBadi.empty) {
             showToast('Bu kisi zaten badiniz.', 'error');
+            return;
+        }
+        
+        // Check if request already pending
+        const pendingRequest = await db.collection('buddy_requests')
+            .where('fromUserId', '==', currentUser.uid)
+            .where('toUserId', '==', targetUid)
+            .where('status', '==', 'PENDING')
+            .limit(1)
+            .get();
+        
+        if (!pendingRequest.empty) {
+            showToast('Bu kisiye zaten bekleyen bir isteginiz var.', 'error');
             return;
         }
         
@@ -2352,6 +2361,9 @@ async function sendBadiRequest(email) {
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             createdVia: 'WEB'
         });
+        
+        // Update daily counter
+        localStorage.setItem(dailyKey, String(dailyCount + 1));
         
         showToast('Badi istegi gonderildi! Karsi tarafin onayini bekleyin.', 'success');
         

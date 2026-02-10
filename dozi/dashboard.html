@@ -260,18 +260,7 @@
 
         <!-- Tab Content: Badis -->
         <div class="tab-content" id="badisTab">
-            <!-- Premium lock overlay -->
-            <div class="premium-lock" id="badisLock" style="display:none;">
-                <div class="premium-lock-content">
-                    <i class="ri-vip-crown-2-fill"></i>
-                    <h3>Dozi Ekstra Ozelligi</h3>
-                    <p>Aile uyelerinin ilaclarini takip etmek icin Dozi Ekstra'ya abone ol.</p>
-                    <a href="subscribe.html" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:12px 24px;">
-                        <i class="ri-vip-crown-2-fill"></i> Abone Ol
-                    </a>
-                </div>
-            </div>
-            <!-- Normal badis content -->
+            <!-- Badis content (free for everyone) -->
             <div id="badisContent">
                 <div class="badis-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
                     <h2>Badilerim</h2>
@@ -549,23 +538,6 @@
                 <button class="btn-secondary" id="onboardingSkipBtn" style="padding:12px;">
                     Ucretsiz Devam Et
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Premium Gate Modal (shown when non-premium user tries premium features) -->
-    <div class="modal-overlay" id="premiumGateOverlay" style="display:none;"></div>
-    <div class="modal" id="premiumGateModal" style="display:none;">
-        <div class="modal-body" style="text-align:center; padding: 2rem;">
-            <i class="ri-vip-crown-2-fill" style="font-size:3rem; color:#f59e0b; margin-bottom:1rem; display:block;"></i>
-            <h2 style="margin-bottom:0.5rem;">Dozi Ekstra Gerekli</h2>
-            <p style="color:var(--text-light); margin-bottom:1.5rem;" id="premiumGateMessage">Bu ozellik Dozi Ekstra aboneligini gerektiriyor.</p>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-                <a href="subscribe.html" class="btn-primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; padding:14px;">
-                    <i class="ri-vip-crown-2-fill"></i>
-                    Dozi Ekstra'ya Abone Ol
-                </a>
-                <button class="btn-secondary" id="premiumGateCloseBtn" style="padding:12px;">Kapat</button>
             </div>
         </div>
     </div>

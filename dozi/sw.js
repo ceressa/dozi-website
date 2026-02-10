@@ -40,7 +40,7 @@ messaging.onBackgroundMessage((payload) => {
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-const CACHE_NAME = 'dozi-pwa-v3';
+const CACHE_NAME = 'dozi-pwa-v4';
 const OFFLINE_URL = '/dozi/offline.html';
 
 // Files to cache immediately on install
