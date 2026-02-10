@@ -4,6 +4,27 @@ All notable changes to the Dozi website and web dashboard will be documented in 
 
 ## [Unreleased]
 
+### v1.6.1 - Badi Notification Feature (2026-02-10)
+**Type:** Feature | **Impact:** High
+
+#### Added
+- 🔔 **Badi Notification Sending**
+  - Added "Hatırlat" (Remind) button to each badi card in Badilerim tab
+  - Integrated with Firebase `sendBadiNudge` function
+  - Custom message prompt for personalized reminders
+  - Success/error toast notifications
+  - Dozi character celebration on successful send
+  - Error handling for authentication, rate limiting, and not-found cases
+  - Function: `sendBadiNudge(buddyUserId, buddyName)`
+
+#### Fixed
+- 🐛 **Badi Card Missing Actions**
+  - Badi cards now include action buttons section
+  - Each badi card shows notification button
+  - Proper error messages for failed notifications
+
+**Files:** `dozi-website-temp/dozi/dashboard.js`
+
 ### v1.6.0 - App-Like Action Rules & UX Improvements (2026-02-03)
 **Type:** Feature + Fix | **Impact:** High
 

@@ -1287,6 +1287,7 @@ async function renderBadis() {
             }
             
             badis.push({
+                id: badiData.badiUserId,
                 name: name,
                 email: badiUser?.email || '',
                 taken: taken,
@@ -1314,6 +1315,12 @@ async function renderBadis() {
                             <div class="badi-stat-value">${badi.total}</div>
                             <div class="badi-stat-label">Toplam</div>
                         </div>
+                    </div>
+                    <div class="badi-actions">
+                        <button class="btn-secondary btn-small" onclick="sendBadiNudge('${badi.id}', '${badi.name.replace(/'/g, "\\'")}')">
+                            <i class="ri-notification-3-line"></i>
+                            Hatırlat
+                        </button>
                     </div>
                 </div>
             `;
@@ -2264,6 +2271,49 @@ function checkPremiumStatus() {
 
 const BADI_LIMIT_FREE = 3;
 const MAX_REQUESTS_PER_DAY = 5;
+
+// Send Badi Nudge (Reminder Notification)
+async function sendBadiNudge(buddyUserId, buddyName) {
+    if (!currentUser) {
+        showToast('Lütfen giriş yapın', 'error');
+        return;
+    }
+    
+    const message = prompt(`${buddyName} adlı badine hatırlatma mesajı gönderin:`, 'İlaçlarını almayı unutma! 💊');
+    
+    if (message === null) return; // User cancelled
+    
+    try {
+        showToast('Bildirim gönderiliyor...', 'info');
+        
+        // Call Firebase Function
+        const sendBadiNudgeFunc = firebase.functions().httpsCallable('sendBadiNudge');
+        const result = await sendBadiNudgeFunc({
+            buddyUserId: buddyUserId,
+            message: message || 'İlaçlarını almayı unutma!'
+        });
+        
+        console.log('✅ Badi nudge result:', result);
+        showToast('Hatırlatma gönderildi!', 'success');
+        showDoziMessage('Badine hatırlatma gönderildi! 🎉', 'bravo');
+        
+    } catch (error) {
+        console.error('❌ Send badi nudge error:', error);
+        
+        let errorMessage = 'Bildirim gönderilemedi';
+        if (error.code === 'unauthenticated') {
+            errorMessage = 'Lütfen giriş yapın';
+        } else if (error.code === 'not-found') {
+            errorMessage = 'Badi bulunamadı veya bildirim izni yok';
+        } else if (error.code === 'resource-exhausted') {
+            errorMessage = 'Çok fazla istek. Lütfen biraz bekleyin.';
+        } else if (error.message) {
+            errorMessage = error.message;
+        }
+        
+        showToast(errorMessage, 'error');
+    }
+}
 
 document.getElementById('addBadiBtn')?.addEventListener('click', async () => {
     // Check badi limit (free: 3)
