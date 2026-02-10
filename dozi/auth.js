@@ -18,6 +18,12 @@ const googleSignInBtn = document.getElementById('googleSignInBtn');
 const loading = document.getElementById('loading');
 const errorDiv = document.getElementById('error');
 
+// Detect iOS
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 // Google Sign-In
 googleSignInBtn.addEventListener('click', async () => {
     try {
@@ -29,44 +35,85 @@ googleSignInBtn.addEventListener('click', async () => {
             prompt: 'select_account'
         });
 
+        // iOS Safari: use redirect instead of popup
+        if (isIOS()) {
+            // Store intent so we know to verify after redirect
+            sessionStorage.setItem('dozi-login-pending', 'true');
+            await auth.signInWithRedirect(provider);
+            return; // Page will redirect, execution stops here
+        }
+
+        // Desktop/Android: use popup
         const result = await auth.signInWithPopup(provider);
-        const user = result.user;
+        await verifyAndRedirect(result.user);
 
-        console.log('✅ Login successful:', user.email);
+    } catch (error) {
+        console.error('Login error:', error);
+        showError(getErrorMessage(error));
+        showLoading(false);
+    }
+});
 
-        // Call Firebase Function to verify and log user
+// Handle redirect result (for iOS)
+auth.getRedirectResult().then(async (result) => {
+    if (result.user && sessionStorage.getItem('dozi-login-pending')) {
+        sessionStorage.removeItem('dozi-login-pending');
+        showLoading(true);
+        hideError();
+        try {
+            await verifyAndRedirect(result.user);
+        } catch (error) {
+            console.error('Redirect login error:', error);
+            showError(getErrorMessage(error));
+            showLoading(false);
+        }
+    }
+}).catch((error) => {
+    console.error('Redirect result error:', error);
+    sessionStorage.removeItem('dozi-login-pending');
+    showError(getErrorMessage(error));
+});
+
+// Verify user with Cloud Function and redirect
+async function verifyAndRedirect(user) {
+    try {
         const verifyUser = functions.httpsCallable('verifyWebLogin');
         const response = await verifyUser({ uid: user.uid, email: user.email });
 
         if (!response.data.success) {
-            throw new Error(response.data.message || 'Bu hesap Dozi uygulamasında kayıtlı değil.');
+            await auth.signOut();
+            throw new Error(response.data.message || 'Bu hesap Dozi uygulamasinda kayitli degil. Lutfen once mobil uygulamayi indirin.');
         }
 
         // Redirect to dashboard
         window.location.href = 'dashboard.html';
 
     } catch (error) {
-        console.error('❌ Login error:', error);
-        showError(getErrorMessage(error));
-        showLoading(false);
+        // Extract meaningful message from Firebase function errors
+        if (error.code === 'internal' || error.message === 'INTERNAL' || error.message === 'internal') {
+            await auth.signOut();
+            throw new Error('Sunucu hatasi olustu. Lutfen tekrar deneyin.');
+        }
+        // Re-throw for outer catch
+        throw error;
     }
-});
+}
 
-// Auth State Observer
+// Auth State Observer - auto-redirect if already logged in
 auth.onAuthStateChanged(async (user) => {
+    // Skip if redirect login is in progress
+    if (sessionStorage.getItem('dozi-login-pending')) return;
+
     if (user) {
-        // User is signed in, verify via function
         try {
             const verifyUser = functions.httpsCallable('verifyWebLogin');
             const response = await verifyUser({ uid: user.uid });
             
             if (response.data.success) {
-                // Redirect to dashboard if already logged in
                 window.location.href = 'dashboard.html';
             } else {
-                // User not in database, sign out
                 await auth.signOut();
-                showError('Bu hesap Dozi uygulamasında kayıtlı değil.');
+                showError('Bu hesap Dozi uygulamasinda kayitli degil.');
             }
         } catch (error) {
             console.error('Auth state error:', error);
@@ -93,25 +140,29 @@ function hideError() {
 
 function getErrorMessage(error) {
     const errorMessages = {
-        'auth/popup-closed-by-user': 'Giriş penceresi kapatıldı. Lütfen tekrar deneyin.',
-        'auth/popup-blocked': 'Pop-up engellendi. Lütfen tarayıcı ayarlarınızı kontrol edin.',
-        'auth/cancelled-popup-request': 'Giriş işlemi iptal edildi.',
-        'auth/network-request-failed': 'İnternet bağlantınızı kontrol edin.',
-        'auth/too-many-requests': 'Çok fazla deneme yapıldı. Lütfen daha sonra tekrar deneyin.',
-        'auth/user-disabled': 'Bu hesap devre dışı bırakılmış.',
-        'auth/operation-not-allowed': 'Google girişi etkin değil.',
+        'auth/popup-closed-by-user': 'Giris penceresi kapatildi. Lutfen tekrar deneyin.',
+        'auth/popup-blocked': 'Pop-up engellendi. Lutfen tarayici ayarlarinizi kontrol edin.',
+        'auth/cancelled-popup-request': 'Giris islemi iptal edildi.',
+        'auth/network-request-failed': 'Internet baglantinizi kontrol edin.',
+        'auth/too-many-requests': 'Cok fazla deneme yapildi. Lutfen daha sonra tekrar deneyin.',
+        'auth/user-disabled': 'Bu hesap devre disi birakilmis.',
+        'auth/operation-not-allowed': 'Google girisi etkin degil.',
+        'auth/web-storage-unsupported': 'Tarayiciniz desteklenmiyor. Safari ayarlarindan cerezleri aktif edin.',
+        'auth/credential-already-in-use': 'Bu hesap zaten baska bir giris ile iliskilendirilmis.',
     };
 
-    return errorMessages[error.code] || error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.';
+    // Firebase Functions errors come with error.code like 'internal', 'unauthenticated', etc.
+    if (error.code === 'internal' || error.code === 'unavailable') {
+        return 'Sunucu hatasi olustu. Lutfen tekrar deneyin.';
+    }
+    if (error.code === 'unauthenticated') {
+        return 'Oturum dogrulanamadi. Lutfen tekrar giris yapin.';
+    }
+
+    return errorMessages[error.code] || error.message || 'Bir hata olustu. Lutfen tekrar deneyin.';
 }
 
 // Security: Prevent clickjacking
 if (window.top !== window.self) {
     window.top.location = window.self.location;
 }
-
-// Security: Clear sensitive data on page unload
-window.addEventListener('beforeunload', () => {
-    // Clear any sensitive data from memory
-    console.clear();
-});
