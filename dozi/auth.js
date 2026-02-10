@@ -11,7 +11,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const functions = firebase.functions();
+const functions = firebase.app().functions('europe-west3');
 
 // UI Elements
 const googleSignInBtn = document.getElementById('googleSignInBtn');
