@@ -1883,6 +1883,7 @@ if (settingsTab) {
 window.openMedicineModal = openMedicineModal;
 window.deleteMedicine = deleteMedicine;
 window.toggleReminder = toggleReminder;
+window.sendBadiNudge = sendBadiNudge;
 
 
 // ========================================
@@ -2272,6 +2273,15 @@ function checkPremiumStatus() {
 const BADI_LIMIT_FREE = 3;
 const MAX_REQUESTS_PER_DAY = 5;
 
+// Predefined Badi Nudge Messages
+const BADI_NUDGE_MESSAGES = [
+    { text: 'İlaçlarını almayı unutma! 💊', icon: 'ri-capsule-line' },
+    { text: 'İlaç zamanı geldi! ⏰', icon: 'ri-alarm-line' },
+    { text: 'Sağlığın için ilaçlarını al! 🌟', icon: 'ri-heart-pulse-line' },
+    { text: 'Hatırlatma: İlaç vakti! 🔔', icon: 'ri-notification-3-line' },
+    { text: 'İlaçlarını kontrol et! 📋', icon: 'ri-file-list-3-line' }
+];
+
 // Send Badi Nudge (Reminder Notification)
 async function sendBadiNudge(buddyUserId, buddyName) {
     if (!currentUser) {
@@ -2279,9 +2289,10 @@ async function sendBadiNudge(buddyUserId, buddyName) {
         return;
     }
     
-    const message = prompt(`${buddyName} adlı badine hatırlatma mesajı gönderin:`, 'İlaçlarını almayı unutma! 💊');
+    // Show message selection modal
+    const message = await showBadiNudgeMessageModal(buddyName);
     
-    if (message === null) return; // User cancelled
+    if (!message) return; // User cancelled
     
     try {
         showToast('Bildirim gönderiliyor...', 'info');
@@ -2290,7 +2301,7 @@ async function sendBadiNudge(buddyUserId, buddyName) {
         const sendBadiNudgeFunc = firebase.functions().httpsCallable('sendBadiNudge');
         const result = await sendBadiNudgeFunc({
             buddyUserId: buddyUserId,
-            message: message || 'İlaçlarını almayı unutma!'
+            message: message
         });
         
         console.log('✅ Badi nudge result:', result);
@@ -2313,6 +2324,124 @@ async function sendBadiNudge(buddyUserId, buddyName) {
         
         showToast(errorMessage, 'error');
     }
+}
+
+// Show Badi Nudge Message Selection Modal
+function showBadiNudgeMessageModal(buddyName) {
+    return new Promise((resolve) => {
+        // Create modal overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'badi-nudge-modal-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.2s ease;
+        `;
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'badi-nudge-modal';
+        modal.style.cssText = `
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease;
+        `;
+        
+        modal.innerHTML = `
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 48px; margin-bottom: 12px;">🔔</div>
+                <h3 style="margin: 0; font-size: 20px; color: #1f2937; font-weight: 600;">${buddyName} adlı badine hatırlatma gönder</h3>
+                <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">Bir mesaj seçin:</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                ${BADI_NUDGE_MESSAGES.map((msg, index) => `
+                    <button class="badi-nudge-message-btn" data-message="${msg.text}" style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        border: none;
+                        border-radius: 12px;
+                        padding: 16px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: transform 0.2s, box-shadow 0.2s;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    ">
+                        <i class="${msg.icon}" style="font-size: 20px;"></i>
+                        <span style="flex: 1; text-align: left;">${msg.text}</span>
+                    </button>
+                `).join('')}
+                <button class="badi-nudge-cancel-btn" style="
+                    background: #f3f4f6;
+                    color: #6b7280;
+                    border: none;
+                    border-radius: 12px;
+                    padding: 16px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                ">
+                    İptal
+                </button>
+            </div>
+        `;
+        
+        // Add hover effects and click handlers
+        const messageButtons = modal.querySelectorAll('.badi-nudge-message-btn');
+        messageButtons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0)';
+                btn.style.boxShadow = 'none';
+            });
+            btn.addEventListener('click', () => {
+                const message = btn.dataset.message;
+                document.body.removeChild(overlay);
+                resolve(message);
+            });
+        });
+        
+        const cancelBtn = modal.querySelector('.badi-nudge-cancel-btn');
+        cancelBtn.addEventListener('mouseenter', () => {
+            cancelBtn.style.background = '#e5e7eb';
+        });
+        cancelBtn.addEventListener('mouseleave', () => {
+            cancelBtn.style.background = '#f3f4f6';
+        });
+        cancelBtn.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            resolve(null);
+        });
+        
+        // Close on overlay click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+                resolve(null);
+            }
+        });
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+    });
 }
 
 document.getElementById('addBadiBtn')?.addEventListener('click', async () => {
