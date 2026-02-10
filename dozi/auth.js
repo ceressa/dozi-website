@@ -18,47 +18,29 @@ const googleSignInBtn = document.getElementById('googleSignInBtn');
 const loading = document.getElementById('loading');
 const errorDiv = document.getElementById('error');
 
-// Track if we're in the middle of a login attempt
-let loginInProgress = false;
-
-// Detect iOS/mobile Safari
-function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
-
-// Google Sign-In button handler
+// Google Sign-In - use popup for all platforms
 googleSignInBtn.addEventListener('click', async () => {
     try {
         showLoading(true);
         hideError();
-        loginInProgress = true;
 
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.setCustomParameters({
             prompt: 'select_account'
         });
 
-        // iOS Safari: use redirect (popup is unreliable on iOS)
-        if (isIOS()) {
-            await auth.signInWithRedirect(provider);
-            // Page navigates away, code below won't run
-            return;
-        }
+        // Use popup for all platforms
+        // onAuthStateChanged below will handle verify + redirect
+        await auth.signInWithPopup(provider);
 
-        // Desktop/Android: use popup
-        const result = await auth.signInWithPopup(provider);
-        // onAuthStateChanged will handle the rest
-        
     } catch (error) {
         console.error('Login error:', error);
-        loginInProgress = false;
         showError(getErrorMessage(error));
         showLoading(false);
     }
 });
 
-// Single auth handler: works for both popup, redirect, and returning users
+// Auth state handler: verify user and redirect to dashboard
 auth.onAuthStateChanged(async (user) => {
     if (user) {
         showLoading(true);
@@ -66,7 +48,7 @@ auth.onAuthStateChanged(async (user) => {
         try {
             const verifyUser = functions.httpsCallable('verifyWebLogin');
             const response = await verifyUser({ uid: user.uid, email: user.email });
-            
+
             if (response.data.success) {
                 window.location.href = 'dashboard.html';
             } else {
@@ -81,7 +63,6 @@ auth.onAuthStateChanged(async (user) => {
             showLoading(false);
         }
     } else {
-        // No user signed in - if we were loading (redirect return with no user), stop
         showLoading(false);
     }
 });
@@ -116,7 +97,6 @@ function getErrorMessage(error) {
         'auth/user-disabled': 'Bu hesap devre disi birakilmis.',
         'auth/operation-not-allowed': 'Google girisi etkin degil.',
         'auth/web-storage-unsupported': 'Tarayiciniz desteklenmiyor. Safari ayarlarindan cerezleri aktif edin.',
-        'auth/credential-already-in-use': 'Bu hesap zaten baska bir giris ile iliskilendirilmis.',
     };
 
     // Firebase Functions errors
