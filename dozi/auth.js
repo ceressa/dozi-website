@@ -50,10 +50,15 @@ auth.onAuthStateChanged(async (user) => {
             const response = await verifyUser({ uid: user.uid, email: user.email });
 
             if (response.data.success) {
-                window.location.href = 'dashboard.html';
+                // If new user registered via web, redirect to dashboard with flag
+                if (response.data.isNewUser) {
+                    window.location.href = 'dashboard.html?welcome=new';
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
             } else {
                 await auth.signOut();
-                showError(response.data.message || 'Bu hesap Dozi uygulamasinda kayitli degil. Lutfen once mobil uygulamayi indirin.');
+                showError(response.data.message || 'Giris yapilamadi. Lutfen tekrar deneyin.');
                 showLoading(false);
             }
         } catch (error) {
