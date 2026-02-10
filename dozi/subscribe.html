@@ -68,18 +68,12 @@
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             margin-bottom: 1rem;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            border: 2px solid #f59e0b;
             position: relative;
+            text-align: center;
         }
 
-        .plan-card.popular {
-            border-color: #f59e0b;
-        }
-
-        .plan-card.popular::before {
-            content: 'En Populer';
+        .plan-badge {
             position: absolute;
             top: -12px;
             left: 50%;
@@ -92,40 +86,39 @@
             font-weight: 700;
         }
 
-        .plan-card.selected {
-            border-color: #5b6fd8;
-            box-shadow: 0 10px 30px rgba(91, 111, 216, 0.2);
-        }
-
         .plan-name {
             font-size: 1.1rem;
             font-weight: 700;
             color: #1e293b;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
 
-        .plan-price {
+        .plan-price-yearly {
             font-size: 2rem;
             font-weight: 800;
             color: #5b6fd8;
             margin-bottom: 0.25rem;
         }
 
-        .plan-price span {
+        .plan-price-monthly {
             font-size: 0.9rem;
-            font-weight: 500;
-            color: #94a3b8;
-        }
-
-        .plan-save {
-            font-size: 0.8rem;
-            color: #10b981;
-            font-weight: 600;
+            color: #64748b;
             margin-bottom: 0.5rem;
         }
 
+        .plan-trial {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #065f46;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
         .features-list {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             background: white;
             border-radius: 20px;
             padding: 1.5rem;
@@ -163,7 +156,6 @@
         }
 
         .subscribe-btn {
-            display: block;
             width: 100%;
             padding: 16px;
             margin-top: 1.5rem;
@@ -215,24 +207,10 @@
             display: none;
         }
 
-        .status-message.active {
-            display: block;
-        }
-
-        .status-message.success {
-            background: #ecfdf5;
-            color: #065f46;
-        }
-
-        .status-message.error {
-            background: #fef2f2;
-            color: #991b1b;
-        }
-
-        .status-message.info {
-            background: #eff6ff;
-            color: #1e40af;
-        }
+        .status-message.active { display: block; }
+        .status-message.success { background: #ecfdf5; color: #065f46; }
+        .status-message.error { background: #fef2f2; color: #991b1b; }
+        .status-message.info { background: #eff6ff; color: #1e40af; }
 
         .already-premium {
             text-align: center;
@@ -256,6 +234,21 @@
             color: #64748b;
             margin-bottom: 1.5rem;
         }
+
+        .security-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        .security-note i {
+            color: #10b981;
+        }
     </style>
 </head>
 <body>
@@ -276,17 +269,14 @@
             </a>
         </div>
 
-        <!-- Subscription Plans -->
+        <!-- Subscription Plan -->
         <div id="plansSection">
-            <div class="plan-card" id="monthlyPlan" data-plan="monthly">
-                <div class="plan-name">Aylik Plan</div>
-                <div class="plan-price">29.99 TL <span>/ ay</span></div>
-            </div>
-
-            <div class="plan-card popular selected" id="yearlyPlan" data-plan="yearly">
-                <div class="plan-name">Yillik Plan</div>
-                <div class="plan-price">199.99 TL <span>/ yil</span></div>
-                <div class="plan-save">%44 tasarruf - ayda sadece 16.67 TL</div>
+            <div class="plan-card">
+                <span class="plan-badge" id="planBadge">Dozi Ekstra</span>
+                <div class="plan-name">Yillik Abonelik</div>
+                <div class="plan-price-yearly" id="priceYearly">...</div>
+                <div class="plan-price-monthly">Aylik sadece <strong id="priceMonthly">...</strong></div>
+                <div class="plan-trial" id="trialBadge" style="display:none;"></div>
             </div>
 
             <div class="features-list">
@@ -328,6 +318,11 @@
 
             <div class="status-message" id="statusMessage"></div>
 
+            <div class="security-note">
+                <i class="ri-shield-check-fill"></i>
+                <span>Guvenli odeme - iyzico altyapisi ile</span>
+            </div>
+
             <a href="dashboard.html" class="back-link">
                 <i class="ri-arrow-left-s-line"></i> Dashboard'a don
             </a>
@@ -350,17 +345,62 @@
         const db = firebase.firestore();
         const functions = firebase.app().functions('europe-west3');
 
-        let selectedPlan = 'yearly';
         let currentUser = null;
 
-        // Plan selection
-        document.querySelectorAll('.plan-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedPlan = card.dataset.plan;
-            });
-        });
+        // Parse price helper - "₺1.799,99" -> 1799.99
+        function parsePrice(priceStr) {
+            if (!priceStr) return null;
+            const match = priceStr.match(/₺?([\d.]+),?(\d*)/);
+            if (match) {
+                const intPart = match[1].replace(/\./g, '');
+                const decPart = match[2] || '0';
+                return parseFloat(intPart + '.' + decPart);
+            }
+            return null;
+        }
+
+        // Calculate monthly equivalent
+        function calculateMonthly(yearlyPrice) {
+            const monthly = yearlyPrice / 12;
+            return '₺' + monthly.toLocaleString('tr-TR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        // Load pricing from API
+        async function loadPricing() {
+            try {
+                const response = await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/getWebsitePricing');
+                const data = await response.json();
+
+                if (data.success && data.pricing) {
+                    const p = data.pricing;
+
+                    // Yearly price
+                    document.getElementById('priceYearly').textContent = p.ekstra.price_tr || '₺1.799,99';
+
+                    // Monthly equivalent
+                    const yearlyNum = parsePrice(p.ekstra.price_tr);
+                    if (yearlyNum) {
+                        document.getElementById('priceMonthly').textContent = calculateMonthly(yearlyNum);
+                    }
+
+                    // Discount badge
+                    if (p.ekstra.discount_percent > 0) {
+                        document.getElementById('planBadge').textContent = '%' + p.ekstra.discount_percent + ' Indirim';
+                    }
+
+                    // Trial badge
+                    if (p.ekstra.trialDays > 0) {
+                        const trialBadge = document.getElementById('trialBadge');
+                        trialBadge.textContent = p.ekstra.trialDays + ' gun ucretsiz dene';
+                        trialBadge.style.display = 'inline-block';
+                    }
+                }
+            } catch (error) {
+                console.log('Pricing API error, using defaults:', error);
+                document.getElementById('priceYearly').textContent = '₺1.799,99';
+                document.getElementById('priceMonthly').textContent = '₺150';
+            }
+        }
 
         // Auth check
         auth.onAuthStateChanged(async (user) => {
@@ -383,7 +423,7 @@
             }
         });
 
-        // Subscribe button
+        // Subscribe button - calls iyzico checkout Cloud Function
         document.getElementById('subscribeBtn').addEventListener('click', async () => {
             const btn = document.getElementById('subscribeBtn');
             const status = document.getElementById('statusMessage');
@@ -392,21 +432,24 @@
             btn.innerHTML = '<i class="ri-loader-4-line"></i> Yukleniyor...';
 
             try {
-                // Call Stripe checkout Cloud Function
-                const createCheckout = functions.httpsCallable('createStripeCheckout');
-                const result = await createCheckout({ plan: selectedPlan });
+                const createCheckout = functions.httpsCallable('createIyzicoCheckout');
+                const result = await createCheckout({ plan: 'ekstra_yearly' });
 
-                if (result.data.url) {
-                    // Redirect to Stripe Checkout
-                    window.location.href = result.data.url;
+                if (result.data.checkoutFormContent) {
+                    // iyzico returns HTML form content, inject and submit
+                    const container = document.createElement('div');
+                    container.innerHTML = result.data.checkoutFormContent;
+                    document.body.appendChild(container);
+                    // iyzico form auto-submits
+                } else if (result.data.paymentPageUrl) {
+                    window.location.href = result.data.paymentPageUrl;
                 } else {
                     throw new Error(result.data.message || 'Odeme sayfasi olusturulamadi.');
                 }
             } catch (error) {
                 console.error('Checkout error:', error);
                 
-                // If createStripeCheckout doesn't exist yet, show info message
-                if (error.code === 'not-found' || error.code === 'unimplemented' || error.message.includes('not found')) {
+                if (error.code === 'not-found' || error.code === 'unimplemented' || (error.message && error.message.includes('not found'))) {
                     status.className = 'status-message active info';
                     status.textContent = 'Odeme sistemi yakin zamanda aktif olacak. Lutfen daha sonra tekrar deneyin.';
                 } else {
@@ -418,6 +461,9 @@
                 btn.innerHTML = '<i class="ri-vip-crown-2-fill"></i> Abone Ol';
             }
         });
+
+        // Load pricing on page load
+        loadPricing();
     </script>
 </body>
 </html>
