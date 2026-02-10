@@ -40,7 +40,7 @@ messaging.onBackgroundMessage((payload) => {
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-const CACHE_NAME = 'dozi-pwa-v4';
+const CACHE_NAME = 'dozi-pwa-v5';
 const OFFLINE_URL = '/dozi/offline.html';
 
 // Files to cache immediately on install
@@ -257,27 +257,68 @@ self.addEventListener('push', (event) => {
     }
   }
   
-  const title = data.notification?.title || data.title || 'Dozi - Ilac Hatirlatmasi';
+  const title = data.notification?.title || data.title || 'Dozi';
+  const body = data.notification?.body || data.body || '';
+  const notifType = data.data?.type || '';
+  
+  // Build notification options based on type
   const options = {
-    body: data.notification?.body || data.body || 'Ilac alma zamanin geldi!',
+    body: body,
     icon: '/dozi_brand.png',
     badge: '/dozi_brand.png',
-    tag: data.data?.medicineId || 'dozi-reminder',
     renotify: true,
-    requireInteraction: true,
-    vibrate: [200, 100, 200, 100, 200],
     data: data.data || {},
-    actions: [
-      {
-        action: 'take',
-        title: 'Aldim'
-      },
-      {
-        action: 'postpone',
-        title: 'Ertele (15dk)'
-      }
-    ]
   };
+  
+  switch (notifType) {
+    case 'badi_request':
+      // Badi istegi - Onayla / Reddet butonlari
+      options.tag = 'badi-request-' + (data.data?.requestId || Date.now());
+      options.requireInteraction = true;
+      options.actions = [
+        { action: 'accept_badi', title: 'Onayla' },
+        { action: 'reject_badi', title: 'Reddet' }
+      ];
+      break;
+      
+    case 'badi_nudge':
+      // Durtme bildirimi - Badilerim sayfasina git
+      options.tag = 'badi-nudge-' + Date.now();
+      options.vibrate = [200, 100, 200];
+      options.actions = [
+        { action: 'open_badis', title: 'Goruntule' }
+      ];
+      break;
+      
+    case 'badi_thank_you':
+      // Tesekkur mesaji
+      options.tag = 'badi-thanks-' + Date.now();
+      options.actions = [
+        { action: 'open_badis', title: 'Goruntule' }
+      ];
+      break;
+      
+    case 'medication_taken':
+    case 'medication_missed':
+    case 'medication_skipped':
+      // Badi ilac durumu
+      options.tag = 'badi-med-' + Date.now();
+      options.actions = [
+        { action: 'open_badis', title: 'Goruntule' }
+      ];
+      break;
+      
+    default:
+      // Ilac hatirlatmasi veya genel bildirim
+      options.tag = data.data?.medicineId || 'dozi-' + Date.now();
+      options.requireInteraction = true;
+      options.vibrate = [200, 100, 200, 100, 200];
+      options.actions = [
+        { action: 'take', title: 'Aldim' },
+        { action: 'postpone', title: 'Ertele (15dk)' }
+      ];
+      break;
+  }
   
   event.waitUntil(
     self.registration.showNotification(title, options)
@@ -286,36 +327,43 @@ self.addEventListener('push', (event) => {
 
 // Handle notification click
 self.addEventListener('notificationclick', (event) => {
-  console.log('[SW] Notification click:', event.action);
+  const action = event.action;
+  const notifData = event.notification.data || {};
+  const notifType = notifData.type || '';
   
+  console.log('[SW] Notification click:', action, 'type:', notifType);
   event.notification.close();
   
-  if (event.action === 'take') {
-    // Open dashboard to mark as taken
-    event.waitUntil(
-      clients.openWindow('/dozi/dashboard.html?action=take&medicineId=' + (event.notification.data.medicineId || ''))
-    );
-  } else if (event.action === 'postpone') {
-    // Could trigger a postpone via fetch API
-    event.waitUntil(
-      clients.openWindow('/dozi/dashboard.html?action=postpone&medicineId=' + (event.notification.data.medicineId || ''))
-    );
-  } else {
-    // Default: open dashboard
-    event.waitUntil(
-      clients.matchAll({ type: 'window', includeUncontrolled: true })
-        .then((windowClients) => {
-          // Check if there is already a window open
-          for (const client of windowClients) {
-            if (client.url.includes('/dozi/') && 'focus' in client) {
-              return client.focus();
-            }
-          }
-          // Open new window
-          return clients.openWindow('/dozi/dashboard.html');
-        })
-    );
+  // Determine target URL based on action and notification type
+  let targetUrl = '/dozi/dashboard.html';
+  
+  if (action === 'accept_badi' && notifData.requestId) {
+    targetUrl = '/dozi/dashboard.html?tab=badis&action=accept&requestId=' + notifData.requestId;
+  } else if (action === 'reject_badi' && notifData.requestId) {
+    targetUrl = '/dozi/dashboard.html?tab=badis&action=reject&requestId=' + notifData.requestId;
+  } else if (action === 'open_badis' || notifType === 'badi_request' || notifType === 'badi_nudge' || notifType === 'badi_thank_you') {
+    targetUrl = '/dozi/dashboard.html?tab=badis';
+  } else if (action === 'take') {
+    targetUrl = '/dozi/dashboard.html?action=take&medicineId=' + (notifData.medicineId || '');
+  } else if (action === 'postpone') {
+    targetUrl = '/dozi/dashboard.html?action=postpone&medicineId=' + (notifData.medicineId || '');
+  } else if (notifType.includes('medication') || notifType.includes('med')) {
+    targetUrl = '/dozi/dashboard.html?tab=badis';
   }
+  
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then((windowClients) => {
+        // Focus existing window if possible
+        for (const client of windowClients) {
+          if (client.url.includes('/dozi/') && 'focus' in client) {
+            client.postMessage({ type: 'notification_action', action, data: notifData, url: targetUrl });
+            return client.focus();
+          }
+        }
+        return clients.openWindow(targetUrl);
+      })
+  );
 });
 
 // Handle notification close
