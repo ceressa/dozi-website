@@ -40,7 +40,7 @@ messaging.onBackgroundMessage((payload) => {
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-const CACHE_NAME = 'dozi-pwa-v1';
+const CACHE_NAME = 'dozi-pwa-v2';
 const OFFLINE_URL = '/dozi/offline.html';
 
 // Files to cache immediately on install
@@ -50,7 +50,6 @@ const PRECACHE_URLS = [
   '/dozi/dashboard.html',
   '/dozi/dashboard.css',
   '/dozi/dashboard.js',
-  '/dozi/auth.js',
   '/dozi/offline.html',
   '/dozi_brand.png',
   '/dozi/images/dozi_brand.webp',
@@ -152,10 +151,29 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For static assets: Cache-first, then network
+  // For JS files: Network-first (so code updates are picked up immediately)
+  if (url.pathname.endsWith('.js')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // For other static assets (CSS, images, fonts): Cache-first with background update
   if (
     url.pathname.endsWith('.css') ||
-    url.pathname.endsWith('.js') ||
     url.pathname.endsWith('.png') ||
     url.pathname.endsWith('.webp') ||
     url.pathname.endsWith('.gif') ||
