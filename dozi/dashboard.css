@@ -4028,3 +4028,186 @@ input:checked + .toggle-slider:before {
         align-self: flex-start;
     }
 }
+
+/* ========================================
+   PWA INSTALL BANNER
+   ======================================== */
+
+.pwa-install-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 16px 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 9000;
+    animation: slideUpBanner 0.4s ease;
+}
+
+@keyframes slideUpBanner {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.pwa-install-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.pwa-install-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+}
+
+.pwa-install-text h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+}
+
+.pwa-install-text p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.pwa-install-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pwa-install-btn {
+    padding: 10px 20px;
+    background: var(--bg-gradient);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.pwa-install-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(91, 111, 216, 0.4);
+}
+
+.pwa-install-dismiss {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    background: #f1f5f9;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.pwa-install-dismiss:hover {
+    background: #e2e8f0;
+    color: var(--text-dark);
+}
+
+/* iOS PWA Install Hint */
+.ios-pwa-hint {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
+}
+
+.ios-pwa-hint-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.ios-pwa-hint-content i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ios-pwa-hint-content p {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* PWA Standalone Mode Adjustments */
+@media (display-mode: standalone) {
+    /* When running as installed PWA, add safe area padding */
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    
+    .app-header {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    
+    /* Hide install banner in standalone mode */
+    .pwa-install-banner {
+        display: none !important;
+    }
+    
+    .ios-pwa-hint {
+        display: none !important;
+    }
+    
+    /* Adjust Dozi character for safe area */
+    .dozi-character {
+        bottom: calc(30px + env(safe-area-inset-bottom));
+    }
+    
+    /* Add bottom padding for nav tabs to clear safe area */
+    .toast-container {
+        top: calc(20px + env(safe-area-inset-top));
+    }
+}
+
+/* PWA Responsive Adjustments */
+@media (max-width: 768px) {
+    .pwa-install-banner {
+        padding: 12px 16px;
+    }
+    
+    .pwa-install-text h3 {
+        font-size: 0.85rem;
+    }
+    
+    .pwa-install-text p {
+        font-size: 0.75rem;
+    }
+    
+    .pwa-install-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}

@@ -2,14 +2,31 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dozi - Giriş Yap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dozi - Giris Yap</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#5b6fd8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Dozi">
+    <meta name="description" content="Ilac takibini akillica yonet">
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dozi">
+    <link rel="apple-touch-icon" href="../dozi_brand.png">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../dozi_brand.png">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -21,19 +38,21 @@
         body.login-page {
             background-color: #F8FAFC;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(91, 111, 216, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(107, 91, 149, 0.15) 0px, transparent 50%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            padding: 20px;
         }
         
         .login-card {
             background: white;
             padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.08);
             width: 100%;
             max-width: 420px;
             text-align: center;
@@ -51,12 +70,12 @@
         .login-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: #1e293b;
             margin-bottom: 0.5rem;
         }
 
         .login-subtitle {
-            color: var(--text-light);
+            color: #94a3b8;
             margin-bottom: 2.5rem;
             font-size: 0.95rem;
         }
@@ -68,7 +87,9 @@
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             font-weight: 600;
-            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #1e293b;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -84,40 +105,277 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
+        .google-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            color: #ef4444;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .loading-spinner::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e2e8f0;
+            border-top-color: #5b6fd8;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* PWA Install Banner */
+        .install-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 16px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            z-index: 1000;
+            animation: slideUpBanner 0.3s ease;
+        }
+
+        .install-banner.active {
+            display: flex;
+        }
+
+        .install-banner-text {
+            flex: 1;
+        }
+
+        .install-banner-text h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .install-banner-text p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .install-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #5b6fd8, #6b5b95);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .install-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(91, 111, 216, 0.4);
+        }
+
+        .install-dismiss {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUpBanner {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* iOS Install Hint */
+        .ios-install-hint {
+            display: none;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            animation: slideUpFade 0.6s ease-out;
+        }
+
+        .ios-install-hint.active {
+            display: block;
+        }
+
+        .ios-install-hint p {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .ios-install-hint .share-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body class="login-page">
     <div class="login-card">
         <img src="../dozi_brand.png" alt="Dozi" class="brand-logo">
-        <h1 class="login-title">Dozi'ye Hoş Geldin</h1>
-        <p class="login-subtitle">İlaç takibini akıllıca yönet</p>
+        <h1 class="login-title">Dozi'ye Hos Geldin</h1>
+        <p class="login-subtitle">Ilac takibini akillica yonet</p>
         
-        <button id="googleLoginBtn" class="google-btn">
+        <button id="googleSignInBtn" class="google-btn">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20">
             <span>Google ile Devam Et</span>
         </button>
 
-        <div id="error" class="error-message" style="display:none; color: var(--danger); margin-top: 1rem; font-size: 0.9rem;"></div>
+        <div class="loading-spinner" id="loading"></div>
+        <div id="error" class="error-message"></div>
+    </div>
+
+    <!-- iOS Install Hint -->
+    <div class="ios-install-hint" id="iosInstallHint">
+        <p>
+            Dozi'yi ana ekranina eklemek icin 
+            <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="#5b6fd8" stroke-width="2">
+                <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/>
+            </svg>
+            simgesine tikla ve <strong>"Ana Ekrana Ekle"</strong> sec.
+        </p>
+    </div>
+
+    <!-- PWA Install Banner (for Android/Chrome) -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-banner-text">
+            <h3>Dozi'yi Yukle</h3>
+            <p>Ana ekranina ekle, uygulama gibi kullan</p>
+        </div>
+        <button class="install-btn" id="installBtn">Yukle</button>
+        <button class="install-dismiss" id="installDismiss">&times;</button>
     </div>
 
     <script src="auth.js"></script>
+
     <script>
-        // Basit bir inline script ile auth yönlendirmesi (auth.js yoksa diye)
-        document.getElementById('googleLoginBtn').addEventListener('click', () => {
-             const provider = new firebase.auth.GoogleAuthProvider();
-             firebase.auth().signInWithPopup(provider)
-                .then((result) => {
-                    window.location.href = 'dashboard.html';
-                })
-                .catch((error) => {
-                    document.getElementById('error').textContent = error.message;
-                    document.getElementById('error').style.display = 'block';
-                });
+        // ================================
+        // PWA: Service Worker Registration
+        // ================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    // Register single SW that handles both PWA caching and FCM
+                    const registration = await navigator.serviceWorker.register('/dozi/sw.js', {
+                        scope: '/dozi/'
+                    });
+                    console.log('[PWA] Service Worker registered:', registration.scope);
+                } catch (error) {
+                    console.error('[PWA] Service Worker registration failed:', error);
+                }
+            });
+        }
+
+        // ================================
+        // PWA: Install Prompt
+        // ================================
+        let deferredPrompt = null;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install banner
+            document.getElementById('installBanner').classList.add('active');
+            console.log('[PWA] Install prompt captured');
         });
+
+        document.getElementById('installBtn')?.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('[PWA] Install outcome:', outcome);
+            
+            deferredPrompt = null;
+            document.getElementById('installBanner').classList.remove('active');
+        });
+
+        document.getElementById('installDismiss')?.addEventListener('click', () => {
+            document.getElementById('installBanner').classList.remove('active');
+            // Remember dismissal for 7 days
+            localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+        });
+
+        // Check if running as installed PWA
+        window.addEventListener('appinstalled', () => {
+            console.log('[PWA] App installed successfully');
+            document.getElementById('installBanner').classList.remove('active');
+        });
+
+        // ================================
+        // iOS Install Hint
+        // ================================
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
+
+        function isInStandaloneMode() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
+        }
+
+        if (isIOS() && !isInStandaloneMode()) {
+            const dismissed = localStorage.getItem('ios-install-dismissed');
+            const dismissedTime = dismissed ? parseInt(dismissed) : 0;
+            const sevenDays = 7 * 24 * 60 * 60 * 1000;
+            
+            if (Date.now() - dismissedTime > sevenDays) {
+                document.getElementById('iosInstallHint').classList.add('active');
+            }
+        }
+    </script>
+    
+    <!-- Security: Prevent clickjacking -->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
     </script>
 </body>
 </html>

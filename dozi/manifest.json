@@ -1,0 +1,71 @@
+{
+  "name": "Dozi - Ilac Takip",
+  "short_name": "Dozi",
+  "description": "Ilac takibini akillica yonet. Ilac hatirlatmalari, badi takibi ve istatistikler.",
+  "start_url": "/dozi/index.html",
+  "scope": "/dozi/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#5b6fd8",
+  "theme_color": "#5b6fd8",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "/dozi_brand.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/dozi_brand.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/dozi_brand.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/dozi_brand.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/PlayStore_0.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Dozi Ana Ekran"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bugunku Ilaclarim",
+      "short_name": "Bugun",
+      "description": "Bugunku ilac takvimine bak",
+      "url": "/dozi/dashboard.html",
+      "icons": [
+        {
+          "src": "/dozi_brand.png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.bardino.dozi",
+      "id": "com.bardino.dozi"
+    }
+  ],
+  "prefer_related_applications": false
+}

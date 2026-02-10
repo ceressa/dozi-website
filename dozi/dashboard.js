@@ -1131,8 +1131,8 @@ async function toggleReminder(medicineId, newStatus) {
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             });
         
-        showToast(newStatus ? 'Hatırlatma aktifleştirildi' : 'Hatırlatma duraklatıldı', 'success');
-        await loadDashboardData();
+        showToast(newStatus ? 'Hatirlatma aktiflestirildi' : 'Hatirlatma duraklatildi', 'success');
+        await loadDashboard();
         renderReminders();
         
     } catch (error) {
@@ -1894,19 +1894,21 @@ async function checkNotificationPermission() {
     return false;
 }
 
-// Request Notification Permission
+// Request Notification Permission (with FCM token registration)
 async function requestNotificationPermission() {
     if (!('Notification' in window)) {
-        showToast('Bu tarayıcı bildirimleri desteklemiyor', 'error');
+        showToast('Bu tarayici bildirimleri desteklemiyor', 'error');
         return false;
     }
     
     if (Notification.permission === 'granted') {
+        // Also try to register FCM token
+        await tryRegisterFCMToken();
         return true;
     }
     
     if (Notification.permission === 'denied') {
-        showToast('Bildirim izni reddedilmiş. Tarayıcı ayarlarından izin verebilirsiniz.', 'error');
+        showToast('Bildirim izni reddedilmis. Tarayici ayarlarindan izin verebilirsiniz.', 'error');
         return false;
     }
     
@@ -1916,9 +1918,12 @@ async function requestNotificationPermission() {
         if (permission === 'granted') {
             showToast('Bildirim izni verildi!', 'success');
             
+            // Register FCM token for push notifications
+            await tryRegisterFCMToken();
+            
             // Send test notification
-            new Notification('Dozi Bildirimleri Aktif! 🎉', {
-                body: 'Artık ilaç hatırlatmalarını tarayıcıdan alacaksınız.',
+            new Notification('Dozi Bildirimleri Aktif!', {
+                body: 'Artik ilac hatirlatmalarini tarayicidan alacaksiniz.',
                 icon: '../dozi_brand.png',
                 badge: '../dozi_brand.png',
                 tag: 'dozi-welcome',
@@ -1932,8 +1937,39 @@ async function requestNotificationPermission() {
         }
     } catch (error) {
         console.error('Notification permission error:', error);
-        showToast('Bildirim izni alınırken hata oluştu', 'error');
+        showToast('Bildirim izni alinirken hata olustu', 'error');
         return false;
+    }
+}
+
+// Try to register FCM token (called when notification permission is granted)
+async function tryRegisterFCMToken() {
+    try {
+        if (!firebase.messaging || !currentUser) return;
+        
+        const messaging = firebase.messaging();
+        const swRegistration = await navigator.serviceWorker.getRegistration('/dozi/');
+        
+        if (!swRegistration) {
+            console.log('[FCM] No service worker registration found');
+            return;
+        }
+        
+        const currentToken = await messaging.getToken({
+            serviceWorkerRegistration: swRegistration
+        });
+        
+        if (currentToken) {
+            console.log('[FCM] Token obtained, saving to Firestore');
+            
+            await db.collection('users').doc(currentUser.uid).set({
+                webFcmToken: currentToken,
+                webFcmTokenUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                webPushEnabled: true
+            }, { merge: true });
+        }
+    } catch (error) {
+        console.warn('[FCM] Token registration skipped:', error.message);
     }
 }
 
@@ -2056,7 +2092,7 @@ function playNotificationSound() {
     }
 }
 
-// Update saveSettings to request permission when enabling
+// Update saveSettings to request permission when enabling and manage FCM token
 const originalSaveSettings = saveSettings;
 saveSettings = async function() {
     const webNotificationsEnabled = webNotificationsToggle.checked;
@@ -2069,6 +2105,18 @@ saveSettings = async function() {
             // Revert toggle if permission denied
             webNotificationsToggle.checked = false;
             return;
+        }
+    } else {
+        // If disabling, remove FCM token from Firestore
+        try {
+            if (currentUser) {
+                await db.collection('users').doc(currentUser.uid).set({
+                    webPushEnabled: false
+                }, { merge: true });
+                console.log('[FCM] Web push disabled in Firestore');
+            }
+        } catch (error) {
+            console.warn('[FCM] Error disabling web push:', error);
         }
     }
     
