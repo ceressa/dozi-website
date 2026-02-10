@@ -311,16 +311,31 @@
                 </div>
             </div>
 
-            <button class="subscribe-btn" id="subscribeBtn">
-                <i class="ri-vip-crown-2-fill"></i>
-                Abone Ol
-            </button>
+            <!-- Android: Play Store link -->
+            <div id="androidSection">
+                <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" target="_blank" class="subscribe-btn" style="text-decoration:none;">
+                    <i class="ri-google-play-fill"></i>
+                    Google Play'den Abone Ol
+                </a>
+                <div class="status-message active info" style="margin-top:1rem;">
+                    Abonelik Google Play uzerinden yapilmaktadir. Dozi uygulamasini indirip uygulama icinden abone olabilirsiniz.
+                </div>
+            </div>
 
-            <div class="status-message" id="statusMessage"></div>
+            <!-- iOS / Other: Coming soon -->
+            <div id="iosSection" style="display:none;">
+                <div class="subscribe-btn" style="background:linear-gradient(135deg, #94a3b8, #64748b); cursor:default;">
+                    <i class="ri-time-line"></i>
+                    Cok Yakinda
+                </div>
+                <div class="status-message active info" style="margin-top:1rem;">
+                    Web uzerinden abonelik yakin zamanda aktif olacak. Su an icin Android cihazinizdan Dozi uygulamasini indirerek abone olabilirsiniz.
+                </div>
+            </div>
 
             <div class="security-note">
                 <i class="ri-shield-check-fill"></i>
-                <span>Guvenli odeme - iyzico altyapisi ile</span>
+                <span>Guvenli odeme - Google Play altyapisi ile</span>
             </div>
 
             <a href="dashboard.html" class="back-link">
@@ -423,44 +438,16 @@
             }
         });
 
-        // Subscribe button - calls iyzico checkout Cloud Function
-        document.getElementById('subscribeBtn').addEventListener('click', async () => {
-            const btn = document.getElementById('subscribeBtn');
-            const status = document.getElementById('statusMessage');
+        // Detect platform and show correct section
+        function isAndroid() {
+            return /Android/i.test(navigator.userAgent);
+        }
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="ri-loader-4-line"></i> Yukleniyor...';
-
-            try {
-                const createCheckout = functions.httpsCallable('createIyzicoCheckout');
-                const result = await createCheckout({ plan: 'ekstra_yearly' });
-
-                if (result.data.checkoutFormContent) {
-                    // iyzico returns HTML form content, inject and submit
-                    const container = document.createElement('div');
-                    container.innerHTML = result.data.checkoutFormContent;
-                    document.body.appendChild(container);
-                    // iyzico form auto-submits
-                } else if (result.data.paymentPageUrl) {
-                    window.location.href = result.data.paymentPageUrl;
-                } else {
-                    throw new Error(result.data.message || 'Odeme sayfasi olusturulamadi.');
-                }
-            } catch (error) {
-                console.error('Checkout error:', error);
-                
-                if (error.code === 'not-found' || error.code === 'unimplemented' || (error.message && error.message.includes('not found'))) {
-                    status.className = 'status-message active info';
-                    status.textContent = 'Odeme sistemi yakin zamanda aktif olacak. Lutfen daha sonra tekrar deneyin.';
-                } else {
-                    status.className = 'status-message active error';
-                    status.textContent = 'Bir hata olustu: ' + (error.message || 'Bilinmeyen hata');
-                }
-
-                btn.disabled = false;
-                btn.innerHTML = '<i class="ri-vip-crown-2-fill"></i> Abone Ol';
-            }
-        });
+        if (!isAndroid()) {
+            // iOS, desktop, or other - show "coming soon"
+            document.getElementById('androidSection').style.display = 'none';
+            document.getElementById('iosSection').style.display = 'block';
+        }
 
         // Load pricing on page load
         loadPricing();
