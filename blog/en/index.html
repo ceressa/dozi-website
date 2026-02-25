@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'self';">
+
+    <!-- Google Analytics with Consent Mode v2 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKE1QTSMWJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+        });
+        gtag('js', new Date());
+        gtag('config', 'G-FKE1QTSMWJ');
+        gtag('config', 'AW-17862936779');
+    </script>
+
+    <title>Blog | Dozi - Medication Tracking & Health Articles</title>
+    <meta name="description" content="Dozi Blog: Helpful articles about medication tracking, treatment adherence, family health, and scientific research. Healthy living tips.">
+    <meta name="keywords" content="medication tracking blog, health articles, treatment adherence, medication reminder, family health, chronic disease">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href="https://www.dozi.app/blog/en/">
+    <link rel="alternate" hreflang="en" href="https://www.dozi.app/blog/en/">
+    <link rel="alternate" hreflang="tr" href="https://www.dozi.app/blog/">
+    <link rel="alternate" hreflang="x-default" href="https://www.dozi.app/blog/en/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dozi.app/blog/en/">
+    <meta property="og:title" content="Dozi Blog - Medication Tracking & Health Articles">
+    <meta property="og:description" content="Scientific articles about medication tracking, treatment adherence, and healthy living.">
+    <meta property="og:image" content="https://www.dozi.app/dozi_brand.png">
+    <meta property="og:site_name" content="Dozi">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dozi Blog">
+    <meta name="twitter:description" content="Medication tracking and healthy living articles">
+
+    <link rel="icon" type="image/png" href="../../dozi_brand.png">
+    <link rel="apple-touch-icon" href="../../dozi_brand.png">
+
+    <!-- Structured Data - Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Dozi Blog",
+        "description": "Articles about medication tracking, treatment adherence, and healthy living",
+        "url": "https://www.dozi.app/blog/en/",
+        "inLanguage": "en",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Dozi",
+            "logo": "https://www.dozi.app/dozi_brand.png"
+        }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dozi-primary: #40E0D0;
+            --dozi-primary-dark: #2dd4bf;
+            --dozi-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-main: #475569;
+            --text-bold: #1e293b;
+            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; color: var(--text-main); background: var(--bg-light); }
+
+        /* Navbar */
+        .navbar { background: var(--dozi-dark); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; font-weight: 800; font-size: 1.4rem; }
+        .nav-logo img { height: 32px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dozi-primary); }
+        .lang-switch { background: rgba(64,224,208,0.15); color: var(--dozi-primary) !important; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.85rem !important; border: 1px solid rgba(64,224,208,0.3); }
+        .lang-switch:hover { background: rgba(64,224,208,0.25) !important; }
+
+        /* Hero */
+        .hero { background: var(--gradient-hero); color: white; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2340E0D0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(64,224,208,0.15); color: var(--dozi-primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 0.5rem 1.25rem; border-radius: 50px; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 2.75rem; margin-bottom: 1rem; font-weight: 800; line-height: 1.2; }
+        .hero h1 span { color: var(--dozi-primary); }
+        .hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.7; }
+
+        /* Stats Bar */
+        .stats-bar { background: white; border-bottom: 1px solid #e2e8f0; }
+        .stats-container { max-width: 1000px; margin: 0 auto; padding: 1.5rem 2rem; display: flex; justify-content: center; gap: 4rem; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--dozi-primary); }
+        .stat-label { font-size: 0.8rem; color: var(--text-main); margin-top: 0.25rem; }
+
+        /* Container */
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+        .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-bold); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-title::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, #e2e8f0 0%, transparent 100%); }
+
+        /* Blog Grid */
+        .blog-grid { display: grid; gap: 2rem; }
+
+        /* Featured Card */
+        .blog-card.featured { background: linear-gradient(135deg, var(--dozi-dark) 0%, #1e3a5f 100%); color: white; border: none; }
+        .blog-card.featured .blog-card-image { background: rgba(64,224,208,0.15); }
+        .blog-card.featured .blog-card-tag { background: rgba(64,224,208,0.2); color: var(--dozi-primary); }
+        .blog-card.featured h2 { color: white; }
+        .blog-card.featured:hover h2 { color: var(--dozi-primary); }
+        .blog-card.featured p { color: rgba(255,255,255,0.7); }
+        .blog-card.featured .blog-card-meta { color: rgba(255,255,255,0.5); }
+        .blog-card.featured:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
+
+        /* Regular Card */
+        .blog-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; border: 1px solid #e2e8f0; cursor: pointer; text-decoration: none; }
+        .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--dozi-primary); }
+        .blog-card-image { width: 260px; min-height: 200px; background: linear-gradient(135deg, var(--dozi-primary) 0%, var(--dozi-primary-dark) 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
+        .blog-card-image::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); }
+        .blog-card-image img { max-width: 120px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); position: relative; z-index: 1; transition: transform 0.4s ease; }
+        .blog-card:hover .blog-card-image img { transform: scale(1.1) rotate(-3deg); }
+        .blog-card-content { padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .blog-card-tag { display: inline-block; background: rgba(64,224,208,0.1); color: var(--dozi-primary-dark); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem; width: fit-content; }
+        .blog-card-content h2 { font-size: 1.35rem; margin-bottom: 0.75rem; font-weight: 800; line-height: 1.35; color: var(--text-bold); transition: color 0.3s; }
+        .blog-card:hover h2 { color: var(--dozi-primary); }
+        .blog-card-content p { color: var(--text-main); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.65; }
+        .blog-card-meta { font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 1.25rem; }
+        .blog-card-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+        /* Footer CTA */
+        .footer-cta { background: var(--gradient-hero); padding: 4rem 2rem; text-align: center; color: white; }
+        .footer-cta h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+        .footer-cta p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--dozi-primary); color: var(--dozi-dark); padding: 1rem 2.5rem; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; box-shadow: 0 10px 30px rgba(64,224,208,0.3); }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(64,224,208,0.4); }
+
+        @media (max-width: 768px) {
+            .blog-card { flex-direction: column; }
+            .blog-card-image { width: 100%; min-height: 160px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .stats-container { gap: 2rem; flex-wrap: wrap; }
+            .blog-card-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../en/" class="nav-logo"><img src="../../dozi_brand.png" alt="Dozi">Dozi</a>
+            <ul class="nav-links">
+                <li><a href="../../en/#features">Features</a></li>
+                <li><a href="../../en/#pricing">Pricing</a></li>
+                <li><a href="./">Blog</a></li>
+                <li><a href="../../blog/" class="lang-switch">🇹🇷 Türkçe</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">📚 Dozi Blog</span>
+            <h1>Knowledge for Your <span>Health</span></h1>
+            <p>Science-backed, practical articles about medication tracking, treatment adherence, and family health.</p>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value">50%</div>
+                <div class="stat-label">Patients with non-adherence</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">+40%</div>
+                <div class="stat-label">Improvement with apps</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">75%</div>
+                <div class="stat-label">Non-adherence in 65+ age</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="blog-grid">
+            <a href="best-medication-reminder-app-2026.html" class="blog-card featured">
+                <div class="blog-card-image"><img src="../../images/dozi_ok.webp" alt="Dozi"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Comparison</span>
+                    <h2>Best 10 Medication Reminder Apps of 2026</h2>
+                    <p>We compared all medication reminder apps on the market. Which one actually works for you? Price, features, and reliability analysis.</p>
+                    <span class="blog-card-meta"><span>⏱️ 6 min read</span></span>
+                </div>
+            </a>
+            <a href="how-to-choose-medication-reminder-app.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_star.webp" alt="Dozi"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Guide</span>
+                    <h2>How to Choose a Medication Reminder App? 7 Key Criteria</h2>
+                    <p>Everything you need to know to choose the right app. Reliability, privacy, price, and more. Avoid the gamification trap.</p>
+                    <span class="blog-card-meta"><span>⏱️ 6 min read</span></span>
+                </div>
+            </a>
+            <a href="why-we-forget-medication.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_idea.webp" alt="Dozi"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Behavioral Psychology</span>
+                    <h2>Fill Your Memory Gaps with Dozi: Why Do We Forget?</h2>
+                    <p>Forgetting medication isn't carelessness — it's your brain playing tricks. Discover the traps of autopilot mode and Dozi's smart solutions.</p>
+                    <span class="blog-card-meta"><span>⏱️ 5 min read</span></span>
+                </div>
+            </a>
+            <a href="elderly-parent-medication-tracking.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_family.webp" alt="Dozi Family"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Family & Health</span>
+                    <h2>Peace of Mind Without Asking: The Dozi Badi System for Families</h2>
+                    <p>Be a child, not a supervisor. End the tension of "Did you take your medication?" and monitor remotely with the Badi system.</p>
+                    <span class="blog-card-meta"><span>⏱️ 5 min read</span></span>
+                </div>
+            </a>
+            <a href="morning-routine-medication-adherence.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_morning.webp" alt="Dozi Morning"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Habit Science</span>
+                    <h2>How to Build Medication Into Your Morning Routine</h2>
+                    <p>Health with your coffee: Never miss your morning medications with the habit stacking technique.</p>
+                    <span class="blog-card-meta"><span>⏱️ 4 min read</span></span>
+                </div>
+            </a>
+            <a href="medication-streak-motivation.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_star.webp" alt="Dozi Star"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Motivation Psychology</span>
+                    <h2>The Power of Streaks: The Big Impact of Small Wins</h2>
+                    <p>Why does a 7-day streak feel more valuable than 7 separate days? Discover the power of loss aversion and dopamine rewards.</p>
+                    <span class="blog-card-meta"><span>⏱️ 4 min read</span></span>
+                </div>
+            </a>
+            <a href="location-based-medication-reminder.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_ready.webp" alt="Dozi Ready"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Smart Technology</span>
+                    <h2>Remind Me When I Get Home: Location-Based Medication Reminders</h2>
+                    <p>Sometimes the problem isn't the time — it's where you are. Get alerts at the right place at the right time with location-based reminders.</p>
+                    <span class="blog-card-meta"><span>⏱️ 4 min read</span></span>
+                </div>
+            </a>
+            <a href="medication-stock-tracking.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_noted.webp" alt="Dozi Notes"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Practical Solutions</span>
+                    <h2>Know Before You Run Out: The Importance of Medication Stock Tracking</h2>
+                    <p>A planned pharmacy visit before you run out, instead of a last-tablet panic. Get alerts before your medication runs out with stock tracking.</p>
+                    <span class="blog-card-meta"><span>⏱️ 4 min read</span></span>
+                </div>
+            </a>
+            <a href="chronic-disease-medication-adherence.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_idea.webp" alt="Dozi"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Chronic Disease</span>
+                    <h2>Medication Adherence in Chronic Disease: Why It Matters More Than You Think</h2>
+                    <p>For millions living with chronic conditions, taking medication consistently is the single most impactful health decision. Here's the science.</p>
+                    <span class="blog-card-meta"><span>⏱️ 6 min read</span></span>
+                </div>
+            </a>
+            <a href="digital-health-tools-seniors.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_family.webp" alt="Dozi Family"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Senior Care</span>
+                    <h2>Digital Health Tools for Seniors: Simple, Safe, and Effective</h2>
+                    <p>Technology shouldn't feel intimidating. Discover how the right digital health tools help seniors stay independent and healthy.</p>
+                    <span class="blog-card-meta"><span>⏱️ 5 min read</span></span>
+                </div>
+            </a>
+            <a href="medication-side-effects-tracking.html" class="blog-card">
+                <div class="blog-card-image"><img src="../../images/dozi_noted.webp" alt="Dozi Notes"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Health Management</span>
+                    <h2>Track Medication Side Effects: Why Your Doctor Needs This Data</h2>
+                    <p>Keeping a detailed log of side effects transforms your doctor visits and helps optimize your treatment plan. Here's how to do it right.</p>
+                    <span class="blog-card-meta"><span>⏱️ 5 min read</span></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <section class="footer-cta">
+        <h2>Make Medication Tracking Easy</h2>
+        <p>Never miss a dose with smart reminders and family tracking.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="cta-btn">
+            <span>📱</span>
+            <span>Download Free</span>
+        </a>
+    </section>
+
+    <footer style="background: #020617; color: white; padding: 4rem 2rem 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <img src="../../dozi_brand.png" alt="Dozi" style="height: 50px; margin-bottom: 1rem;">
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7;">Dozi is your AI-powered health companion that makes medication tracking easy and improves your treatment adherence. Developed in Turkey.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white;">Product</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="../../en/#features" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Features</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../../en/#pricing" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Pricing</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="./" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white;">Legal</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="../../legal/gdpr.html" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">GDPR Policy</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../../legal/gdpr-request.html" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">GDPR Request</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../../privacy-policy.html" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: white;">Contact</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="mailto:info@dozi.app" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">info@dozi.app</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem; margin: 0;">© 2026 Bardino Technology. All rights reserved.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.15);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <span>Get it on Google Play</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
