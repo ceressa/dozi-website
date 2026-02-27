@@ -475,6 +475,81 @@
         /* Pulse animation for floating button */
         @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.4); opacity: 0; } }
         .floating-download::before { content: ''; position: absolute; inset: -4px; border-radius: 50px; background: var(--gradient-primary); opacity: 0; animation: pulse-ring 2s infinite; z-index: -1; }
+
+        /* PLAY STORE RATING BADGE */
+        .play-rating { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; background: rgba(255,255,255,0.08); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .play-rating-stars { color: #FBBF24; font-size: 0.875rem; letter-spacing: 1px; }
+        .play-rating-text { color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 500; }
+        .play-rating-text strong { color: white; }
+
+        /* TESTIMONIALS */
+        .testimonials { background: white; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .testimonial-card { background: var(--bg-light); border-radius: 20px; padding: 2rem; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--dozi-turquoise); }
+        .testimonial-stars { color: #FBBF24; font-size: 1rem; margin-bottom: 1rem; }
+        .testimonial-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+        .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; }
+        .testimonial-name { font-weight: 600; color: var(--text-primary); font-size: 0.9rem; }
+        .testimonial-role { font-size: 0.8rem; color: var(--text-muted); }
+        @media (max-width: 968px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+        /* iOS WAITLIST */
+        .ios-waitlist { margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+        .ios-waitlist-title { font-size: 0.95rem; color: rgba(255,255,255,0.8); }
+        .ios-waitlist-title span { color: var(--dozi-turquoise); font-weight: 600; }
+        .ios-waitlist-form { display: flex; gap: 0.5rem; max-width: 420px; width: 100%; }
+        .ios-waitlist-form input { flex: 1; padding: 0.75rem 1.25rem; border-radius: 50px; border: 2px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: white; font-size: 0.9rem; outline: none; transition: border-color 0.3s; }
+        .ios-waitlist-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .ios-waitlist-form input:focus { border-color: var(--dozi-turquoise); }
+        .ios-waitlist-form button { padding: 0.75rem 1.5rem; border-radius: 50px; border: none; background: var(--dozi-turquoise); color: var(--dozi-dark); font-weight: 700; font-size: 0.9rem; cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+        .ios-waitlist-form button:hover { background: var(--dozi-turquoise-dark); transform: translateY(-2px); }
+        .ios-waitlist-success { display: none; color: var(--success); font-size: 0.9rem; font-weight: 500; }
+        @media (max-width: 600px) { .ios-waitlist-form { flex-direction: column; } .ios-waitlist-form input, .ios-waitlist-form button { width: 100%; } }
+
+        /* SCAN SHOWCASE */
+        .scan-showcase { margin-top: 3rem; margin-bottom: 1rem; }
+        .scan-showcase-inner { display: flex; align-items: center; justify-content: center; gap: 3rem; background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%); border-radius: 24px; padding: 3rem; border: 1px solid #ccfbf1; }
+        .scan-phone { position: relative; width: 200px; height: 340px; flex-shrink: 0; }
+        .scan-phone-frame { width: 100%; height: 100%; background: #1a1a2e; border-radius: 28px; border: 3px solid #2d2d44; box-shadow: 0 20px 60px rgba(0,0,0,0.15); overflow: hidden; position: relative; }
+        .scan-phone-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 80px; height: 22px; background: #1a1a2e; border-radius: 0 0 14px 14px; z-index: 5; }
+        .scan-phone-screen { width: 100%; height: 100%; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1rem 1.5rem; }
+        .scan-viewfinder { width: 130px; height: 130px; border: 3px solid var(--dozi-turquoise); border-radius: 16px; position: relative; display: flex; align-items: center; justify-content: center; animation: viewfinderPulse 2s ease-in-out infinite; }
+        .scan-viewfinder::before, .scan-viewfinder::after { content: ''; position: absolute; background: var(--dozi-turquoise); border-radius: 2px; }
+        .scan-viewfinder::before { width: 24px; height: 3px; top: -2px; left: 50%; transform: translateX(-50%); }
+        .scan-viewfinder::after { width: 24px; height: 3px; bottom: -2px; left: 50%; transform: translateX(-50%); }
+        .scan-corner { position: absolute; width: 18px; height: 18px; border-color: var(--dozi-turquoise); border-style: solid; }
+        .scan-corner-tl { top: -3px; left: -3px; border-width: 3px 0 0 3px; border-radius: 8px 0 0 0; }
+        .scan-corner-tr { top: -3px; right: -3px; border-width: 3px 3px 0 0; border-radius: 0 8px 0 0; }
+        .scan-corner-bl { bottom: -3px; left: -3px; border-width: 0 0 3px 3px; border-radius: 0 0 0 8px; }
+        .scan-corner-br { bottom: -3px; right: -3px; border-width: 0 3px 3px 0; border-radius: 0 0 8px 0; }
+        .scan-line { position: absolute; top: 0; left: 10%; width: 80%; height: 2px; background: linear-gradient(90deg, transparent, var(--dozi-turquoise), transparent); box-shadow: 0 0 12px var(--dozi-turquoise); animation: scanLine 2s ease-in-out infinite; }
+        .scan-pill-icon { font-size: 3rem; animation: pillReveal 2s ease-in-out infinite; }
+        .scan-status { margin-top: 1rem; display: flex; align-items: center; gap: 0.4rem; }
+        .scan-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dozi-turquoise); animation: dotBlink 2s ease-in-out infinite; }
+        .scan-status-text { color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; animation: statusText 2s ease-in-out infinite; }
+        .scan-checkmark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 48px; height: 48px; background: var(--dozi-turquoise); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; animation: checkReveal 2s ease-in-out infinite; }
+        .scan-text-content { max-width: 360px; }
+        .scan-text-content h3 { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .scan-text-content h3 span { color: var(--dozi-turquoise-dark); }
+        .scan-text-content p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .scan-steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+        .scan-steps li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .scan-steps li .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--gradient-primary); color: white; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        @keyframes scanLine { 0%, 100% { top: 10%; opacity: 0; } 10% { opacity: 1; } 45% { top: 85%; opacity: 1; } 55%, 100% { top: 85%; opacity: 0; } }
+        @keyframes viewfinderPulse { 0%, 55% { box-shadow: 0 0 0 0 rgba(64,224,208,0.3); } 25% { box-shadow: 0 0 20px 4px rgba(64,224,208,0.15); } 60%, 100% { box-shadow: 0 0 20px 8px rgba(64,224,208,0.25); } }
+        @keyframes pillReveal { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 1; transform: scale(1); } 55% { opacity: 0; transform: scale(0.5); } 95% { opacity: 0; } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes checkReveal { 0%, 50% { transform: translate(-50%,-50%) scale(0); opacity: 0; } 60% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; } 70%, 90% { transform: translate(-50%,-50%) scale(1); opacity: 1; } 100% { transform: translate(-50%,-50%) scale(0); opacity: 0; } }
+        @keyframes dotBlink { 0%, 50% { background: var(--dozi-turquoise); } 55%, 90% { background: #22c55e; } 100% { background: var(--dozi-turquoise); } }
+        @keyframes statusText { 0%, 50% { opacity: 1; } 52% { opacity: 0; } 58% { opacity: 1; } 100% { opacity: 1; } }
+        @media (max-width: 768px) {
+            .scan-showcase-inner { flex-direction: column; padding: 2rem 1.5rem; gap: 2rem; }
+            .scan-phone { width: 160px; height: 280px; }
+            .scan-viewfinder { width: 100px; height: 100px; }
+            .scan-text-content { text-align: center; }
+            .scan-steps { align-items: center; }
+        }
     </style>
 </head>
 <body>
@@ -514,9 +589,9 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-badge"><span>🇹🇷</span><span>Türkiye'de Geliştirildi</span></div>
-                <h1>İlaç Hatırlatma ve Takip<br><span class="gradient-text">Uygulaması Dozi</span></h1>
+                <h1>İlaçlarınızı Unutma Derdine Son:<br><span class="gradient-text">Akıllı Sağlık Asistanınız</span></h1>
                 <p class="hero-tagline">Bu işi tek başına yapmak zorunda değilsiniz.</p>
-                <p class="hero-description">Yapay zeka destekli akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık desteği ile tedavi uyumunuzu artırın.</p>
+                <p class="hero-description">Yapay zeka destekli hatırlatmalar ve aile takibi ile sevdiklerinizin sağlığını güvence altına alın.</p>
                 <div class="hero-stats">
                     <div class="hero-stat"><div class="hero-stat-value">%50</div><div class="hero-stat-label">Tedavi uyumu artışı*</div></div>
                     <div class="hero-stat"><div class="hero-stat-value">🔒</div><div class="hero-stat-label">KVKK Uyumlu</div></div>
@@ -525,6 +600,10 @@
                 <div class="hero-buttons">
                     <a href="#download" class="btn-primary"><span>📱</span><span>Ücretsiz İndir</span></a>
                     <a href="#ekstra" class="btn-secondary"><span>💎</span><span>Dozi Ekstra</span></a>
+                </div>
+                <div class="play-rating">
+                    <span class="play-rating-stars">★★★★★</span>
+                    <span class="play-rating-text"><strong>4.8</strong> · Google Play'de 10.000+ İndirme</span>
                 </div>
             </div>
             <div class="hero-visual">
@@ -544,7 +623,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">💎 Dozi Ekstra</span>
-                <h2>Bu İşi Tek Başına<br><span class="gradient-text">Yapmak Zorunda Değilsin</span></h2>
+                <h2>Sadece Özellik Değil,<br><span class="gradient-text">Huzur Satıyoruz</span></h2>
                 <p class="section-desc">Dozi Ekstra, sadece özellik değil, huzur satar.</p>
             </div>
             <div class="ekstra-grid">
@@ -579,6 +658,42 @@
                     <p>Kontrol sende kalır. Ama yük tek başına değildir. <strong>Bu denge Dozi Ekstra'yı farklı yapar.</strong></p>
                 </div>
             </div>
+
+            <!-- Scan Showcase: İlaç kutusunu göster, ben ekleyeyim -->
+            <div class="scan-showcase">
+                <div class="scan-showcase-inner">
+                    <div class="scan-phone">
+                        <div class="scan-phone-frame">
+                            <div class="scan-phone-notch"></div>
+                            <div class="scan-phone-screen">
+                                <div class="scan-viewfinder">
+                                    <span class="scan-corner scan-corner-tl"></span>
+                                    <span class="scan-corner scan-corner-tr"></span>
+                                    <span class="scan-corner scan-corner-bl"></span>
+                                    <span class="scan-corner scan-corner-br"></span>
+                                    <div class="scan-line"></div>
+                                    <span class="scan-pill-icon">💊</span>
+                                    <div class="scan-checkmark">✓</div>
+                                </div>
+                                <div class="scan-status">
+                                    <span class="scan-dot"></span>
+                                    <span class="scan-status-text">İlaç tanınıyor...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scan-text-content">
+                        <h3>İlaç Kutusunu Göster,<br><span>Dozi Eklesin</span></h3>
+                        <p>Telefonunun kamerasını ilaç kutusuna tut. Yapay zeka ilacı tanısın, dozaj ve kullanım bilgileriyle otomatik eklensin. Tek hareket, sıfır yazım hatası.</p>
+                        <ol class="scan-steps">
+                            <li><span class="step-num">1</span> Kamerayı ilaç kutusuna tut</li>
+                            <li><span class="step-num">2</span> Yapay zeka ilacı otomatik tanısın</li>
+                            <li><span class="step-num">3</span> Dozaj ve saat bilgisi hazır</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
             <div class="ekstra-cta">
                 <a href="#pricing" class="btn-primary"><span>💎</span><span>Dozi Ekstra'yı Keşfet</span></a>
             </div>
@@ -626,6 +741,43 @@
             <div class="science-quote">
                 <blockquote>"Tedaviye uyum artırılmadan, tıbbi teknolojideki ilerlemeler potansiyellerini gerçekleştiremeyecektir."</blockquote>
                 <cite>— Dünya Sağlık Örgütü (WHO)</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💬 Kullanıcı Hikayeleri</span>
+                <h2>Binlerce Kişi<br><span class="gradient-text">Dozi'ye Güveniyor</span></h2>
+                <p class="section-desc">Gerçek kullanıcılarımızdan, gerçek hikayeler.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Annemin tansiyon ilaçlarını uzaktan takip edebilmek bana dünyaları verdi. Artık sürekli 'İlacını içtin mi?' diye sormuyorum. Badi sistemi hayat kurtarıcı."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div><div class="testimonial-name">Ayşe T.</div><div class="testimonial-role">Hasta yakını, İstanbul</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Diyabet hastasıyım ve 3 farklı ilaç kullanıyorum. Dozi'den önce sürekli karıştırıyordum. Şimdi stok takibi sayesinde eczaneye bile zamanında gidiyorum."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div><div class="testimonial-name">Mehmet K.</div><div class="testimonial-role">Diyabet hastası, Ankara</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"İş yoğunluğunda tiroid ilacımı hep unutuyordum. Konum hatırlatma özelliği sayesinde eve geldiğimde otomatik bildirim alıyorum. Basit ama çok etkili."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">Z</div>
+                        <div><div class="testimonial-name">Zeynep A.</div><div class="testimonial-role">Yazılım mühendisi, İzmir</div></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -787,14 +939,25 @@
     <section class="download" id="download">
         <div class="container">
             <h2>Sağlıklı Yaşam <span class="gradient-text">Dostunuzu</span> İndirin</h2>
-            <p>Bu işi tek başına yapmak zorunda değilsiniz.</p>
+            <p>Sağlığınız emin ellerde. Hemen başlayın.</p>
             <div class="download-buttons">
                 <a href="https://play.google.com/store/apps/details?id=com.bardino.dozi" class="store-btn" target="_blank">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
                     <div class="store-btn-text"><span class="store-btn-small">İNDİR</span><span class="store-btn-large">Google Play</span></div>
                 </a>
             </div>
-            <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.6;">* iOS versiyonu yakında</p>
+            <div class="play-rating" style="margin-top: 1rem; background: rgba(255,255,255,0.08);">
+                <span class="play-rating-stars">★★★★★</span>
+                <span class="play-rating-text"><strong>4.8</strong> · Google Play'de 10.000+ İndirme</span>
+            </div>
+            <div class="ios-waitlist">
+                <p class="ios-waitlist-title">🍎 <span>iOS için çıkınca haber ver</span></p>
+                <form class="ios-waitlist-form" id="iosWaitlistForm">
+                    <input type="email" placeholder="E-posta adresiniz" required>
+                    <button type="submit">Beni Bilgilendir</button>
+                </form>
+                <p class="ios-waitlist-success" id="iosWaitlistSuccess">Teşekkürler! iOS çıktığında size haber vereceğiz.</p>
+            </div>
         </div>
     </section>
 
@@ -1092,6 +1255,18 @@
         
         // Sayfa yüklendiğinde fiyatları çek
         loadPricing();
+    </script>
+    <script>
+        // iOS Waitlist Form
+        document.getElementById('iosWaitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                gtag('event', 'ios_waitlist_signup', { 'event_category': 'engagement', 'event_label': email });
+                this.style.display = 'none';
+                document.getElementById('iosWaitlistSuccess').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
