@@ -125,7 +125,7 @@
         },
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.8",
+            "ratingValue": "4.6",
             "ratingCount": "500"
         },
         "description": "Yapay zeka destekli akıllı ilaç hatırlatma, aile takibi ve kişiselleştirilmiş sağlık desteği.",
@@ -602,8 +602,8 @@
                     <a href="#ekstra" class="btn-secondary"><span>💎</span><span>Dozi Ekstra</span></a>
                 </div>
                 <div class="play-rating">
-                    <span class="play-rating-stars">★★★★★</span>
-                    <span class="play-rating-text"><strong>4.8</strong> · Google Play'de 10.000+ İndirme</span>
+                    <span class="play-rating-stars">★★★★☆</span>
+                    <span class="play-rating-text"><strong>4.6</strong> · Google Play'de 1.000+ İndirme</span>
                 </div>
             </div>
             <div class="hero-visual">
@@ -947,8 +947,8 @@
                 </a>
             </div>
             <div class="play-rating" style="margin-top: 1rem; background: rgba(255,255,255,0.08);">
-                <span class="play-rating-stars">★★★★★</span>
-                <span class="play-rating-text"><strong>4.8</strong> · Google Play'de 10.000+ İndirme</span>
+                <span class="play-rating-stars">★★★★☆</span>
+                <span class="play-rating-text"><strong>4.6</strong> · Google Play'de 1.000+ İndirme</span>
             </div>
             <div class="ios-waitlist">
                 <p class="ios-waitlist-title">🍎 <span>iOS için çıkınca haber ver</span></p>
@@ -1258,10 +1258,20 @@
     </script>
     <script>
         // iOS Waitlist Form
-        document.getElementById('iosWaitlistForm').addEventListener('submit', function(e) {
+        document.getElementById('iosWaitlistForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             var email = this.querySelector('input[type="email"]').value;
+            var btn = this.querySelector('button');
             if (email) {
+                btn.disabled = true;
+                btn.textContent = 'Gönderiliyor...';
+                try {
+                    await fetch('https://europe-west3-dozi-cd7cc.cloudfunctions.net/iosWaitlistSignup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, lang: 'tr' })
+                    });
+                } catch (err) { /* fail silently, still show success */ }
                 gtag('event', 'ios_waitlist_signup', { 'event_category': 'engagement', 'event_label': email });
                 this.style.display = 'none';
                 document.getElementById('iosWaitlistSuccess').style.display = 'block';
