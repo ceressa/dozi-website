@@ -1278,5 +1278,41 @@
             }
         });
     </script>
+
+    <!-- Dozi Website Analytics -->
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+      import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+      const app = initializeApp({
+        apiKey: "AIzaSyCJ-y2U_wjgMcAKOSYMnOZEjgwsyMCVHKI",
+        authDomain: "dozi-cd7cc.firebaseapp.com",
+        projectId: "dozi-cd7cc",
+        storageBucket: "dozi-cd7cc.firebasestorage.app",
+        appId: "1:393677078355:web:dozi_website_tracker"
+      });
+      const db = getFirestore(app);
+      (function() {
+        let sid = sessionStorage.getItem('dozi_sid');
+        if (!sid) { sid = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substr(2,12) + Date.now().toString(36)); sessionStorage.setItem('dozi_sid', sid); }
+        const ref = document.referrer;
+        let source = 'direct';
+        if (ref) { try { const h = new URL(ref).hostname; if (h && !h.includes('dozi.app')) source = h; } catch(e) {} }
+        const params = new URLSearchParams(location.search);
+        addDoc(collection(db, 'website_pageviews'), {
+          path: location.pathname,
+          title: document.title,
+          referrer: source,
+          language: navigator.language || 'unknown',
+          screenWidth: screen.width,
+          screenHeight: screen.height,
+          sessionId: sid,
+          userAgent: navigator.userAgent,
+          timestamp: serverTimestamp(),
+          utmSource: params.get('utm_source') || '',
+          utmMedium: params.get('utm_medium') || '',
+          utmCampaign: params.get('utm_campaign') || ''
+        }).catch(function(){});
+      })();
+    </script>
 </body>
 </html>
