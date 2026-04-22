@@ -340,7 +340,7 @@
         var matched = null;
         cards.forEach(function (c) {
           var target = c.getAttribute("data-host");
-          if (target && (host === target || host.endsWith("." + target))) {
+          if (target && (host === target || host === "www." + target)) {
             c.classList.add("current");
             matched = target;
           }
