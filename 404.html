@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Sayfa Bulunamadı · Dozi Ailesi</title>
+  <meta name="description" content="Aradığın sayfa bulunamadı. Dozi, Astro Dozi veya Fit Dozi ana sayfalarına dönelim." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Background — layered nebulae for all 3 brand colors ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: #0a1324;
+      background-image:
+        radial-gradient(ellipse 60% 50% at 18% 20%, rgba(64, 224, 208, 0.22), transparent 60%),
+        radial-gradient(ellipse 50% 45% at 85% 22%, rgba(124, 58, 237, 0.22), transparent 60%),
+        radial-gradient(ellipse 55% 50% at 55% 90%, rgba(255, 122, 69, 0.22), transparent 60%),
+        radial-gradient(circle at 50% 50%, #13233f 0%, #0a1324 70%);
+    }
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.45), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 85% 70%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 50% 15%, rgba(255, 255, 255, 0.55), transparent),
+        radial-gradient(1px 1px at 25% 55%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 92% 32%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 65% 88%, rgba(255, 255, 255, 0.4), transparent);
+      animation: twinkle 5s ease-in-out infinite;
+      opacity: 0.9;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.45; }
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand-family {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .brand-family .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #40E0D0, #7C3AED 50%, #ff7a45);
+      box-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
+    }
+
+    /* ── Main ── */
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      text-align: center;
+      min-height: calc(100vh - 140px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .big-404 {
+      font-size: clamp(6rem, 18vw, 11rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      background: linear-gradient(120deg, #40E0D0 0%, #7C3AED 50%, #ff7a45 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
+      margin-bottom: 1rem;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .headline {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .subtitle strong { color: #fff; font-weight: 600; }
+
+    /* ── Family cards ── */
+    .family {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .app-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.75rem 1.5rem;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+    .app-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-from, transparent), transparent 55%);
+      opacity: 0.12;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .app-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-from, rgba(255, 255, 255, 0.25));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 30px var(--accent-glow, rgba(255, 255, 255, 0.08));
+    }
+    .app-card:hover::before { opacity: 0.22; }
+
+    .app-card.current {
+      border-color: var(--accent-from, rgba(255, 255, 255, 0.35));
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .app-card.current::before { opacity: 0.2; }
+    .app-card.current .current-tag { display: inline-block; }
+
+    .app-card .icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: var(--icon-bg, rgba(255, 255, 255, 0.08));
+      box-shadow: 0 8px 20px var(--accent-glow, rgba(0, 0, 0, 0.2));
+      margin-bottom: 0.35rem;
+    }
+
+    .app-card .app-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: #fff;
+    }
+    .app-card .app-desc {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 0.5rem;
+    }
+    .app-card .app-url {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-from, #fff);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .app-card .current-tag {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .app-card.dozi {
+      --accent-from: #40E0D0;
+      --accent-glow: rgba(64, 224, 208, 0.22);
+      --icon-bg: linear-gradient(135deg, rgba(64, 224, 208, 0.22), rgba(64, 224, 208, 0.08));
+    }
+    .app-card.astro {
+      --accent-from: #a78bfa;
+      --accent-glow: rgba(124, 58, 237, 0.22);
+      --icon-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.28), rgba(124, 58, 237, 0.08));
+    }
+    .app-card.fit {
+      --accent-from: #ff9a6a;
+      --accent-glow: rgba(255, 122, 69, 0.22);
+      --icon-bg: linear-gradient(135deg, rgba(255, 122, 69, 0.28), rgba(16, 185, 129, 0.15));
+    }
+
+    /* ── Back home ── */
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s;
+    }
+    .back-home:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem 2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.82rem;
+    }
+    footer a { color: rgba(255, 255, 255, 0.7); }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 720px) {
+      .family { grid-template-columns: 1fr; }
+      .wrap { padding: 1rem 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="stars"></div>
+
+  <header class="topbar">
+    <span class="brand-family">
+      <span class="dot"></span>
+      <span>Dozi Ailesi</span>
+    </span>
+  </header>
+
+  <main class="wrap">
+    <div class="big-404">404</div>
+    <h1 class="headline">Bu sayfa başka bir galakside olmalı.</h1>
+    <p class="subtitle">
+      Aradığın sayfa <strong>taşınmış, yeniden adlandırılmış</strong> ya da hiç var olmamış olabilir.
+      Seni Dozi ailesinin bir üyesine yönlendirelim:
+    </p>
+
+    <div class="family">
+      <a href="https://www.dozi.app" class="app-card dozi" data-host="dozi.app">
+        <div class="icon-box">💊</div>
+        <span class="current-tag">Buradasın</span>
+        <div class="app-name">Dozi</div>
+        <div class="app-desc">İlaç hatırlatma ve aile takibi. Yapay zekâ destekli doz yönetimi.</div>
+        <div class="app-url">dozi.app →</div>
+      </a>
+
+      <a href="https://astro.dozi.app" class="app-card astro" data-host="astro.dozi.app">
+        <div class="icon-box">✨</div>
+        <span class="current-tag">Buradasın</span>
+        <div class="app-name">Astro Dozi</div>
+        <div class="app-desc">AI destekli kişisel astroloji: günlük burç, doğum haritası, tarot.</div>
+        <div class="app-url">astro.dozi.app →</div>
+      </a>
+
+      <a href="https://fit.dozi.app" class="app-card fit" data-host="fit.dozi.app">
+        <div class="icon-box">🥗</div>
+        <span class="current-tag">Buradasın</span>
+        <div class="app-name">Fit Dozi</div>
+        <div class="app-desc">AI gıda etiket analizi: Nutri-Score, NOVA, alerjen uyarısı.</div>
+        <div class="app-url">fit.dozi.app →</div>
+      </a>
+    </div>
+
+    <a href="/" class="back-home">
+      <span>←</span>
+      <span id="backLabel">Bu sitenin ana sayfasına dön</span>
+    </a>
+  </main>
+
+  <footer>
+    © 2026 <a href="https://www.bardino.com.tr" target="_blank" rel="noopener">Bardino Technology</a>
+  </footer>
+
+  <script>
+    (function () {
+      try {
+        var host = (location.hostname || "").toLowerCase();
+        var cards = document.querySelectorAll(".app-card");
+        var matched = null;
+        cards.forEach(function (c) {
+          var target = c.getAttribute("data-host");
+          if (target && (host === target || host.endsWith("." + target))) {
+            c.classList.add("current");
+            matched = target;
+          }
+        });
+        var label = document.getElementById("backLabel");
+        if (label && matched) {
+          var pretty = matched === "dozi.app" ? "Dozi" : matched === "astro.dozi.app" ? "Astro Dozi" : "Fit Dozi";
+          label.textContent = pretty + " ana sayfasına dön";
+        }
+      } catch (e) { /* no-op */ }
+    })();
+  </script>
+</body>
+</html>
