@@ -41,8 +41,8 @@
         ],
         "makesOffer": [
             { "@type": "Offer", "itemOffered": { "@type": "MobileApplication", "name": "Astro Dozi", "url": "https://astro.dozi.app" } },
-            { "@type": "Offer", "itemOffered": { "@type": "MobileApplication", "name": "Med Dozi", "url": "https://med.dozi.app" } },
-            { "@type": "Offer", "itemOffered": { "@type": "MobileApplication", "name": "Fit Dozi", "url": "https://fit.dozi.app" } }
+            { "@type": "Offer", "itemOffered": { "@type": "MobileApplication", "name": "Fit Dozi", "url": "https://fit.dozi.app" } },
+            { "@type": "Offer", "itemOffered": { "@type": "MobileApplication", "name": "Med Dozi", "url": "https://med.dozi.app" } }
         ]
     }
     </script>
@@ -90,13 +90,8 @@
             border-bottom: 1px solid var(--border);
         }
         .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-        .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
-        .brand .mark {
-            width: 30px; height: 30px; border-radius: 9px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            display: grid; place-items: center;
-            font-family: Georgia, serif; font-weight: 700; color: #0b0d17; font-size: 18px;
-        }
+        .brand { display: flex; align-items: center; }
+        .brand-logo { height: 36px; width: auto; display: block; }
         .nav-links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
         .nav-links a:hover { color: var(--text); }
 
@@ -129,19 +124,25 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
 
         .app {
-            position: relative; display: flex; flex-direction: column;
+            position: relative; display: flex; flex-direction: column; overflow: hidden;
             background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-            padding: 24px; transition: transform .18s ease, background .18s ease, border-color .18s ease;
+            transition: transform .18s ease, background .18s ease, border-color .18s ease;
         }
-        .app.linked:hover { transform: translateY(-4px); background: var(--card-hover); border-color: #34406b; }
-        .app .top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-        .icon {
-            width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-            display: grid; place-items: center; font-size: 26px;
+        .app.linked:hover { transform: translateY(-4px); border-color: #34406b; }
+        .logo-panel {
+            height: 138px; display: grid; place-items: center; padding: 22px;
+            background: var(--panel); border-bottom: 1px solid var(--border);
         }
-        .app h3 { font-size: 18px; letter-spacing: -0.01em; }
-        .app .tag { font-size: 12.5px; color: var(--faint); }
-        .app p { color: var(--muted); font-size: 14.5px; flex-grow: 1; }
+        .logo-panel img {
+            max-height: 88px; max-width: 80%; width: auto; object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4));
+            transition: transform .18s ease;
+        }
+        .app.linked:hover .logo-panel img { transform: scale(1.04); }
+        .app .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex-grow: 1; }
+        .app .tag { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; text-transform: uppercase; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        .app p { color: var(--muted); font-size: 14.5px; margin-top: 9px; flex-grow: 1; }
         .app .foot { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; }
         .link-arrow { color: var(--accent); font-weight: 600; font-size: 14px; }
         .app.linked:hover .link-arrow .ar { transform: translateX(4px); }
@@ -149,7 +150,6 @@
         .badge { font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
         .badge.live { color: #6ee7b7; background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); }
         .badge.soon { color: #fcd34d; background: rgba(252,211,77,0.08); border: 1px solid rgba(252,211,77,0.2); }
-        .app.dev { opacity: 0.92; }
 
         .about { position: relative; z-index: 1; margin: 80px 0 40px; padding: 40px; border-radius: 22px;
             background: linear-gradient(135deg, rgba(124,140,255,0.08), rgba(79,209,197,0.06));
@@ -170,7 +170,7 @@
 <body>
     <header>
         <div class="wrap nav">
-            <a href="/" class="brand"><span class="mark">B</span> Bardino Technology</a>
+            <a href="/" class="brand" aria-label="Bardino Technology"><img class="brand-logo" src="assets/brand/bardino_logo.png" alt="Bardino Technology"></a>
             <nav class="nav-links">
                 <a href="#yayinda">Uygulamalar</a>
                 <a href="#hakkimizda">Hakkımızda</a>
@@ -197,54 +197,57 @@
             </div>
             <div class="grid">
                 <a class="app linked" href="https://astro.dozi.app">
-                    <div class="top">
-                        <div class="icon" style="background:linear-gradient(135deg,#1E3A5F,#c79a3b)">🔮</div>
-                        <div><h3>Astro Dozi</h3><div class="tag">Astroloji</div></div>
+                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#161a36,#251b3f)">
+                        <img src="assets/brand/astro_dozi.png" alt="Astro Dozi" loading="lazy">
                     </div>
-                    <p>Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişisel AI okuma. Tarot, kahve falı, synastry uyumu.</p>
-                    <div class="foot"><span class="link-arrow">astro.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
-                </a>
-
-                <a class="app linked" href="https://med.dozi.app">
-                    <div class="top">
-                        <div class="icon" style="background:linear-gradient(135deg,#1F8770,#FF7A59)">💊</div>
-                        <div><h3>Med Dozi</h3><div class="tag">Sağlık · İlaç Takibi</div></div>
+                    <div class="body">
+                        <h3 class="sr-only">Astro Dozi</h3>
+                        <div class="tag">Astroloji</div>
+                        <p>Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişisel AI okuma. Tarot, kahve falı, synastry uyumu.</p>
+                        <div class="foot"><span class="link-arrow">astro.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
                     </div>
-                    <p>Yapay zeka destekli ilaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık desteği. iOS yakında.</p>
-                    <div class="foot"><span class="link-arrow">med.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
                 </a>
 
                 <a class="app linked" href="https://fit.dozi.app">
-                    <div class="top">
-                        <div class="icon" style="background:linear-gradient(135deg,#16a34a,#84cc16)">🥗</div>
-                        <div><h3>Fit Dozi</h3><div class="tag">Sağlık · Beslenme</div></div>
+                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#10241a,#163020)">
+                        <img src="assets/brand/fit_dozi.png" alt="Fit Dozi" loading="lazy">
                     </div>
-                    <p>Yapay zeka ile gıda ve ürün analizi. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
-                    <div class="foot"><span class="link-arrow">fit.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
+                    <div class="body">
+                        <h3 class="sr-only">Fit Dozi</h3>
+                        <div class="tag">Sağlık · Beslenme</div>
+                        <p>Yapay zeka ile gıda ve ürün analizi. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
+                        <div class="foot"><span class="link-arrow">fit.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
+                    </div>
+                </a>
+
+                <a class="app linked" href="https://med.dozi.app">
+                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#0f2622,#26191b)">
+                        <img src="assets/brand/med_dozi.png" alt="Med Dozi" loading="lazy">
+                    </div>
+                    <div class="body">
+                        <h3 class="sr-only">Med Dozi</h3>
+                        <div class="tag">Sağlık · İlaç Takibi</div>
+                        <p>Yapay zeka destekli ilaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık desteği. iOS yakında.</p>
+                        <div class="foot"><span class="link-arrow">med.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
+                    </div>
                 </a>
             </div>
 
             <div class="sec-head" id="gelistiriliyor">
                 <h2>Geliştiriliyor</h2>
-                <span class="count">2 uygulama</span>
+                <span class="count">1 uygulama</span>
             </div>
             <div class="grid">
                 <div class="app dev">
-                    <div class="top">
-                        <div class="icon" style="background:linear-gradient(135deg,#7c3aed,#f59e0b)">🔢</div>
-                        <div><h3>Decimo</h3><div class="tag">Oyun · Bulmaca</div></div>
+                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#1f1733,#2b1f12)">
+                        <img src="assets/brand/decimo.png" alt="Decimo" loading="lazy">
                     </div>
-                    <p>Sayı zinciri bulmaca oyunu. Bitişik hücreleri birleştirip zincirler kur; basit öğrenilir, dünyalar ilerledikçe derinleşir.</p>
-                    <div class="foot"><span class="link-arrow" style="color:var(--faint)">Yakında</span><span class="badge soon">Geliştiriliyor</span></div>
-                </div>
-
-                <div class="app dev">
-                    <div class="top">
-                        <div class="icon" style="background:linear-gradient(135deg,#b45309,#ef4444)">🏴‍☠️</div>
-                        <div><h3>Hazine Avcısı</h3><div class="tag">Oyun · Çocuk</div></div>
+                    <div class="body">
+                        <h3 class="sr-only">Decimo</h3>
+                        <div class="tag">Oyun · Bulmaca</div>
+                        <p>Sayı zinciri bulmaca oyunu. Bitişik hücreleri birleştirip zincirler kur; basit öğrenilir, dünyalar ilerledikçe derinleşir.</p>
+                        <div class="foot"><span class="link-arrow" style="color:var(--faint)">Yakında</span><span class="badge soon">Geliştiriliyor</span></div>
                     </div>
-                    <p>Korsan temalı çocuk oyunu. Çocuklar için eğlenceli, keşif dolu bir macera.</p>
-                    <div class="foot"><span class="link-arrow" style="color:var(--faint)">Yakında</span><span class="badge soon">Geliştiriliyor</span></div>
                 </div>
             </div>
         </section>
