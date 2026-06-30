@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bardino Technology - yapay zeka destekli mobil uygulamalar geliştiren teknoloji stüdyosu. Astro Dozi, Med Dozi, Fit Dozi ve daha fazlası.">
-    <meta name="keywords" content="Bardino Technology, mobil uygulama, yapay zeka, Astro Dozi, Med Dozi, Fit Dozi, Decimo, Flutter, teknoloji stüdyosu">
+    <meta name="description" content="Bardino Technology - yapay zeka destekli mobil uygulamalar geliştiren teknoloji stüdyosu. Astro Dozi, Fit Dozi, Med Dozi ve daha fazlası.">
+    <meta name="keywords" content="Bardino Technology, mobil uygulama, yapay zeka, Astro Dozi, Fit Dozi, Med Dozi, Decimo, Flutter, teknoloji stüdyosu">
     <meta name="author" content="Bardino Technology">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="theme-color" content="#0b0d17">
+    <meta name="theme-color" content="#0a0c14">
 
     <link rel="canonical" href="https://www.dozi.app/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.dozi.app/">
     <meta property="og:title" content="Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar">
-    <meta property="og:description" content="Astro Dozi, Med Dozi, Fit Dozi ve geliştirmekte olduğumuz uygulamalar. Tek bir çatı altında.">
+    <meta property="og:description" content="Astro Dozi, Fit Dozi, Med Dozi ve geliştirmekte olduğumuz uygulamalar. Tek bir çatı altında.">
     <meta property="og:site_name" content="Bardino Technology">
     <meta property="og:locale" content="tr_TR">
 
@@ -24,7 +24,7 @@
 
     <title>Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar</title>
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23151a2e'/%3E%3Ctext x='50' y='70' font-size='62' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%237c8cff'%3EB%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23151a2e'/%3E%3Ctext x='50' y='71' font-size='60' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%237c8cff'%3EB%3C/text%3E%3C/svg%3E">
 
     <script type="application/ld+json">
     {
@@ -49,17 +49,19 @@
 
     <style>
         :root {
-            --bg: #0b0d17;
-            --card: #151a2e;
-            --card-hover: #1b2138;
-            --border: #232a45;
-            --text: #e7eaf6;
+            --bg: #0a0c14;
+            --card: #141826;
+            --card-hover: #1a2032;
+            --border: #232a40;
+            --border-soft: #1c2236;
+            --text: #eef1fb;
             --muted: #9aa3c4;
             --faint: #6b7398;
-            --accent: #7c8cff;
+            --accent: #8b9bff;
             --accent-2: #4fd1c5;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; max-width: 100%; }
         html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
@@ -67,103 +69,108 @@
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
         a { color: inherit; text-decoration: none; }
         .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        img { max-width: 100%; }
 
         body::before {
             content: "";
-            position: fixed;
-            top: -30%; left: 50%;
-            transform: translateX(-50%);
-            width: 900px; height: 900px;
-            background: radial-gradient(circle, rgba(124,140,255,0.18), transparent 60%);
-            pointer-events: none;
-            z-index: 0;
+            position: fixed; top: -360px; left: 50%; transform: translateX(-50%);
+            width: 1100px; height: 760px; max-width: 140vw;
+            background: radial-gradient(ellipse at center, rgba(124,140,255,0.16), transparent 62%);
+            pointer-events: none; z-index: 0;
         }
 
         header {
-            position: sticky; top: 0; z-index: 10;
-            backdrop-filter: blur(12px);
-            background: rgba(11,13,23,0.72);
-            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 20;
+            backdrop-filter: blur(14px);
+            background: rgba(10,12,20,0.78);
+            border-bottom: 1px solid var(--border-soft);
         }
-        .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
         .brand { display: flex; align-items: center; }
-        .brand-logo { height: 36px; width: auto; display: block; }
-        .nav-links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
+        .brand-logo { height: 34px; width: auto; display: block; }
+        .nav-links { display: flex; gap: 30px; font-size: 15px; color: var(--muted); }
+        .nav-links a { transition: color .15s ease; }
         .nav-links a:hover { color: var(--text); }
 
-        .hero { position: relative; z-index: 1; text-align: center; padding: 96px 0 72px; }
+        .hero { position: relative; z-index: 1; text-align: center; padding: 104px 0 76px; }
         .eyebrow {
-            display: inline-block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+            display: inline-block; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
             color: var(--accent); background: rgba(124,140,255,0.1);
-            border: 1px solid rgba(124,140,255,0.25); padding: 6px 14px; border-radius: 999px; margin-bottom: 26px;
+            border: 1px solid rgba(124,140,255,0.25); padding: 7px 16px; border-radius: 999px; margin-bottom: 28px;
         }
         .hero h1 {
-            font-size: clamp(34px, 6vw, 60px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 800;
-            background: linear-gradient(180deg, #ffffff, #b9c0e6);
+            font-size: clamp(32px, 6.2vw, 60px); line-height: 1.07; letter-spacing: -0.035em; font-weight: 800;
+            background: linear-gradient(176deg, #ffffff 30%, #aab2da);
             -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero p { max-width: 620px; margin: 22px auto 0; font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); }
-        .hero .cta { margin-top: 38px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .hero p { max-width: 600px; margin: 24px auto 0; font-size: clamp(15px, 2.1vw, 19px); color: var(--muted); }
+        .cta { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px;
-            font-weight: 600; font-size: 15px; transition: transform .15s ease, background .15s ease;
+            display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 13px;
+            font-weight: 600; font-size: 15px; transition: transform .15s ease, background .15s ease, border-color .15s ease;
         }
-        .btn-primary { background: linear-gradient(135deg, var(--accent), #6a7bff); color: #0b0d17; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), #6f7fff); color: #0a0c14; box-shadow: 0 8px 24px rgba(124,140,255,0.25); }
         .btn-primary:hover { transform: translateY(-2px); }
         .btn-ghost { border: 1px solid var(--border); color: var(--text); }
-        .btn-ghost:hover { background: var(--card); }
+        .btn-ghost:hover { background: var(--card); border-color: #34406b; }
 
-        section.apps { position: relative; z-index: 1; padding: 28px 0; }
-        .sec-head { display: flex; align-items: baseline; gap: 14px; margin: 48px 0 26px; }
-        .sec-head h2 { font-size: 24px; letter-spacing: -0.02em; }
-        .sec-head .count { color: var(--faint); font-size: 14px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+        section.apps { position: relative; z-index: 1; padding: 20px 0; }
+        .sec-head { display: flex; align-items: center; gap: 12px; margin: 52px 0 24px; }
+        .sec-head h2 { font-size: 22px; letter-spacing: -0.02em; }
+        .sec-head .count { color: var(--faint); font-size: 13.5px; background: var(--card); border: 1px solid var(--border-soft); padding: 3px 11px; border-radius: 999px; }
+        .sec-head .rule { flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 
         .app {
-            position: relative; display: flex; flex-direction: column; overflow: hidden;
-            background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-            transition: transform .18s ease, background .18s ease, border-color .18s ease;
+            position: relative; display: flex; flex-direction: column;
+            background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+            padding: 24px; transition: transform .18s ease, background .18s ease, border-color .18s ease;
         }
-        .app.linked:hover { transform: translateY(-4px); border-color: #34406b; }
-        .logo-panel {
-            height: 138px; display: grid; place-items: center; padding: 22px;
-            background: var(--panel); border-bottom: 1px solid var(--border);
-        }
-        .logo-panel img {
-            max-height: 88px; max-width: 80%; width: auto; object-fit: contain;
-            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4));
+        .app.linked { cursor: pointer; }
+        .app.linked:hover { transform: translateY(-5px); background: var(--card-hover); border-color: #38436e; }
+        .app-head { display: flex; align-items: center; gap: 16px; margin-bottom: 17px; }
+        .app-icon {
+            width: 64px; height: 64px; border-radius: 16px; flex-shrink: 0; object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.09); box-shadow: 0 8px 20px rgba(0,0,0,0.45);
             transition: transform .18s ease;
         }
-        .app.linked:hover .logo-panel img { transform: scale(1.04); }
-        .app .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex-grow: 1; }
-        .app .tag { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; text-transform: uppercase; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-        .app p { color: var(--muted); font-size: 14.5px; margin-top: 9px; flex-grow: 1; }
-        .app .foot { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; }
+        .app.linked:hover .app-icon { transform: scale(1.05); }
+        .app-meta h3 { font-size: 18px; letter-spacing: -0.01em; line-height: 1.25; }
+        .app-meta .tag { font-size: 11.5px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+        .app p { color: var(--muted); font-size: 14.5px; flex-grow: 1; }
+        .app .foot { margin-top: 20px; display: flex; align-items: center; justify-content: space-between; }
         .link-arrow { color: var(--accent); font-weight: 600; font-size: 14px; }
         .app.linked:hover .link-arrow .ar { transform: translateX(4px); }
         .ar { display: inline-block; transition: transform .18s ease; }
-        .badge { font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
-        .badge.live { color: #6ee7b7; background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); }
-        .badge.soon { color: #fcd34d; background: rgba(252,211,77,0.08); border: 1px solid rgba(252,211,77,0.2); }
+        .badge { font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
+        .badge.live { color: #6ee7b7; background: rgba(110,231,183,0.09); border: 1px solid rgba(110,231,183,0.22); }
+        .badge.soon { color: #fcd34d; background: rgba(252,211,77,0.09); border: 1px solid rgba(252,211,77,0.22); }
 
-        .about { position: relative; z-index: 1; margin: 80px 0 40px; padding: 40px; border-radius: 22px;
-            background: linear-gradient(135deg, rgba(124,140,255,0.08), rgba(79,209,197,0.06));
+        .about { position: relative; z-index: 1; margin: 92px 0 24px; padding: 48px 40px; border-radius: 24px;
+            background: linear-gradient(135deg, rgba(124,140,255,0.09), rgba(79,209,197,0.06));
             border: 1px solid var(--border); text-align: center; }
         .about h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 14px; }
-        .about p { max-width: 640px; margin: 0 auto; color: var(--muted); }
+        .about p { max-width: 640px; margin: 0 auto; color: var(--muted); font-size: 16px; }
 
-        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); margin-top: 40px; padding: 40px 0; }
-        .foot-grid { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; color: var(--faint); font-size: 14px; }
-        .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--border-soft); margin-top: 48px; padding: 44px 0; }
+        .foot-grid { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; justify-content: space-between; }
+        .foot-brand img { height: 30px; opacity: 0.92; }
+        .foot-links { display: flex; gap: 24px; flex-wrap: wrap; color: var(--faint); font-size: 14px; }
+        .foot-links a { transition: color .15s ease; }
         .foot-links a:hover { color: var(--text); }
+        .copyright { color: var(--faint); font-size: 13px; margin-top: 18px; }
+
+        @media (max-width: 720px) { .nav-links { display: none; } }
         @media (max-width: 560px) {
-            .nav-links { display: none; }
-            .hero { padding: 64px 0 48px; }
+            .wrap { padding: 0 18px; }
+            .hero { padding: 72px 0 52px; }
+            .app { padding: 20px; }
+            .cta { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+            .about { padding: 38px 24px; }
         }
     </style>
 </head>
@@ -183,7 +190,7 @@
         <section class="hero">
             <span class="eyebrow">Teknoloji Stüdyosu</span>
             <h1>Yapay zeka destekli<br>mobil uygulamalar</h1>
-            <p>Bardino Technology; astrolojiden sağlığa, oyundan üretkenliğe uzanan, yapay zekayı günlük hayata getiren uygulamalar geliştirir.</p>
+            <p>Bardino Technology; astrolojiden sağlığa, oyundan beslenmeye, yapay zekayı günlük hayata getiren uygulamalar geliştirir.</p>
             <div class="cta">
                 <a href="#yayinda" class="btn btn-primary">Uygulamaları keşfet <span class="ar">↓</span></a>
                 <a href="mailto:info@dozi.app" class="btn btn-ghost">İletişime geç</a>
@@ -194,80 +201,73 @@
             <div class="sec-head">
                 <h2>Yayında</h2>
                 <span class="count">3 uygulama</span>
+                <span class="rule"></span>
             </div>
             <div class="grid">
                 <a class="app linked" href="https://astro.dozi.app">
-                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#161a36,#251b3f)">
-                        <img src="assets/brand/astro_dozi.png" alt="Astro Dozi" loading="lazy">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/brand/icon_astro.png" alt="Astro Dozi" loading="lazy">
+                        <div class="app-meta"><h3>Astro Dozi</h3><div class="tag">Astroloji</div></div>
                     </div>
-                    <div class="body">
-                        <h3 class="sr-only">Astro Dozi</h3>
-                        <div class="tag">Astroloji</div>
-                        <p>Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişisel AI okuma. Tarot, kahve falı, synastry uyumu.</p>
-                        <div class="foot"><span class="link-arrow">astro.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
-                    </div>
+                    <p>Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişisel AI okuma. Tarot, kahve falı, synastry uyumu.</p>
+                    <div class="foot"><span class="link-arrow">astro.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
                 </a>
 
                 <a class="app linked" href="https://fit.dozi.app">
-                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#10241a,#163020)">
-                        <img src="assets/brand/fit_dozi.png" alt="Fit Dozi" loading="lazy">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/brand/icon_fit.png" alt="Fit Dozi" loading="lazy">
+                        <div class="app-meta"><h3>Fit Dozi</h3><div class="tag">Sağlık · Beslenme</div></div>
                     </div>
-                    <div class="body">
-                        <h3 class="sr-only">Fit Dozi</h3>
-                        <div class="tag">Sağlık · Beslenme</div>
-                        <p>Yapay zeka ile gıda ve ürün analizi. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
-                        <div class="foot"><span class="link-arrow">fit.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
-                    </div>
+                    <p>Yapay zeka ile gıda ve ürün analizi. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
+                    <div class="foot"><span class="link-arrow">fit.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
                 </a>
 
                 <a class="app linked" href="https://med.dozi.app">
-                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#0f2622,#26191b)">
-                        <img src="assets/brand/med_dozi.png" alt="Med Dozi" loading="lazy">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/brand/icon_med.png" alt="Med Dozi" loading="lazy">
+                        <div class="app-meta"><h3>Med Dozi</h3><div class="tag">Sağlık · İlaç Takibi</div></div>
                     </div>
-                    <div class="body">
-                        <h3 class="sr-only">Med Dozi</h3>
-                        <div class="tag">Sağlık · İlaç Takibi</div>
-                        <p>Yapay zeka destekli ilaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişiselleştirilmiş sağlık desteği. iOS yakında.</p>
-                        <div class="foot"><span class="link-arrow">med.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
-                    </div>
+                    <p>Yapay zeka destekli ilaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişisel sağlık desteği. iOS yakında.</p>
+                    <div class="foot"><span class="link-arrow">med.dozi.app <span class="ar">→</span></span><span class="badge live">Yayında</span></div>
                 </a>
             </div>
 
             <div class="sec-head" id="gelistiriliyor">
                 <h2>Geliştiriliyor</h2>
                 <span class="count">1 uygulama</span>
+                <span class="rule"></span>
             </div>
             <div class="grid">
-                <div class="app dev">
-                    <div class="logo-panel" style="--panel:linear-gradient(135deg,#1f1733,#2b1f12)">
-                        <img src="assets/brand/decimo.png" alt="Decimo" loading="lazy">
+                <div class="app">
+                    <div class="app-head">
+                        <img class="app-icon" src="assets/brand/icon_decimo.png" alt="Decimo" loading="lazy">
+                        <div class="app-meta"><h3>Decimo</h3><div class="tag">Oyun · Bulmaca</div></div>
                     </div>
-                    <div class="body">
-                        <h3 class="sr-only">Decimo</h3>
-                        <div class="tag">Oyun · Bulmaca</div>
-                        <p>Sayı zinciri bulmaca oyunu. Bitişik hücreleri birleştirip zincirler kur; basit öğrenilir, dünyalar ilerledikçe derinleşir.</p>
-                        <div class="foot"><span class="link-arrow" style="color:var(--faint)">Yakında</span><span class="badge soon">Geliştiriliyor</span></div>
-                    </div>
+                    <p>Sayı zinciri bulmaca oyunu. Bitişik hücreleri birleştirip zincirler kur; basit öğrenilir, dünyalar ilerledikçe derinleşir.</p>
+                    <div class="foot"><span class="link-arrow" style="color:var(--faint)">Çok yakında</span><span class="badge soon">Geliştiriliyor</span></div>
                 </div>
             </div>
         </section>
 
         <section class="about" id="hakkimizda">
             <h2>Hakkımızda</h2>
-            <p>Bardino Technology, küçük ve odaklı bir ekiple yapay zekayı günlük hayatın içine taşıyan mobil uygulamalar geliştirir. Her ürünümüz gerçek bir ihtiyaçtan doğar, kişiselleştirmeyi ve kullanıcı gizliliğini merkeze alır.</p>
+            <p>Bardino Technology, küçük ve odaklı bir ekiple yapay zekayı günlük hayatın içine taşıyan mobil uygulamalar geliştirir. Her ürünümüz gerçek bir ihtiyaçtan doğar; kişiselleştirmeyi ve kullanıcı gizliliğini merkeze alır.</p>
         </section>
     </main>
 
     <footer>
-        <div class="wrap foot-grid">
-            <div>© 2026 Bardino Technology</div>
-            <nav class="foot-links">
-                <a href="mailto:info@dozi.app">info@dozi.app</a>
-                <a href="https://med.dozi.app/privacy-policy.html">Gizlilik</a>
-                <a href="https://med.dozi.app/terms-of-use.html">Kullanım Şartları</a>
-                <a href="https://www.instagram.com/doziapp">Instagram</a>
-                <a href="https://www.youtube.com/@BardinoTechnology">YouTube</a>
-            </nav>
+        <div class="wrap">
+            <div class="foot-grid">
+                <a href="/" class="foot-brand" aria-label="Bardino Technology"><img src="assets/brand/bardino_logo.png" alt="Bardino Technology"></a>
+                <nav class="foot-links">
+                    <a href="mailto:info@dozi.app">info@dozi.app</a>
+                    <a href="https://med.dozi.app/privacy-policy.html">Gizlilik</a>
+                    <a href="https://med.dozi.app/terms-of-use.html">Kullanım Şartları</a>
+                    <a href="https://www.instagram.com/doziapp">Instagram</a>
+                    <a href="https://www.youtube.com/@BardinoTechnology">YouTube</a>
+                </nav>
+            </div>
+            <div class="copyright">© 2026 Bardino Technology. Tüm hakları saklıdır.</div>
         </div>
     </footer>
 </body>
