@@ -11,6 +11,5 @@ Disallow: /legal/
 Disallow: /dozi/
 Disallow: /dozirez/
 Disallow: /app/
-Disallow: /en/
 
 Sitemap: https://www.dozi.app/sitemap.xml

@@ -3,22 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar</title>
-<meta name="description" content="Bardino Technology; astrolojiden sağlığa, oyundan beslenmeye, yapay zekayı günlük hayata getiren yapay zeka destekli mobil uygulamalar geliştiren bir teknoloji stüdyosu." />
+<title>Bardino Technology - Mobil Uygulama Stüdyosu</title>
+<meta name="description" content="Bardino Technology; astrolojiden sağlığa, oyundan beslenmeye uzanan, günlük hayatı kolaylaştıran mobil uygulamalar geliştiren bağımsız bir stüdyo." />
 <link rel="canonical" href="https://www.dozi.app/" />
+<link rel="alternate" hreflang="tr" href="https://www.dozi.app/" />
+<link rel="alternate" hreflang="en" href="https://www.dozi.app/en/" />
+<link rel="alternate" hreflang="ar" href="https://www.dozi.app/ar/" />
+<link rel="alternate" hreflang="pt" href="https://www.dozi.app/pt/" />
+<link rel="alternate" hreflang="x-default" href="https://www.dozi.app/" />
 <link rel="icon" href="assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Bardino Technology" />
-<meta property="og:title" content="Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar" />
-<meta property="og:description" content="Astrolojiden sağlığa, oyundan beslenmeye: yapay zekayı günlük hayata getiren mobil uygulamalar." />
+<meta property="og:title" content="Bardino Technology - Mobil Uygulama Stüdyosu" />
+<meta property="og:description" content="Astrolojiden sağlığa, oyundan beslenmeye uzanan, günlük hayatı kolaylaştıran mobil uygulamalar." />
 <meta property="og:url" content="https://www.dozi.app/" />
 <meta property="og:image" content="https://www.dozi.app/assets/brand/bardino_logo.png" />
 <meta property="og:locale" content="tr_TR" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar" />
-<meta name="twitter:description" content="Astrolojiden sağlığa, oyundan beslenmeye: yapay zekayı günlük hayata getiren mobil uygulamalar." />
+<meta name="twitter:title" content="Bardino Technology - Mobil Uygulama Stüdyosu" />
+<meta name="twitter:description" content="Astrolojiden sağlığa, oyundan beslenmeye uzanan, günlük hayatı kolaylaştıran mobil uygulamalar." />
 <meta name="twitter:image" content="https://www.dozi.app/assets/brand/bardino_logo.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -151,7 +156,7 @@
   }
   h1.hero-title{
     font-family:"Fraunces",Georgia,serif;font-weight:900;
-    font-size:clamp(2.6rem,6.4vw,5rem);line-height:1.02;letter-spacing:-.02em;
+    font-size:clamp(2.6rem,6.4vw,5rem);line-height:1.1;letter-spacing:-.02em;
     margin:24px 0 18px;
   }
   h1.hero-title .word{display:inline-block;will-change:transform,opacity}
@@ -160,6 +165,7 @@
     background-size:220% 100%;
     -webkit-background-clip:text;background-clip:text;color:transparent;
     animation:shimmer 6s linear infinite;
+    padding-bottom:.18em;margin-bottom:-.18em;
   }
   @keyframes shimmer{to{background-position:-220% 0}}
   .hero-sub{font-size:clamp(1.05rem,2.1vw,1.32rem);color:var(--ink-soft);max-width:36ch;margin:0 0 30px}
@@ -314,10 +320,14 @@
   /* No-JS safety: reveals visible by default; JS adds .js then hides until in-view */
   .js .reveal{opacity:0}
   .js .reveal.in{opacity:1}
+  .lang-switch{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+  .lang-switch a{font-weight:700;font-size:.86rem;color:var(--ink-soft);padding:7px 14px;border-radius:999px;background:var(--paper);box-shadow:4px 4px 10px var(--clay-shadow-dark),-4px -4px 10px var(--clay-shadow-light);transition:.2s var(--ease)}
+  .lang-switch a:hover{color:var(--ink);transform:translateY(-2px)}
+  .lang-switch a[aria-current="page"]{color:#fff;background:linear-gradient(135deg,var(--c-indigo),var(--c-pink))}
 </style>
 </head>
 <body>
-<h2 class="sr-only">Bardino Technology kurumsal açılış sayfası: yapay zeka destekli mobil uygulamalar.</h2>
+<h2 class="sr-only">Bardino Technology kurumsal açılış sayfası: günlük hayata dokunan mobil uygulamalar geliştiren bağımsız stüdyo.</h2>
 
 <div class="ambient" aria-hidden="true">
   <div class="blob b1"></div>
@@ -345,10 +355,10 @@
       <div class="hero-copy">
         <span class="eyebrow reveal">Teknoloji Stüdyosu</span>
         <h1 class="hero-title" id="hero-title">
-          <span class="word">Yapay</span> <span class="word">zeka</span> <span class="word">destekli</span><br />
+          <span class="word">Günlük</span> <span class="word">hayata</span> <span class="word">dokunan</span><br />
           <span class="word shimmer">mobil</span> <span class="word shimmer">uygulamalar</span>
         </h1>
-        <p class="hero-sub reveal">Bardino Technology; astrolojiden sağlığa, oyundan beslenmeye, yapay zekayı günlük hayata getiren uygulamalar geliştirir.</p>
+        <p class="hero-sub reveal">Bardino Technology; astrolojiden sağlığa, oyundan beslenmeye uzanan, günlük hayatı kolaylaştıran uygulamalar geliştiren bağımsız bir stüdyo.</p>
         <div class="hero-cta reveal">
           <a class="btn btn-primary" href="#yayinda">Uygulamaları keşfet <span class="arrow" aria-hidden="true">-&gt;</span></a>
           <a class="btn btn-ghost" href="mailto:info@dozi.app">İletişime geç</a>
@@ -375,8 +385,8 @@
   <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marquee">
-      <span>Astro Dozi <b>*</b> Fit Dozi <b>*</b> Med Dozi <b>*</b> Decimo <b>*</b> Yapay Zeka <b>*</b></span>
-      <span>Astro Dozi <b>*</b> Fit Dozi <b>*</b> Med Dozi <b>*</b> Decimo <b>*</b> Yapay Zeka <b>*</b></span>
+      <span>Astro Dozi <b>*</b> Fit Dozi <b>*</b> Med Dozi <b>*</b> Decimo <b>*</b> Bardino <b>*</b></span>
+      <span>Astro Dozi <b>*</b> Fit Dozi <b>*</b> Med Dozi <b>*</b> Decimo <b>*</b> Bardino <b>*</b></span>
     </div>
   </div>
 
@@ -398,7 +408,7 @@
           <span class="cat">Astroloji</span>
         </div>
         <h3>Astro Dozi</h3>
-        <p class="desc">Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişisel AI okuma. Tarot, kahve falı, synastry uyumu.</p>
+        <p class="desc">Jenerik burç yorumu değil: doğum haritandan, yükselen ve ay burcunla kişiye özel okuma. Tarot, kahve falı, synastry uyumu.</p>
         <span class="open-link">astro.dozi.app <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </div>
       <div class="panel-visual">
@@ -419,7 +429,7 @@
           <span class="cat">Sağlık &middot; Beslenme</span>
         </div>
         <h3>Fit Dozi</h3>
-        <p class="desc">Yapay zeka ile gıda ve ürün analizi. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
+        <p class="desc">Gıda ve ürün analizi cebinde. Etiketi tara, ne yediğini anla, daha bilinçli seç.</p>
         <span class="open-link">fit.dozi.app <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </div>
       <div class="panel-visual">
@@ -440,7 +450,7 @@
           <span class="cat">Sağlık &middot; İlaç Takibi</span>
         </div>
         <h3>Med Dozi</h3>
-        <p class="desc">Yapay zeka destekli ilaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişisel sağlık desteği. iOS yakında.</p>
+        <p class="desc">İlaç hatırlatma ve takip. Akıllı hatırlatmalar, aile takibi ve kişisel sağlık desteği. iOS yakında.</p>
         <span class="open-link">med.dozi.app <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </div>
       <div class="panel-visual">
@@ -484,7 +494,7 @@
   <section id="hakkimizda" aria-labelledby="hakkimizda-head">
     <div class="about reveal">
       <h2 id="hakkimizda-head">Hakkımızda</h2>
-      <p>Bardino Technology, küçük ve odaklı bir ekiple yapay zekayı günlük hayatın içine taşıyan mobil uygulamalar geliştirir. Her ürünümüz gerçek bir ihtiyaçtan doğar; kişiselleştirmeyi ve kullanıcı gizliliğini merkeze alır.</p>
+      <p>Bardino Technology, küçük ve odaklı bir ekiple günlük hayatı kolaylaştıran mobil uygulamalar geliştirir. Her ürünümüz gerçek bir ihtiyaçtan doğar; kişiselleştirmeyi ve kullanıcı gizliliğini merkeze alır.</p>
     </div>
   </section>
 </main>
@@ -497,11 +507,17 @@
         <p style="margin:14px 0 0;color:var(--ink-soft)"><a href="mailto:info@dozi.app">info@dozi.app</a></p>
       </div>
       <nav class="foot-links" aria-label="Alt menu">
-        <a href="https://med.dozi.app/privacy-policy.html" rel="noopener">Gizlilik</a>
-        <a href="https://med.dozi.app/terms-of-use.html" rel="noopener">Kullanım Şartları</a>
+        <a href="/gizlilik.html">Gizlilik</a>
+        <a href="/kullanim-sartlari.html">Kullanım Şartları</a>
         <a href="https://www.instagram.com/doziapp" rel="noopener">Instagram</a>
         <a href="https://www.youtube.com/@BardinoTechnology" rel="noopener">YouTube</a>
       </nav>
+    </div>
+    <div class="lang-switch" aria-label="Dil / Language">
+      <a href="/" aria-current="page" hreflang="tr">Türkçe</a>
+      <a href="/en/" hreflang="en">English</a>
+      <a href="/ar/" hreflang="ar">العربية</a>
+      <a href="/pt/" hreflang="pt">Português</a>
     </div>
     <div class="foot-bottom">&copy; 2026 Bardino Technology</div>
   </div>

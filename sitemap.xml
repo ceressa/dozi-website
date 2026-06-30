@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://www.dozi.app/</loc>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.dozi.app/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.dozi.app/en/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://www.dozi.app/ar/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.dozi.app/pt/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.dozi.app/"/>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
+    <url><loc>https://www.dozi.app/en/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://www.dozi.app/ar/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://www.dozi.app/pt/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://www.dozi.app/gizlilik.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+    <url><loc>https://www.dozi.app/kullanim-sartlari.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+    <url><loc>https://www.dozi.app/en/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+    <url><loc>https://www.dozi.app/en/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+    <url><loc>https://www.dozi.app/ar/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+    <url><loc>https://www.dozi.app/ar/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+    <url><loc>https://www.dozi.app/pt/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+    <url><loc>https://www.dozi.app/pt/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
