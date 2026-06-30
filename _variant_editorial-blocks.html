@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar</title>
+<meta name="description" content="Bardino Technology; astrolojiden sagliga, oyundan beslenmeye, yapay zekayi gunluk hayata getiren mobil uygulamalar gelistiren bir teknoloji studyosudur.">
+<link rel="canonical" href="https://www.dozi.app/">
+<link rel="icon" href="assets/brand/bardino_logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bardino Technology - Yapay Zeka Destekli Mobil Uygulamalar">
+<meta property="og:description" content="Astrolojiden sagliga, oyundan beslenmeye yapay zekayi gunluk hayata getiren mobil uygulamalar.">
+<meta property="og:url" content="https://www.dozi.app/">
+<meta property="og:image" content="assets/brand/bardino_logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fffdf6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bardino Technology",
+  "url": "https://www.dozi.app",
+  "email": "info@dozi.app",
+  "logo": "https://www.dozi.app/assets/brand/bardino_logo.png",
+  "description": "Yapay zeka destekli mobil uygulamalar gelistiren teknoloji studyosu.",
+  "sameAs": [
+    "https://www.instagram.com/doziapp",
+    "https://www.youtube.com/@BardinoTechnology"
+  ]
+}
+</script>
+<style>
+  :root{
+    --paper:#fffdf6;
+    --paper-2:#fff8e8;
+    --ink:#1a1726;
+    --ink-soft:#4a4458;
+    --line:#1a1726;
+
+    --astro:#5b3df5;
+    --astro-2:#8a6bff;
+    --fit:#16a34a;
+    --fit-2:#4ade80;
+    --med:#ef4445;
+    --med-2:#ff7a6b;
+    --decimo:#ec4899;
+    --decimo-2:#fb923c;
+    --yellow:#ffd21f;
+
+    --r:26px;
+    --maxw:1240px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(60vw 60vw at 8% -5%, rgba(255,210,31,.34), transparent 60%),
+      radial-gradient(55vw 55vw at 100% 0%, rgba(236,72,153,.20), transparent 55%),
+      radial-gradient(60vw 60vw at 50% 105%, rgba(91,61,245,.16), transparent 60%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    line-height:1.55;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;line-height:1.02;letter-spacing:-.02em;margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- HEADER ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(1.3) blur(10px);
+    background:rgba(255,253,246,.72);
+    border-bottom:2px solid var(--ink);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 24px;max-width:var(--maxw);margin:0 auto}
+  .brand img{height:50px;width:auto;filter:drop-shadow(0 6px 14px rgba(255,210,31,.5))}
+  .nav-links{display:flex;align-items:center;gap:10px}
+  .nav-links a{
+    font-weight:700;font-size:.95rem;padding:9px 16px;border-radius:999px;
+    border:2px solid transparent;transition:.25s var(--ease);
+  }
+  .nav-links a:hover{border-color:var(--ink);background:#fff}
+  .nav-links a.cta{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .nav-links a.cta:hover{background:var(--astro);border-color:var(--astro);color:#fff}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:78px 0 30px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-weight:800;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    background:#fff;border:2px solid var(--ink);border-radius:999px;
+    padding:8px 16px;box-shadow:5px 5px 0 var(--yellow);
+  }
+  .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--med);box-shadow:0 0 0 4px rgba(239,68,69,.18)}
+  .hero h1{
+    font-weight:900;
+    font-size:clamp(2.9rem,8.6vw,7.1rem);
+    margin:26px 0 0;
+    max-width:15ch;
+  }
+  .hero h1 .pop{
+    font-style:italic;
+    background:linear-gradient(100deg,var(--astro),var(--decimo) 45%,var(--med) 78%,var(--decimo-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    font-size:clamp(1.05rem,2.1vw,1.35rem);
+    color:var(--ink-soft);max-width:60ch;margin:26px 0 0;font-weight:500;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-weight:800;font-size:1.02rem;padding:16px 28px;border-radius:999px;
+    border:2px solid var(--ink);transition:.28s var(--ease);
+  }
+  .btn .arr{transition:transform .28s var(--ease)}
+  .btn:hover .arr{transform:translateX(4px)}
+  .btn-primary{background:var(--ink);color:var(--paper);box-shadow:7px 7px 0 var(--astro)}
+  .btn-primary:hover{box-shadow:3px 3px 0 var(--astro);transform:translate(2px,2px)}
+  .btn-ghost{background:#fff;box-shadow:7px 7px 0 var(--yellow)}
+  .btn-ghost:hover{box-shadow:3px 3px 0 var(--yellow);transform:translate(2px,2px)}
+
+  .hero-strip{
+    display:flex;flex-wrap:wrap;gap:14px;margin-top:52px;align-items:center;
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:11px;background:#fff;border:2px solid var(--ink);
+    border-radius:18px;padding:9px 9px 9px 14px;font-weight:700;font-size:.9rem;
+    box-shadow:4px 4px 0 rgba(26,23,38,.12);
+  }
+  .chip img{width:34px;height:34px;border-radius:24%;border:1.5px solid rgba(26,23,38,.25)}
+  .chip .astro-ico{box-shadow:0 0 0 3px rgba(91,61,245,.22)}
+
+  /* ---------- SECTION HEAD ---------- */
+  .sec{padding:64px 0 18px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:30px}
+  .sec-head h2{font-weight:900;font-size:clamp(2rem,5vw,3.6rem)}
+  .kick{font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.74rem;color:var(--ink-soft);display:block;margin-bottom:8px}
+  .sec-note{color:var(--ink-soft);font-weight:600;max-width:34ch;font-size:.96rem}
+
+  /* ---------- APP BLOCKS ---------- */
+  .blocks{display:flex;flex-direction:column;gap:30px}
+  .block{
+    position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:0;
+    border:2.5px solid var(--ink);border-radius:var(--r);overflow:hidden;
+    background:#fff;box-shadow:12px 14px 0 rgba(26,23,38,.10);
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  }
+  a.block:hover{transform:translate(-3px,-4px);box-shadow:16px 20px 0 rgba(26,23,38,.16)}
+  .block:nth-child(even){grid-template-columns:1fr 1.05fr}
+  .block:nth-child(even) .pane-color{order:2}
+  .block:nth-child(even) .pane-info{order:1}
+
+  .pane-color{
+    position:relative;padding:40px;min-height:340px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    color:#fff;overflow:hidden;
+  }
+  .pane-color::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 80% 10%, rgba(255,255,255,.35), transparent 55%);
+    pointer-events:none;mix-blend-mode:soft-light;
+  }
+  .b-astro .pane-color{background:linear-gradient(150deg,var(--astro),var(--astro-2))}
+  .b-fit   .pane-color{background:linear-gradient(150deg,var(--fit),var(--fit-2))}
+  .b-med   .pane-color{background:linear-gradient(150deg,var(--med),var(--med-2))}
+  .b-decimo .pane-color{background:linear-gradient(150deg,var(--decimo),var(--decimo-2))}
+
+  .idx{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(4rem,11vw,8.5rem);line-height:.8;opacity:.42;letter-spacing:-.04em}
+  .pane-color .tag{
+    align-self:flex-start;font-weight:800;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.55);border-radius:999px;padding:7px 14px;backdrop-filter:blur(4px);
+  }
+  .icon-stage{display:flex;align-items:flex-end;gap:18px;position:relative;z-index:1}
+  .icon-stage img{
+    width:124px;height:124px;border-radius:24%;
+    box-shadow:0 18px 40px rgba(0,0,0,.32), 0 0 0 4px rgba(255,255,255,.85);
+    transition:transform .35s var(--ease);
+  }
+  a.block:hover .icon-stage img{transform:translateY(-6px) rotate(-3deg)}
+  .icon-stage .wm{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.7rem,4vw,2.6rem);color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.28)}
+
+  .pane-info{padding:38px 40px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:var(--paper)}
+  .badge{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+    font-weight:800;font-size:.78rem;letter-spacing:.04em;
+    border-radius:999px;padding:6px 14px;border:2px solid var(--ink);background:#fff;
+  }
+  .badge.live::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--fit);box-shadow:0 0 0 4px rgba(22,163,74,.2)}
+  .badge.soon::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--decimo);box-shadow:0 0 0 4px rgba(236,72,153,.2)}
+  .pane-info h3{font-weight:900;font-size:clamp(1.7rem,3.4vw,2.5rem)}
+  .pane-info p{margin:0;color:var(--ink-soft);font-weight:500;font-size:1.02rem;max-width:46ch}
+  .go{display:inline-flex;align-items:center;gap:9px;font-weight:800;margin-top:4px}
+  .go .arr{transition:transform .28s var(--ease)}
+  a.block:hover .go .arr{transform:translateX(5px)}
+  .status-soon{display:inline-flex;align-items:center;gap:9px;font-weight:800;color:var(--decimo);margin-top:4px}
+
+  /* ---------- ABOUT ---------- */
+  .about{margin:74px 0 8px}
+  .about-card{
+    border:2.5px solid var(--ink);border-radius:var(--r);
+    background:linear-gradient(135deg,#fff,var(--paper-2));
+    box-shadow:12px 14px 0 rgba(26,23,38,.10);
+    padding:clamp(34px,6vw,68px);position:relative;overflow:hidden;
+  }
+  .about-card::before{
+    content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,210,31,.6),transparent 70%);
+  }
+  .about-card .kick{position:relative}
+  .about-card h2{font-weight:900;font-size:clamp(2rem,5vw,3.4rem);max-width:16ch;position:relative}
+  .about-card p{margin:22px 0 0;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--ink-soft);font-weight:500;max-width:62ch;position:relative}
+  .about-stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;position:relative}
+  .stat{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 20px;font-weight:700;box-shadow:4px 4px 0 rgba(26,23,38,.1)}
+  .stat b{font-family:"Fraunces",serif;font-weight:900;font-size:1.5rem;display:block}
+
+  /* ---------- FOOTER ---------- */
+  footer.site{
+    margin-top:84px;border-top:2.5px solid var(--ink);
+    background:var(--paper-2);
+    background-image:radial-gradient(50vw 30vw at 90% 0%, rgba(236,72,153,.16), transparent 60%);
+  }
+  .foot{max-width:var(--maxw);margin:0 auto;padding:54px 24px 40px;display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;align-items:flex-start}
+  .foot .brand img{height:54px;filter:drop-shadow(0 6px 16px rgba(255,210,31,.55))}
+  .foot p{color:var(--ink-soft);font-weight:500;max-width:34ch;margin:16px 0 0}
+  .foot-links{display:flex;flex-direction:column;gap:11px}
+  .foot-links a{font-weight:700}
+  .foot-col h4{font-family:"Plus Jakarta Sans";font-weight:800;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 16px}
+  .foot-links a:hover{color:var(--astro)}
+  .social{display:flex;gap:10px}
+  .social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid var(--ink);border-radius:14px;background:#fff;transition:.25s var(--ease)}
+  .social a:hover{background:var(--ink);color:#fff;transform:translateY(-3px)}
+  .copy{border-top:2px solid rgba(26,23,38,.15);text-align:center;padding:20px;font-weight:600;color:var(--ink-soft);font-size:.9rem}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .block,.block:nth-child(even){grid-template-columns:1fr}
+    .block:nth-child(even) .pane-color{order:0}
+    .block:nth-child(even) .pane-info{order:0}
+    .pane-color{min-height:260px}
+    .hero{padding:54px 0 18px}
+  }
+  @media (max-width:600px){
+    .nav-links a:not(.cta){display:none}
+    .brand img{height:42px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{justify-content:center}
+    .pane-color,.pane-info{padding:28px}
+    .icon-stage img{width:96px;height:96px}
+    .hero p.lead{font-size:1.05rem}
+    .foot{gap:26px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="#top" aria-label="Bardino Technology ana sayfa">
+      <img src="assets/brand/bardino_logo.png" alt="Bardino Technology logosu, parlak sari rozet uzerinde BARDINO Technology yazisi">
+    </a>
+    <nav class="nav-links" aria-label="Ana menu">
+      <a href="#yayinda">Uygulamalar</a>
+      <a href="#hakkimizda">Hakkimizda</a>
+      <a class="cta" href="mailto:info@dozi.app">Iletisim</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>Teknoloji Studyosu</span>
+      <h1>Yapay zeka destekli <span class="pop">mobil uygulamalar</span></h1>
+      <p class="lead">Bardino Technology; astrolojiden sagliga, oyundan beslenmeye, yapay zekayi gunluk hayata getiren uygulamalar gelistirir.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#yayinda">Uygulamalari kesfet <span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn-ghost" href="mailto:info@dozi.app">Iletisime gec</a>
+      </div>
+      <div class="hero-strip" aria-hidden="true">
+        <span class="chip"><img class="astro-ico" src="assets/brand/icon_astro.png" alt="">Astro Dozi</span>
+        <span class="chip"><img src="assets/brand/icon_fit.png" alt="">Fit Dozi</span>
+        <span class="chip"><img src="assets/brand/icon_med.png" alt="">Med Dozi</span>
+        <span class="chip"><img src="assets/brand/icon_decimo.png" alt="">Decimo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- YAYINDA -->
+  <section class="sec" id="yayinda">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kick">Portfoyumuz</span>
+          <h2>Yayinda</h2>
+        </div>
+        <p class="sec-note">App Store ve Google Play'de milyonlarca dokunusla, gercek ihtiyaclar icin.</p>
+      </div>
+
+      <div class="blocks">
+
+        <!-- 1 Astro -->
+        <a class="block b-astro" href="https://astro.dozi.app" aria-label="Astro Dozi uygulamasini ac">
+          <div class="pane-color">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+              <span class="idx">01</span>
+              <span class="tag">Astroloji</span>
+            </div>
+            <div class="icon-stage">
+              <img src="assets/brand/icon_astro.png" alt="Astro Dozi uygulama simgesi, koyu zemin uzerinde Astro Dozi">
+              <span class="wm">Astro Dozi</span>
+            </div>
+          </div>
+          <div class="pane-info">
+            <span class="badge live">Yayinda</span>
+            <h3>Astro Dozi</h3>
+            <p>Jenerik burc yorumu degil: dogum haritandan, yukselen ve ay burcunla kisisel AI okuma. Tarot, kahve fali, synastry uyumu.</p>
+            <span class="go">astro.dozi.app <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </div>
+        </a>
+
+        <!-- 2 Fit -->
+        <a class="block b-fit" href="https://fit.dozi.app" aria-label="Fit Dozi uygulamasini ac">
+          <div class="pane-color">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+              <span class="idx">02</span>
+              <span class="tag">Saglik &middot; Beslenme</span>
+            </div>
+            <div class="icon-stage">
+              <img src="assets/brand/icon_fit.png" alt="Fit Dozi uygulama simgesi, beyaz zemin uzerinde yesil FIT DOZI">
+              <span class="wm">Fit Dozi</span>
+            </div>
+          </div>
+          <div class="pane-info">
+            <span class="badge live">Yayinda</span>
+            <h3>Fit Dozi</h3>
+            <p>Yapay zeka ile gida ve urun analizi. Etiketi tara, ne yedigini anla, daha bilincli sec.</p>
+            <span class="go">fit.dozi.app <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </div>
+        </a>
+
+        <!-- 3 Med -->
+        <a class="block b-med" href="https://med.dozi.app" aria-label="Med Dozi uygulamasini ac">
+          <div class="pane-color">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+              <span class="idx">03</span>
+              <span class="tag">Saglik &middot; Ilac Takibi</span>
+            </div>
+            <div class="icon-stage">
+              <img src="assets/brand/icon_med.png" alt="Med Dozi uygulama simgesi, beyaz zemin uzerinde kirmizi DOZI">
+              <span class="wm">Med Dozi</span>
+            </div>
+          </div>
+          <div class="pane-info">
+            <span class="badge live">Yayinda</span>
+            <h3>Med Dozi</h3>
+            <p>Yapay zeka destekli ilac hatirlatma ve takip. Akilli hatirlatmalar, aile takibi ve kisisel saglik destegi. iOS yakinda.</p>
+            <span class="go">med.dozi.app <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GELISTIRILIYOR -->
+  <section class="sec" id="gelistiriliyor">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kick">Yolda</span>
+          <h2>Gelistiriliyor</h2>
+        </div>
+        <p class="sec-note">Atolyemizden cikmak uzere olan yeni bir oyun.</p>
+      </div>
+
+      <div class="blocks">
+        <div class="block b-decimo" aria-label="Decimo, gelistirilme asamasinda">
+          <div class="pane-color">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+              <span class="idx">04</span>
+              <span class="tag">Oyun &middot; Bulmaca</span>
+            </div>
+            <div class="icon-stage">
+              <img src="assets/brand/icon_decimo.png" alt="Decimo uygulama simgesi, pembe zemin uzerinde 1 2 3 baloncuklari">
+              <span class="wm">Decimo</span>
+            </div>
+          </div>
+          <div class="pane-info">
+            <span class="badge soon">Gelistiriliyor</span>
+            <h3>Decimo</h3>
+            <p>Sayi zinciri bulmaca oyunu. Bitisik hucreleri birlestirip zincirler kur; basit ogrenilir, dunyalar ilerledikce derinlesir.</p>
+            <span class="status-soon">Cok yakinda</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HAKKIMIZDA -->
+  <section class="about" id="hakkimizda">
+    <div class="wrap">
+      <div class="about-card">
+        <span class="kick">Hakkimizda</span>
+        <h2>Kucuk ekip, gercek ihtiyaclar, akilli urunler.</h2>
+        <p>Bardino Technology, kucuk ve odakli bir ekiple yapay zekayi gunluk hayatin icine tasiyan mobil uygulamalar gelistirir. Her urunumuz gercek bir ihtiyactan dogar; kisisellestirmeyi ve kullanici gizliligini merkeze alir.</p>
+        <div class="about-stats">
+          <div class="stat"><b>4</b>Uygulama</div>
+          <div class="stat"><b>AI</b>Her urunde</div>
+          <div class="stat"><b>iOS &amp; Android</b>Platform</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="foot">
+    <div>
+      <a class="brand" href="#top" aria-label="Bardino Technology ana sayfa">
+        <img src="assets/brand/bardino_logo.png" alt="Bardino Technology logosu, parlak sari rozet">
+      </a>
+      <p>Yapay zekayi gunluk hayatin icine tasiyan mobil uygulama studyosu.</p>
+      <div class="social" style="margin-top:18px">
+        <a href="https://www.instagram.com/doziapp" aria-label="Instagram" rel="noopener" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@BardinoTechnology" aria-label="YouTube" rel="noopener" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Studyo</h4>
+      <div class="foot-links">
+        <a href="#yayinda">Uygulamalar</a>
+        <a href="#hakkimizda">Hakkimizda</a>
+        <a href="mailto:info@dozi.app">info@dozi.app</a>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Yasal</h4>
+      <div class="foot-links">
+        <a href="https://med.dozi.app/privacy-policy.html" rel="noopener" target="_blank">Gizlilik</a>
+        <a href="https://med.dozi.app/terms-of-use.html" rel="noopener" target="_blank">Kullanim Sartlari</a>
+      </div>
+    </div>
+  </div>
+  <div class="copy">&copy; 2026 Bardino Technology</div>
+</footer>
+
+<script>
+  // Subtle tilt-on-pointer for app blocks. Page works fully without JS.
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    if(window.matchMedia('(hover:none)').matches) return;
+    document.querySelectorAll('.block').forEach(function(el){
+      el.addEventListener('pointermove',function(e){
+        var r=el.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-0.5;
+        var y=(e.clientY-r.top)/r.height-0.5;
+        el.style.transform='translate(-3px,-4px) rotateX('+(-y*2.2)+'deg) rotateY('+(x*2.2)+'deg)';
+      });
+      el.addEventListener('pointerleave',function(){el.style.transform='';});
+    });
+  })();
+</script>
+</body>
+</html>
