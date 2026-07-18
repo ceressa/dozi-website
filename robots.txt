@@ -1,15 +1,9 @@
 # Bardino Technology - robots.txt
 # https://www.dozi.app/robots.txt
 
+# Eski Dozi sayfalari med.dozi.app'e tasindi. Stub'lar noindex + canonical tasidigi icin
+# crawl'a izin veriyoruz; Disallow olursa Google canonical'i goremez ve sinyal med'e gecmez.
 User-agent: *
-Allow: /$
-Allow: /index.html
-
-# Eski Dozi sayfaları med.dozi.app adresine taşındı (redirect stub'ları indexlenmesin)
-Disallow: /blog/
-Disallow: /legal/
-Disallow: /dozi/
-Disallow: /dozirez/
-Disallow: /app/
+Allow: /
 
 Sitemap: https://www.dozi.app/sitemap.xml
