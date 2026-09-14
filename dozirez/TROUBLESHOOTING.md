@@ -77,7 +77,7 @@ node scripts/change-pharmacy-password.js
 
 **Pilot Eczane:**
 - Eczane ID: `PILOT001`
-- Şifre: `Dozi2025!`
+- Şifre: `(yayinlanmaz, sifre yoneticisinde)`
 - Email: pilot@dozi.app
 
 ### API Endpoints
@@ -93,7 +93,7 @@ node scripts/change-pharmacy-password.js
 ```powershell
 $body = @{
     pharmacyId = "PILOT001"
-    password = "Dozi2025!"
+    password = "<PILOT001 sifresi>"
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri "https://us-central1-dozi-cd7cc.cloudfunctions.net/pharmacyLogin" -Method POST -Body $body -ContentType "application/json"
