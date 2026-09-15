@@ -9,7 +9,7 @@
 
 **Secret Key (Backend):**
 ```
-6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N
+<RECAPTCHA_SECRET_KEY>
 ```
 
 **Domains:** `dozi.app`, `www.dozi.app`
@@ -33,7 +33,7 @@
 cd Dozi/firebase-functions
 
 firebase functions:secrets:set RECAPTCHA_SECRET
-# Enter: 6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N
+# Enter: <RECAPTCHA_SECRET_KEY>
 
 firebase functions:secrets:set SMTP_HOST
 firebase functions:secrets:set SMTP_PORT

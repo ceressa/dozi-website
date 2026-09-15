@@ -73,7 +73,7 @@ Added comprehensive security headers to all website pages:
 ### 3. reCAPTCHA v3 Integration
 
 **Site Key (Client):** `6Lcp60MsAAAAAFZ4qhzifUXH7YRmVfhFu2n36epX`  
-**Secret Key (Server):** `6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N`
+**Secret Key (Server):** `<RECAPTCHA_SECRET_KEY>`
 
 **Registered Domains:**
 - `dozi.app`
@@ -155,7 +155,7 @@ Added comprehensive security headers to all website pages:
 The following secrets must be set before deployment:
 
 ```bash
-RECAPTCHA_SECRET=6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N
+RECAPTCHA_SECRET=<RECAPTCHA_SECRET_KEY>
 SMTP_HOST=<your-smtp-host>
 SMTP_PORT=587
 SMTP_USER=<your-email>

@@ -27,7 +27,7 @@ cd Dozi/firebase-functions
 
 # Set reCAPTCHA secret
 firebase functions:secrets:set RECAPTCHA_SECRET
-# Enter: 6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N
+# Enter: <RECAPTCHA_SECRET_KEY>
 
 # Set SMTP credentials (if not already set)
 firebase functions:secrets:set SMTP_HOST

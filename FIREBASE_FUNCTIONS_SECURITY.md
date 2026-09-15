@@ -142,7 +142,7 @@ All sensitive data stored in Firebase Secret Manager:
 ### ✅ Implementation Complete
 
 **Site Key (Client):** `6Lcp60MsAAAAAFZ4qhzifUXH7YRmVfhFu2n36epX`  
-**Secret Key (Server):** `6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N`
+**Secret Key (Server):** `<RECAPTCHA_SECRET_KEY>`
 
 **Registered Domains:**
 - `dozi.app`
@@ -171,7 +171,7 @@ All sensitive data stored in Firebase Secret Manager:
 2. Set Firebase Secret:
    ```bash
    firebase functions:secrets:set RECAPTCHA_SECRET
-   # Enter: 6Lcp60MsAAAAABdQNpYvd3ixJl51KpbwYe76Rf-N
+   # Enter: <RECAPTCHA_SECRET_KEY>
    ```
 
 3. Update other secrets if needed:
